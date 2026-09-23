@@ -1,6 +1,10 @@
-# generated artefacts (reproduce with `sars unpack` / `sars all`)
+# Extracted from the committed sars.zip by `sars unpack`; 25 MB of duplicate
+# bytes, so it is rebuilt rather than stored.
 data/
-output/
+
+# NOTE: output/ is intentionally committed so the converted HTML+CSS, the A4
+# PDFs and the reference/output comparison images can be reviewed directly on
+# GitHub without running the pipeline. Regenerate with `sars all`.
 
 # python
 .venv/
