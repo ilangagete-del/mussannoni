@@ -1,0 +1,42 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "sars-convert"
+version = "0.1.0"
+description = "Convert pdf2html fixed-layout HTML dumps of Tanzanian school-ranking reports into clean semantic HTML+CSS and render them to A4 PDFs with WeasyPrint."
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "MIT" }
+dependencies = [
+    "beautifulsoup4>=4.12",
+    "lxml>=5.0",
+    "weasyprint>=66.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0",
+    "ruff>=0.6",
+    "black>=24.0",
+    "pymupdf>=1.24",
+    "pillow>=10.0",
+]
+
+[project.scripts]
+sars-convert = "sars_convert.__main__:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.black]
+line-length = 100
+target-version = ["py311"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
