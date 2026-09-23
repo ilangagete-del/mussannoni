@@ -1,0 +1,11 @@
+# generated artefacts (reproduce with `sars unpack` / `sars all`)
+data/
+output/
+
+# python
+.venv/
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.ruff_cache/
