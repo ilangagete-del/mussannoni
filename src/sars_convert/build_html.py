@@ -41,6 +41,12 @@ IR_DIR = os.path.join("output", "ir")
 HTML_DIR = os.path.join("output", "html")
 STYLESHEET = "styles.css"
 
+# Tables with at least this many columns are tagged ``wide`` so the stylesheet
+# shrinks their font/padding and allows cell wrapping, otherwise the grouped
+# rank grids overflow the A4 landscape page and WeasyPrint clips the right-most
+# columns (GPA / COMPETENCY / C-RANK).
+WIDE_TABLE_COLS = 30
+
 
 # ---------------------------------------------------------------------------
 # Rotated / garbled header label repair
@@ -257,6 +263,12 @@ def render_table(table: dict) -> str:
     col_labels = _column_labels(table.get("header_rows", []), n_cols)
     kind = table.get("kind", "table")
     table_class = "report pivot" if kind == "pivot" else "report"
+    # Very wide grouped rank tables (many numeric sub-columns) exceed the A4
+    # landscape content width at the default font/padding, which makes
+    # WeasyPrint clip the right-most columns (GPA / COMPETENCY / C-RANK). Tag
+    # them so the stylesheet can shrink the font and allow cell wrapping to fit.
+    if n_cols >= WIDE_TABLE_COLS:
+        table_class += " wide"
     parts = [f'<table class="{table_class}">']
     thead = render_thead(table.get("header_rows", []), n_cols)
     if thead:
@@ -397,6 +409,14 @@ table.report td {
 /* keep the numeric grid columns tight so the wide entity-name column can
    breathe, matching the reference PDF proportions */
 table.report td.al-center { white-space: nowrap; }
+
+/* very wide grouped rank tables: shrink so all columns fit the A4 landscape
+   page (otherwise WeasyPrint clips GPA / COMPETENCY / C-RANK off the edge) */
+table.report.wide { font-size: 6px; }
+table.report.wide th,
+table.report.wide td { padding: 0.3px 1px; white-space: normal; }
+table.report.wide td.al-center { white-space: normal; }
+
 table.report thead th {
   font-weight: 700;
   text-align: center;
