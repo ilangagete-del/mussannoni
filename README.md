@@ -63,32 +63,57 @@ bands, and emitting a real `<table>`.
 
 ---
 
-## 3. Conversion approach and the pragmatism principle
+## 3. Conversion approach
 
-The intended path is a **geometry-based table-reconstruction converter**: read
-the `matrix(...)` offsets, cluster text runs into rows and columns, and emit clean
-semantic HTML+CSS.
+A generic geometry converter was prototyped and evaluated on the standalone
+`S1051-MKOLANI SECONDARY SCHOOL` sample first (see `DECISION.md`). It proved
+**fragile**: a single page-wide column model shatters the grouped multi-row
+headers (e.g. `NUMBER OF CANDIDATES -> REGISTERED/SAT -> F/M/T/%` and
+`DIVISION PERFORMANCE -> I/II/III/IV/0/I-III/I-IV -> F/M/T/%`) into dozens of
+misaligned empty cells. Per the top priority - **faithfulness of the final
+output** - we do **not** keep polishing a detector.
 
-**Pragmatism steer (top priority = faithfulness of the FINAL OUTPUT):**
+**The approach we use instead (per-document, precise, PDF-driven):**
 
-> Attempt the generic geometry-based converter, but **evaluate it on the standalone
-> `S1051-MKOLANI SECONDARY SCHOOL` sample FIRST**. If that generic detector proves
-> **fragile or time-costly**, do **not** keep polishing the detector - **fall back
-> to precise, per-file hand conversion** instead. We would rather convert the
-> documents one by one with precision and ship exact output than lose time
-> designing a clever detector that converts foolishly. The fidelity of the final
-> printed A4 PDF is what matters, not the elegance of the pipeline.
+1. **Recover the real tabular data and grid from the ORIGINAL reference PDFs**
+   using [`pdfplumber`](https://github.com/jsvine/pdfplumber). The PDFs are the
+   ground truth for *what data is tabular and how it is structured* - pdfplumber
+   returns the full grouped header and every data cell cleanly, where the messy
+   HTML geometry does not. ([Tabula](https://tabula-technology.github.io/) is a
+   documented alternative for stubborn tables.)
+2. **Label the recovered grid with domain sense.** These are school exam results
+   aggregated across a hierarchy - **schools within wards, wards within councils,
+   councils within regions** - so we know which cells are headers, which are
+   ranking columns (`S/NO.`, `POS`, `C/RANK`), which are entity names
+   (`SCHOOL NAME`, `CANDIDATE FULL NAME`, `WARD`), which are grouped numeric
+   spans, which are totals, and which are free text (`DETAILED SUBJECTS`).
+3. **Rebuild each document as pure, clean HTML+CSS** with real semantic
+   `<table>`/`<thead>`/`<tbody>` and grouped spanned `<th>`, **preserving
+   positions and all styles**: the original fonts, sizes, weights and colours,
+   the cell borders and header tints, per-column alignment, the conditional
+   percentage-cell shading (green ~100%, graded orange/red for lower values) and
+   the rotated `C/RANK` header - so the clean output *looks like* the reference
+   PDF, not a generic re-theme.
+4. **Render to A4** (landscape or portrait per document) with WeasyPrint, and
+5. **Verify** each generated PDF against its reference PDF (ground truth).
 
-The decision (generic converter vs. per-file conversion) is made on S1051 first,
-then applied to the rest.
+This is done **per document / per template**, not by a generic auto-detector.
+The reports are highly regular within a category (S1051 student-list; council
+multi-table reports; region single-table reports), so a small set of
+per-category profiles covers the whole batch precisely. We prove the workflow on
+S1051 first, then a council report, then apply it to the rest.
 
-The pipeline has three stages (see `src/sars_convert/`):
+The pipeline stages (see `src/sars_convert/`):
 
 | Stage | Module | Responsibility |
 | --- | --- | --- |
-| Convert | `converter.py` | mess `pdf2html` HTML -> clean semantic HTML+CSS |
+| Extract | `extract.py` | recover tabular data + grouped-header structure from the **reference PDFs** via pdfplumber, into a domain-labelled IR (`output/ir/*.json`) |
+| Build | `build_html.py` | IR -> pure, clean semantic HTML+CSS, preserving all styles |
 | Render | `render.py` | clean HTML -> A4 PDF via WeasyPrint (orientation per doc) |
-| Verify | `verify.py` | compare rendered PDF vs. reference PDF (ground truth) |
+| Verify | `verify.py` | compare generated PDF vs. reference PDF (ground truth) |
+
+`converter.py` is retained as a tested geometry **assist** (matrix/font/run
+parsing used for cross-checking recovered text), not the production converter.
 
 ---
 
@@ -112,11 +137,14 @@ mussannoni/
 ├── src/
 │   └── sars_convert/
 │       ├── __init__.py
-│       ├── __main__.py       # CLI entry point (stub for now)
-│       ├── converter.py      # placeholder (later feature)
-│       ├── render.py         # placeholder (later feature)
-│       └── verify.py         # placeholder (later feature)
+│       ├── __main__.py       # CLI entry point (extract -> build -> render)
+│       ├── converter.py      # tested geometry assist (matrix/font/run parsing)
+│       ├── extract.py        # pdfplumber data + structure recovery -> IR
+│       ├── build_html.py     # IR -> clean semantic HTML+CSS (style-preserving)
+│       ├── render.py         # clean HTML -> A4 PDF via WeasyPrint
+│       └── verify.py         # generated PDF vs. reference PDF fidelity check
 ├── output/
+│   ├── ir/                   # recovered per-document IR JSON (git-ignored)
 │   ├── html/                 # generated clean HTML (git-ignored)
 │   └── pdf/                  # generated PDFs (git-ignored)
 └── tests/

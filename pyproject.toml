@@ -12,6 +12,7 @@ license = { text = "MIT" }
 dependencies = [
     "beautifulsoup4>=4.12",
     "lxml>=5.0",
+    "pdfplumber>=0.11",
     "weasyprint>=66.0",
 ]
 
