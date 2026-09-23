@@ -30,6 +30,9 @@ COUNCIL_PDF = os.path.join(DATA_ROOT, "council_pdf", "MWANZA CC 10 BEST SCHOOLS.
 DISTRICT_PDF = os.path.join(DATA_ROOT, "region_pdf", "Mwanza f2 District Performance.pdf")
 SUBJECTS_RANK_PDF = os.path.join(DATA_ROOT, "council_pdf", "MWANZA CC SUBJECTS RANK.pdf")
 TOP10_PDF = os.path.join(DATA_ROOT, "region_pdf", "Mwanza Top 10 Schools.pdf")
+# The busiest subjectwise report: 18 subject sections, several packed onto a
+# single page. Caption recovery must return ONE caption PER SECTION.
+SUBJECTWISE_PDF = os.path.join(DATA_ROOT, "council_pdf", "MWANZA CC SCHOOLS RANK SUBJECTWISE.pdf")
 
 requires_s1051 = pytest.mark.skipif(
     not os.path.exists(S1051_PDF), reason="S1051 reference PDF not present"
@@ -45,6 +48,9 @@ requires_subjects_rank = pytest.mark.skipif(
 )
 requires_top10 = pytest.mark.skipif(
     not os.path.exists(TOP10_PDF), reason="top-10 reference PDF not present"
+)
+requires_subjectwise = pytest.mark.skipif(
+    not os.path.exists(SUBJECTWISE_PDF), reason="subjectwise reference PDF not present"
 )
 
 _STANDARD_BANNER = [
@@ -166,7 +172,11 @@ def test_extract_s1051_first_student_row() -> None:
 def test_extract_council_grouped_header_spans() -> None:
     ir = E.extract_document("MWANZA CC 10 BEST SCHOOLS", COUNCIL_PDF, "council")
     assert ir.orientation == "landscape"
-    assert "MWANZA CC TOP TEN BEST SCHOOLS" in ir.title_lines
+    # the report banner + the first section caption together carry both centred
+    # heading lines the reference prints above the grid (one stays in the
+    # banner, the first section's caption is attached to the table it labels).
+    all_headings = ir.title_lines + [t.caption for t in ir.tables if t.caption]
+    assert "MWANZA CC TOP TEN BEST SCHOOLS" in all_headings
 
     table = ir.tables[0]
     top = {c.label: c for c in table.header_rows[0]}
@@ -247,8 +257,10 @@ def test_district_performance_banner_recovered() -> None:
     # the four constant banner lines are present and in order ...
     assert ir.title_lines[: len(_STANDARD_BANNER)] == _STANDARD_BANNER
     assert "REGIONAL FORM TWO MOCK ASSESSMENT RESULTS, JULY 2026" in ir.title_lines
-    # ... followed by the report subtitle.
-    assert "DISTRICT PERFORMANCE OVERALL" in ir.title_lines
+    # ... and the report subtitle is recovered -- now attached to the first
+    # section's table as its caption (per-section labelling) rather than left
+    # in the banner, so every district section prints its own heading.
+    assert ir.tables[0].caption == "DISTRICT PERFORMANCE OVERALL"
 
 
 @requires_subjects_rank
@@ -257,7 +269,10 @@ def test_subjects_rank_banner_recovered() -> None:
     ir = E.extract_document("MWANZA CC SUBJECTS RANK", SUBJECTS_RANK_PDF, "council")
     assert ir.title_lines[0] == "THE PRIME MINISTER'S OFFICE"
     assert "MWANZA REGION" in ir.title_lines
-    assert "MWANZA CC ALL SUBJECTS PERFOMANCE" in ir.title_lines
+    # the report subtitle is recovered either in the banner or as the first
+    # table's section caption.
+    all_headings = ir.title_lines + [t.caption for t in ir.tables if t.caption]
+    assert "MWANZA CC ALL SUBJECTS PERFOMANCE" in all_headings
 
 
 # ---------------------------------------------------------------------------
@@ -268,8 +283,9 @@ def test_subjects_rank_banner_recovered() -> None:
 def test_district_performance_sections_captioned_not_duplicated() -> None:
     ir = E.extract_document("Mwanza f2 District Performance", DISTRICT_PDF, "region")
     captions = [t.caption for t in ir.tables]
-    # page 0's section is the banner subtitle (already in title_lines) -> blank
-    assert captions[0] == ""
+    # every page is a DIFFERENT section and each carries its OWN caption now,
+    # including the first ("... OVERALL") which used to render caption-less.
+    assert captions[0] == "DISTRICT PERFORMANCE OVERALL"
     # the remaining pages are DIFFERENT sections, each with its own caption
     assert "DISTRICT PERFORMANCE FOR GOVERNMENT SCHOOLS ONLY" in captions
     assert "DISTRICT PERFORMANCE FOR PRIVATE SCHOOLS ONLY" in captions
@@ -339,3 +355,98 @@ def test_dedup_keeps_identical_body_with_distinct_caption() -> None:
     )
     kept = E._dedup_repeats([a, b])
     assert len(kept) == 2
+
+
+# ---------------------------------------------------------------------------
+# Review regression: caption recovery is ONE-PER-SECTION, not one-per-page.
+# The busiest subjectwise report packs several subject sections onto one page;
+# every section must recover its own caption (previously 9/18 were dropped and
+# rendered as unlabeled tables).
+# ---------------------------------------------------------------------------
+# The 18 subject sections the reference PDF prints, in order.
+_SUBJECTWISE_SECTIONS = [
+    "HTM",
+    "BUSINESS STUDIES",
+    "GEOGRAPHY",
+    "KISWAHILI",
+    "ENGLISH LANGUAGE",
+    "PHYSICS",
+    "CHEMISTRY",
+    "BIOLOGY",
+    "BASIC MATHEMATICS",
+    "HISTORY",
+    "B/KEEPING",
+    "BIBLE KNOWLEDGE",
+    "ELIMU YA DINI YA KIISLAMU",
+    "CHINES LANGUAGE",
+    "FRENCH LANGUAGE",
+    "COMPUTER SCIENCE",
+    "SPORT STUDIES",
+    "FOOD AND NUTRITION",
+]
+
+
+@requires_subjectwise
+def test_subjectwise_recovers_every_section_caption() -> None:
+    """All 18 subject-section captions are recovered (was 9/18 before).
+
+    Sections that used to render caption-less -- GEOGRAPHY, BIBLE KNOWLEDGE,
+    ELIMU YA DINI YA KIISLAMU, CHINES/FRENCH LANGUAGE, COMPUTER SCIENCE, SPORT
+    STUDIES, FOOD AND NUTRITION and the first-page HTM -- must now each carry
+    their own caption, because the report packs several onto one page.
+    """
+    ir = E.extract_document("MWANZA CC SCHOOLS RANK SUBJECTWISE", SUBJECTWISE_PDF, "council")
+    captions = [t.caption for t in ir.tables if t.caption]
+    # every subject section has exactly one "SCHOOL RANK IN <SUBJECT> COUNCILWISE"
+    for subject in _SUBJECTWISE_SECTIONS:
+        expected = f"SCHOOL RANK IN {subject} COUNCILWISE"
+        assert expected in captions, f"missing section caption for {subject!r}"
+    # 18 distinct sections recovered (no page's sections collapsed to one)
+    assert len({c for c in captions if c.startswith("SCHOOL RANK IN")}) == 18
+    # the previously-dropped subject words are now present as captions
+    joined = " ".join(captions).upper()
+    for token in ("GEOGRAPHY", "BIBLE", "KIISLAMU", "CHINES", "FRENCH", "COMPUTER"):
+        assert token in joined
+
+
+@requires_subjectwise
+def test_subjectwise_first_section_caption_not_lost_to_banner() -> None:
+    """The first section (HTM) must NOT be swallowed by the banner title lines.
+
+    Its caption is attached to the first data table, while the genuine report
+    subtitle stays in the banner.
+    """
+    ir = E.extract_document("MWANZA CC SCHOOLS RANK SUBJECTWISE", SUBJECTWISE_PDF, "council")
+    # HTM's caption lives on the first table, not in the banner.
+    assert ir.tables[0].caption == "SCHOOL RANK IN HTM COUNCILWISE"
+    assert "SCHOOL RANK IN HTM COUNCILWISE" not in ir.title_lines
+    # the genuine report subtitle is preserved in the banner.
+    assert "MWANZA CC SCHOOLS RANK SUBJECTWISE" in ir.title_lines
+
+
+@requires_subjectwise
+def test_subjectwise_body_data_intact() -> None:
+    """Recovering per-section captions must not drop or mis-column any data."""
+    ir = E.extract_document("MWANZA CC SCHOOLS RANK SUBJECTWISE", SUBJECTWISE_PDF, "council")
+    # all body rows survive and every recovered token is in the source HTML.
+    assert sum(len(t.body) for t in ir.tables) >= 700
+    result = E.crosscheck(ir, "council")
+    assert result["checked"] is True
+    assert result["missing_count"] == 0
+
+
+# ---------------------------------------------------------------------------
+# Review regression: the S1051 trailing centre-summary tables must carry their
+# captions ("... OVERALL PERFORMANCE" / "... SUBJECTS GRADING PERFORMANCE
+# SUMMARY") instead of being appended caption-less.
+# ---------------------------------------------------------------------------
+@requires_s1051
+def test_s1051_summary_tables_carry_captions() -> None:
+    ir = E.extract_document("S1051-MKOLANI SECONDARY SCHOOL", S1051_PDF, "student")
+    summary = [t for t in ir.tables if t.kind == "summary"]
+    assert summary, "expected trailing centre-summary tables"
+    # none of the summary tables is caption-less any more
+    assert all(t.caption for t in summary)
+    captions = " ".join(t.caption for t in summary).upper()
+    assert "GRADING PERFORMANCE SUMMARY" in captions
+    assert "OVERALL" in captions

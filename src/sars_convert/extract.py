@@ -123,6 +123,12 @@ _BANNER_LINE4_RE = re.compile(r"^REGIONAL FORM TWO (MOCK )?ASSESSMENT RESULTS, J
 # Y-coordinate ceiling (PDF points from the page top) within which the banner
 # and report subtitle always sit on page 0 of every report.
 _BANNER_TOP_MAX = 135.0
+# Section captions on a fresh section page sit just below the banner but can
+# nudge past ``_BANNER_TOP_MAX`` by a point or two (e.g. the GEOGRAPHY subject
+# page lands the caption at top=135.2). We scan a wider top region for the
+# per-section caption and rely on the header-band terminator (not a hard
+# y-cutoff) to know where the caption region ends.
+_CAPTION_TOP_MAX = 175.0
 # Tokens that signal the start of the table header band (never a subtitle) so
 # banner recovery stops before swallowing grouped-header text.
 _HEADER_BAND_TOKENS = (
@@ -264,14 +270,29 @@ def _top_lines(page, y_max: float) -> list[str]:
     return lines
 
 
+def _is_header_band_line(line: str) -> bool:
+    """True when ``line`` begins the table header band (not a caption).
+
+    The header band opens with a grouped super-header (``GRADING PERFORMANCE``,
+    ``NUMBER OF CANDIDATES`` ...) or the column-label row (``S/N SCHOOL NAME
+    A B C ...``). Recognising it lets caption recovery stop cleanly instead of
+    relying on a brittle y-coordinate cutoff.
+    """
+    up = line.upper()
+    return any(tok in up for tok in _HEADER_BAND_TOKENS)
+
+
 def _banner_body_lines(page) -> list[str]:
     """Return top-region lines with the standard banner opening stripped off.
 
     Leaves the report subtitle / per-page section caption line(s) and whatever
     follows, in reading order, so callers can pick the subtitle (banner) or the
-    per-page section caption.
+    per-page section caption. We scan the wider caption region (``_CAPTION_TOP_MAX``)
+    and stop at the first header-band line so a caption that nudges a point or
+    two past ``_BANNER_TOP_MAX`` (e.g. the GEOGRAPHY subject page) is still
+    recovered, while header-band text is never mistaken for a caption.
     """
-    lines = _top_lines(page, _BANNER_TOP_MAX)
+    lines = _top_lines(page, _CAPTION_TOP_MAX)
     idx = 0
     n = len(lines)
     for standard in _STANDARD_BANNER_LINES:
@@ -283,7 +304,13 @@ def _banner_body_lines(page) -> list[str]:
         if _BANNER_LINE4_RE.match(lines[j]):
             idx = j + 1
             break
-    return lines[idx:]
+    # keep only the lines between the banner and the start of the header band.
+    body: list[str] = []
+    for line in lines[idx:]:
+        if _is_header_band_line(line):
+            break
+        body.append(line)
+    return body
 
 
 # Words that positively identify a report subtitle / per-page section caption
@@ -608,6 +635,126 @@ def _extract_page_tables(page) -> list[list[list[str | None]]]:
     return grids
 
 
+# Vertical gap (PDF points) within which a caption line sitting ABOVE a grid is
+# taken to introduce that grid. Subject captions sit ~12pt above their header
+# band; 60pt tolerates the inter-section whitespace without reaching the
+# previous section's data.
+_CAPTION_GRID_GAP = 60.0
+
+
+def _caption_lines_with_y(page) -> list[tuple[float, str]]:
+    """Return ``(top, text)`` for every caption-like line anywhere on a page.
+
+    Unlike :func:`_section_caption` (which only inspects the top banner region),
+    this scans the WHOLE page so section captions that sit mid-page -- the case
+    where a report packs several subject sections onto one page -- are found and
+    can be matched to the grid each one introduces.
+    """
+    words = page.extract_words()
+    rows: list[tuple[float, list[dict]]] = []
+    for w in sorted(words, key=lambda w: (round(w["top"], 1), w["x0"])):
+        placed = False
+        for row in rows:
+            if abs(row[0] - w["top"]) <= 3.5:
+                row[1].append(w)
+                placed = True
+                break
+        if not placed:
+            rows.append((w["top"], [w]))
+    out: list[tuple[float, str]] = []
+    for top, group in sorted(rows, key=lambda r: r[0]):
+        text = " ".join(w["text"] for w in sorted(group, key=lambda w: w["x0"]))
+        text = " ".join(text.split())
+        if text and _looks_like_caption(text):
+            out.append((top, text))
+    return out
+
+
+def _grid_is_new_section(grid: list[list[str | None]]) -> bool:
+    """True when a grid begins with a header band (a fresh section start).
+
+    A continuation grid (paginated overflow of the previous section) begins
+    directly with a data row (leading ordinal/serial/CNO). A fresh section
+    begins with its grouped header band, so its first non-empty row is NOT a
+    data row.
+    """
+    for row in grid:
+        cells = _compact(row)
+        if not cells:
+            continue
+        return not (_ORDINAL_RE.match(cells[0]) or _CNO_RE.match(cells[0]))
+    return False
+
+
+def _page_grids_with_captions(
+    page, carried_caption: str = ""
+) -> tuple[list[tuple[list[list[str | None]], str]], str]:
+    """Return ``[(grid, caption)]`` for a page plus any caption carried forward.
+
+    Each recovered grid is matched to the caption line that sits immediately
+    above it (within :data:`_CAPTION_GRID_GAP`), so a page that stacks several
+    subject sections gets ONE caption PER SECTION rather than a single caption
+    for the whole page. A caption at the bottom of a page with no grid below it
+    introduces the first *new-section* grid on the following page, returned as
+    ``carried_caption`` for the caller to pass in.
+    """
+    caption_lines = _caption_lines_with_y(page)
+    tables = page.find_tables()
+    grids = _extract_page_tables(page)
+    # ``find_tables`` and ``extract_tables`` return grids in the same order; we
+    # zip the cleaned grid with the raw table's top coordinate.
+    #
+    # Two layouts occur. (a) The banner/caption is free page text ABOVE the grid
+    # (the packed subjectwise reports): each grid's caption is the caption line
+    # sitting just above it. (b) pdfplumber merges the banner + caption INTO the
+    # grid's top-left cell (single-section-per-page reports): the grid bbox then
+    # starts at the page top and the caption sits *inside* it, so the
+    # above-grid match finds nothing -- we fall back to the page's top section
+    # caption for the first grid on such a page.
+    pairs: list[tuple[list[list[str | None]], str]] = []
+    used_caption_y: set[float] = set()
+    page_section = _section_caption(page)
+    section_used = False
+    n = min(len(tables), len(grids))
+    for i in range(n):
+        grid = grids[i]
+        if not grid:
+            continue
+        gtop = tables[i].bbox[1]
+        caption = ""
+        best_y = -1.0
+        for cy, ctext in caption_lines:
+            if cy < gtop and (gtop - cy) < _CAPTION_GRID_GAP and cy > best_y:
+                best_y, caption = cy, ctext
+        if caption:
+            used_caption_y.add(best_y)
+        elif carried_caption and _grid_is_new_section(grid):
+            # a caption stranded at the bottom of the previous page introduces
+            # this page's first new section.
+            caption = carried_caption
+        elif not section_used and page_section and gtop <= _BANNER_TOP_MAX:
+            # banner-absorbed layout: the grid swallowed the page's caption, so
+            # attach the page's top section caption to this first grid.
+            caption = page_section
+            section_used = True
+        carried_caption = ""  # only the first grid can consume a carried caption
+        pairs.append((grid, caption))
+    # if any grids beyond ``n`` exist (rare), keep them uncaptioned.
+    for i in range(n, len(grids)):
+        if grids[i]:
+            pairs.append((grids[i], ""))
+
+    # a caption below the last grid's top, with no grid beneath it on this page,
+    # carries to the next page's first new section.
+    next_carried = ""
+    if tables:
+        last_bottom = max(t.bbox[3] for t in tables)
+        for cy, ctext in caption_lines:
+            if cy > last_bottom and cy not in used_caption_y:
+                next_carried = ctext
+    return pairs, next_carried
+
+
 def _page_captions(page) -> list[str]:
     """Return the leading single-cell caption texts on a page (banner aside)."""
     captions: list[str] = []
@@ -723,13 +870,35 @@ def _extract_s1051(pdf, ir: DocumentIR) -> None:
 
     # --- trailing centre-summary tables (grading, subject performance) ---
     # These live on the last pages and are recovered by the generic engine.
+    # Each summary page opens with an ``EXAMINATION CENTRE ...`` heading (e.g.
+    # ``EXAMINATION CENTRE OVERALL PERFORMANCE``, ``EXAMINATION CENTRE SUBJECTS
+    # GRADING PERFORMANCE SUMMARY``); we carry that heading onto the table so
+    # the summary section is labelled rather than rendered caption-less.
     for page in pdf.pages[-2:]:
+        caption = _summary_caption(page)
         for grid in _extract_page_tables(page):
             if any(_row_is_student(_compact(r)) for r in grid):
                 continue  # already captured as student rows
-            table = _table_from_grid(grid, kind="summary")
+            table = _table_from_grid(grid, caption=caption, kind="summary")
             if table.body:
                 ir.tables.append(table)
+
+
+# The centre-summary pages of the S1051 report open with one of these headings.
+_SUMMARY_CAPTION_RE = re.compile(r"^EXAMINATION CENTRE .+", re.IGNORECASE)
+
+
+def _summary_caption(page) -> str:
+    """Return the ``EXAMINATION CENTRE ...`` heading that titles a summary page.
+
+    The heading is the topmost centred line on the page (``... OVERALL
+    PERFORMANCE`` / ``... SUBJECTS GRADING PERFORMANCE SUMMARY``); the
+    key-value body rows (``EXAMINATION CENTRE REGION MWANZA`` ...) sit below it.
+    """
+    for line in _top_lines(page, 92):
+        if _SUMMARY_CAPTION_RE.match(line):
+            return line
+    return ""
 
 
 def extract_document(stem: str, pdf_path: str, category: str) -> DocumentIR:
@@ -773,23 +942,25 @@ def extract_document(stem: str, pdf_path: str, category: str) -> DocumentIR:
             if cap not in ir.captions and cap not in ir.title_lines:
                 ir.captions.append(cap)
 
-        # Council reports repeat a full grid per page (one DIFFERENT section per
-        # page: OVERALL / GOVERNMENT ONLY / PRIVATE ONLY / BY KPI / ...); region
-        # reports either do the same or continue one grid across pages. We keep
-        # each grid together with the per-page section caption recovered from
-        # that page's centred subtitle, so distinct sections are never dropped
-        # as silent duplicates. The banner subtitle already lives in
-        # title_lines, so page 0's section caption is only kept when it differs.
-        banner_lines = set(ir.title_lines)
+        # Recover ONE caption PER SECTION, not per page. Each grid is matched to
+        # the caption line that sits directly above it, so reports that pack
+        # several subject sections onto one page (e.g. the SUBJECTWISE rank
+        # reports) get every section labelled -- not just the first. A caption
+        # stranded at the bottom of a page introduces the first new section on
+        # the following page (carried forward).
         page_grids: list[tuple[list[list[str | None]], str]] = []
+        carried = ""
         for page in pdf.pages:
-            section = _section_caption(page)
-            # page 0's section caption is the report subtitle already carried in
-            # title_lines -> do not repeat it as a table caption.
-            if section in banner_lines:
-                section = ""
-            for grid in _extract_page_tables(page):
-                page_grids.append((grid, section))
+            pairs, carried = _page_grids_with_captions(page, carried)
+            page_grids.extend(pairs)
+
+    # The first section's caption can be absorbed into the banner ``title_lines``
+    # (e.g. ``SCHOOL RANK IN HTM COUNCILWISE`` sits right under the report
+    # subtitle on page 0). Once it is attached to the first grid as a section
+    # caption, drop it from the banner so it renders as the table's <h3> rather
+    # than a report title -- but keep the genuine report subtitle in the banner.
+    grid_captions = {section for _, section in page_grids if section}
+    ir.title_lines = [ln for ln in ir.title_lines if ln not in grid_captions]
 
     tables: list[Table] = []
     for grid, section in page_grids:
