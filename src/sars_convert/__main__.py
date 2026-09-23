@@ -1,22 +1,23 @@
 """Command-line entry point for sars_convert.
 
-Placeholder. The real CLI (convert -> render -> verify) is wired up by a later
-feature. For now it just reports that the pipeline is not implemented yet.
+Runs the implemented pipeline stages: recover the IR from the reference PDFs
+(:mod:`sars_convert.extract`) and build clean semantic HTML+CSS from it
+(:mod:`sars_convert.build_html`). The render (WeasyPrint -> A4 PDF) and verify
+stages are wired up by later features; see ``README.md``.
 """
 
 from __future__ import annotations
 
-import sys
+from . import build_html, extract
 
 
 def main(argv: list[str] | None = None) -> int:
-    """Entry point stub. Returns a non-zero exit code until implemented."""
-    print(
-        "sars-convert: pipeline not implemented yet. "
-        "See README.md for the planned convert -> render -> verify flow.",
-        file=sys.stderr,
-    )
-    return 1
+    """Extract the IR from the reference PDFs, then build clean HTML."""
+    ir_paths = extract.extract_all()
+    print(f"Extracted {len(ir_paths)} IR files to {extract.IR_DIR}/")
+    html_paths = build_html.build_all()
+    print(f"Wrote {len(html_paths)} clean HTML files to {build_html.HTML_DIR}/")
+    return 0
 
 
 if __name__ == "__main__":
