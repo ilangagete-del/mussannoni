@@ -102,6 +102,57 @@ _BANNER_PREFIXES = (
     "REGIONAL FORM TWO MOCK ASSESSMENT RESULTS",
 )
 
+# The four centred banner lines are CONSTANT across every report (the fourth
+# reads 'REGIONAL FORM TWO ASSESSMENT RESULTS, JULY 2026' -- no 'MOCK' -- for
+# the two subject-rank docs). pdfplumber sometimes collapses them into a single
+# top-left table cell (the good docs) but for other layouts it emits them as
+# free page text above/around the grid, so ``page.extract_tables()`` alone
+# misses them and ``title_lines`` comes back empty. ``_recover_banner_lines``
+# reads the top region of page 0 as words, clusters them into lines, and pulls
+# these known banner lines + the report subtitle line(s) precisely, for EVERY
+# document. This is a precise per-template recovery of known-constant text, not
+# a fragile generic heading detector.
+_STANDARD_BANNER_LINES = (
+    "THE PRIME MINISTER'S OFFICE",
+    "REGIONAL ADMINISTRATION AND LOCAL GOVERNMENT",
+    "MWANZA REGION",
+)
+# Recognise line 4 in either the 'MOCK' or the plain phrasing.
+_BANNER_LINE4_RE = re.compile(r"^REGIONAL FORM TWO (MOCK )?ASSESSMENT RESULTS, JULY 2026$")
+
+# Y-coordinate ceiling (PDF points from the page top) within which the banner
+# and report subtitle always sit on page 0 of every report.
+_BANNER_TOP_MAX = 135.0
+# Tokens that signal the start of the table header band (never a subtitle) so
+# banner recovery stops before swallowing grouped-header text.
+_HEADER_BAND_TOKENS = (
+    "NUMBER OF CANDIDATES",
+    "DIVISION PERFORMANCE",
+    "GPA PERFORMANCE",
+    "GRADE PERFORMANCE",
+    "GRADING PERFORMANCE",
+    "NUMBER OF",
+    # column-header labels that can share a line with caption keywords
+    "GPA",
+    "COMPETENCY",
+    "COMPENTENCY",
+    "SCHOOL NAME",
+    "CANDIDATE FULL NAME",
+    "SUBJECT NAME",
+    "TOTAL",
+    "REGISTERED",
+    # ordinal / serial column heads and rotated-rank glyph fragments
+    "S/NO.",
+    "S/NO",
+    "S/N",
+    "C/NO.",
+    "C/NO",
+    "CNAM",
+    "NOISIVID",
+    "KNAR",
+    "ID O",
+)
+
 # Captions that introduce a table (as opposed to titling the whole report).
 _CAPTION_MARKERS = (
     "DIVISION PERFORMANCE SUMMARY",
@@ -181,6 +232,162 @@ def _is_banner_cell(value: str | None) -> bool:
 def split_banner(value: str) -> list[str]:
     """Split the collapsed banner cell into ordered non-empty heading lines."""
     return [ln.strip() for ln in value.split("\n") if ln.strip()]
+
+
+def _top_lines(page, y_max: float) -> list[str]:
+    """Cluster page words with ``top < y_max`` into ordered text lines.
+
+    Words on the same visual line share (approximately) a ``top`` coordinate;
+    we group within a small tolerance and join left-to-right so a centred
+    banner line comes back as one string in reading order (which
+    ``page.extract_text`` does not guarantee when a wide table header outranks
+    the centred banner).
+    """
+    words = [w for w in page.extract_words() if w["top"] < y_max]
+    rows: list[tuple[float, list[dict]]] = []
+    for w in sorted(words, key=lambda w: (round(w["top"], 1), w["x0"])):
+        top = w["top"]
+        placed = False
+        for row in rows:
+            if abs(row[0] - top) <= 3.5:
+                row[1].append(w)
+                placed = True
+                break
+        if not placed:
+            rows.append((top, [w]))
+    lines: list[str] = []
+    for _, group in sorted(rows, key=lambda r: r[0]):
+        text = " ".join(w["text"] for w in sorted(group, key=lambda w: w["x0"]))
+        text = " ".join(text.split())
+        if text:
+            lines.append(text)
+    return lines
+
+
+def _banner_body_lines(page) -> list[str]:
+    """Return top-region lines with the standard banner opening stripped off.
+
+    Leaves the report subtitle / per-page section caption line(s) and whatever
+    follows, in reading order, so callers can pick the subtitle (banner) or the
+    per-page section caption.
+    """
+    lines = _top_lines(page, _BANNER_TOP_MAX)
+    idx = 0
+    n = len(lines)
+    for standard in _STANDARD_BANNER_LINES:
+        for j in range(idx, n):
+            if lines[j] == standard:
+                idx = j + 1
+                break
+    for j in range(idx, n):
+        if _BANNER_LINE4_RE.match(lines[j]):
+            idx = j + 1
+            break
+    return lines[idx:]
+
+
+# Words that positively identify a report subtitle / per-page section caption
+# in these SARS reports (school/council/region result headings). A caption line
+# must contain at least one of these and must NOT be a data row or a header
+# band fragment. This keeps caption recovery a precise, domain-anchored read.
+_CAPTION_KEYWORDS = (
+    "PERFORMANCE",
+    "SCHOOLS",
+    "SCHOOL",
+    "STUDENTS",
+    "STUDENT",
+    "RANK",
+    "WARDS",
+    "SUBJECT",
+    "SUBJECTS",
+    "MOBILITY",
+    "BEST",
+    "LOOSER",
+    "TOP",
+    "OVERALL",
+)
+
+
+def _looks_like_caption(line: str) -> bool:
+    """True when ``line`` reads like a real report subtitle / section title.
+
+    A caption is a centred domain heading (``TOP 10 BEST GOVERNMENT SCHOOLS``,
+    ``DISTRICT PERFORMANCE FOR PRIVATE SCHOOLS ONLY``). We reject: rotated
+    single-glyph header fragments (``'N N'``, ``'X G IV IS'``); header-band
+    label rows (``I II III 0 GPA COMPETENCY LEVEL ...``); and data rows (which
+    start with an ordinal/serial/candidate number). The line must carry a known
+    section keyword, anchoring the recovery to the report domain rather than a
+    fragile generic heuristic.
+    """
+    up = line.upper()
+    if any(tok in up for tok in _HEADER_BAND_TOKENS):
+        return False
+    tokens = line.split()
+    if not tokens:
+        return False
+    # data rows / header rows start with an ordinal, serial or candidate number.
+    if _ORDINAL_RE.match(tokens[0]) or _CNO_RE.match(tokens[0]) or _PERCENT_RE.match(tokens[0]):
+        return False
+    if not any(kw in up for kw in _CAPTION_KEYWORDS):
+        return False
+    # reject rotated-glyph strips: mostly one/two-character tokens.
+    short = sum(1 for t in tokens if len(t.strip("/.")) <= 2)
+    return short < max(2, len(tokens) * 0.5)
+
+
+def _section_caption(page) -> str:
+    """Return the clean section caption for a page (``''`` if none).
+
+    The first caption-like line below the banner names the section (e.g.
+    ``TOP 10 BEST GOVERNMENT SCHOOLS``); the header band and its column labels
+    that follow are rejected by :func:`_looks_like_caption`.
+    """
+    for line in _banner_body_lines(page):
+        if _looks_like_caption(line):
+            return line
+    return ""
+
+
+def _recover_banner_lines(page) -> list[str]:
+    """Recover the ordered banner + report-subtitle lines from page 0 words.
+
+    Returns the four constant banner lines followed by the report subtitle
+    line(s) that sit between the banner and the table header band. Precise
+    recovery of known-constant text: the first four lines are matched against
+    the standard banner; subsequent centred lines are kept as subtitles until
+    the first line that begins the table header band.
+    """
+    lines = _top_lines(page, _BANNER_TOP_MAX)
+    banner: list[str] = []
+    idx = 0
+    n = len(lines)
+
+    # 1) the three fixed opening lines, in order (tolerate a missing one).
+    for standard in _STANDARD_BANNER_LINES:
+        for j in range(idx, n):
+            if lines[j] == standard:
+                banner.append(standard)
+                idx = j + 1
+                break
+
+    # 2) line 4 ('REGIONAL FORM TWO [MOCK] ASSESSMENT RESULTS, JULY 2026').
+    for j in range(idx, n):
+        if _BANNER_LINE4_RE.match(lines[j]):
+            banner.append(lines[j])
+            idx = j + 1
+            break
+
+    # 3) subtitle line(s): centred report titles after line 4, up to the table
+    #    header band. Stop at the first line carrying a header-band token or a
+    #    rotated glyph strip; keep at most two caption-like subtitle lines.
+    for line in lines[idx:]:
+        if not _looks_like_caption(line):
+            break
+        banner.append(line)
+        if len(banner) >= len(_STANDARD_BANNER_LINES) + 3:
+            break
+
+    return banner
 
 
 def _row_nonempty(row: list[str | None]) -> int:
@@ -539,9 +746,15 @@ def extract_document(stem: str, pdf_path: str, category: str) -> DocumentIR:
             page_size=page_size,
         )
         titles, captions = _collect_titles_and_captions(first)
-        # de-duplicate title lines while keeping order.
+        # Robust banner recovery: read the top region of page 0 as words so the
+        # constant PMO/RALG/MWANZA REGION/REGIONAL FORM TWO... lines + report
+        # subtitle are recovered even when pdfplumber does not collapse them
+        # into a table cell (which left title_lines empty for some layouts).
+        recovered = _recover_banner_lines(first)
+        # Prefer the word-recovered banner order, then fold in any extra
+        # subtitle text the table-cell scan found; de-duplicate keeping order.
         seen: set[str] = set()
-        for line in titles:
+        for line in recovered + titles:
             if line not in seen:
                 seen.add(line)
                 ir.title_lines.append(line)
@@ -560,20 +773,59 @@ def extract_document(stem: str, pdf_path: str, category: str) -> DocumentIR:
             if cap not in ir.captions and cap not in ir.title_lines:
                 ir.captions.append(cap)
 
-        # Council reports repeat a full grid per page (multi-table); region
-        # reports continue one grid across pages. The generic engine recovers
-        # both cleanly.
-        first_caption = ir.captions[0] if ir.captions else ""
-        page_grids: list[list[list[str | None]]] = []
+        # Council reports repeat a full grid per page (one DIFFERENT section per
+        # page: OVERALL / GOVERNMENT ONLY / PRIVATE ONLY / BY KPI / ...); region
+        # reports either do the same or continue one grid across pages. We keep
+        # each grid together with the per-page section caption recovered from
+        # that page's centred subtitle, so distinct sections are never dropped
+        # as silent duplicates. The banner subtitle already lives in
+        # title_lines, so page 0's section caption is only kept when it differs.
+        banner_lines = set(ir.title_lines)
+        page_grids: list[tuple[list[list[str | None]], str]] = []
         for page in pdf.pages:
-            page_grids.extend(_extract_page_tables(page))
+            section = _section_caption(page)
+            # page 0's section caption is the report subtitle already carried in
+            # title_lines -> do not repeat it as a table caption.
+            if section in banner_lines:
+                section = ""
+            for grid in _extract_page_tables(page):
+                page_grids.append((grid, section))
 
-    for gi, grid in enumerate(page_grids):
-        cap = first_caption if gi == 0 else ""
-        table = _table_from_grid(grid, caption=cap, kind="table")
+    tables: list[Table] = []
+    for grid, section in page_grids:
+        table = _table_from_grid(grid, caption=section, kind="table")
         if table.body or table.header_rows:
-            ir.tables.append(table)
+            tables.append(table)
+
+    ir.tables = _dedup_repeats(tables)
     return ir
+
+
+def _dedup_repeats(tables: list[Table]) -> list[Table]:
+    """Collapse identical repeated tables while keeping distinct sections.
+
+    pdfplumber returns one grid per reference page, and some reports paginate
+    the SAME data across pages (e.g. a district table shown again with no new
+    section caption). Such a grid is a silent repeat: same header AND identical
+    body AND no distinguishing section caption. We drop those. Tables that carry
+    a distinct section caption (``DISTRICT PERFORMANCE FOR GOVERNMENT SCHOOLS
+    ONLY`` vs ``... OVERALL``) are genuinely different sections and are kept even
+    when their body happens to coincide.
+    """
+    kept: list[Table] = []
+    for table in tables:
+        dup = False
+        for prev in kept:
+            same_header = prev.header_rows == table.header_rows
+            same_body = prev.body == table.body
+            # a repeat is identical structure + data with no NEW caption to
+            # distinguish it (blank caption, or the same caption as the match).
+            if same_header and same_body and (not table.caption or table.caption == prev.caption):
+                dup = True
+                break
+        if not dup:
+            kept.append(table)
+    return kept
 
 
 # ---------------------------------------------------------------------------

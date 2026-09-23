@@ -24,6 +24,12 @@ from sars_convert.extract import (
 DATA_ROOT = "data/sars"
 S1051_PDF = os.path.join(DATA_ROOT, "S1051-MKOLANI SECONDARY SCHOOL.pdf")
 COUNCIL_PDF = os.path.join(DATA_ROOT, "council_pdf", "MWANZA CC 10 BEST SCHOOLS.pdf")
+# Docs whose banner pdfplumber does NOT collapse into a table cell (so the
+# earlier table-cell-only detection left title_lines empty) -- the word-based
+# recovery must repopulate them.
+DISTRICT_PDF = os.path.join(DATA_ROOT, "region_pdf", "Mwanza f2 District Performance.pdf")
+SUBJECTS_RANK_PDF = os.path.join(DATA_ROOT, "council_pdf", "MWANZA CC SUBJECTS RANK.pdf")
+TOP10_PDF = os.path.join(DATA_ROOT, "region_pdf", "Mwanza Top 10 Schools.pdf")
 
 requires_s1051 = pytest.mark.skipif(
     not os.path.exists(S1051_PDF), reason="S1051 reference PDF not present"
@@ -31,6 +37,21 @@ requires_s1051 = pytest.mark.skipif(
 requires_council = pytest.mark.skipif(
     not os.path.exists(COUNCIL_PDF), reason="council reference PDF not present"
 )
+requires_district = pytest.mark.skipif(
+    not os.path.exists(DISTRICT_PDF), reason="district reference PDF not present"
+)
+requires_subjects_rank = pytest.mark.skipif(
+    not os.path.exists(SUBJECTS_RANK_PDF), reason="subjects-rank reference PDF not present"
+)
+requires_top10 = pytest.mark.skipif(
+    not os.path.exists(TOP10_PDF), reason="top-10 reference PDF not present"
+)
+
+_STANDARD_BANNER = [
+    "THE PRIME MINISTER'S OFFICE",
+    "REGIONAL ADMINISTRATION AND LOCAL GOVERNMENT",
+    "MWANZA REGION",
+]
 
 
 # ---------------------------------------------------------------------------
@@ -193,3 +214,128 @@ def test_extract_council_crosscheck_no_missing() -> None:
     assert result["checked"] is True
     # every recovered token is present in the source HTML (no dropped values)
     assert result["missing_count"] == 0
+
+
+# ---------------------------------------------------------------------------
+# Pure helpers: caption vs header/data/rotated-glyph classification
+# ---------------------------------------------------------------------------
+def test_looks_like_caption_accepts_section_titles() -> None:
+    assert E._looks_like_caption("DISTRICT PERFORMANCE FOR GOVERNMENT SCHOOLS ONLY")
+    assert E._looks_like_caption("TOP 10 BEST PRIVATE SCHOOLS")
+    assert E._looks_like_caption("TEN LOOSER SCHOOLS OVERALL")
+
+
+def test_looks_like_caption_rejects_headers_data_and_glyphs() -> None:
+    # a header band label row (carries GPA/COMPETENCY column heads)
+    assert not E._looks_like_caption("S/N DISTRICT SCHOOLS GPA COMPETENCY LEVEL KNAR")
+    # a data row (starts with an ordinal)
+    assert not E._looks_like_caption("01 ILEMELA MC 61 5369 4400 9769")
+    # a rotated single-glyph strip
+    assert not E._looks_like_caption("N N O O X G IV IS")
+    # bare header group
+    assert not E._looks_like_caption("GRADE PERFORMANCE")
+
+
+# ---------------------------------------------------------------------------
+# BUG 1 regression: banner recovery for docs pdfplumber does not collapse into
+# a table cell (these previously produced title_lines == []).
+# ---------------------------------------------------------------------------
+@requires_district
+def test_district_performance_banner_recovered() -> None:
+    """Previously title_lines == [] (the whole banner was dropped)."""
+    ir = E.extract_document("Mwanza f2 District Performance", DISTRICT_PDF, "region")
+    # the four constant banner lines are present and in order ...
+    assert ir.title_lines[: len(_STANDARD_BANNER)] == _STANDARD_BANNER
+    assert "REGIONAL FORM TWO MOCK ASSESSMENT RESULTS, JULY 2026" in ir.title_lines
+    # ... followed by the report subtitle.
+    assert "DISTRICT PERFORMANCE OVERALL" in ir.title_lines
+
+
+@requires_subjects_rank
+def test_subjects_rank_banner_recovered() -> None:
+    """Banner sat as page text (not a table cell) -> was dropped before."""
+    ir = E.extract_document("MWANZA CC SUBJECTS RANK", SUBJECTS_RANK_PDF, "council")
+    assert ir.title_lines[0] == "THE PRIME MINISTER'S OFFICE"
+    assert "MWANZA REGION" in ir.title_lines
+    assert "MWANZA CC ALL SUBJECTS PERFOMANCE" in ir.title_lines
+
+
+# ---------------------------------------------------------------------------
+# BUG 2 regression: distinct sections keep their own captions (not silent
+# duplicates), and genuinely-different multi-section docs stay separate.
+# ---------------------------------------------------------------------------
+@requires_district
+def test_district_performance_sections_captioned_not_duplicated() -> None:
+    ir = E.extract_document("Mwanza f2 District Performance", DISTRICT_PDF, "region")
+    captions = [t.caption for t in ir.tables]
+    # page 0's section is the banner subtitle (already in title_lines) -> blank
+    assert captions[0] == ""
+    # the remaining pages are DIFFERENT sections, each with its own caption
+    assert "DISTRICT PERFORMANCE FOR GOVERNMENT SCHOOLS ONLY" in captions
+    assert "DISTRICT PERFORMANCE FOR PRIVATE SCHOOLS ONLY" in captions
+    assert "DISTRICT PERFORMANCE BY PERCENTAGE" in captions
+    assert "DISTRICT PERFORMANCE BY KPI" in captions
+    # no two kept tables are a silent duplicate (same header + identical body
+    # with no distinguishing caption)
+    for i in range(len(ir.tables)):
+        for j in range(i + 1, len(ir.tables)):
+            a, b = ir.tables[i], ir.tables[j]
+            if a.header_rows == b.header_rows and a.body == b.body and a.body:
+                assert a.caption != b.caption and (a.caption or b.caption)
+
+
+@requires_top10
+def test_top10_schools_sections_distinct() -> None:
+    ir = E.extract_document("Mwanza Top 10 Schools", TOP10_PDF, "region")
+    captions = [t.caption for t in ir.tables]
+    for expected in (
+        "TOP 10 BEST GOVERNMENT SCHOOLS",
+        "TOP 10 BEST PRIVATE SCHOOLS",
+        "TEN LOOSER SCHOOLS OVERALL",
+        "TEN LOOSER GOVERNMENT SCHOOLS",
+        "TEN LOOSER PRIVATE SCHOOLS",
+    ):
+        assert expected in captions
+
+
+@requires_council
+def test_ten_best_schools_keeps_distinct_sections() -> None:
+    """The council 10-best doc has multiple DIFFERENT sections; keep them all."""
+    ir = E.extract_document("MWANZA CC 10 BEST SCHOOLS", COUNCIL_PDF, "council")
+    # five genuinely different tables (OVERALL best, private, looser, ...) -- the
+    # de-dup must NOT collapse these distinct sections.
+    assert len(ir.tables) == 5
+    bodies = [tuple(tuple(r) for r in t.body) for t in ir.tables]
+    # the distinct-section bodies are not all identical
+    assert len(set(bodies)) == len(bodies)
+
+
+def test_dedup_drops_identical_captionless_repeat() -> None:
+    """A true repeat (same header + body, no new caption) is collapsed."""
+    header = [[HeaderCell(label="S/NO."), HeaderCell(label="SCHOOL NAME", col=1)]]
+    body = [["01", "MUSABE BOYS"], ["02", "LUCHELELE"]]
+    t1 = E.Table(caption="OVERALL", n_cols=2, header_rows=header, body=body)
+    repeat = E.Table(caption="", n_cols=2, header_rows=header, body=body)
+    distinct = E.Table(
+        caption="PRIVATE",
+        n_cols=2,
+        header_rows=header,
+        body=[["01", "ISLAMIYA"]],
+    )
+    kept = E._dedup_repeats([t1, repeat, distinct])
+    assert [t.caption for t in kept] == ["OVERALL", "PRIVATE"]
+
+
+def test_dedup_keeps_identical_body_with_distinct_caption() -> None:
+    """Distinct sections that coincidentally share data are both kept."""
+    header = [[HeaderCell(label="S/NO."), HeaderCell(label="NAME", col=1)]]
+    body = [["01", "MISUNGWI DC"]]
+    a = E.Table(caption="BEST MALE STUDENTS", n_cols=2, header_rows=header, body=body)
+    b = E.Table(
+        caption="BEST MALE STUDENTS FOR PRIVATE SCHOOLS",
+        n_cols=2,
+        header_rows=header,
+        body=body,
+    )
+    kept = E._dedup_repeats([a, b])
+    assert len(kept) == 2
