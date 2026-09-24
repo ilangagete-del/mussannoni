@@ -64,6 +64,42 @@ class GenderCounts:
 
 
 # --------------------------------------------------------------------------- #
+# Recovered per-cell presentation carrier
+# --------------------------------------------------------------------------- #
+@dataclass
+class CellStyle:
+    """The recovered visual style of one source cell, carried as data.
+
+    This mirrors the meaningful subset of :class:`sars.model.Style` (the
+    presentation model the conversion path already recovers per cell): the font
+    family, size, weight and slant, the text colour, the recovered cell
+    *background* fill, the alignment and any text rotation. The templated path
+    used to discard all of this and hardcode a single font / colour; carrying it
+    here lets each report reproduce its own cells faithfully.
+
+    Every field is optional with a default that matches the conversion path's
+    own defaults, so JSON written before this carrier existed (which has no
+    ``style`` keys) still deserialises: :func:`from_dict` simply leaves the
+    carrier absent, and a missing carrier renders exactly as the old path did.
+
+    The design constraint is explicit: this is a *carrier*, not a shared report
+    structure. Each report family populates its own :class:`CellStyle` values
+    from its own recovered cells, keyed the same way its text values are keyed,
+    so no family is forced into another family's shape for elegance.
+    """
+
+    family: str = "Arial, Helvetica, sans-serif"
+    size_pt: float = 7.0
+    bold: bool = False
+    italic: bool = False
+    color: str = "#000000"
+    background: str | None = None
+    align: str = "center"
+    #: Text rotation in degrees (0 or 90 for the vertical rank labels).
+    rotation: int = 0
+
+
+# --------------------------------------------------------------------------- #
 # School result slip
 # --------------------------------------------------------------------------- #
 @dataclass
@@ -118,6 +154,14 @@ class StudentRow:
     #: Competency level label as printed; its colour is derived, never stored.
     competency: str = ""
 
+    #: Recovered per-cell presentation, keyed by this row's field name (``cno``,
+    #: ``name`` ...) or by column index for cells with no dedicated field.
+    #: Optional: absent for data written before styles were carried.
+    styles: dict[str, CellStyle] = field(default_factory=dict)
+    #: Recovered row pitch (true row height in points) so a template can set the
+    #: line-height to match the reference instead of a hardcoded value.
+    pitch: float = 0.0
+
 
 @dataclass
 class DivisionSummaryRow:
@@ -128,6 +172,10 @@ class DivisionSummaryRow:
     #: Division counts keyed by division label (``I``, ``II``, ``III``, ``IV``,
     #: ``0``) in printed order.
     divisions: dict[str, str] = field(default_factory=dict)
+    #: Recovered per-cell presentation, keyed by ``sex`` or by division label.
+    styles: dict[str, CellStyle] = field(default_factory=dict)
+    #: Recovered row pitch (true row height in points).
+    pitch: float = 0.0
 
 
 @dataclass
@@ -141,6 +189,11 @@ class PerformanceRow:
     """
 
     values: dict[str, str] = field(default_factory=dict)
+    #: Recovered per-cell presentation, keyed the same way ``values`` is keyed
+    #: (by header label, or by column index for the full-capture blocks).
+    styles: dict[str, CellStyle] = field(default_factory=dict)
+    #: Recovered row pitch (true row height in points).
+    pitch: float = 0.0
 
 
 @dataclass
@@ -229,6 +282,13 @@ class SchoolRankRow:
     #: Regional rank as printed.
     regional_rank: str = ""
 
+    #: Recovered per-cell presentation, keyed by physical column index (as a
+    #: string) so every emitted ``<td>`` - including the F/M/T and division
+    #: cells that have no dedicated field - can look up its own recovered style.
+    styles: dict[str, CellStyle] = field(default_factory=dict)
+    #: Recovered row pitch (true row height in points).
+    pitch: float = 0.0
+
 
 @dataclass
 class SchoolsRankReport:
@@ -240,6 +300,11 @@ class SchoolsRankReport:
     #: values. Only the numbers are data; the label itself is chrome but is kept
     #: as the key so the numbers can be placed back on the right summary line.
     totals: dict[str, list[str]] = field(default_factory=dict)
+    #: Recovered per-cell presentation for the total rows, keyed by the same
+    #: label as :attr:`totals` -> list of :class:`CellStyle` aligned by column.
+    total_styles: dict[str, list[CellStyle]] = field(default_factory=dict)
+    #: Recovered row pitch for each total row, keyed by the same label.
+    total_pitch: dict[str, float] = field(default_factory=dict)
     #: The council/region SUMMARY PERFORMANCE block printed above the ranked
     #: table (its own small header + the aggregate figures + the ``% PASS`` row).
     #: Captured header-driven so its figures survive; empty when a report has no
@@ -267,6 +332,11 @@ class SubjectRankRow:
     competency: str = ""
     rank: str = ""
 
+    #: Recovered per-cell presentation, keyed by physical column index (string).
+    styles: dict[str, CellStyle] = field(default_factory=dict)
+    #: Recovered row pitch (true row height in points).
+    pitch: float = 0.0
+
 
 @dataclass
 class SubjectsRankReport:
@@ -275,6 +345,11 @@ class SubjectsRankReport:
     meta: ReportMeta
     rows: list[SubjectRankRow] = field(default_factory=list)
     totals: dict[str, list[str]] = field(default_factory=dict)
+    #: Recovered per-cell presentation for the total rows (see
+    #: :attr:`SchoolsRankReport.total_styles`).
+    total_styles: dict[str, list[CellStyle]] = field(default_factory=dict)
+    #: Recovered row pitch for each total row, keyed by the same label.
+    total_pitch: dict[str, float] = field(default_factory=dict)
     #: The report's own column captions in printed order, as chrome. Headings are
     #: not data, but individual reports spell them differently (``RANK`` vs
     #: ``R/RANK``, and the ``COMPENTENCY LEVEL`` spelling the source PDFs use), so
@@ -296,6 +371,10 @@ class TabularRow:
     """
 
     values: dict[str, str] = field(default_factory=dict)
+    #: Recovered per-cell presentation, keyed the same way ``values`` is keyed.
+    styles: dict[str, CellStyle] = field(default_factory=dict)
+    #: Recovered row pitch (true row height in points).
+    pitch: float = 0.0
 
 
 @dataclass
@@ -313,6 +392,11 @@ class TabularSection:
     rows: list[TabularRow] = field(default_factory=list)
     #: DATA of TOTAL / summary rows keyed by their printed label.
     totals: dict[str, list[str]] = field(default_factory=dict)
+    #: Recovered per-cell presentation for the total rows (see
+    #: :attr:`SchoolsRankReport.total_styles`).
+    total_styles: dict[str, list[CellStyle]] = field(default_factory=dict)
+    #: Recovered row pitch for each total row, keyed by the same label.
+    total_pitch: dict[str, float] = field(default_factory=dict)
     #: Section heading as printed, when the block carries one.
     title: str = ""
 
@@ -338,6 +422,11 @@ class GenericTabularReport:
     rows: list[TabularRow] = field(default_factory=list)
     #: DATA of TOTAL / summary rows keyed by their printed label.
     totals: dict[str, list[str]] = field(default_factory=dict)
+    #: Recovered per-cell presentation for the top-level total rows (mirrors the
+    #: first section, see :attr:`SchoolsRankReport.total_styles`).
+    total_styles: dict[str, list[CellStyle]] = field(default_factory=dict)
+    #: Recovered row pitch for each top-level total row, keyed by the same label.
+    total_pitch: dict[str, float] = field(default_factory=dict)
     #: Every table block of the report, in reading order (see class docstring).
     sections: list[TabularSection] = field(default_factory=list)
 
@@ -393,10 +482,20 @@ def _coerce(type_hint: Any, value: Any) -> Any:
         "TabularRow": TabularRow,
         "PerformanceRow": PerformanceRow,
         "PerformanceTable": PerformanceTable,
+        "CellStyle": CellStyle,
     }
     hint = type_hint if isinstance(type_hint, str) else getattr(type_hint, "__name__", "")
     if hint in nested and isinstance(value, dict):
         return _build(nested[hint], value)
+    # dict carriers of nested dataclasses, in match priority so the more nested
+    # ``dict[str, list[CellStyle]]`` is recognised before ``dict[str, CellStyle]``.
+    if isinstance(value, dict) and isinstance(type_hint, str):
+        for key, cls in nested.items():
+            if f"dict[str, list[{key}]]" in type_hint:
+                return {k: [_build(cls, item) for item in v] for k, v in value.items()}
+        for key, cls in nested.items():
+            if f"dict[str, {key}]" in type_hint:
+                return {k: _build(cls, v) for k, v in value.items()}
     # list[X] of nested dataclasses.
     if isinstance(value, list):
         for key, cls in nested.items():

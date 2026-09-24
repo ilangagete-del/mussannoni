@@ -438,11 +438,28 @@ def test_every_document_round_trips_through_json():
         assert schema.to_json(restored) == text, pair.name
 
 
-def test_competency_colour_is_not_stored_as_data():
-    """The deterministic competency colour is derived, never stored."""
-    from sars import schema
+def test_competency_colour_is_not_fabricated_into_data_fields():
+    """The deterministic competency colour is never written into a data field.
 
+    The templated path now carries the *recovered* per-cell presentation (font,
+    colour and the real cell background fill) in a ``CellStyle`` carrier, so a
+    hex colour recovered from the PDF legitimately appears under ``styles`` -
+    that is the whole point of the visual-fidelity work, and the recovered fill
+    takes precedence over :func:`sars.competency.background_for`. What must never
+    happen is the *derived* competency colour being fabricated into a plain data
+    field (``competency``, ``gpa`` ...); the label and GPA stay text, and the
+    colour only ever lives in the recovered style carrier.
+    """
     report = _report_for("MWANZA CC SCHOOLS RANK")
-    blob = schema.to_json(report).lower()
-    # No hex colour leaks into the extracted data.
-    assert "#00b050" not in blob and "#ff0000" not in blob
+
+    # The recovered competency fill is carried in the style carrier, not lost.
+    comp_leaf = report.column_headers.index("COMPETENCY LEVEL")
+    fills = {
+        row.styles[str(comp_leaf)].background for row in report.rows if str(comp_leaf) in row.styles
+    }
+    assert any(f for f in fills), "recovered competency fill should be carried in styles"
+
+    # No hex colour is written into a data (text) field of any row.
+    for row in report.rows:
+        for value in (row.competency, row.gpa, row.school_name, row.ownership):
+            assert "#" not in value
