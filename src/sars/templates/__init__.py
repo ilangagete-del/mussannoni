@@ -35,12 +35,13 @@ from .generic import render_generic
 from .school_result_slip import render_school_result_slip
 from .schools_rank import render_schools_rank
 from .subjects_rank import render_subjects_rank
+from .top_schools import render_top_schools
 
 #: report_type -> renderer callable ``(schema_instance) -> str`` (full HTML doc).
 RENDERERS: dict[str, Callable[..., str]] = {
     "school_result_slip": render_school_result_slip,
     "schools_rank": render_schools_rank,
-    "top_schools": render_schools_rank,
+    "top_schools": render_top_schools,
     "best_students": render_best_students,
     "best_students_subjectwise": render_best_students_subjectwise,
     "subjects_rank": render_subjects_rank,

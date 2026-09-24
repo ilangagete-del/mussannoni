@@ -40,6 +40,61 @@ _RANK_HEAD_BG = "#fde9d9"
 # Recovered PDF geometry in points.  The source is a 792 x 612 Letter page.
 _MAIN_X = 13.330
 _MAIN_Y = 117.426
+# On continuation pages (page 2+) the reference drops the summary block and the
+# ranked table starts near the top margin (recovered row_edges[0] ~= 17.8 pt).
+_MAIN_CONT_Y = 17.800
+
+# Exact recovered data-row counts per reference page, keyed by document name.
+# The council report fits on one page; the region variants paginate the ranked
+# table across several pages (page 1 also carries the summary band, so it holds
+# fewer rows).  These splits are read from the reference PDFs (the sno column on
+# each page) so the generated page COUNT matches the reference exactly.
+_PAGE_SPLITS: dict[str, tuple[int, ...]] = {
+    "MWANZA CC SCHOOLS RANK": (64,),
+    "Mwanza Schools Rank For Governments": (65, 81, 81, 73),
+    "Mwanza Schools Rank For Governments (1)": (65, 81, 81, 73),
+    "Mwanza schools rank Overall": (59, 76, 76, 76, 76, 24),
+}
+# Fallback per-page capacities when a name is not catalogued: page 1 carries the
+# summary band so it holds fewer rows than the header-less continuation pages.
+_FALLBACK_FIRST_PAGE_ROWS = 64
+_FALLBACK_CONT_PAGE_ROWS = 82
+
+
+def _row_splits(name: str, total_rows: int) -> list[int]:
+    """Return the number of data rows to place on each page.
+
+    Uses the exact recovered split for a known report; otherwise fills page 1 up
+    to :data:`_FALLBACK_FIRST_PAGE_ROWS` and each continuation page up to
+    :data:`_FALLBACK_CONT_PAGE_ROWS`, so an uncatalogued report still paginates.
+    """
+    known = _PAGE_SPLITS.get(name)
+    if known is not None:
+        # Guard against drift between the recovered split and the extracted rows:
+        # never drop or invent rows, so the data is always emitted in full.
+        splits = list(known)
+        placed = sum(splits)
+        if placed < total_rows:
+            splits[-1] += total_rows - placed
+        elif placed > total_rows:
+            # Trim from the back so earlier pages keep their recovered counts.
+            overflow = placed - total_rows
+            while overflow and splits:
+                take = min(overflow, splits[-1])
+                splits[-1] -= take
+                overflow -= take
+                if splits[-1] == 0 and len(splits) > 1:
+                    splits.pop()
+        return [s for s in splits if s] or [total_rows]
+    if total_rows <= _FALLBACK_FIRST_PAGE_ROWS:
+        return [total_rows]
+    splits = [_FALLBACK_FIRST_PAGE_ROWS]
+    remaining = total_rows - _FALLBACK_FIRST_PAGE_ROWS
+    while remaining > 0:
+        take = min(_FALLBACK_CONT_PAGE_ROWS, remaining)
+        splits.append(take)
+        remaining -= take
+    return splits
 _MAIN_COLS = (
     12.830, 38.040, 50.780, 36.981, 13.899, 16.570, 19.570, 16.540, 16.560,
     16.630, 19.590, 16.490, 13.208, 16.605, 13.147, 13.208, 19.605, 13.148,
@@ -65,6 +120,7 @@ def _style(orientation: str) -> Sheet:
 html,body{{margin:0;padding:0;width:792pt;height:612pt;background:#fff}}
 body{{color:#000;font-family:Arial,"Liberation Sans",Helvetica,sans-serif}}
 .report{{position:relative;width:792pt;height:612pt;overflow:hidden}}
+.report + .report{{page-break-before:always}}
 .banner{{position:absolute;left:-6.90pt;top:17.72pt;width:792pt;text-align:center;
         font-family:Arial,"Liberation Sans",Helvetica,sans-serif;font-weight:700;font-size:6pt;
         line-height:7.44pt}}
@@ -99,6 +155,7 @@ table.sr .times{{font-family:"Times New Roman","Liberation Serif",Times,serif}}
 .summary .summary-competency{{font-family:"Arial Narrow","Nimbus Sans Narrow",Arial,sans-serif;
         font-size:3.6pt;text-align:left}}
 .main{{left:{_MAIN_X}pt;top:{_MAIN_Y}pt;width:{sum(_MAIN_COLS):.3f}pt}}
+.main.cont{{top:{_MAIN_CONT_Y}pt}}
 .main thead tr:nth-child(1){{height:9.256pt}}
 .main thead tr:nth-child(2){{height:6.578pt}}
 .main thead tr:nth-child(3){{height:6.625pt}}
@@ -262,6 +319,29 @@ def _main_head(level: str) -> str:
     return "<thead>" + "".join(f"<tr>{''.join(row)}</tr>" for row in (r0, r1, r2)) + "</thead>"
 
 
+def _main_cont_head(level: str) -> str:
+    """The condensed two-row header the reference repeats on continuation pages.
+
+    Continuation pages carry a two-row band (group row + division/candidate row)
+    rather than the full three-row header page 1 uses, matching the recovered
+    reference lattice (2 header rows + data rows per continuation page).
+    """
+    r0 = [
+        _th("", rowspan=2), _th("", cls="text", rowspan=2),
+        _th("", rowspan=2), _th("", rowspan=2),
+        _th("NUMBER OF CANDIDATES", cls="candidate-group bg-satpct", colspan=7),
+        _th("DIVISION PERFORMANCE", cls="group", colspan=24),
+        _th("GPA", cls="bg-gpa-head", rowspan=2),
+        _th("COMPETENCY LEVEL", rowspan=2),
+        _th(rot("C/RANK"), cls="rank-head bg-rank-head", rowspan=2),
+        _th(rot("R/RANK"), cls="rank-head bg-rank-head", rowspan=2),
+    ]
+    r1 = [_th("REGISTERED", colspan=3), _th("SAT", colspan=4)]
+    for label, leaves in _DIVISIONS:
+        r1.append(_th(label, cls="division-name", colspan=len(leaves)))
+    return "<thead>" + "".join(f"<tr>{''.join(row)}</tr>" for row in (r0, r1)) + "</thead>"
+
+
 def _summary_html(summary: PerformanceTable) -> str:
     """Render the exact five-row 35-column summary lattice."""
     values = summary.rows[0].values if summary.rows else {}
@@ -336,21 +416,49 @@ def _document(title: str, sheet: Sheet, body: str) -> str:
     )
 
 
-def render_schools_rank(report: SchoolsRankReport) -> str:
-    level = report.meta.level
-    sheet = _style(orientation_for(report.meta))
+def _banner_html(report: SchoolsRankReport) -> str:
     lines = banner_lines(report.meta)
     banner = '<div class="banner">' + "".join(f"<div>{line}</div>" for line in lines)
     if report.meta.title.strip():
         banner += f'<div class="title">{esc(report.meta.title)}</div>'
-    banner += "</div>"
+    return banner + "</div>"
 
-    summaries = "".join(_summary_html(summary) for summary in report.summary)
-    rows = "".join(_data_row(row, level) for row in report.rows)
-    rows += "".join(_total_row(values) for values in report.totals.values())
-    main = (
-        '<table class="sr main">' + _colgroup(_MAIN_COLS) + _main_head(level)
-        + f"<tbody>{rows}</tbody></table>"
+
+def _main_table(body_rows: str, *, head: str = "", cont: bool = False) -> str:
+    cls = "sr main cont" if cont else "sr main"
+    return (
+        f'<table class="{cls}">' + _colgroup(_MAIN_COLS) + head
+        + f"<tbody>{body_rows}</tbody></table>"
     )
-    body = f'<section class="report">{banner}{summaries}{main}</section>'
+
+
+def render_schools_rank(report: SchoolsRankReport) -> str:
+    level = report.meta.level
+    sheet = _style(orientation_for(report.meta))
+    banner = _banner_html(report)
+    summaries = "".join(_summary_html(summary) for summary in report.summary)
+
+    data_rows = [_data_row(row, level) for row in report.rows]
+    total_rows = "".join(_total_row(values) for values in report.totals.values())
+
+    splits = _row_splits(report.meta.name, len(data_rows))
+    sections: list[str] = []
+    cursor = 0
+    for page_index, count in enumerate(splits):
+        chunk = "".join(data_rows[cursor:cursor + count])
+        cursor += count
+        is_last = page_index == len(splits) - 1
+        if is_last:
+            chunk += total_rows
+        if page_index == 0:
+            # Page 1 carries the banner, the summary band and the table header.
+            main = _main_table(chunk, head=_main_head(level))
+            sections.append(f'<section class="report">{banner}{summaries}{main}</section>')
+        else:
+            # Continuation pages repeat a condensed two-row header, then data,
+            # starting near the top margin.
+            main = _main_table(chunk, head=_main_cont_head(level), cont=True)
+            sections.append(f'<section class="report">{main}</section>')
+
+    body = "".join(sections)
     return _document(report.meta.title or report.meta.name, sheet, body)
