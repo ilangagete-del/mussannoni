@@ -192,6 +192,14 @@ def detect_panel(
             continue
         if total / union > 0.70:  # solid fill -> a cell background
             continue
+        # A page wash spans essentially the whole sheet width, starting at the
+        # page edge. Grouped header bands also form a wide, sparse frame - a band
+        # across the header rows plus a full-height band down a trailing column -
+        # whose union passes every test above, and painting that as a panel tints
+        # the entire table. Requiring the group to reach the left edge and cover
+        # nearly the full width keeps the genuine washes and rejects those bands.
+        if (x0 - 0.0) > page_w * 0.05 or (x1 - x0) < page_w * 0.90:
+            continue
         if union > best_union:
             best_union = union
             best = (x0, y0, x1, y1, colour)
