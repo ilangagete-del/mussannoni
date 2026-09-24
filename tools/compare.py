@@ -7,15 +7,21 @@ Usage::
     python tools/compare.py "10 BEST SCHOOLS" 3  # page 3 of one document
     python tools/compare.py --template           # compare the templated output
 
-Images land in ``output/compare/``. The reference is always on the left and the
-generated A4 output on the right, each labelled.
+Images land in per-kind subfolders of ``output/compare/`` so names never
+collide and every report has a predictable set of artefacts. The reference is
+always on the left and the generated output on the right, each labelled.
 
 By default the right-hand side is the **conversion** output (``output/pdf/``),
-which redraws a specific reference PDF. With ``--template`` it is the
+which redraws a specific reference PDF; those side-by-sides are written to
+``output/compare/conversion/<name> - page N.jpg``. With ``--template`` it is the
 **templated** output (``output/template_pdf/``), rebuilt from data alone by
-``sars template``; those images are written with a ``TEMPLATE `` name prefix so
-both sets can coexist. A template reflows, so expect its page breaks to differ
-from the reference - what matters there is that no value is missing.
+``sars template``, written to ``output/compare/template/<name> - page N.jpg``.
+The ``<name> - page N`` stem is identical across both kinds; only the subfolder
+disambiguates. A template reflows, so expect its page breaks to differ from the
+reference - what matters there is that no value is missing.
+
+The companion ``tools/pixel_diff.py`` writes lossless pixel diagnostics to a
+third subfolder, ``output/compare/pixel/``.
 """
 
 from __future__ import annotations
@@ -53,7 +59,12 @@ def _labelled(img: Image.Image, label: str) -> Image.Image:
 
 
 def side_by_side(
-    reference: Path, generated: Path, index: int, label: str, right_label: str = "GENERATED A4"
+    reference: Path,
+    generated: Path,
+    index: int,
+    stem: str,
+    subdir: str,
+    right_label: str = "GENERATED A4",
 ) -> Path:
     left = _labelled(page_image(reference, index), f"REFERENCE  -  {reference.name}")
     right = _labelled(page_image(generated, index), f"{right_label}  -  {generated.name}")
@@ -61,8 +72,9 @@ def side_by_side(
     canvas = Image.new("RGB", (left.width + right.width + GAP, height), "#9aa5b1")
     canvas.paste(left, (0, 0))
     canvas.paste(right, (left.width + GAP, 0))
-    OUT.mkdir(parents=True, exist_ok=True)
-    target = OUT / f"{label} - page {index + 1}.jpg"
+    out_dir = OUT / subdir
+    out_dir.mkdir(parents=True, exist_ok=True)
+    target = out_dir / f"{stem} - page {index + 1}.jpg"
     canvas.save(target, "JPEG", quality=82, optimize=True)
     return target
 
@@ -82,10 +94,10 @@ def main() -> int:
 
     if templated:
         source_dir = ROOT / "output" / "template_pdf"
-        prefix, right_label, rebuild = "TEMPLATE ", "FROM DATA (template)", "sars template"
+        subdir, right_label, rebuild = "template", "FROM DATA (template)", "sars template"
     else:
         source_dir = ROOT / "output" / "pdf"
-        prefix, right_label, rebuild = "", "GENERATED A4", "sars all"
+        subdir, right_label, rebuild = "conversion", "GENERATED A4", "sars all"
 
     pairs = _pairs()
     if needle:
@@ -99,11 +111,10 @@ def main() -> int:
         if not generated.exists():
             print(f"skip {pair.name}: no PDF (run `{rebuild}`)", file=sys.stderr)
             continue
-        print(
-            side_by_side(
-                pair.pdf, generated, page, f"{prefix}{pair.name}", right_label=right_label
-            ).name
+        target = side_by_side(
+            pair.pdf, generated, page, pair.name, subdir, right_label=right_label
         )
+        print(target.relative_to(OUT))
     return 0
 
 

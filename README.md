@@ -130,7 +130,7 @@ tools/probe.py        read-only PDF diagnostic
 tools/compare.py      side-by-side reference/output page images
 output/html/          generated self-contained clean HTML (styles inlined per file)
 output/pdf/           generated A4 PDFs
-output/compare/       visual comparison images
+output/compare/       visual comparison images (conversion/ template/ pixel/)
 ```
 
 ## Setup
@@ -353,7 +353,9 @@ it can be reviewed on GitHub without running anything:
 | `output/template_html/` | HTML rebuilt **from that data** (19) | `sars template` |
 | `output/template_pdf/` | those templates printed to A4 (19) | `sars template` |
 | `output/html/`, `output/pdf/` | the conversion path's output (19 each) | `sars all` |
-| `output/compare/` | `<name>.jpg` reference vs converted, and `TEMPLATE <name>.jpg` reference vs templated (19 each) | `tools/compare.py [--template]` |
+| `output/compare/conversion/` | `<name> - page N.jpg` reference vs converted (19) | `tools/compare.py` |
+| `output/compare/template/` | `<name> - page N.jpg` reference vs templated (19) | `tools/compare.py --template` |
+| `output/compare/pixel/` | `<name> - page N - diff.png` heatmap + `<name> - page N - overlay.png` blend, lossless pixel diagnostics for every report (19) | `tools/pixel_diff.py --all --template` |
 
 `template_audit.py` reports `lost_kinds` — values present in the reference and
 absent from the templated output. Current state across the 19 documents:

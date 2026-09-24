@@ -5,10 +5,23 @@ page.  It rasterises both pages with the same matrix, requires identical page
 pixel dimensions, reports exact and thresholded mismatch counts, and writes a
 PNG heatmap plus a PNG overlay for inspection.
 
+Diagnostics are written to ``output/compare/pixel/`` as
+``<name> - page N - diff.png`` (heatmap) and ``<name> - page N - overlay.png``
+(50/50 blend). The ``<name> - page N`` stem matches the side-by-side stems that
+``compare.py`` writes under ``output/compare/conversion/`` and
+``output/compare/template/``; only the subfolder disambiguates the kind.
+
 Usage::
 
     python tools/pixel_diff.py "MWANZA CC SCHOOLS RANK" --template
     python tools/pixel_diff.py "MWANZA CC SCHOOLS RANK" --template --zoom 4
+    python tools/pixel_diff.py --all --template   # every report, page 1
+
+In ``--all`` batch mode the tool iterates every discovered report, prints one
+result line per report (exact% / visible% match, or ``DIMENSION MISMATCH: ...``
+when the generated page size differs from the reference), and writes the diff +
+overlay PNGs for every report whose dimensions match. Reports that still
+mismatch are listed explicitly, never silently skipped.
 """
 
 from __future__ import annotations
@@ -22,7 +35,7 @@ import pymupdf
 from PIL import Image, ImageChops, ImageEnhance
 
 ROOT = Path(__file__).resolve().parents[1]
-OUT = ROOT / "output" / "compare"
+OUT = ROOT / "output" / "compare" / "pixel"
 
 
 def raster(pdf: Path, page_index: int, zoom: float) -> Image.Image:
@@ -82,40 +95,111 @@ def save_diagnostics(reference: Image.Image, generated: Image.Image, stem: str) 
     mask = amplified.convert("L")
     red = Image.new("RGB", raw.size, "#ff0000")
     heatmap.paste(red, mask=mask)
-    heatmap_path = OUT / f"PIXEL DIFF {stem}.png"
+    heatmap_path = OUT / f"{stem} - diff.png"
     heatmap.save(heatmap_path, "PNG", optimize=True)
 
     overlay = Image.blend(reference, generated, 0.5)
-    overlay_path = OUT / f"PIXEL OVERLAY {stem}.png"
+    overlay_path = OUT / f"{stem} - overlay.png"
     overlay.save(overlay_path, "PNG", optimize=True)
     return heatmap_path, overlay_path
 
 
-def select_pair(name: str, templated: bool) -> tuple[str, Path, Path]:
+def _discover():
     sys.path.insert(0, str(ROOT / "src"))
     from sars import sources
 
-    pairs = sources.discover()
+    return sources.discover()
+
+
+def _generated_for(pair, templated: bool) -> Path:
+    directory = "template_pdf" if templated else "pdf"
+    return ROOT / "output" / directory / f"{pair.name}.pdf"
+
+
+def select_pair(name: str, templated: bool) -> tuple[str, Path, Path]:
+    pairs = _discover()
     exact = [pair for pair in pairs if pair.name.casefold() == name.casefold()]
     matches = exact or [pair for pair in pairs if name.casefold() in pair.name.casefold()]
     if len(matches) != 1:
         found = ", ".join(pair.name for pair in matches) or "none"
         raise ValueError(f"report name must select exactly one document; matched: {found}")
     pair = matches[0]
-    directory = "template_pdf" if templated else "pdf"
-    generated = ROOT / "output" / directory / f"{pair.name}.pdf"
+    generated = _generated_for(pair, templated)
     if not generated.exists():
         raise FileNotFoundError(generated)
     return pair.name, pair.pdf, generated
 
 
+def compare_one(name: str, reference_pdf: Path, generated_pdf: Path, page: int, zoom: float):
+    """Run a single-page comparison; returns (metrics, heatmap, overlay) or None on mismatch.
+
+    Raises DimensionMismatch (via return None + message) for callers to report.
+    """
+    reference = raster(reference_pdf, page - 1, zoom)
+    generated = raster(generated_pdf, page - 1, zoom)
+    if reference.size != generated.size:
+        return None, reference.size, generated.size
+    result = metrics(reference, generated)
+    stem = f"{name} - page {page}"
+    heatmap, overlay = save_diagnostics(reference, generated, stem)
+    return result, (reference.width, reference.height), (heatmap, overlay)
+
+
+def run_all(templated: bool, page: int, zoom: float) -> int:
+    pairs = _discover()
+    mismatched: list[str] = []
+    failures = 0
+    print(f"pixel comparison of {len(pairs)} reports (page {page} @ {zoom:g}x)")
+    for pair in sorted(pairs, key=lambda p: p.name.casefold()):
+        generated_pdf = _generated_for(pair, templated)
+        if not generated_pdf.exists():
+            rebuild = "sars template" if templated else "sars all"
+            print(f"{pair.name}: MISSING PDF (run `{rebuild}`)")
+            mismatched.append(pair.name)
+            failures += 1
+            continue
+        try:
+            result, ref_size, extra = compare_one(pair.name, pair.pdf, generated_pdf, page, zoom)
+        except ValueError as error:
+            print(f"{pair.name}: {error}")
+            mismatched.append(pair.name)
+            failures += 1
+            continue
+        if result is None:
+            _ref, _gen = ref_size, extra
+            print(f"{pair.name}: DIMENSION MISMATCH: reference={_ref} generated={_gen}")
+            mismatched.append(pair.name)
+            continue
+        if result["exact_mismatch"]:
+            failures += 1
+        print(
+            f"{pair.name}: exact {result['exact_match_pct']:.4f}% / "
+            f"visible {result['visible_match_pct']:.4f}% "
+            f"(max_delta={result['max_delta']}) {ref_size[0]}x{ref_size[1]}px"
+        )
+
+    print()
+    if mismatched:
+        print(f"DIMENSION MISMATCH / missing ({len(mismatched)}): " + "; ".join(mismatched))
+    else:
+        print("all reports matched dimensions; diff+overlay written for every report")
+    return 1 if failures else 0
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("name")
+    parser.add_argument("name", nargs="?", help="report name (substring); omit with --all")
+    parser.add_argument("--all", action="store_true", help="compare every discovered report")
     parser.add_argument("--template", action="store_true")
     parser.add_argument("--page", type=int, default=1)
     parser.add_argument("--zoom", type=float, default=2.0)
     args = parser.parse_args()
+
+    if args.all:
+        return run_all(args.template, args.page, args.zoom)
+
+    if not args.name:
+        parser.error("a report name is required unless --all is given")
 
     try:
         name, reference_pdf, generated_pdf = select_pair(args.name, args.template)
@@ -128,8 +212,8 @@ def main() -> int:
             )
             return 2
         result = metrics(reference, generated)
-        suffix = f"{'TEMPLATE ' if args.template else ''}{name} - page {args.page}"
-        heatmap, overlay = save_diagnostics(reference, generated, suffix)
+        stem = f"{name} - page {args.page}"
+        heatmap, overlay = save_diagnostics(reference, generated, stem)
     except (FileNotFoundError, ValueError) as error:
         print(error, file=sys.stderr)
         return 2
