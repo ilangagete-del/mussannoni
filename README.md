@@ -147,6 +147,8 @@ sars convert            # messy HTML sources -> pure HTML + CSS in output/html
 sars render             # output/html -> A4 PDFs in output/pdf
 sars verify             # compare output/pdf against the reference PDFs
 sars all                # convert + render + verify
+sars data               # extract each report's DATA to JSON in output/data
+sars template           # data -> template -> HTML + PDF (output/template_{html,pdf})
 ```
 
 `sars.zip` is the single source of truth in the repository. `data/` and
@@ -191,6 +193,164 @@ whereas a missing or duplicated value is a real defect.
 The clean output is also far smaller than the fixed-layout source: **18.1 MiB of
 pdf2html dumps become 4.6 MiB of HTML + one 1 KB stylesheet (26 %)**, while
 gaining semantic tables, real headers, and restylable CSS.
+
+---
+
+# Data-driven templates
+
+The conversion path above redraws *one specific PDF* faithfully. The templated
+path does the opposite: it holds a report type's **static chrome** once and is
+handed only **data**, so a report can be regenerated — or generated for the
+first time, from a database — without any source PDF.
+
+```
+data (JSON / dataclass)  ->  template  ->  HTML  ->  [WeasyPrint]  ->  PDF
+```
+
+## What is data and what is chrome
+
+Everything that varies is data: the region (`Mwanza`), the council
+(`Mwanza CC`), the exam name, every school, ward, candidate, mark, count, GPA,
+rank and competency label. Chrome is only the fixed furniture: the ministry
+masthead, the column headings, and the `TOTAL` / `% PASS` row *labels* — the
+numbers on those rows are still data.
+
+## Template-maker API
+
+```python
+from sars import template_maker
+from sars.extract import extract_document
+from sars.extract_data import extract_report
+
+data = extract_report(extract_document(pdf, html), name)   # or build/load it yourself
+
+html  = template_maker.render_html("schools_rank", data)    # -> str
+path  = template_maker.render_pdf("schools_rank", data, "out.pdf")   # -> Path
+blob  = template_maker.render_pdf("schools_rank", data)     # -> PDF bytes
+html2 = template_maker.make(data)      # infers the report type from the data
+```
+
+| Function | Signature | Returns |
+|---|---|---|
+| `render_html` | `(report_type, data)` | the HTML document as a `str` |
+| `render_pdf` | `(report_type, data, out_path=None)` | `Path` when given a path, else PDF `bytes` |
+| `make` | `(data)` | HTML, inferring the report type from the data |
+
+## Templates by level and purpose
+
+Templates are selected by a name that says which level it serves and what it
+does (`sars.templates.TEMPLATE_NAMES` maps each name to its renderer). Where
+private / overall / government share a structure they are *variants* of one
+template; only a genuinely different structure gets its own.
+
+| Template name | Report type | Data shape |
+|---|---|---|
+| `school_result_slip` | `school_result_slip` | `SchoolResultSlip` |
+| `council_top_10_schools`, `region_top_10_schools` | `top_schools` | `SchoolsRankReport` |
+| `council_schools_rank`, `region_schools_rank_overall`, `region_schools_rank_government` | `schools_rank` | `SchoolsRankReport` |
+| `council_top_10_students`, `region_best_students_overall` | `best_students` | `BestStudentsReport` |
+| `council_top_10_students_subjectwise`, `region_best_students_subjectwise` | `best_students_subjectwise` | `BestStudentsReport` |
+| `council_subjects_rank`, `region_subjects_rank_overall` | `subjects_rank` | `SubjectsRankReport` |
+| `council_schools_rank_subjectwise`, `region_school_rank_subject` | `subject_school_rank` | `GenericTabularReport` |
+| `council_wards_rank` | `wards_rank` | `GenericTabularReport` |
+| `region_district_performance` | `district_performance` | `GenericTabularReport` |
+| `region_mock_mobility` | `mock_mobility` | `GenericTabularReport` |
+
+Overall and subjectwise best-students lists are separate templates because the
+structure really differs: an overall list ranks a candidate on `AGGT` /
+`DIVISION` and prints a `DETAILED SUBJECTS` breakdown, while a subjectwise list
+ranks candidates *within one subject* on that subject's `MARKS` / `GRADE` /
+`COMPETENCY LEVEL`.
+
+## Data schemas
+
+`sars.schema` defines one schema per report family, and every schema
+round-trips losslessly through JSON (`schema.to_json` / `schema.from_dict`).
+
+- **`SchoolResultSlip`** — `centre_no`, `school_name`, `division_summary`,
+  `students` (`StudentRow`), `performance` (`PerformanceTable`).
+- **`SchoolsRankReport`** — `rows` of `SchoolRankRow` (`sno`, `ward`, `council`,
+  `school_name`, `ownership`, `registered`/`sat` as `GenderCounts`, `sat_pct`,
+  a `division` map, `gpa`, `competency`, `council_rank`, `regional_rank`),
+  plus `totals` and the `summary` performance block.
+- **`BestStudentsReport`** — `sections` of `BestStudentsSection`, each a `title`
+  and `students`. `StudentRow` carries the overall fields (`cno`, `aggregate`,
+  `division`, `detailed_subjects`, parsed `subjects`) *and* the subjectwise ones
+  (`sno`, `council`, `id_no`, `category`, `marks`, `grade`, `competency`).
+- **`SubjectsRankReport`** — `rows` of `SubjectRankRow` (`subject_name`, a
+  `grades` map, `gpa`, `competency`, `rank`), plus `totals`.
+- **`GenericTabularReport`** — the header-driven fallback so no report is ever
+  left unextracted: `sections` of `TabularSection`, each with `column_headers`,
+  `rows` (values keyed by column header) and `totals`.
+
+Dump any document's data with `sars data --only "<name>"`.
+
+## Competency colours are deterministic
+
+The competency cell's background is **never stored**. It is computed from the
+competency label (or, failing that, the GPA band) by `sars.competency`:
+
+| GPA band | Grade | Label | Background |
+|---|---|---|---|
+| 1.0 – 1.5 | A | Excellent | `#00b050` |
+| 1.6 – 2.5 | B | Very Good | `#92d050` |
+| 2.6 – 3.5 | C | Good | `#ffff00` |
+| 3.6 – 4.5 | D | Satisfactory | `#ffc000` |
+| 4.6 – 5.0 | F | Fail | `#ff0000` |
+
+Everything else keeps the styling recovered from the source. A few reports tint
+a band differently; those variants are recorded in
+`sars.competency.KNOWN_VARIANTS`, and the *conversion* path always prefers the
+colour it actually recovered from the PDF, so no report regresses.
+
+## Elastic structure
+
+Templated tables lay out in normal flow rather than at absolute coordinates, so
+a long value wraps inside its ruled cell and the row grows to fit. Wrapping is
+at word boundaries only (`word-break:keep-all`): breaking mid-word would split
+one value into two tokens and register as a fidelity loss.
+
+## Measuring the templated path
+
+A template *reflows* — it is handed data and chooses its own page breaks — so it
+cannot be expected to reproduce the reference's rows-per-page split, and for
+fresh data there is no reference split to reproduce. The meaningful test is that
+no value is lost:
+
+```bash
+python tools/template_audit.py            # per-document content completeness
+python tools/template_missing.py "<name>" # which tokens differ, and why
+python tools/compare.py --template        # reference | templated output, side by side
+```
+
+## Every document has output
+
+All 19 documents are generated on **both** paths, and all of it is committed so
+it can be reviewed on GitHub without running anything:
+
+| Directory | What it holds | Rebuild with |
+|---|---|---|
+| `output/data/` | each report's extracted **data** as JSON (19) | `sars data` |
+| `output/template_html/` | HTML rebuilt **from that data** (19) | `sars template` |
+| `output/template_pdf/` | those templates printed to A4 (19) | `sars template` |
+| `output/html/`, `output/pdf/` | the conversion path's output (19 each) | `sars all` |
+| `output/compare/` | `<name>.jpg` reference vs converted, and `TEMPLATE <name>.jpg` reference vs templated (19 each) | `tools/compare.py [--template]` |
+
+`template_audit.py` reports `lost_kinds` — values present in the reference and
+absent from the templated output. Current state across the 19 documents:
+
+```
+no value lost 6/19; mean document similarity 97.26%
+```
+
+The conversion path is unaffected and still reports `19/19 documents pass; mean
+text similarity 100.00%`.
+
+Known remaining gaps in the templated path, all in *chrome* rather than figures
+except where noted: the top-ten reports do not yet carry their per-block
+headings (`OVERALL` / `PRIVATE` / `GOVERNMENT`) into the data, the school result
+slip loses some summary-block captions and seven summary figures, and three
+documents differ only in an apostrophe glyph (`'` vs `’`).
 
 ## Note on duplicate input
 

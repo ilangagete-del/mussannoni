@@ -116,6 +116,8 @@ def _cell_html(cell, pool: StylePool, tag: str, cell_h: float = 0.0) -> str:
         cls.append("total")
     if cell.style.rotation in (90, 270) and cell.lines:
         cls.append("vcell")
+    if getattr(cell, "wrappable", False):
+        cls.append("wrap")
 
     attrs = [f'class="{" ".join(cls)}"']
     if cell.colspan > 1:
@@ -307,6 +309,12 @@ table{border-collapse:collapse;table-layout:fixed;width:100%;
 th,td{border:0.4pt solid #000;padding:0 0.8pt;line-height:1.02;
       overflow:visible;white-space:nowrap;overflow-wrap:normal;word-break:normal;
       vertical-align:middle}
+/* Elastic cells: only where the extractor found content wider than its column
+   (a long SCHOOL NAME, a long COMPETENCY LEVEL label). These wrap inside the
+   ruled box at word boundaries instead of overhanging it, and the row grows to
+   fit. Applied per cell so untouched cells keep their exact single-line
+   geometry and the 100% text guarantee. */
+th.wrap,td.wrap{white-space:normal;overflow-wrap:break-word}
 th{font-weight:700}
 tr.banner th,tr.banner td{border:0;vertical-align:top}
 div.ln{white-space:nowrap}

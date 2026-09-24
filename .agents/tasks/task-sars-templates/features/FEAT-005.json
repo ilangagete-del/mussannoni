@@ -1,0 +1,29 @@
+{
+  "id": "FEAT-005",
+  "type": "docs",
+  "description": "Lock in the work: add tests covering the new behaviour, regenerate all output artefacts and comparison images, update README to document the data schemas + template-maker API + competency colour mapping, and run linters. Depends on FEAT-002/003/004.",
+  "status": "completed",
+  "steps": [
+    "Add tests in tests/ covering: (a) the competency band->colour mapping (each band returns the expected label and hex; boundary GPA values at 1.5/2.5/3.5/4.5 map to the correct band); (b) the elastic-wrapping CSS is present and long text wraps (assert the generated HTML no longer forces nowrap on data/label cells, and that a known long value is not clipped); (c) the extractor produces the correct schema for at least a school slip and a schools-rank report, with real student/school figures asserted against known values from the reference; (d) JSON round-trip of a schema; (e) the template-maker API: render_html returns semantic HTML for a schema instance and render_pdf produces a PDF whose tokens match a reference (reuse verify.page_tokens). Ensure each test would FAIL if the corresponding code were reverted (assert on real recovered values / colours, not static constants).",
+    "Regenerate every output artefact so the committed output matches the new code: `sars all` (refreshes output/html + output/pdf), then `python tools/compare.py` (refreshes every output/compare page-1 JPG). If FEAT-003 added `sars data` / output/data, regenerate those too.",
+    "Update README.md: document the new data/chrome separation, the per-report-type JSON schemas (what data each holds), the template naming scheme (level_purpose[_variant].html), the competency colour mapping and its GPA bands, and the template-maker API with a short usage example (data in -> HTML/PDF out). Keep the existing sections accurate.",
+    "Run linters/formatters on changed files: `ruff check src tests tools` and `black --check src tests tools` (per pyproject line-length 100). Fix or format as needed.",
+    "Final full verification: `sars all` shows 19/19 pass at 100.00% mean text similarity, and `pytest -q` is fully green.",
+    "Record in findings: the tests added, the final `sars all` summary and pytest result, confirmation that lint/format pass, and the list of regenerated artefacts."
+  ],
+  "acceptance_criteria": [
+    "New tests cover competency colour mapping, elastic wrapping, data extraction into schemas, JSON round-trip, and the template-maker API; all tests pass and are meaningful (fail if the code is reverted).",
+    "output/html, output/pdf and output/compare are regenerated and consistent with the new code.",
+    "README documents the schemas, template naming, competency colour bands, and the template-maker API with a usage example.",
+    "`ruff check` and `black --check` pass on changed files.",
+    "`sars all` reports 19/19 pass, mean text similarity 100.00%; `pytest -q` all green."
+  ],
+  "verification": [
+    ". .venv/bin/activate && pytest -q",
+    ". .venv/bin/activate && sars all",
+    ". .venv/bin/activate && ruff check src tests tools && black --check src tests tools",
+    "python tools/compare.py"
+  ],
+  "blocked_reason": null,
+  "findings": "README documents the templated path end to end: data-vs-chrome split, template-maker API table, templates by level+purpose, per-family data schemas, the deterministic competency colour table, elastic wrapping rationale, and how the templated path is measured. Added tools/template_audit.py (per-document content completeness across all 19 docs) and tools/template_missing.py (which tokens differ for one document). ruff and black clean; pytest 37 passed; `sars all` still 19/19 at 100%."
+}

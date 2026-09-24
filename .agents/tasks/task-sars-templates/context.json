@@ -1,0 +1,28 @@
+{
+  "project_type": "Python CLI library (package name `sars`, distribution `sars-convert`) that converts Mwanza Form Two Mock Assessment result reports from fixed-layout pdf2html HTML into clean semantic HTML+CSS, prints to A4 PDF via WeasyPrint, and verifies fidelity against the reference PDFs.",
+  "language": "Python >=3.11",
+  "build_system": "setuptools via pyproject.toml; installed editable with `pip install -e .[dev]`. Console entry point `sars` maps to sars.cli:main.",
+  "test_framework": "pytest. Tests in tests/test_sars.py: unit tests for geometry/classify/html_out helpers plus end-to-end tests that extract and render the 'Mwanza School Rank-EDK' reference PDF and compare tokens against the reference.",
+  "build_command": "In repo root: `~/.pyenv/versions/3.11.15/bin/python -m venv .venv && . .venv/bin/activate && pip install -e '.[dev]'` (venv already created at .venv during planning). WeasyPrint system libs (Pango/Cairo/HarfBuzz) are present in this environment.",
+  "test_command": ". .venv/bin/activate && pytest -q   (some end-to-end tests need `sars all` run first to produce output/pdf; they skip otherwise)",
+  "verification_instructions": "1) `. .venv/bin/activate`. 2) `sars all` (or `sars all --only \"<name>\"`) runs convert+render+verify; expect `summary N/N documents pass; mean text similarity 100.00%`. 3) `pytest -q` all green. 4) Regenerate comparison images with `python tools/compare.py \"<name>\" <page>` and inspect output/compare/*.jpg for cell-by-cell colour and layout fidelity against the reference (left) vs generated (right).",
+  "snapshot_or_generated_files": "output/html/, output/pdf/, output/compare/ are generated build artefacts. They ARE currently committed to the repo (per commit 8f203d5) even though README says data/ and output/ are not committed. data/sars/ is git-ignored and re-extracted from sars.zip on every command. Regenerate all output with `sars all` and refresh compare images with `python tools/compare.py` (no arg = page 1 of every document).",
+  "setup_instructions": "Default `python3` on PATH is 3.9 and lacks the deps; MUST use pyenv Python 3.11.15 (matches .python-version). A working venv exists at /projects/sandbox/mussannoni/.venv created from ~/.pyenv/versions/3.11.15/bin/python with `.[dev]` installed. Activate it with `. .venv/bin/activate` before any sars/pytest command.",
+  "environment_constraints": "Network has gateway for GitHub; package deps already installed in .venv so no further installs needed. WeasyPrint renders correctly here. Do NOT push or create PRs. The reference PDFs under data/sars/ are read-only ground truth and must never be modified.",
+  "contribution_requirements": "No CONTRIBUTING.md. Conventions from pyproject: ruff (line-length 100, rules E,F,I,UP,B) and black (line-length 100). Run `ruff check` and `black --check` on changed files. Keep the existing text-fidelity guarantee: `sars verify` must still report 100% text similarity and glyphs=identical for all 19 documents after any change.",
+  "key_patterns": "Pipeline: sources.discover() pairs each source HTML with its reference PDF -> extract.extract_document() uses pdfplumber (grid) + PyMuPDF (spans/fills) to build a Document(model.py: Document/Page/Block/Table/Cell/Line/Style) -> classify.classify() labels row_kinds (banner/header/data/total), merges header stacks, peels banners -> html_out.write_document() emits semantic HTML+CSS (StylePool pools styles into st1..stN classes; DOC_CSS is the shared stylesheet) -> render.render_html() WeasyPrint->PDF -> verify.verify() token multiset check. Cell background comes from extract._pick_background() which picks the smallest fill covering >=55% of the cell bbox and rejects white/near-black. Competency colours are deterministic by band: Excellent(GradeA)->green, VeryGood(GradeB)->light green, Good(GradeC)->yellow, Satisfactory(GradeD)->orange, Fail(GradeF)->red; band cutoffs align with GPA ~1.5/2.5/3.5/4.5. Table cells use white-space:nowrap;overflow:visible so long text overhangs (the elasticity problem).",
+  "relevant_files": [
+    "src/sars/extract.py (build_table, _pick_background, harvest_fills, detect_panel - colour recovery lives here)",
+    "src/sars/html_out.py (DOC_CSS, render_table, _cell_html, StylePool - CSS emission and nowrap/overflow behaviour)",
+    "src/sars/classify.py (row_kinds, merge_header_stacks, split_tables, peel_banner_rows, HEADER_TERMS/TOTAL_TERMS - static chrome detection)",
+    "src/sars/model.py (Document/Page/Block/Table/Cell/Line/Style dataclasses - the in-memory report model)",
+    "src/sars/sources.py (SourcePair, discover, select - document inventory)",
+    "src/sars/cli.py (convert/render/verify/all commands)",
+    "src/sars/render.py (WeasyPrint wrapper)",
+    "src/sars/verify.py (token-multiset fidelity check)",
+    "tools/compare.py (side-by-side reference|generated page images into output/compare/)",
+    "tools/probe.py (read-only PDF diagnostic: grid/fonts/fill colours)",
+    "tests/test_sars.py (unit + end-to-end fidelity tests)"
+  ],
+  "directory_structure": "src/sars/ conversion package; tests/ pytest suite; tools/ probe.py + compare.py diagnostics; output/{html,pdf,compare}/ generated artefacts (committed); sars.zip source-of-truth archive; data/sars/ extracted ground truth (git-ignored). The 19 documents span three hierarchy levels: council (7, names begin 'MWANZA CC'), region (11, names begin 'Mwanza'), and one school slip 'S1051-MKOLANI SECONDARY SCHOOL'. Report variants include overall/private/government schools, subjectwise, best students, wards rank, and single-school slip."
+}

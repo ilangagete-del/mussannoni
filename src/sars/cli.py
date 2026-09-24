@@ -6,13 +6,18 @@ import argparse
 import sys
 from pathlib import Path
 
-from . import sources
+from . import schema, sources, template_maker
 from .classify import classify
 from .extract import extract_document
+from .extract_data import extract_report
 from .html_out import write_document
 from .render import render_html
 from .unpack import unpack
 from .verify import verify
+
+OUT_DATA = sources.ROOT / "output" / "data"
+OUT_TEMPLATE_HTML = sources.ROOT / "output" / "template_html"
+OUT_TEMPLATE_PDF = sources.ROOT / "output" / "template_pdf"
 
 
 def _convert_one(pair: sources.SourcePair) -> tuple[Path, str]:
@@ -76,6 +81,53 @@ def cmd_verify(only: str | None) -> int:
     return 0
 
 
+def cmd_data(only: str | None) -> int:
+    """Extract structured report data to JSON under output/data/."""
+    OUT_DATA.mkdir(parents=True, exist_ok=True)
+    for pair in sources.select(only):
+        doc = extract_document(pair.pdf, pair.html)
+        report = extract_report(doc, pair.name)
+        text = schema.to_json(report)
+        out = OUT_DATA / f"{pair.name}.json"
+        out.write_text(text, encoding="utf-8")
+        if only:
+            print(text)
+        else:
+            print(f"data     {pair.name} -> {out.relative_to(sources.ROOT)}")
+    return 0
+
+
+def cmd_template(only: str | None) -> int:
+    """Run the data -> template -> HTML/PDF path for each selected document.
+
+    This exercises the template-maker API end to end: the document's data is
+    extracted to a schema instance, handed to the template registered for its
+    report type, and the resulting HTML is written to ``output/template_html/``
+    and printed to a PDF in ``output/template_pdf/``. Unlike ``convert``, which
+    redraws a specific PDF, this path rebuilds the report *from data alone*.
+    """
+    OUT_TEMPLATE_HTML.mkdir(parents=True, exist_ok=True)
+    OUT_TEMPLATE_PDF.mkdir(parents=True, exist_ok=True)
+    for pair in sources.select(only):
+        doc = extract_document(pair.pdf, pair.html)
+        report = extract_report(doc, pair.name)
+        report_type = getattr(report.meta, "report_type", "generic")
+
+        html_text = template_maker.render_html(report_type, report)
+        html_path = OUT_TEMPLATE_HTML / f"{pair.name}.html"
+        html_path.write_text(html_text, encoding="utf-8")
+
+        pdf_path = template_maker.render_pdf(
+            report_type, report, OUT_TEMPLATE_PDF / f"{pair.name}.pdf"
+        )
+        print(
+            f"template {pair.name}\n"
+            f"         {report_type:22s} -> {html_path.relative_to(sources.ROOT)}"
+            f" + {Path(pdf_path).relative_to(sources.ROOT)}"
+        )
+    return 0
+
+
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(
         prog="sars",
@@ -83,7 +135,7 @@ def main(argv: list[str] | None = None) -> int:
     )
     parser.add_argument(
         "command",
-        choices=["unpack", "convert", "render", "verify", "all", "list"],
+        choices=["unpack", "convert", "render", "verify", "all", "list", "data", "template"],
         help="action",
     )
     parser.add_argument("--only", help="substring of a document name")
@@ -107,6 +159,10 @@ def main(argv: list[str] | None = None) -> int:
         return cmd_render(args.only)
     if args.command == "verify":
         return cmd_verify(args.only)
+    if args.command == "data":
+        return cmd_data(args.only)
+    if args.command == "template":
+        return cmd_template(args.only)
     rc = cmd_convert(args.only)
     rc = cmd_render(args.only) or rc
     return cmd_verify(args.only) or rc
