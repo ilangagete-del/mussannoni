@@ -1,14 +1,23 @@
-"""Lossless pixel-by-pixel comparison of generated and reference PDFs.
+"""Lossless pixel-by-pixel *metrics* for generated vs reference PDFs.
 
-Unlike ``compare.py`` this tool does not create a lossy JPEG or resize either
-page.  It rasterises both pages with the same matrix, requires identical page
-pixel dimensions, reports exact and thresholded mismatch counts, and writes a
-PNG heatmap plus a PNG overlay for inspection.
+This is the NUMBERS tool: it rasterises both pages with the same matrix,
+requires identical page pixel dimensions, and reports exact / thresholded
+mismatch counts plus MAE / RMSE / PSNR. It does **not** write any image files -
+the single visual comparison per report (reference | template | diff) is written
+by ``tools/compare.py`` as ``output/compare/<name>.jpg`` and overwritten in
+place. Keeping the images in one place avoids the old pile-up of per-kind and
+per-page files.
 
 Usage::
 
     python tools/pixel_diff.py "MWANZA CC SCHOOLS RANK" --template
     python tools/pixel_diff.py "MWANZA CC SCHOOLS RANK" --template --zoom 4
+    python tools/pixel_diff.py --all --template   # every report, page 1
+
+In ``--all`` batch mode the tool iterates every discovered report and prints one
+result line per report (exact% / visible% match, or ``DIMENSION MISMATCH: ...``
+when the generated page size differs from the reference). Reports that mismatch
+are listed explicitly, never silently skipped.
 """
 
 from __future__ import annotations
@@ -19,10 +28,9 @@ import sys
 from pathlib import Path
 
 import pymupdf
-from PIL import Image, ImageChops, ImageEnhance
+from PIL import Image, ImageChops
 
 ROOT = Path(__file__).resolve().parents[1]
-OUT = ROOT / "output" / "compare"
 
 
 def raster(pdf: Path, page_index: int, zoom: float) -> Image.Image:
@@ -74,48 +82,100 @@ def metrics(reference: Image.Image, generated: Image.Image) -> dict[str, float |
     }
 
 
-def save_diagnostics(reference: Image.Image, generated: Image.Image, stem: str) -> tuple[Path, Path]:
-    OUT.mkdir(parents=True, exist_ok=True)
-    raw = ImageChops.difference(reference, generated)
-    amplified = ImageEnhance.Contrast(raw).enhance(4.0)
-    heatmap = Image.new("RGB", raw.size, "white")
-    mask = amplified.convert("L")
-    red = Image.new("RGB", raw.size, "#ff0000")
-    heatmap.paste(red, mask=mask)
-    heatmap_path = OUT / f"PIXEL DIFF {stem}.png"
-    heatmap.save(heatmap_path, "PNG", optimize=True)
-
-    overlay = Image.blend(reference, generated, 0.5)
-    overlay_path = OUT / f"PIXEL OVERLAY {stem}.png"
-    overlay.save(overlay_path, "PNG", optimize=True)
-    return heatmap_path, overlay_path
-
-
-def select_pair(name: str, templated: bool) -> tuple[str, Path, Path]:
+def _discover():
     sys.path.insert(0, str(ROOT / "src"))
     from sars import sources
 
-    pairs = sources.discover()
+    return sources.discover()
+
+
+def _generated_for(pair, templated: bool) -> Path:
+    directory = "template_pdf" if templated else "pdf"
+    return ROOT / "output" / directory / f"{pair.name}.pdf"
+
+
+def select_pair(name: str, templated: bool) -> tuple[str, Path, Path]:
+    pairs = _discover()
     exact = [pair for pair in pairs if pair.name.casefold() == name.casefold()]
     matches = exact or [pair for pair in pairs if name.casefold() in pair.name.casefold()]
     if len(matches) != 1:
         found = ", ".join(pair.name for pair in matches) or "none"
         raise ValueError(f"report name must select exactly one document; matched: {found}")
     pair = matches[0]
-    directory = "template_pdf" if templated else "pdf"
-    generated = ROOT / "output" / directory / f"{pair.name}.pdf"
+    generated = _generated_for(pair, templated)
     if not generated.exists():
         raise FileNotFoundError(generated)
     return pair.name, pair.pdf, generated
 
 
+def compare_one(name: str, reference_pdf: Path, generated_pdf: Path, page: int, zoom: float):
+    """Run a single-page metric comparison.
+
+    Returns ``(metrics, ref_size, None)`` when sizes match, or
+    ``(None, ref_size, gen_size)`` on a dimension mismatch. Writes no images.
+    """
+    reference = raster(reference_pdf, page - 1, zoom)
+    generated = raster(generated_pdf, page - 1, zoom)
+    if reference.size != generated.size:
+        return None, reference.size, generated.size
+    result = metrics(reference, generated)
+    return result, (reference.width, reference.height), None
+
+
+def run_all(templated: bool, page: int, zoom: float) -> int:
+    pairs = _discover()
+    mismatched: list[str] = []
+    failures = 0
+    print(f"pixel comparison of {len(pairs)} reports (page {page} @ {zoom:g}x)")
+    for pair in sorted(pairs, key=lambda p: p.name.casefold()):
+        generated_pdf = _generated_for(pair, templated)
+        if not generated_pdf.exists():
+            rebuild = "sars template" if templated else "sars all"
+            print(f"{pair.name}: MISSING PDF (run `{rebuild}`)")
+            mismatched.append(pair.name)
+            failures += 1
+            continue
+        try:
+            result, ref_size, gen_size = compare_one(pair.name, pair.pdf, generated_pdf, page, zoom)
+        except ValueError as error:
+            print(f"{pair.name}: {error}")
+            mismatched.append(pair.name)
+            failures += 1
+            continue
+        if result is None:
+            print(f"{pair.name}: DIMENSION MISMATCH: reference={ref_size} generated={gen_size}")
+            mismatched.append(pair.name)
+            continue
+        if result["exact_mismatch"]:
+            failures += 1
+        print(
+            f"{pair.name}: exact {result['exact_match_pct']:.4f}% / "
+            f"visible {result['visible_match_pct']:.4f}% "
+            f"(max_delta={result['max_delta']}) {ref_size[0]}x{ref_size[1]}px"
+        )
+
+    print()
+    if mismatched:
+        print(f"DIMENSION MISMATCH / missing ({len(mismatched)}): " + "; ".join(mismatched))
+    else:
+        print("all reports matched dimensions")
+    return 1 if failures else 0
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("name")
+    parser.add_argument("name", nargs="?", help="report name (substring); omit with --all")
+    parser.add_argument("--all", action="store_true", help="compare every discovered report")
     parser.add_argument("--template", action="store_true")
     parser.add_argument("--page", type=int, default=1)
     parser.add_argument("--zoom", type=float, default=2.0)
     args = parser.parse_args()
+
+    if args.all:
+        return run_all(args.template, args.page, args.zoom)
+
+    if not args.name:
+        parser.error("a report name is required unless --all is given")
 
     try:
         name, reference_pdf, generated_pdf = select_pair(args.name, args.template)
@@ -128,8 +188,6 @@ def main() -> int:
             )
             return 2
         result = metrics(reference, generated)
-        suffix = f"{'TEMPLATE ' if args.template else ''}{name} - page {args.page}"
-        heatmap, overlay = save_diagnostics(reference, generated, suffix)
     except (FileNotFoundError, ValueError) as error:
         print(error, file=sys.stderr)
         return 2
@@ -149,8 +207,6 @@ def main() -> int:
         f"MAE={result['mae']:.6f} RMSE={result['rmse']:.6f} "
         f"PSNR={result['psnr']:.3f}dB max_delta={result['max_delta']}"
     )
-    print(f"heatmap: {heatmap.relative_to(ROOT)}")
-    print(f"overlay: {overlay.relative_to(ROOT)}")
     return 0 if result["exact_mismatch"] == 0 else 1
 
 

@@ -521,9 +521,13 @@ def test_template_output_is_self_contained():
     CSS blob. Checked for schools_rank and one other family."""
     from sars import template_maker
 
-    for name, rtype in (
-        ("MWANZA CC SCHOOLS RANK", "schools_rank"),
-        ("MWANZA CC SUBJECTS RANK", "subjects_rank"),
+    for name, rtype, page_rule in (
+        # schools_rank is a fixed-layout renderer that emits the reference's own
+        # US-Letter page box (792pt x 612pt), not A4.
+        ("MWANZA CC SCHOOLS RANK", "schools_rank", "@page{size:792pt 612pt"),
+        # subjects_rank is now a fixed-layout renderer too (FEAT-003): it emits
+        # the reference's own US-Letter page box (792pt x 612pt), not A4.
+        ("MWANZA CC SUBJECTS RANK", "subjects_rank", "@page{size:792pt 612pt"),
     ):
         html = template_maker.render_html(rtype, _report_for(name))
         assert "<!DOCTYPE html>" in html
@@ -531,8 +535,8 @@ def test_template_output_is_self_contained():
         # No external stylesheet is ever linked.
         assert 'rel="stylesheet"' not in html
         assert "<link" not in html
-        # A4 page geometry is declared in the document's own inline style.
-        assert "@page{size:A4" in html
+        # The page geometry is declared in the document's own inline style.
+        assert page_rule in html
 
 
 def test_schools_rank_paints_its_own_fill_washes_and_competency_band():
@@ -541,12 +545,15 @@ def test_schools_rank_paints_its_own_fill_washes_and_competency_band():
     from sars import template_maker
 
     html = template_maker.render_html("schools_rank", _report_for("MWANZA CC SCHOOLS RANK"))
-    # This report type's own division / summary / GPA / rank washes.
-    for wash in ("#fabf8f", "#dce6f1", "#ebf1de", "#65ffab", "#d2fce6", "#daeef3"):
+    # This report type's own recovered division / candidate / zero / I-III /
+    # GPA / rank fill washes, painted by the fixed-layout template (keyed to the
+    # column group, not read from the data).
+    for wash in ("#daeef4", "#ffffcc", "#fceada", "#da9694", "#fabe90",
+                 "#d3fce6", "#65ffac", "#d2fce6", "#ebf1df", "#fde9d9"):
         assert wash in html, wash
     # The competency band colour is computed deterministically (Grade C -> yellow
     # is present in this council report), never stored in the data.
-    assert "#ffff00" in html or "#00b050" in html
+    assert "#ffff00" in html or "#00b050" in html or "#00b151" in html
 
 
 def test_no_shared_css_constant_across_report_types():

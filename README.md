@@ -130,7 +130,7 @@ tools/probe.py        read-only PDF diagnostic
 tools/compare.py      side-by-side reference/output page images
 output/html/          generated self-contained clean HTML (styles inlined per file)
 output/pdf/           generated A4 PDFs
-output/compare/       visual comparison images
+output/compare/       visual comparison images (conversion/ template/ pixel/)
 ```
 
 ## Setup
@@ -353,7 +353,15 @@ it can be reviewed on GitHub without running anything:
 | `output/template_html/` | HTML rebuilt **from that data** (19) | `sars template` |
 | `output/template_pdf/` | those templates printed to A4 (19) | `sars template` |
 | `output/html/`, `output/pdf/` | the conversion path's output (19 each) | `sars all` |
-| `output/compare/` | `<name>.jpg` reference vs converted, and `TEMPLATE <name>.jpg` reference vs templated (19 each) | `tools/compare.py [--template]` |
+| `output/compare/` | **one** image per report, `<name>.jpg`, overwritten in place: a single `REFERENCE \| TEMPLATE \| DIFF` panel (19) | `tools/compare.py` (add `--conversion` for the conversion PDF) |
+
+Each report has exactly one comparison file, `output/compare/<name>.jpg`, and it
+is overwritten on every run — no per-page, per-kind, or diagnostic variants pile
+up. The panel shows the reference PDF, the data-driven template output, and a
+lossless red-on-white diff heatmap whose label carries the exact / visible
+pixel-match percentages (or a "size mismatch" notice when page sizes differ).
+`tools/pixel_diff.py` prints the detailed numeric metrics (MAE/RMSE/PSNR, exact
+and visible match) and writes no image files.
 
 `template_audit.py` reports `lost_kinds` — values present in the reference and
 absent from the templated output. Current state across the 19 documents:
