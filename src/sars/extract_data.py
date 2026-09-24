@@ -696,11 +696,11 @@ def _extract_generic(doc: Document, meta: ReportMeta) -> GenericTabularReport:
             title=title,
         )
         group = block
-        for row in _group_data_rows(group):
+        for row_index, row in _group_data_rows_indexed(group):
             values: dict[str, str] = {}
             for col in range(n_cols):
                 key = headers[col] if col < len(headers) and headers[col] else f"col_{col}"
-                text = _cell(row, col)
+                text = _row_cell_text(row, col, row_index)
                 if text:
                     values[key] = text
             if values:
@@ -789,6 +789,30 @@ def _group_data_rows(group: list[Table]):
     for table in group:
         for _, row in _iter_data_rows(table):
             yield row
+
+
+def _group_data_rows_indexed(group: list[Table]):
+    """Yield ``(lattice row index, {col: cell})`` for every data row in a group."""
+    for table in group:
+        yield from _iter_data_rows(table)
+
+
+def _row_cell_text(row: dict[int, Cell], col: int, row_index: int) -> str:
+    """The text a cell shows *on this lattice row*.
+
+    A cell spanning several lattice rows holds one line per row when the report
+    prints a value on each of them (the mobility column's ``IMEPANDA`` /
+    ``UMESHUKA``). Joining them gives one row the value four times over and leaves
+    the other three empty, so the line belonging to this row is returned instead.
+    """
+    cell = row.get(col)
+    if cell is None:
+        return ""
+    if cell.rowspan > 1 and len(cell.lines) == cell.rowspan:
+        offset = row_index - cell.row
+        if 0 <= offset < len(cell.lines):
+            return cell.lines[offset].text.strip()
+    return cell.text.strip()
 
 
 def _group_totals(group: list[Table]) -> dict[str, list[str]]:
