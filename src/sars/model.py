@@ -70,6 +70,9 @@ class Cell:
     is_banner: bool = False
     #: True when this cell spans the full table width (a banner / section title).
     full_width: bool = False
+    #: True when the cell's content is wider than its column, so the emitter
+    #: should let it wrap inside the box instead of overhanging the rule.
+    wrappable: bool = False
 
     @property
     def text(self) -> str:

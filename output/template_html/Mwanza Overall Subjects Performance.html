@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>SUBJECTS PERFORMANCE REGIONALWISE</title>
+<style>
+@page{size:A4 landscape;margin:8pt}
+*{margin:0;padding:0;box-sizing:border-box}
+html{-weasy-hyphens:none}
+body{background:#fff}
+/* No overflow:hidden - clipping would silently drop report data. Any overflow
+   must surface as an extra page so verification catches it. */
+.page{position:relative;margin:0 auto;page-break-after:always;break-after:page}
+.page:last-of-type{page-break-after:auto;break-after:auto}
+/* Whole blocks are placed at their measured coordinates; the data inside each
+   block is laid out by the normal CSS table algorithm. */
+.panel{position:absolute;z-index:0}
+.tw{position:absolute;z-index:1;overflow:visible}
+p.tl{position:absolute;z-index:1}
+table{border-collapse:collapse;table-layout:fixed;width:100%;
+      border-spacing:0}
+/* The PDF already states where every line breaks; those breaks are emitted as
+   <br>, so automatic re-wrapping must be off or tokens would split. */
+/* Vertical padding is zero on purpose: row heights are taken verbatim from the
+   PDF, and on a 59-row page even 0.4pt of padding per cell would accumulate
+   into tens of points of overflow. */
+/* overflow is visible on purpose: several reports set labels slightly wider
+   than their ruled cell (OWNERSHIP, the rotated rank columns) and the original
+   PDF simply lets them overhang. Clipping here would truncate real values. */
+th,td{border:0.4pt solid #000;padding:0 0.8pt;line-height:1.02;
+      overflow:visible;white-space:nowrap;overflow-wrap:normal;word-break:normal;
+      vertical-align:middle}
+/* Elastic cells: only where the extractor found content wider than its column
+   (a long SCHOOL NAME, a long COMPETENCY LEVEL label). These wrap inside the
+   ruled box at word boundaries instead of overhanging it, and the row grows to
+   fit. Applied per cell so untouched cells keep their exact single-line
+   geometry and the 100% text guarantee. */
+th.wrap,td.wrap{white-space:normal;overflow-wrap:break-word}
+th{font-weight:700}
+tr.banner th,tr.banner td{border:0;vertical-align:top}
+div.ln{white-space:nowrap}
+tr.total th,tr.total td{font-weight:700}
+p.tl{white-space:nowrap}
+/* Vertical rank labels. WeasyPrint does not implement writing-mode, so a real
+   rotate() transform is used; the cell must not clip the overflow it creates. */
+.rot{display:inline-block;transform:rotate(-90deg);transform-origin:50% 50%;
+     white-space:nowrap;line-height:1}
+th.vcell,td.vcell{overflow:visible}
+
+body{font-family:Arial, Helvetica, sans-serif;color:#000;margin:0}
+.report{padding:6pt}
+.banner{text-align:center;font-weight:700;font-size:8pt;line-height:1.35}
+.banner .title{margin-top:6pt}
+table.tmpl{border-collapse:collapse;table-layout:fixed;width:100%;
+           border-spacing:0;margin-top:6pt;font-size:5.4pt;line-height:1.05}
+/* Dense reports (schools rank, top schools, subjects rank, the wide pivots)
+   pack many rows onto one page just as the reference does, so the whole report
+   stays on the reference's page count and every token lands on the right page.
+   A compact document dials the table font and padding down to fit. */
+.report.compact table.tmpl{font-size:3.6pt;line-height:1.0;margin-top:4pt}
+.report.compact table.tmpl th,.report.compact table.tmpl td{padding:0 0.6pt}
+/* Elastic cells: wrap at word boundaries so a long multi-word value (a school
+   name, a COMPETENCY LEVEL label) flows onto extra lines inside its ruled box
+   and the row grows to fit, but a single long word is never broken mid-token
+   (which would split it into two verification tokens and drop text fidelity).
+   overflow stays visible so a value wider than its column overhangs, exactly as
+   the reference PDFs do, rather than being clipped. */
+table.tmpl th,table.tmpl td{border:0.4pt solid #000;padding:0.4pt 1pt;
+           text-align:center;vertical-align:middle;overflow:visible;
+           white-space:normal;overflow-wrap:normal;word-break:keep-all}
+table.tmpl th{font-weight:700}
+table.tmpl td.text,table.tmpl th.text{text-align:left}
+table.tmpl tr.total th,table.tmpl tr.total td{font-weight:700}
+</style>
+</head>
+<body>
+<section class="report compact"><div class="banner"><div>THE PRIME MINISTER&#x27;S OFFICE</div><div>REGIONAL ADMINISTRATION AND LOCAL GOVERNMENT</div><div>SUBJECTS PERFORMANCE ALWISE REGION</div><div>REGIONAL FORM TWO MOCK ASSESSMENT RESULTS, JULY 2026</div><div class="title">SUBJECTS PERFORMANCE REGIONALWISE</div></div><table class="tmpl"><thead><tr><th>S/NO.</th><th class="text">SUBJECT NAME</th><th>A</th><th>B</th><th>C</th><th>D</th><th>F</th><th>TOTAL</th><th>A-C</th><th>%A-C</th><th>A-D</th><th>%A-D</th><th>GPA</th><th>COMPENTENCY LEVEL</th><th>R/RANK</th></tr></thead><tbody><tr><td>01</td><td class="text">WELDING AND METAL FABRICATION</td><td>6</td><td>1</td><td>0</td><td>0</td><td>0</td><td>7</td><td>7</td><td>100</td><td>7</td><td>100</td><td>1.1400</td><td class="text comp" style="background-color:#00b050">Grade A (Excellent)</td><td>1</td></tr><tr><td>02</td><td class="text">MASONRY AND BRICK LAYING</td><td>17</td><td>3</td><td>1</td><td>0</td><td>0</td><td>21</td><td>21</td><td>100</td><td>21</td><td>100</td><td>1.2400</td><td class="text comp" style="background-color:#00b050">Grade A (Excellent)</td><td>2</td></tr><tr><td>03</td><td class="text">MOTOR VEHICLE MECHANICS</td><td>11</td><td>1</td><td>2</td><td>0</td><td>0</td><td>14</td><td>14</td><td>100</td><td>14</td><td>100</td><td>1.3600</td><td class="text comp" style="background-color:#00b050">Grade A (Excellent)</td><td>3</td></tr><tr><td>04</td><td class="text">COMPUTER APPLICATION</td><td>11</td><td>1</td><td>2</td><td>0</td><td>0</td><td>14</td><td>14</td><td>100</td><td>14</td><td>100</td><td>1.3600</td><td class="text comp" style="background-color:#00b050">Grade A (Excellent)</td><td>4</td></tr><tr><td>05</td><td class="text">ELECTRICAL INSTALLATION</td><td>24</td><td>14</td><td>1</td><td>2</td><td>0</td><td>41</td><td>39</td><td>95.12</td><td>41</td><td>100</td><td>1.5400</td><td class="text comp" style="background-color:#00b050">Grade A (Excellent)</td><td>5</td></tr><tr><td>06</td><td class="text">ELIMU YA DINI YA KIISLAMU</td><td>333</td><td>35</td><td>121</td><td>111</td><td>71</td><td>671</td><td>489</td><td>82.33</td><td>600</td><td>94.25</td><td>1.9200</td><td class="text comp" style="background-color:#92d050">Grade B (Very Good)</td><td>6</td></tr><tr><td>07</td><td class="text">HISTORIA YA TANZANIA NA MAADILI</td><td>15270</td><td>13270</td><td>20299</td><td>5897</td><td>1632</td><td>56368</td><td>48839</td><td>86.85</td><td>54736</td><td>96.99</td><td>2.3300</td><td class="text comp" style="background-color:#92d050">Grade B (Very Good)</td><td>7</td></tr><tr><td>08</td><td class="text">ARABIC LANGUAGE</td><td>26</td><td>17</td><td>27</td><td>5</td><td>0</td><td>75</td><td>70</td><td>94.94</td><td>75</td><td>100</td><td>2.3400</td><td class="text comp" style="background-color:#92d050">Grade B (Very Good)</td><td>8</td></tr><tr><td>09</td><td class="text">COMPUTER PROGRAMMING</td><td>27</td><td>5</td><td>8</td><td>6</td><td>9</td><td>55</td><td>40</td><td>72.73</td><td>46</td><td>83.64</td><td>2.3600</td><td class="text comp" style="background-color:#92d050">Grade B (Very Good)</td><td>9</td></tr><tr><td>10</td><td class="text">SPORT STUDIES</td><td>121</td><td>124</td><td>146</td><td>11</td><td>5</td><td>407</td><td>391</td><td>90.54</td><td>402</td><td>95.7</td><td>2.3900</td><td class="text comp" style="background-color:#92d050">Grade B (Very Good)</td><td>10</td></tr><tr><td>11</td><td class="text">KISWAHILI</td><td>6022</td><td>10246</td><td>27894</td><td>10101</td><td>1887</td><td>56150</td><td>44162</td><td>80.94</td><td>54263</td><td>97.16</td><td>2.7500</td><td class="text comp" style="background-color:#ffff00">Grade C (Good)</td><td>11</td></tr><tr><td>12</td><td class="text">DESIGNING SEWING AND CLOTH TECHNOLOGY</td><td>1</td><td>1</td><td>6</td><td>1</td><td>0</td><td>9</td><td>8</td><td>88.89</td><td>9</td><td>100</td><td>2.7800</td><td class="text comp" style="background-color:#ffff00">Grade C (Good)</td><td>12</td></tr><tr><td>13</td><td class="text">CARPENTRY &amp; JOINERY WITH METAL WORKS</td><td>0</td><td>1</td><td>4</td><td>0</td><td>0</td><td>5</td><td>5</td><td>100</td><td>5</td><td>100</td><td>2.8000</td><td class="text comp" style="background-color:#ffff00">Grade C (Good)</td><td>13</td></tr><tr><td>14</td><td class="text">BIBLE KNOWLEDGE</td><td>441</td><td>233</td><td>233</td><td>78</td><td>265</td><td>1250</td><td>907</td><td>61.94</td><td>985</td><td>77.93</td><td>2.9900</td><td class="text comp" style="background-color:#ffff00">Grade C (Good)</td><td>14</td></tr><tr><td>15</td><td class="text">FOOD AND NUTRITION</td><td>15</td><td>17</td><td>29</td><td>26</td><td>56</td><td>143</td><td>61</td><td>59.53</td><td>87</td><td>78.29</td><td>3.1000</td><td class="text comp" style="background-color:#ffff00">Grade C (Good)</td><td>15</td></tr><tr><td>16</td><td class="text">FINE ART</td><td>6</td><td>5</td><td>29</td><td>38</td><td>111</td><td>189</td><td>40</td><td>65.03</td><td>78</td><td>76.58</td><td>3.1400</td><td class="text comp" style="background-color:#ffff00">Grade C (Good)</td><td>16</td></tr><tr><td>17</td><td class="text">TECHNICAL DRAWING</td><td>22</td><td>29</td><td>48</td><td>28</td><td>38</td><td>165</td><td>99</td><td>60</td><td>127</td><td>76.97</td><td>3.1900</td><td class="text comp" style="background-color:#ffff00">Grade C (Good)</td><td>17</td></tr><tr><td>18</td><td class="text">PLUMBING &amp; PIPE FITTING</td><td>2</td><td>0</td><td>7</td><td>0</td><td>4</td><td>13</td><td>9</td><td>69.23</td><td>9</td><td>69.23</td><td>3.3100</td><td class="text comp" style="background-color:#ffff00">Grade C (Good)</td><td>18</td></tr><tr><td>19</td><td class="text">CHINESE LANGUAGE</td><td>41</td><td>25</td><td>24</td><td>30</td><td>234</td><td>354</td><td>90</td><td>45.06</td><td>120</td><td>58.89</td><td>3.4400</td><td class="text comp" style="background-color:#ffff00">Grade C (Good)</td><td>19</td></tr><tr><td>20</td><td class="text">ENGINEERING SCIENCE</td><td>8</td><td>8</td><td>67</td><td>58</td><td>24</td><td>165</td><td>83</td><td>50.3</td><td>141</td><td>85.45</td><td>3.5000</td><td class="text comp" style="background-color:#ffff00">Grade C (Good)</td><td>20</td></tr><tr><td>21</td><td class="text">FRENCH LANGUAGE</td><td>9</td><td>16</td><td>145</td><td>159</td><td>179</td><td>508</td><td>170</td><td>45.9</td><td>329</td><td>78.65</td><td>3.5400</td><td class="text comp" style="background-color:#ffff00">Grade C (Good)</td><td>21</td></tr><tr><td>22</td><td class="text">AGRICULTURE</td><td>2</td><td>5</td><td>44</td><td>35</td><td>35</td><td>121</td><td>51</td><td>51.35</td><td>86</td><td>74.85</td><td>3.6200</td><td class="text comp" style="background-color:#ffc000">Grade D (Satisfactory)</td><td>22</td></tr><tr><td>23</td><td class="text">LIFE SKILLS</td><td>60</td><td>38</td><td>37</td><td>17</td><td>43</td><td>195</td><td>135</td><td>40.91</td><td>152</td><td>46.06</td><td>3.6500</td><td class="text comp" style="background-color:#ffc000">Grade D (Satisfactory)</td><td>23</td></tr><tr><td>24</td><td class="text">CHEMISTRY</td><td>1708</td><td>2175</td><td>6903</td><td>6618</td><td>10112</td><td>27516</td><td>10786</td><td>43.25</td><td>17404</td><td>69.1</td><td>3.6600</td><td class="text comp" style="background-color:#ffc000">Grade D (Satisfactory)</td><td>24</td></tr><tr><td>25</td><td class="text">COPUTER SCIENCE</td><td>124</td><td>126</td><td>332</td><td>337</td><td>773</td><td>1692</td><td>582</td><td>34.15</td><td>919</td><td>58.78</td><td>3.8500</td><td class="text comp" style="background-color:#ffc000">Grade D (Satisfactory)</td><td>25</td></tr><tr><td>26</td><td class="text">MUSIC</td><td>0</td><td>6</td><td>32</td><td>55</td><td>146</td><td>239</td><td>38</td><td>37.09</td><td>93</td><td>67.31</td><td>3.8700</td><td class="text comp" style="background-color:#ffc000">Grade D (Satisfactory)</td><td>26</td></tr><tr><td>27</td><td class="text">ENGLISH LANGUAGE</td><td>859</td><td>2645</td><td>11416</td><td>15822</td><td>25600</td><td>56342</td><td>14920</td><td>31.86</td><td>30742</td><td>59.03</td><td>3.9700</td><td class="text comp" style="background-color:#ffc000">Grade D (Satisfactory)</td><td>27</td></tr><tr><td>28</td><td class="text">BOOK-KEEPING</td><td>53</td><td>70</td><td>238</td><td>454</td><td>943</td><td>1758</td><td>361</td><td>31.21</td><td>815</td><td>56.09</td><td>3.9700</td><td class="text comp" style="background-color:#ffc000">Grade D (Satisfactory)</td><td>28</td></tr><tr><td>29</td><td class="text">BUSINES STUDIES</td><td>1334</td><td>2198</td><td>9442</td><td>13663</td><td>29653</td><td>56290</td><td>12974</td><td>29.5</td><td>26637</td><td>55.01</td><td>4.0200</td><td class="text comp" style="background-color:#ffc000">Grade D (Satisfactory)</td><td>29</td></tr><tr><td>30</td><td class="text">THEATRE ARTS</td><td>4</td><td>4</td><td>14</td><td>76</td><td>106</td><td>204</td><td>22</td><td>21.53</td><td>98</td><td>58.04</td><td>4.0400</td><td class="text comp" style="background-color:#ffc000">Grade D (Satisfactory)</td><td>30</td></tr><tr><td>31</td><td class="text">HISTORY</td><td>301</td><td>681</td><td>5369</td><td>11337</td><td>20089</td><td>37777</td><td>6351</td><td>23.24</td><td>17688</td><td>52.52</td><td>4.1700</td><td class="text comp" style="background-color:#ffc000">Grade D (Satisfactory)</td><td>31</td></tr><tr><td>32</td><td class="text">PHYSICS</td><td>446</td><td>748</td><td>3123</td><td>4736</td><td>11846</td><td>20899</td><td>4317</td><td>21.73</td><td>9053</td><td>46.44</td><td>4.2400</td><td class="text comp" style="background-color:#ffc000">Grade D (Satisfactory)</td><td>32</td></tr><tr><td>33</td><td class="text">GEOGRAPHY</td><td>1137</td><td>1523</td><td>5722</td><td>9503</td><td>38280</td><td>56165</td><td>8382</td><td>21.34</td><td>17885</td><td>39.24</td><td>4.2800</td><td class="text comp" style="background-color:#ffc000">Grade D (Satisfactory)</td><td>33</td></tr><tr><td>34</td><td class="text">BIOLOGY</td><td>416</td><td>676</td><td>3559</td><td>6117</td><td>41348</td><td>52116</td><td>4651</td><td>12.59</td><td>10768</td><td>27.08</td><td>4.5600</td><td class="text comp" style="background-color:#ffc000">Grade D (Satisfactory)</td><td>34</td></tr><tr><td>35</td><td class="text">MATHEMATICS</td><td>602</td><td>591</td><td>2774</td><td>4679</td><td>47695</td><td>56341</td><td>3967</td><td>10.1</td><td>8646</td><td>20.35</td><td>4.6400</td><td class="text comp" style="background-color:#ff0000">Grade F (Fail)</td><td>35</td></tr><tr><td>36</td><td class="text">TOURISM</td><td>0</td><td>0</td><td>3</td><td>9</td><td>35</td><td>47</td><td>3</td><td>5.17</td><td>12</td><td>20.69</td><td>4.7400</td><td class="text comp" style="background-color:#ff0000">Grade F (Fail)</td><td>36</td></tr><tr><td>OVERALL SUBJECTS  REGIONAL GPA</td><td class="text">&#160;</td><td>2.6438</td><td>&#160;</td><td>&#160;</td><td>&#160;</td><td>&#160;</td><td>&#160;</td><td>&#160;</td><td>&#160;</td><td>&#160;</td><td>&#160;</td><td>&#160;</td><td class="text comp">&#160;</td><td>&#160;</td></tr><tr><td>COMPETENCY LEVEL</td><td class="text">&#160;</td><td>Grade C (Good)</td><td>&#160;</td><td>&#160;</td><td>&#160;</td><td>&#160;</td><td>&#160;</td><td>&#160;</td><td>&#160;</td><td>&#160;</td><td>&#160;</td><td>&#160;</td><td class="text comp">&#160;</td><td>&#160;</td></tr></tbody></table></section>
+</body>
+</html>
