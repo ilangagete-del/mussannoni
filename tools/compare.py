@@ -5,9 +5,17 @@ Usage::
     python tools/compare.py                      # page 1 of every document
     python tools/compare.py "10 BEST SCHOOLS"    # page 1 of one document
     python tools/compare.py "10 BEST SCHOOLS" 3  # page 3 of one document
+    python tools/compare.py --template           # compare the templated output
 
 Images land in ``output/compare/``. The reference is always on the left and the
 generated A4 output on the right, each labelled.
+
+By default the right-hand side is the **conversion** output (``output/pdf/``),
+which redraws a specific reference PDF. With ``--template`` it is the
+**templated** output (``output/template_pdf/``), rebuilt from data alone by
+``sars template``; those images are written with a ``TEMPLATE `` name prefix so
+both sets can coexist. A template reflows, so expect its page breaks to differ
+from the reference - what matters there is that no value is missing.
 """
 
 from __future__ import annotations
@@ -44,9 +52,11 @@ def _labelled(img: Image.Image, label: str) -> Image.Image:
     return canvas
 
 
-def side_by_side(reference: Path, generated: Path, index: int, label: str) -> Path:
+def side_by_side(
+    reference: Path, generated: Path, index: int, label: str, right_label: str = "GENERATED A4"
+) -> Path:
     left = _labelled(page_image(reference, index), f"REFERENCE  -  {reference.name}")
-    right = _labelled(page_image(generated, index), f"GENERATED A4  -  {generated.name}")
+    right = _labelled(page_image(generated, index), f"{right_label}  -  {generated.name}")
     height = max(left.height, right.height)
     canvas = Image.new("RGB", (left.width + right.width + GAP, height), "#9aa5b1")
     canvas.paste(left, (0, 0))
@@ -65,8 +75,17 @@ def _pairs():
 
 
 def main() -> int:
-    needle = sys.argv[1] if len(sys.argv) > 1 else None
-    page = int(sys.argv[2]) - 1 if len(sys.argv) > 2 else 0
+    args = [a for a in sys.argv[1:] if not a.startswith("--")]
+    templated = "--template" in sys.argv
+    needle = args[0] if args else None
+    page = int(args[1]) - 1 if len(args) > 1 else 0
+
+    if templated:
+        source_dir = ROOT / "output" / "template_pdf"
+        prefix, right_label, rebuild = "TEMPLATE ", "FROM DATA (template)", "sars template"
+    else:
+        source_dir = ROOT / "output" / "pdf"
+        prefix, right_label, rebuild = "", "GENERATED A4", "sars all"
 
     pairs = _pairs()
     if needle:
@@ -76,11 +95,15 @@ def main() -> int:
             return 1
 
     for pair in pairs:
-        generated = ROOT / "output" / "pdf" / f"{pair.name}.pdf"
+        generated = source_dir / f"{pair.name}.pdf"
         if not generated.exists():
-            print(f"skip {pair.name}: no output PDF (run `sars all`)", file=sys.stderr)
+            print(f"skip {pair.name}: no PDF (run `{rebuild}`)", file=sys.stderr)
             continue
-        print(side_by_side(pair.pdf, generated, page, pair.name).name)
+        print(
+            side_by_side(
+                pair.pdf, generated, page, f"{prefix}{pair.name}", right_label=right_label
+            ).name
+        )
     return 0
 
 

@@ -1,0 +1,26 @@
+{
+  "id": "FEAT-001",
+  "type": "chore",
+  "description": "Establish a green baseline before any change. Confirm the Python 3.11 environment, install the package, run the existing full pipeline across all 19 documents, run the existing tests, and regenerate all comparison images so later features can be measured against a known starting point. Independent of later features but MUST run first.",
+  "status": "completed",
+  "steps": [
+    "Activate the existing venv: `cd /projects/sandbox/mussannoni && . .venv/bin/activate`. If .venv is missing or its python is not 3.11, recreate it: `~/.pyenv/versions/3.11.15/bin/python -m venv .venv && . .venv/bin/activate && pip install -e '.[dev]'`.",
+    "Confirm imports: `python -c \"import weasyprint, pdfplumber, pymupdf; print('ok')\"`.",
+    "Run the full pipeline over every document: `sars all` and capture the summary line. Expect `summary 19/19 documents pass; mean text similarity 100.00%`.",
+    "Run the test suite: `pytest -q` and record pass/skip counts.",
+    "Regenerate all side-by-side comparison images: `python tools/compare.py` (no args = page 1 of every document). Confirm output/compare/ is refreshed.",
+    "Record in this feature's findings: the exact `sars all` summary line, the pytest result line, and a note that the baseline text fidelity is 100% (the task's concern is COLOUR/layout fidelity, which verify.py does not measure)."
+  ],
+  "acceptance_criteria": [
+    "`sars all` prints `summary 19/19 documents pass; mean text similarity 100.00%`.",
+    "`pytest -q` completes with no failures (skips for tests needing prior output are acceptable, but after `sars all` the end-to-end EDK test should pass).",
+    "output/compare/ contains one refreshed page-1 JPG per document."
+  ],
+  "verification": [
+    ". .venv/bin/activate && sars all",
+    ". .venv/bin/activate && pytest -q",
+    "python tools/compare.py"
+  ],
+  "blocked_reason": null,
+  "findings": "Green baseline established. Environment: .venv already present, Python 3.11.15; imports (weasyprint, pdfplumber, pymupdf) OK. `sars all` summary line: `summary  19/19 documents pass; mean text similarity 100.00%` (note the two spaces after 'summary'). `pytest -q` result: `25 passed in 0.37s` (0 failures, 0 skips; the end-to-end EDK test passes after `sars all`). Regenerated `python tools/compare.py` producing exactly 19 page-1 JPGs in output/compare/ (one per document). Regenerated output/ artefacts are byte-identical to the committed ones (pipeline is deterministic; `git status` shows no changes under output/). IMPORTANT: baseline TEXT fidelity is 100% and glyphs=identical for all 19 documents, but verify.py only measures the token multiset (text), NOT colour or layout. The task's real concern (cell background colours, header merges, and text overflow/elasticity) is invisible to verify.py and must be judged from the output/compare/*.jpg side-by-side images. No source code changed. Not committed (orchestrator handles git)."
+}

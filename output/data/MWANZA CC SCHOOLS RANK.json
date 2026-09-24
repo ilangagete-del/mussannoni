@@ -1,0 +1,4167 @@
+{
+  "meta": {
+    "name": "MWANZA CC SCHOOLS RANK",
+    "report_type": "schools_rank",
+    "level": "council",
+    "variant": "overall",
+    "region": "Mwanza",
+    "council": "Mwanza CC",
+    "exam_name": "REGIONAL FORM TWO MOCK ASSESSMENT RESULTS, JULY 2026",
+    "title": "MWANZA CC SCHOOLS RANK"
+  },
+  "rows": [
+    {
+      "sno": "01",
+      "ward": "LWANHIMA",
+      "council": "",
+      "school_name": "MUSABE BOYS",
+      "ownership": "PRIVATE",
+      "registered": {
+        "f": "0",
+        "m": "225",
+        "t": "225"
+      },
+      "sat": {
+        "f": "0",
+        "m": "225",
+        "t": "225"
+      },
+      "sat_pct": "100",
+      "division": {
+        "I": {
+          "f": "0",
+          "m": "217",
+          "t": "217"
+        },
+        "II": {
+          "f": "0",
+          "m": "8",
+          "t": "8"
+        },
+        "III": {
+          "f": "0",
+          "m": "0",
+          "t": "0"
+        },
+        "IV": {
+          "f": "0",
+          "m": "0",
+          "t": "0"
+        },
+        "0": {
+          "f": "0",
+          "m": "0",
+          "t": "0"
+        },
+        "0%": "0",
+        "I-III": {
+          "f": "0",
+          "m": "225",
+          "t": "225"
+        },
+        "I-III%": "100",
+        "I-IV": {
+          "f": "0",
+          "m": "225",
+          "t": "225"
+        },
+        "I-IV%": "100"
+      },
+      "gpa": "1.4418",
+      "competency": "Grade A (Excellent)",
+      "council_rank": "1",
+      "regional_rank": "3"
+    },
+    {
+      "sno": "02",
+      "ward": "LWANHIMA",
+      "council": "",
+      "school_name": "MUSABE GIRLS",
+      "ownership": "PRIVATE",
+      "registered": {
+        "f": "189",
+        "m": "0",
+        "t": "189"
+      },
+      "sat": {
+        "f": "189",
+        "m": "0",
+        "t": "189"
+      },
+      "sat_pct": "100",
+      "division": {
+        "I": {
+          "f": "183",
+          "m": "0",
+          "t": "183"
+        },
+        "II": {
+          "f": "6",
+          "m": "0",
+          "t": "6"
+        },
+        "III": {
+          "f": "0",
+          "m": "0",
+          "t": "0"
+        },
+        "IV": {
+          "f": "0",
+          "m": "0",
+          "t": "0"
+        },
+        "0": {
+          "f": "0",
+          "m": "0",
+          "t": "0"
+        },
+        "0%": "0",
+        "I-III": {
+          "f": "189",
+          "m": "0",
+          "t": "189"
+        },
+        "I-III%": "100",
+        "I-IV": {
+          "f": "189",
+          "m": "0",
+          "t": "189"
+        },
+        "I-IV%": "100"
+      },
+      "gpa": "1.4657",
+      "competency": "Grade A (Excellent)",
+      "council_rank": "2",
+      "regional_rank": "5"
+    },
+    {
+      "sno": "03",
+      "ward": "MKOLANI",
+      "council": "",
+      "school_name": "NASCO",
+      "ownership": "PRIVATE",
+      "registered": {
+        "f": "36",
+        "m": "0",
+        "t": "36"
+      },
+      "sat": {
+        "f": "36",
+        "m": "0",
+        "t": "36"
+      },
+      "sat_pct": "100",
+      "division": {
+        "I": {
+          "f": "31",
+          "m": "0",
+          "t": "31"
+        },
+        "II": {
+          "f": "5",
+          "m": "0",
+          "t": "5"
+        },
+        "III": {
+          "f": "0",
+          "m": "0",
+          "t": "0"
+        },
+        "IV": {
+          "f": "0",
+          "m": "0",
+          "t": "0"
+        },
+        "0": {
+          "f": "0",
+          "m": "0",
+          "t": "0"
+        },
+        "0%": "0",
+        "I-III": {
+          "f": "36",
+          "m": "0",
+          "t": "36"
+        },
+        "I-III%": "100",
+        "I-IV": {
+          "f": "36",
+          "m": "0",
+          "t": "36"
+        },
+        "I-IV%": "100"
+      },
+      "gpa": "1.7514",
+      "competency": "Grade B (Very Good)",
+      "council_rank": "3",
+      "regional_rank": "14"
+    },
+    {
+      "sno": "04",
+      "ward": "MKOLANI",
+      "council": "",
+      "school_name": "FAMG",
+      "ownership": "PRIVATE",
+      "registered": {
+        "f": "0",
+        "m": "86",
+        "t": "86"
+      },
+      "sat": {
+        "f": "0",
+        "m": "83",
+        "t": "83"
+      },
+      "sat_pct": "96.51",
+      "division": {
+        "I": {
+          "f": "0",
+          "m": "53",
+          "t": "53"
+        },
+        "II": {
+          "f": "0",
+          "m": "22",
+          "t": "22"
+        },
+        "III": {
+          "f": "0",
+          "m": "6",
+          "t": "6"
+        },
+        "IV": {
+          "f": "0",
+          "m": "2",
+          "t": "2"
+        },
+        "0": {
+          "f": "0",
+          "m": "0",
+          "t": "0"
+        },
+        "0%": "0",
+        "I-III": {
+          "f": "0",
+          "m": "81",
+          "t": "81"
+        },
+        "I-III%": "97.59",
+        "I-IV": {
+          "f": "0",
+          "m": "83",
+          "t": "83"
+        },
+        "I-IV%": "100"
+      },
+      "gpa": "2.0333",
+      "competency": "Grade B (Very Good)",
+      "council_rank": "4",
+      "regional_rank": "22"
+    },
+    {
+      "sno": "05",
+      "ward": "MKOLANI",
+      "council": "",
+      "school_name": "HOLY FAMILY GIRLS",
+      "ownership": "PRIVATE",
+      "registered": {
+        "f": "158",
+        "m": "0",
+        "t": "158"
+      },
+      "sat": {
+        "f": "158",
+        "m": "0",
+        "t": "158"
+      },
+      "sat_pct": "100",
+      "division": {
+        "I": {
+          "f": "97",
+          "m": "0",
+          "t": "97"
+        },
+        "II": {
+          "f": "51",
+          "m": "0",
+          "t": "51"
+        },
+        "III": {
+          "f": "6",
+          "m": "0",
+          "t": "6"
+        },
+        "IV": {
+          "f": "4",
+          "m": "0",
+          "t": "4"
+        },
+        "0": {
+          "f": "0",
+          "m": "0",
+          "t": "0"
+        },
+        "0%": "0",
+        "I-III": {
+          "f": "154",
+          "m": "0",
+          "t": "154"
+        },
+        "I-III%": "97.47",
+        "I-IV": {
+          "f": "158",
+          "m": "0",
+          "t": "158"
+        },
+        "I-IV%": "100"
+      },
+      "gpa": "2.0595",
+      "competency": "Grade B (Very Good)",
+      "council_rank": "5",
+      "regional_rank": "23"
+    },
+    {
+      "sno": "06",
+      "ward": "MAHINA",
+      "council": "",
+      "school_name": "ALLIANCE ROCK ARMY",
+      "ownership": "PRIVATE",
+      "registered": {
+        "f": "15",
+        "m": "24",
+        "t": "39"
+      },
+      "sat": {
+        "f": "14",
+        "m": "20",
+        "t": "34"
+      },
+      "sat_pct": "87.18",
+      "division": {
+        "I": {
+          "f": "10",
+          "m": "7",
+          "t": "17"
+        },
+        "II": {
+          "f": "4",
+          "m": "12",
+          "t": "16"
+        },
+        "III": {
+          "f": "0",
+          "m": "1",
+          "t": "1"
+        },
+        "IV": {
+          "f": "0",
+          "m": "0",
+          "t": "0"
+        },
+        "0": {
+          "f": "0",
+          "m": "0",
+          "t": "0"
+        },
+        "0%": "0",
+        "I-III": {
+          "f": "14",
+          "m": "20",
+          "t": "34"
+        },
+        "I-III%": "100",
+        "I-IV": {
+          "f": "14",
+          "m": "20",
+          "t": "34"
+        },
+        "I-IV%": "100"
+      },
+      "gpa": "2.0681",
+      "competency": "Grade B (Very Good)",
+      "council_rank": "6",
+      "regional_rank": "24"
+    },
+    {
+      "sno": "07",
+      "ward": "MAHINA",
+      "council": "",
+      "school_name": "ALLIANCE GIRLS",
+      "ownership": "PRIVATE",
+      "registered": {
+        "f": "18",
+        "m": "0",
+        "t": "18"
+      },
+      "sat": {
+        "f": "18",
+        "m": "0",
+        "t": "18"
+      },
+      "sat_pct": "100",
+      "division": {
+        "I": {
+          "f": "12",
+          "m": "0",
+          "t": "12"
+        },
+        "II": {
+          "f": "6",
+          "m": "0",
+          "t": "6"
+        },
+        "III": {
+          "f": "0",
+          "m": "0",
+          "t": "0"
+        },
+        "IV": {
+          "f": "0",
+          "m": "0",
+          "t": "0"
+        },
+        "0": {
+          "f": "0",
+          "m": "0",
+          "t": "0"
+        },
+        "0%": "0",
+        "I-III": {
+          "f": "18",
+          "m": "0",
+          "t": "18"
+        },
+        "I-III%": "100",
+        "I-IV": {
+          "f": "18",
+          "m": "0",
+          "t": "18"
+        },
+        "I-IV%": "100"
+      },
+      "gpa": "2.1279",
+      "competency": "Grade B (Very Good)",
+      "council_rank": "7",
+      "regional_rank": "28"
+    },
+    {
+      "sno": "08",
+      "ward": "BUHONGWA",
+      "council": "",
+      "school_name": "CALFONIA HILLS",
+      "ownership": "PRIVATE",
+      "registered": {
+        "f": "27",
+        "m": "22",
+        "t": "49"
+      },
+      "sat": {
+        "f": "26",
+        "m": "20",
+        "t": "46"
+      },
+      "sat_pct": "93.88",
+      "division": {
+        "I": {
+          "f": "13",
+          "m": "11",
+          "t": "24"
+        },
+        "II": {
+          "f": "10",
+          "m": "8",
+          "t": "18"
+        },
+        "III": {
+          "f": "2",
+          "m": "1",
+          "t": "3"
+        },
+        "IV": {
+          "f": "1",
+          "m": "0",
+          "t": "1"
+        },
+        "0": {
+          "f": "0",
+          "m": "0",
+          "t": "0"
+        },
+        "0%": "0",
+        "I-III": {
+          "f": "25",
+          "m": "20",
+          "t": "45"
+        },
+        "I-III%": "97.83",
+        "I-IV": {
+          "f": "26",
+          "m": "20",
+          "t": "46"
+        },
+        "I-IV%": "100"
+      },
+      "gpa": "2.2205",
+      "competency": "Grade B (Very Good)",
+      "council_rank": "8",
+      "regional_rank": "34"
+    },
+    {
+      "sno": "09",
+      "ward": "MAHINA",
+      "council": "",
+      "school_name": "OMEGA",
+      "ownership": "PRIVATE",
+      "registered": {
+        "f": "33",
+        "m": "23",
+        "t": "56"
+      },
+      "sat": {
+        "f": "31",
+        "m": "23",
+        "t": "54"
+      },
+      "sat_pct": "96.43",
+      "division": {
+        "I": {
+          "f": "16",
+          "m": "14",
+          "t": "30"
+        },
+        "II": {
+          "f": "7",
+          "m": "7",
+          "t": "14"
+        },
+        "III": {
+          "f": "7",
+          "m": "2",
+          "t": "9"
+        },
+        "IV": {
+          "f": "1",
+          "m": "0",
+          "t": "1"
+        },
+        "0": {
+          "f": "0",
+          "m": "0",
+          "t": "0"
+        },
+        "0%": "0",
+        "I-III": {
+          "f": "30",
+          "m": "23",
+          "t": "53"
+        },
+        "I-III%": "98.15",
+        "I-IV": {
+          "f": "31",
+          "m": "23",
+          "t": "54"
+        },
+        "I-IV%": "100"
+      },
+      "gpa": "2.2443",
+      "competency": "Grade B (Very Good)",
+      "council_rank": "9",
+      "regional_rank": "35"
+    },
+    {
+      "sno": "10",
+      "ward": "MAHINA",
+      "council": "",
+      "school_name": "ALLIANCE BOYS",
+      "ownership": "PRIVATE",
+      "registered": {
+        "f": "0",
+        "m": "35",
+        "t": "35"
+      },
+      "sat": {
+        "f": "0",
+        "m": "35",
+        "t": "35"
+      },
+      "sat_pct": "100",
+      "division": {
+        "I": {
+          "f": "0",
+          "m": "15",
+          "t": "15"
+        },
+        "II": {
+          "f": "0",
+          "m": "17",
+          "t": "17"
+        },
+        "III": {
+          "f": "0",
+          "m": "3",
+          "t": "3"
+        },
+        "IV": {
+          "f": "0",
+          "m": "0",
+          "t": "0"
+        },
+        "0": {
+          "f": "0",
+          "m": "0",
+          "t": "0"
+        },
+        "0%": "0",
+        "I-III": {
+          "f": "0",
+          "m": "35",
+          "t": "35"
+        },
+        "I-III%": "100",
+        "I-IV": {
+          "f": "0",
+          "m": "35",
+          "t": "35"
+        },
+        "I-IV%": "100"
+      },
+      "gpa": "2.3120",
+      "competency": "Grade B (Very Good)",
+      "council_rank": "10",
+      "regional_rank": "40"
+    },
+    {
+      "sno": "11",
+      "ward": "MKOLANI",
+      "council": "",
+      "school_name": "FR. RAMON",
+      "ownership": "PRIVATE",
+      "registered": {
+        "f": "0",
+        "m": "115",
+        "t": "115"
+      },
+      "sat": {
+        "f": "0",
+        "m": "115",
+        "t": "115"
+      },
+      "sat_pct": "100",
+      "division": {
+        "I": {
+          "f": "0",
+          "m": "54",
+          "t": "54"
+        },
+        "II": {
+          "f": "0",
+          "m": "39",
+          "t": "39"
+        },
+        "III": {
+          "f": "0",
+          "m": "17",
+          "t": "17"
+        },
+        "IV": {
+          "f": "0",
+          "m": "5",
+          "t": "5"
+        },
+        "0": {
+          "f": "0",
+          "m": "0",
+          "t": "0"
+        },
+        "0%": "0",
+        "I-III": {
+          "f": "0",
+          "m": "110",
+          "t": "110"
+        },
+        "I-III%": "95.65",
+        "I-IV": {
+          "f": "0",
+          "m": "115",
+          "t": "115"
+        },
+        "I-IV%": "100"
+      },
+      "gpa": "2.3665",
+      "competency": "Grade B (Very Good)",
+      "council_rank": "11",
+      "regional_rank": "42"
+    },
+    {
+      "sno": "12",
+      "ward": "IGOMA",
+      "council": "",
+      "school_name": "RODAN",
+      "ownership": "PRIVATE",
+      "registered": {
+        "f": "10",
+        "m": "8",
+        "t": "18"
+      },
+      "sat": {
+        "f": "10",
+        "m": "8",
+        "t": "18"
+      },
+      "sat_pct": "100",
+      "division": {
+        "I": {
+          "f": "4",
+          "m": "3",
+          "t": "7"
+        },
+        "II": {
+          "f": "6",
+          "m": "3",
+          "t": "9"
+        },
+        "III": {
+          "f": "0",
+          "m": "1",
+          "t": "1"
+        },
+        "IV": {
+          "f": "0",
+          "m": "1",
+          "t": "1"
+        },
+        "0": {
+          "f": "0",
+          "m": "0",
+          "t": "0"
+        },
+        "0%": "0",
+        "I-III": {
+          "f": "10",
+          "m": "7",
+          "t": "17"
+        },
+        "I-III%": "94.44",
+        "I-IV": {
+          "f": "10",
+          "m": "8",
+          "t": "18"
+        },
+        "I-IV%": "100"
+      },
+      "gpa": "2.4217",
+      "competency": "Grade B (Very Good)",
+      "council_rank": "12",
+      "regional_rank": "45"
+    },
+    {
+      "sno": "13",
+      "ward": "BUHONGWA",
+      "council": "",
+      "school_name": "TWIHULUMILE",
+      "ownership": "PRIVATE",
+      "registered": {
+        "f": "15",
+        "m": "15",
+        "t": "30"
+      },
+      "sat": {
+        "f": "15",
+        "m": "15",
+        "t": "30"
+      },
+      "sat_pct": "100",
+      "division": {
+        "I": {
+          "f": "9",
+          "m": "4",
+          "t": "13"
+        },
+        "II": {
+          "f": "2",
+          "m": "10",
+          "t": "12"
+        },
+        "III": {
+          "f": "3",
+          "m": "1",
+          "t": "4"
+        },
+        "IV": {
+          "f": "1",
+          "m": "0",
+          "t": "1"
+        },
+        "0": {
+          "f": "0",
+          "m": "0",
+          "t": "0"
+        },
+        "0%": "0",
+        "I-III": {
+          "f": "14",
+          "m": "15",
+          "t": "29"
+        },
+        "I-III%": "96.67",
+        "I-IV": {
+          "f": "15",
+          "m": "15",
+          "t": "30"
+        },
+        "I-IV%": "100"
+      },
+      "gpa": "2.4433",
+      "competency": "Grade B (Very Good)",
+      "council_rank": "13",
+      "regional_rank": "48"
+    },
+    {
+      "sno": "14",
+      "ward": "MABATINI",
+      "council": "",
+      "school_name": "ST. JOSEPH GIRLS",
+      "ownership": "PRIVATE",
+      "registered": {
+        "f": "87",
+        "m": "0",
+        "t": "87"
+      },
+      "sat": {
+        "f": "87",
+        "m": "0",
+        "t": "87"
+      },
+      "sat_pct": "100",
+      "division": {
+        "I": {
+          "f": "38",
+          "m": "0",
+          "t": "38"
+        },
+        "II": {
+          "f": "31",
+          "m": "0",
+          "t": "31"
+        },
+        "III": {
+          "f": "14",
+          "m": "0",
+          "t": "14"
+        },
+        "IV": {
+          "f": "4",
+          "m": "0",
+          "t": "4"
+        },
+        "0": {
+          "f": "0",
+          "m": "0",
+          "t": "0"
+        },
+        "0%": "0",
+        "I-III": {
+          "f": "83",
+          "m": "0",
+          "t": "83"
+        },
+        "I-III%": "95.4",
+        "I-IV": {
+          "f": "87",
+          "m": "0",
+          "t": "87"
+        },
+        "I-IV%": "100"
+      },
+      "gpa": "2.4510",
+      "competency": "Grade B (Very Good)",
+      "council_rank": "14",
+      "regional_rank": "51"
+    },
+    {
+      "sno": "15",
+      "ward": "KISHILI",
+      "council": "",
+      "school_name": "KIKALA",
+      "ownership": "PRIVATE",
+      "registered": {
+        "f": "47",
+        "m": "40",
+        "t": "87"
+      },
+      "sat": {
+        "f": "47",
+        "m": "39",
+        "t": "86"
+      },
+      "sat_pct": "98.85",
+      "division": {
+        "I": {
+          "f": "9",
+          "m": "28",
+          "t": "37"
+        },
+        "II": {
+          "f": "19",
+          "m": "9",
+          "t": "28"
+        },
+        "III": {
+          "f": "13",
+          "m": "1",
+          "t": "14"
+        },
+        "IV": {
+          "f": "6",
+          "m": "1",
+          "t": "7"
+        },
+        "0": {
+          "f": "0",
+          "m": "0",
+          "t": "0"
+        },
+        "0%": "0",
+        "I-III": {
+          "f": "41",
+          "m": "38",
+          "t": "79"
+        },
+        "I-III%": "91.86",
+        "I-IV": {
+          "f": "47",
+          "m": "39",
+          "t": "86"
+        },
+        "I-IV%": "100"
+      },
+      "gpa": "2.4878",
+      "competency": "Grade B (Very Good)",
+      "council_rank": "15",
+      "regional_rank": "52"
+    },
+    {
+      "sno": "16",
+      "ward": "BUHONGWA",
+      "council": "",
+      "school_name": "BUHONGWA ISLAMIC",
+      "ownership": "PRIVATE",
+      "registered": {
+        "f": "95",
+        "m": "57",
+        "t": "152"
+      },
+      "sat": {
+        "f": "95",
+        "m": "57",
+        "t": "152"
+      },
+      "sat_pct": "100",
+      "division": {
+        "I": {
+          "f": "36",
+          "m": "20",
+          "t": "56"
+        },
+        "II": {
+          "f": "33",
+          "m": "18",
+          "t": "51"
+        },
+        "III": {
+          "f": "24",
+          "m": "14",
+          "t": "38"
+        },
+        "IV": {
+          "f": "2",
+          "m": "5",
+          "t": "7"
+        },
+        "0": {
+          "f": "0",
+          "m": "0",
+          "t": "0"
+        },
+        "0%": "0",
+        "I-III": {
+          "f": "93",
+          "m": "52",
+          "t": "145"
+        },
+        "I-III%": "95.39",
+        "I-IV": {
+          "f": "95",
+          "m": "57",
+          "t": "152"
+        },
+        "I-IV%": "100"
+      },
+      "gpa": "2.5570",
+      "competency": "Grade B (Very Good)",
+      "council_rank": "16",
+      "regional_rank": "55"
+    },
+    {
+      "sno": "17",
+      "ward": "LWANHIMA",
+      "council": "",
+      "school_name": "STAR REACHERS GIRLS APRIVATE",
+      "ownership": "",
+      "registered": {
+        "f": "5",
+        "m": "8",
+        "t": "13"
+      },
+      "sat": {
+        "f": "5",
+        "m": "8",
+        "t": "13"
+      },
+      "sat_pct": "100",
+      "division": {
+        "I": {
+          "f": "1",
+          "m": "2",
+          "t": "3"
+        },
+        "II": {
+          "f": "4",
+          "m": "4",
+          "t": "8"
+        },
+        "III": {
+          "f": "0",
+          "m": "1",
+          "t": "1"
+        },
+        "IV": {
+          "f": "0",
+          "m": "1",
+          "t": "1"
+        },
+        "0": {
+          "f": "0",
+          "m": "0",
+          "t": "0"
+        },
+        "0%": "0",
+        "I-III": {
+          "f": "5",
+          "m": "7",
+          "t": "12"
+        },
+        "I-III%": "92.31",
+        "I-IV": {
+          "f": "5",
+          "m": "8",
+          "t": "13"
+        },
+        "I-IV%": "100"
+      },
+      "gpa": "2.5744",
+      "competency": "Grade B (Very Good)",
+      "council_rank": "17",
+      "regional_rank": "56"
+    },
+    {
+      "sno": "18",
+      "ward": "MAHINA",
+      "council": "",
+      "school_name": "NYANZA ADVENTIST",
+      "ownership": "PRIVATE",
+      "registered": {
+        "f": "69",
+        "m": "72",
+        "t": "141"
+      },
+      "sat": {
+        "f": "69",
+        "m": "70",
+        "t": "139"
+      },
+      "sat_pct": "98.58",
+      "division": {
+        "I": {
+          "f": "24",
+          "m": "27",
+          "t": "51"
+        },
+        "II": {
+          "f": "23",
+          "m": "28",
+          "t": "51"
+        },
+        "III": {
+          "f": "12",
+          "m": "8",
+          "t": "20"
+        },
+        "IV": {
+          "f": "10",
+          "m": "7",
+          "t": "17"
+        },
+        "0": {
+          "f": "0",
+          "m": "0",
+          "t": "0"
+        },
+        "0%": "0",
+        "I-III": {
+          "f": "59",
+          "m": "63",
+          "t": "122"
+        },
+        "I-III%": "87.77",
+        "I-IV": {
+          "f": "69",
+          "m": "70",
+          "t": "139"
+        },
+        "I-IV%": "100"
+      },
+      "gpa": "2.6359",
+      "competency": "Grade C (Good)",
+      "council_rank": "18",
+      "regional_rank": "57"
+    },
+    {
+      "sno": "19",
+      "ward": "NYEGEZI",
+      "council": "",
+      "school_name": "NYEGEZI SEMINARY",
+      "ownership": "PRIVATE",
+      "registered": {
+        "f": "0",
+        "m": "110",
+        "t": "110"
+      },
+      "sat": {
+        "f": "0",
+        "m": "110",
+        "t": "110"
+      },
+      "sat_pct": "100",
+      "division": {
+        "I": {
+          "f": "0",
+          "m": "37",
+          "t": "37"
+        },
+        "II": {
+          "f": "0",
+          "m": "29",
+          "t": "29"
+        },
+        "III": {
+          "f": "0",
+          "m": "36",
+          "t": "36"
+        },
+        "IV": {
+          "f": "0",
+          "m": "8",
+          "t": "8"
+        },
+        "0": {
+          "f": "0",
+          "m": "0",
+          "t": "0"
+        },
+        "0%": "0",
+        "I-III": {
+          "f": "0",
+          "m": "102",
+          "t": "102"
+        },
+        "I-III%": "92.73",
+        "I-IV": {
+          "f": "0",
+          "m": "110",
+          "t": "110"
+        },
+        "I-IV%": "100"
+      },
+      "gpa": "2.6380",
+      "competency": "Grade C (Good)",
+      "council_rank": "19",
+      "regional_rank": "58"
+    },
+    {
+      "sno": "20",
+      "ward": "ISAMILO",
+      "council": "",
+      "school_name": "LAKE",
+      "ownership": "PRIVATE",
+      "registered": {
+        "f": "40",
+        "m": "57",
+        "t": "97"
+      },
+      "sat": {
+        "f": "40",
+        "m": "55",
+        "t": "95"
+      },
+      "sat_pct": "97.94",
+      "division": {
+        "I": {
+          "f": "15",
+          "m": "16",
+          "t": "31"
+        },
+        "II": {
+          "f": "6",
+          "m": "12",
+          "t": "18"
+        },
+        "III": {
+          "f": "12",
+          "m": "14",
+          "t": "26"
+        },
+        "IV": {
+          "f": "7",
+          "m": "13",
+          "t": "20"
+        },
+        "0": {
+          "f": "0",
+          "m": "0",
+          "t": "0"
+        },
+        "0%": "0",
+        "I-III": {
+          "f": "33",
+          "m": "42",
+          "t": "75"
+        },
+        "I-III%": "78.95",
+        "I-IV": {
+          "f": "40",
+          "m": "55",
+          "t": "95"
+        },
+        "I-IV%": "100"
+      },
+      "gpa": "2.8715",
+      "competency": "Grade C (Good)",
+      "council_rank": "20",
+      "regional_rank": "67"
+    },
+    {
+      "sno": "21",
+      "ward": "LUCHELELE",
+      "council": "",
+      "school_name": "VICTORIAN GIRLS",
+      "ownership": "PRIVATE",
+      "registered": {
+        "f": "22",
+        "m": "0",
+        "t": "22"
+      },
+      "sat": {
+        "f": "22",
+        "m": "0",
+        "t": "22"
+      },
+      "sat_pct": "100",
+      "division": {
+        "I": {
+          "f": "7",
+          "m": "0",
+          "t": "7"
+        },
+        "II": {
+          "f": "5",
+          "m": "0",
+          "t": "5"
+        },
+        "III": {
+          "f": "4",
+          "m": "0",
+          "t": "4"
+        },
+        "IV": {
+          "f": "6",
+          "m": "0",
+          "t": "6"
+        },
+        "0": {
+          "f": "0",
+          "m": "0",
+          "t": "0"
+        },
+        "0%": "0",
+        "I-III": {
+          "f": "16",
+          "m": "0",
+          "t": "16"
+        },
+        "I-III%": "72.73",
+        "I-IV": {
+          "f": "22",
+          "m": "0",
+          "t": "22"
+        },
+        "I-IV%": "100"
+      },
+      "gpa": "2.9273",
+      "competency": "Grade C (Good)",
+      "council_rank": "21",
+      "regional_rank": "72"
+    },
+    {
+      "sno": "22",
+      "ward": "MKOLANI",
+      "council": "",
+      "school_name": "MESSA",
+      "ownership": "PRIVATE",
+      "registered": {
+        "f": "41",
+        "m": "47",
+        "t": "88"
+      },
+      "sat": {
+        "f": "41",
+        "m": "46",
+        "t": "87"
+      },
+      "sat_pct": "98.86",
+      "division": {
+        "I": {
+          "f": "13",
+          "m": "9",
+          "t": "22"
+        },
+        "II": {
+          "f": "12",
+          "m": "14",
+          "t": "26"
+        },
+        "III": {
+          "f": "4",
+          "m": "13",
+          "t": "17"
+        },
+        "IV": {
+          "f": "12",
+          "m": "9",
+          "t": "21"
+        },
+        "0": {
+          "f": "0",
+          "m": "1",
+          "t": "1"
+        },
+        "0%": "1.15",
+        "I-III": {
+          "f": "29",
+          "m": "36",
+          "t": "65"
+        },
+        "I-III%": "74.71",
+        "I-IV": {
+          "f": "41",
+          "m": "45",
+          "t": "86"
+        },
+        "I-IV%": "98.85"
+      },
+      "gpa": "2.9676",
+      "competency": "Grade C (Good)",
+      "council_rank": "22",
+      "regional_rank": "74"
+    },
+    {
+      "sno": "23",
+      "ward": "MABATINI",
+      "council": "",
+      "school_name": "MWANZA LUTHERAN",
+      "ownership": "PRIVATE",
+      "registered": {
+        "f": "33",
+        "m": "25",
+        "t": "58"
+      },
+      "sat": {
+        "f": "31",
+        "m": "25",
+        "t": "56"
+      },
+      "sat_pct": "96.55",
+      "division": {
+        "I": {
+          "f": "6",
+          "m": "6",
+          "t": "12"
+        },
+        "II": {
+          "f": "7",
+          "m": "7",
+          "t": "14"
+        },
+        "III": {
+          "f": "5",
+          "m": "4",
+          "t": "9"
+        },
+        "IV": {
+          "f": "13",
+          "m": "8",
+          "t": "21"
+        },
+        "0": {
+          "f": "0",
+          "m": "0",
+          "t": "0"
+        },
+        "0%": "0",
+        "I-III": {
+          "f": "18",
+          "m": "17",
+          "t": "35"
+        },
+        "I-III%": "62.5",
+        "I-IV": {
+          "f": "31",
+          "m": "25",
+          "t": "56"
+        },
+        "I-IV%": "100"
+      },
+      "gpa": "3.1009",
+      "competency": "Grade C (Good)",
+      "council_rank": "23",
+      "regional_rank": "79"
+    },
+    {
+      "sno": "24",
+      "ward": "BUHONGWA",
+      "council": "",
+      "school_name": "SHADAIMU",
+      "ownership": "PRIVATE",
+      "registered": {
+        "f": "1",
+        "m": "0",
+        "t": "1"
+      },
+      "sat": {
+        "f": "1",
+        "m": "0",
+        "t": "1"
+      },
+      "sat_pct": "100",
+      "division": {
+        "I": {
+          "f": "0",
+          "m": "0",
+          "t": "0"
+        },
+        "II": {
+          "f": "0",
+          "m": "0",
+          "t": "0"
+        },
+        "III": {
+          "f": "1",
+          "m": "0",
+          "t": "1"
+        },
+        "IV": {
+          "f": "0",
+          "m": "0",
+          "t": "0"
+        },
+        "0": {
+          "f": "0",
+          "m": "0",
+          "t": "0"
+        },
+        "0%": "0",
+        "I-III": {
+          "f": "1",
+          "m": "0",
+          "t": "1"
+        },
+        "I-III%": "100",
+        "I-IV": {
+          "f": "1",
+          "m": "0",
+          "t": "1"
+        },
+        "I-IV%": "100"
+      },
+      "gpa": "3.1875",
+      "competency": "Grade C (Good)",
+      "council_rank": "24",
+      "regional_rank": "84"
+    },
+    {
+      "sno": "25",
+      "ward": "LUCHELELE",
+      "council": "",
+      "school_name": "LUCHELELE",
+      "ownership": "GOVERNMENT",
+      "registered": {
+        "f": "74",
+        "m": "67",
+        "t": "141"
+      },
+      "sat": {
+        "f": "74",
+        "m": "66",
+        "t": "140"
+      },
+      "sat_pct": "99.29",
+      "division": {
+        "I": {
+          "f": "9",
+          "m": "11",
+          "t": "20"
+        },
+        "II": {
+          "f": "12",
+          "m": "14",
+          "t": "26"
+        },
+        "III": {
+          "f": "25",
+          "m": "13",
+          "t": "38"
+        },
+        "IV": {
+          "f": "28",
+          "m": "27",
+          "t": "55"
+        },
+        "0": {
+          "f": "0",
+          "m": "1",
+          "t": "1"
+        },
+        "0%": "0.71",
+        "I-III": {
+          "f": "46",
+          "m": "38",
+          "t": "84"
+        },
+        "I-III%": "60",
+        "I-IV": {
+          "f": "74",
+          "m": "65",
+          "t": "139"
+        },
+        "I-IV%": "99.29"
+      },
+      "gpa": "3.2990",
+      "competency": "Grade C (Good)",
+      "council_rank": "25",
+      "regional_rank": "93"
+    },
+    {
+      "sno": "26",
+      "ward": "MIRONGO",
+      "council": "",
+      "school_name": "THAQAAFA",
+      "ownership": "PRIVATE",
+      "registered": {
+        "f": "24",
+        "m": "23",
+        "t": "47"
+      },
+      "sat": {
+        "f": "23",
+        "m": "23",
+        "t": "46"
+      },
+      "sat_pct": "97.87",
+      "division": {
+        "I": {
+          "f": "3",
+          "m": "3",
+          "t": "6"
+        },
+        "II": {
+          "f": "3",
+          "m": "4",
+          "t": "7"
+        },
+        "III": {
+          "f": "10",
+          "m": "10",
+          "t": "20"
+        },
+        "IV": {
+          "f": "7",
+          "m": "6",
+          "t": "13"
+        },
+        "0": {
+          "f": "0",
+          "m": "0",
+          "t": "0"
+        },
+        "0%": "0",
+        "I-III": {
+          "f": "16",
+          "m": "17",
+          "t": "33"
+        },
+        "I-III%": "71.74",
+        "I-IV": {
+          "f": "23",
+          "m": "23",
+          "t": "46"
+        },
+        "I-IV%": "100"
+      },
+      "gpa": "3.3330",
+      "competency": "Grade C (Good)",
+      "council_rank": "26",
+      "regional_rank": "95"
+    },
+    {
+      "sno": "27",
+      "ward": "PAMBA",
+      "council": "",
+      "school_name": "BUGARIKA",
+      "ownership": "GOVERNMENT",
+      "registered": {
+        "f": "143",
+        "m": "126",
+        "t": "269"
+      },
+      "sat": {
+        "f": "131",
+        "m": "119",
+        "t": "250"
+      },
+      "sat_pct": "92.94",
+      "division": {
+        "I": {
+          "f": "5",
+          "m": "14",
+          "t": "19"
+        },
+        "II": {
+          "f": "12",
+          "m": "18",
+          "t": "30"
+        },
+        "III": {
+          "f": "55",
+          "m": "39",
+          "t": "94"
+        },
+        "IV": {
+          "f": "59",
+          "m": "48",
+          "t": "107"
+        },
+        "0": {
+          "f": "0",
+          "m": "0",
+          "t": "0"
+        },
+        "0%": "0",
+        "I-III": {
+          "f": "72",
+          "m": "71",
+          "t": "143"
+        },
+        "I-III%": "57.2",
+        "I-IV": {
+          "f": "131",
+          "m": "119",
+          "t": "250"
+        },
+        "I-IV%": "100"
+      },
+      "gpa": "3.4564",
+      "competency": "Grade C (Good)",
+      "council_rank": "27",
+      "regional_rank": "109"
+    },
+    {
+      "sno": "28",
+      "ward": "MKOLANI",
+      "council": "",
+      "school_name": "ROCKS HILL",
+      "ownership": "PRIVATE",
+      "registered": {
+        "f": "16",
+        "m": "13",
+        "t": "29"
+      },
+      "sat": {
+        "f": "16",
+        "m": "12",
+        "t": "28"
+      },
+      "sat_pct": "96.55",
+      "division": {
+        "I": {
+          "f": "0",
+          "m": "1",
+          "t": "1"
+        },
+        "II": {
+          "f": "1",
+          "m": "4",
+          "t": "5"
+        },
+        "III": {
+          "f": "9",
+          "m": "4",
+          "t": "13"
+        },
+        "IV": {
+          "f": "6",
+          "m": "3",
+          "t": "9"
+        },
+        "0": {
+          "f": "0",
+          "m": "0",
+          "t": "0"
+        },
+        "0%": "0",
+        "I-III": {
+          "f": "10",
+          "m": "9",
+          "t": "19"
+        },
+        "I-III%": "67.86",
+        "I-IV": {
+          "f": "16",
+          "m": "12",
+          "t": "28"
+        },
+        "I-IV%": "100"
+      },
+      "gpa": "3.4589",
+      "competency": "Grade C (Good)",
+      "council_rank": "28",
+      "regional_rank": "110"
+    },
+    {
+      "sno": "29",
+      "ward": "IGOMA",
+      "council": "",
+      "school_name": "KAKEBE",
+      "ownership": "GOVERNMENT",
+      "registered": {
+        "f": "69",
+        "m": "61",
+        "t": "130"
+      },
+      "sat": {
+        "f": "65",
+        "m": "54",
+        "t": "119"
+      },
+      "sat_pct": "91.54",
+      "division": {
+        "I": {
+          "f": "2",
+          "m": "7",
+          "t": "9"
+        },
+        "II": {
+          "f": "2",
+          "m": "8",
+          "t": "10"
+        },
+        "III": {
+          "f": "6",
+          "m": "7",
+          "t": "13"
+        },
+        "IV": {
+          "f": "55",
+          "m": "32",
+          "t": "87"
+        },
+        "0": {
+          "f": "0",
+          "m": "0",
+          "t": "0"
+        },
+        "0%": "0",
+        "I-III": {
+          "f": "10",
+          "m": "22",
+          "t": "32"
+        },
+        "I-III%": "26.89",
+        "I-IV": {
+          "f": "65",
+          "m": "54",
+          "t": "119"
+        },
+        "I-IV%": "100"
+      },
+      "gpa": "3.7377",
+      "competency": "Grade D (Satisfactory)",
+      "council_rank": "29",
+      "regional_rank": "165"
+    },
+    {
+      "sno": "30",
+      "ward": "BUTIMBA",
+      "council": "",
+      "school_name": "BUTIMBA DAY",
+      "ownership": "GOVERNMENT",
+      "registered": {
+        "f": "123",
+        "m": "92",
+        "t": "215"
+      },
+      "sat": {
+        "f": "122",
+        "m": "90",
+        "t": "212"
+      },
+      "sat_pct": "98.6",
+      "division": {
+        "I": {
+          "f": "5",
+          "m": "4",
+          "t": "9"
+        },
+        "II": {
+          "f": "11",
+          "m": "6",
+          "t": "17"
+        },
+        "III": {
+          "f": "20",
+          "m": "9",
+          "t": "29"
+        },
+        "IV": {
+          "f": "83",
+          "m": "64",
+          "t": "147"
+        },
+        "0": {
+          "f": "3",
+          "m": "7",
+          "t": "10"
+        },
+        "0%": "4.72",
+        "I-III": {
+          "f": "36",
+          "m": "19",
+          "t": "55"
+        },
+        "I-III%": "25.94",
+        "I-IV": {
+          "f": "119",
+          "m": "83",
+          "t": "202"
+        },
+        "I-IV%": "95.28"
+      },
+      "gpa": "3.7553",
+      "competency": "Grade D (Satisfactory)",
+      "council_rank": "30",
+      "regional_rank": "168"
+    },
+    {
+      "sno": "31",
+      "ward": "MUHANDU",
+      "council": "",
+      "school_name": "BISMARCK",
+      "ownership": "PRIVATE",
+      "registered": {
+        "f": "22",
+        "m": "16",
+        "t": "38"
+      },
+      "sat": {
+        "f": "22",
+        "m": "16",
+        "t": "38"
+      },
+      "sat_pct": "100",
+      "division": {
+        "I": {
+          "f": "1",
+          "m": "0",
+          "t": "1"
+        },
+        "II": {
+          "f": "1",
+          "m": "1",
+          "t": "2"
+        },
+        "III": {
+          "f": "7",
+          "m": "8",
+          "t": "15"
+        },
+        "IV": {
+          "f": "13",
+          "m": "7",
+          "t": "20"
+        },
+        "0": {
+          "f": "0",
+          "m": "0",
+          "t": "0"
+        },
+        "0%": "0",
+        "I-III": {
+          "f": "9",
+          "m": "9",
+          "t": "18"
+        },
+        "I-III%": "47.37",
+        "I-IV": {
+          "f": "22",
+          "m": "16",
+          "t": "38"
+        },
+        "I-IV%": "100"
+      },
+      "gpa": "3.7644",
+      "competency": "Grade D (Satisfactory)",
+      "council_rank": "31",
+      "regional_rank": "173"
+    },
+    {
+      "sno": "32",
+      "ward": "IGOMA",
+      "council": "",
+      "school_name": "SHAMALIWA",
+      "ownership": "GOVERNMENT",
+      "registered": {
+        "f": "344",
+        "m": "282",
+        "t": "626"
+      },
+      "sat": {
+        "f": "329",
+        "m": "260",
+        "t": "589"
+      },
+      "sat_pct": "94.09",
+      "division": {
+        "I": {
+          "f": "4",
+          "m": "10",
+          "t": "14"
+        },
+        "II": {
+          "f": "27",
+          "m": "26",
+          "t": "53"
+        },
+        "III": {
+          "f": "49",
+          "m": "44",
+          "t": "93"
+        },
+        "IV": {
+          "f": "249",
+          "m": "179",
+          "t": "428"
+        },
+        "0": {
+          "f": "0",
+          "m": "1",
+          "t": "1"
+        },
+        "0%": "0.17",
+        "I-III": {
+          "f": "80",
+          "m": "80",
+          "t": "160"
+        },
+        "I-III%": "27.16",
+        "I-IV": {
+          "f": "329",
+          "m": "259",
+          "t": "588"
+        },
+        "I-IV%": "99.83"
+      },
+      "gpa": "3.7863",
+      "competency": "Grade D (Satisfactory)",
+      "council_rank": "32",
+      "regional_rank": "184"
+    },
+    {
+      "sno": "33",
+      "ward": "LWANHIMA",
+      "council": "",
+      "school_name": "LWANHIMA",
+      "ownership": "GOVERNMENT",
+      "registered": {
+        "f": "136",
+        "m": "133",
+        "t": "269"
+      },
+      "sat": {
+        "f": "133",
+        "m": "131",
+        "t": "264"
+      },
+      "sat_pct": "98.14",
+      "division": {
+        "I": {
+          "f": "4",
+          "m": "8",
+          "t": "12"
+        },
+        "II": {
+          "f": "10",
+          "m": "8",
+          "t": "18"
+        },
+        "III": {
+          "f": "12",
+          "m": "17",
+          "t": "29"
+        },
+        "IV": {
+          "f": "106",
+          "m": "96",
+          "t": "202"
+        },
+        "0": {
+          "f": "1",
+          "m": "2",
+          "t": "3"
+        },
+        "0%": "1.14",
+        "I-III": {
+          "f": "26",
+          "m": "33",
+          "t": "59"
+        },
+        "I-III%": "22.35",
+        "I-IV": {
+          "f": "132",
+          "m": "129",
+          "t": "261"
+        },
+        "I-IV%": "98.86"
+      },
+      "gpa": "3.8005",
+      "competency": "Grade D (Satisfactory)",
+      "council_rank": "33",
+      "regional_rank": "188"
+    },
+    {
+      "sno": "34",
+      "ward": "LUCHELELE",
+      "council": "",
+      "school_name": "KISOKO",
+      "ownership": "GOVERNMENT",
+      "registered": {
+        "f": "79",
+        "m": "69",
+        "t": "148"
+      },
+      "sat": {
+        "f": "78",
+        "m": "68",
+        "t": "146"
+      },
+      "sat_pct": "98.65",
+      "division": {
+        "I": {
+          "f": "2",
+          "m": "4",
+          "t": "6"
+        },
+        "II": {
+          "f": "4",
+          "m": "3",
+          "t": "7"
+        },
+        "III": {
+          "f": "10",
+          "m": "20",
+          "t": "30"
+        },
+        "IV": {
+          "f": "60",
+          "m": "40",
+          "t": "100"
+        },
+        "0": {
+          "f": "2",
+          "m": "1",
+          "t": "3"
+        },
+        "0%": "2.05",
+        "I-III": {
+          "f": "16",
+          "m": "27",
+          "t": "43"
+        },
+        "I-III%": "29.45",
+        "I-IV": {
+          "f": "76",
+          "m": "67",
+          "t": "143"
+        },
+        "I-IV%": "97.95"
+      },
+      "gpa": "3.8454",
+      "competency": "Grade D (Satisfactory)",
+      "council_rank": "34",
+      "regional_rank": "207"
+    },
+    {
+      "sno": "35",
+      "ward": "NYAMAGANA",
+      "council": "",
+      "school_name": "CAPRIPOINT",
+      "ownership": "GOVERNMENT",
+      "registered": {
+        "f": "152",
+        "m": "111",
+        "t": "263"
+      },
+      "sat": {
+        "f": "146",
+        "m": "107",
+        "t": "253"
+      },
+      "sat_pct": "96.2",
+      "division": {
+        "I": {
+          "f": "3",
+          "m": "4",
+          "t": "7"
+        },
+        "II": {
+          "f": "16",
+          "m": "6",
+          "t": "22"
+        },
+        "III": {
+          "f": "23",
+          "m": "17",
+          "t": "40"
+        },
+        "IV": {
+          "f": "103",
+          "m": "79",
+          "t": "182"
+        },
+        "0": {
+          "f": "1",
+          "m": "1",
+          "t": "2"
+        },
+        "0%": "0.79",
+        "I-III": {
+          "f": "42",
+          "m": "27",
+          "t": "69"
+        },
+        "I-III%": "27.27",
+        "I-IV": {
+          "f": "145",
+          "m": "106",
+          "t": "251"
+        },
+        "I-IV%": "99.21"
+      },
+      "gpa": "3.8462",
+      "competency": "Grade D (Satisfactory)",
+      "council_rank": "35",
+      "regional_rank": "208"
+    },
+    {
+      "sno": "36",
+      "ward": "NYEGEZI",
+      "council": "",
+      "school_name": "NYABULOGOYA",
+      "ownership": "GOVERNMENT",
+      "registered": {
+        "f": "187",
+        "m": "164",
+        "t": "351"
+      },
+      "sat": {
+        "f": "185",
+        "m": "161",
+        "t": "346"
+      },
+      "sat_pct": "98.58",
+      "division": {
+        "I": {
+          "f": "4",
+          "m": "6",
+          "t": "10"
+        },
+        "II": {
+          "f": "10",
+          "m": "8",
+          "t": "18"
+        },
+        "III": {
+          "f": "19",
+          "m": "21",
+          "t": "40"
+        },
+        "IV": {
+          "f": "148",
+          "m": "120",
+          "t": "268"
+        },
+        "0": {
+          "f": "4",
+          "m": "6",
+          "t": "10"
+        },
+        "0%": "2.89",
+        "I-III": {
+          "f": "33",
+          "m": "35",
+          "t": "68"
+        },
+        "I-III%": "19.65",
+        "I-IV": {
+          "f": "181",
+          "m": "155",
+          "t": "336"
+        },
+        "I-IV%": "97.11"
+      },
+      "gpa": "3.8501",
+      "competency": "Grade D (Satisfactory)",
+      "council_rank": "36",
+      "regional_rank": "210"
+    },
+    {
+      "sno": "37",
+      "ward": "ISAMILO",
+      "council": "",
+      "school_name": "OLE NJOOLAY",
+      "ownership": "GOVERNMENT",
+      "registered": {
+        "f": "101",
+        "m": "67",
+        "t": "168"
+      },
+      "sat": {
+        "f": "97",
+        "m": "60",
+        "t": "157"
+      },
+      "sat_pct": "93.45",
+      "division": {
+        "I": {
+          "f": "4",
+          "m": "3",
+          "t": "7"
+        },
+        "II": {
+          "f": "5",
+          "m": "4",
+          "t": "9"
+        },
+        "III": {
+          "f": "12",
+          "m": "14",
+          "t": "26"
+        },
+        "IV": {
+          "f": "73",
+          "m": "38",
+          "t": "111"
+        },
+        "0": {
+          "f": "3",
+          "m": "1",
+          "t": "4"
+        },
+        "0%": "2.55",
+        "I-III": {
+          "f": "21",
+          "m": "21",
+          "t": "42"
+        },
+        "I-III%": "26.75",
+        "I-IV": {
+          "f": "94",
+          "m": "59",
+          "t": "153"
+        },
+        "I-IV%": "97.45"
+      },
+      "gpa": "3.8783",
+      "competency": "Grade D (Satisfactory)",
+      "council_rank": "37",
+      "regional_rank": "220"
+    },
+    {
+      "sno": "38",
+      "ward": "MKOLANI",
+      "council": "",
+      "school_name": "KASESE",
+      "ownership": "GOVERNMENT",
+      "registered": {
+        "f": "186",
+        "m": "161",
+        "t": "347"
+      },
+      "sat": {
+        "f": "172",
+        "m": "145",
+        "t": "317"
+      },
+      "sat_pct": "91.35",
+      "division": {
+        "I": {
+          "f": "2",
+          "m": "9",
+          "t": "11"
+        },
+        "II": {
+          "f": "5",
+          "m": "13",
+          "t": "18"
+        },
+        "III": {
+          "f": "22",
+          "m": "23",
+          "t": "45"
+        },
+        "IV": {
+          "f": "143",
+          "m": "94",
+          "t": "237"
+        },
+        "0": {
+          "f": "0",
+          "m": "6",
+          "t": "6"
+        },
+        "0%": "1.89",
+        "I-III": {
+          "f": "29",
+          "m": "45",
+          "t": "74"
+        },
+        "I-III%": "23.34",
+        "I-IV": {
+          "f": "172",
+          "m": "139",
+          "t": "311"
+        },
+        "I-IV%": "98.11"
+      },
+      "gpa": "3.8827",
+      "competency": "Grade D (Satisfactory)",
+      "council_rank": "38",
+      "regional_rank": "223"
+    },
+    {
+      "sno": "39",
+      "ward": "BUHONGWA",
+      "council": "",
+      "school_name": "BUHONGWA",
+      "ownership": "GOVERNMENT",
+      "registered": {
+        "f": "269",
+        "m": "147",
+        "t": "416"
+      },
+      "sat": {
+        "f": "264",
+        "m": "143",
+        "t": "407"
+      },
+      "sat_pct": "97.84",
+      "division": {
+        "I": {
+          "f": "10",
+          "m": "5",
+          "t": "15"
+        },
+        "II": {
+          "f": "19",
+          "m": "13",
+          "t": "32"
+        },
+        "III": {
+          "f": "36",
+          "m": "12",
+          "t": "48"
+        },
+        "IV": {
+          "f": "189",
+          "m": "111",
+          "t": "300"
+        },
+        "0": {
+          "f": "10",
+          "m": "2",
+          "t": "12"
+        },
+        "0%": "2.95",
+        "I-III": {
+          "f": "65",
+          "m": "30",
+          "t": "95"
+        },
+        "I-III%": "23.34",
+        "I-IV": {
+          "f": "254",
+          "m": "141",
+          "t": "395"
+        },
+        "I-IV%": "97.05"
+      },
+      "gpa": "3.8855",
+      "competency": "Grade D (Satisfactory)",
+      "council_rank": "39",
+      "regional_rank": "226"
+    },
+    {
+      "sno": "40",
+      "ward": "KISHILI",
+      "council": "",
+      "school_name": "STANSLAUS MABULA",
+      "ownership": "GOVERNMENT",
+      "registered": {
+        "f": "114",
+        "m": "108",
+        "t": "222"
+      },
+      "sat": {
+        "f": "110",
+        "m": "95",
+        "t": "205"
+      },
+      "sat_pct": "92.34",
+      "division": {
+        "I": {
+          "f": "3",
+          "m": "4",
+          "t": "7"
+        },
+        "II": {
+          "f": "4",
+          "m": "9",
+          "t": "13"
+        },
+        "III": {
+          "f": "10",
+          "m": "11",
+          "t": "21"
+        },
+        "IV": {
+          "f": "89",
+          "m": "70",
+          "t": "159"
+        },
+        "0": {
+          "f": "4",
+          "m": "1",
+          "t": "5"
+        },
+        "0%": "2.44",
+        "I-III": {
+          "f": "17",
+          "m": "24",
+          "t": "41"
+        },
+        "I-III%": "20",
+        "I-IV": {
+          "f": "106",
+          "m": "94",
+          "t": "200"
+        },
+        "I-IV%": "97.56"
+      },
+      "gpa": "3.8877",
+      "competency": "Grade D (Satisfactory)",
+      "council_rank": "40",
+      "regional_rank": "228"
+    },
+    {
+      "sno": "41",
+      "ward": "PAMBA",
+      "council": "",
+      "school_name": "PAMBA",
+      "ownership": "GOVERNMENT",
+      "registered": {
+        "f": "231",
+        "m": "211",
+        "t": "442"
+      },
+      "sat": {
+        "f": "228",
+        "m": "211",
+        "t": "439"
+      },
+      "sat_pct": "99.32",
+      "division": {
+        "I": {
+          "f": "7",
+          "m": "4",
+          "t": "11"
+        },
+        "II": {
+          "f": "15",
+          "m": "16",
+          "t": "31"
+        },
+        "III": {
+          "f": "23",
+          "m": "40",
+          "t": "63"
+        },
+        "IV": {
+          "f": "181",
+          "m": "148",
+          "t": "329"
+        },
+        "0": {
+          "f": "2",
+          "m": "3",
+          "t": "5"
+        },
+        "0%": "1.14",
+        "I-III": {
+          "f": "45",
+          "m": "60",
+          "t": "105"
+        },
+        "I-III%": "23.92",
+        "I-IV": {
+          "f": "226",
+          "m": "208",
+          "t": "434"
+        },
+        "I-IV%": "98.86"
+      },
+      "gpa": "3.8919",
+      "competency": "Grade D (Satisfactory)",
+      "council_rank": "41",
+      "regional_rank": "232"
+    },
+    {
+      "sno": "42",
+      "ward": "MUHANDU",
+      "council": "",
+      "school_name": "MUHANDU",
+      "ownership": "GOVERNMENT",
+      "registered": {
+        "f": "324",
+        "m": "283",
+        "t": "607"
+      },
+      "sat": {
+        "f": "319",
+        "m": "269",
+        "t": "588"
+      },
+      "sat_pct": "96.87",
+      "division": {
+        "I": {
+          "f": "2",
+          "m": "30",
+          "t": "32"
+        },
+        "II": {
+          "f": "14",
+          "m": "23",
+          "t": "37"
+        },
+        "III": {
+          "f": "45",
+          "m": "43",
+          "t": "88"
+        },
+        "IV": {
+          "f": "254",
+          "m": "164",
+          "t": "418"
+        },
+        "0": {
+          "f": "4",
+          "m": "9",
+          "t": "13"
+        },
+        "0%": "2.21",
+        "I-III": {
+          "f": "61",
+          "m": "96",
+          "t": "157"
+        },
+        "I-III%": "26.7",
+        "I-IV": {
+          "f": "315",
+          "m": "260",
+          "t": "575"
+        },
+        "I-IV%": "97.79"
+      },
+      "gpa": "3.8922",
+      "competency": "Grade D (Satisfactory)",
+      "council_rank": "42",
+      "regional_rank": "233"
+    },
+    {
+      "sno": "43",
+      "ward": "MAHINA",
+      "council": "",
+      "school_name": "MAHINA",
+      "ownership": "GOVERNMENT",
+      "registered": {
+        "f": "304",
+        "m": "236",
+        "t": "540"
+      },
+      "sat": {
+        "f": "295",
+        "m": "210",
+        "t": "505"
+      },
+      "sat_pct": "93.52",
+      "division": {
+        "I": {
+          "f": "2",
+          "m": "14",
+          "t": "16"
+        },
+        "II": {
+          "f": "11",
+          "m": "18",
+          "t": "29"
+        },
+        "III": {
+          "f": "28",
+          "m": "23",
+          "t": "51"
+        },
+        "IV": {
+          "f": "252",
+          "m": "154",
+          "t": "406"
+        },
+        "0": {
+          "f": "2",
+          "m": "1",
+          "t": "3"
+        },
+        "0%": "0.59",
+        "I-III": {
+          "f": "41",
+          "m": "55",
+          "t": "96"
+        },
+        "I-III%": "19.01",
+        "I-IV": {
+          "f": "293",
+          "m": "209",
+          "t": "502"
+        },
+        "I-IV%": "99.41"
+      },
+      "gpa": "3.9184",
+      "competency": "Grade D (Satisfactory)",
+      "council_rank": "43",
+      "regional_rank": "252"
+    },
+    {
+      "sno": "44",
+      "ward": "KISHILI",
+      "council": "",
+      "school_name": "IGOMA",
+      "ownership": "GOVERNMENT",
+      "registered": {
+        "f": "264",
+        "m": "246",
+        "t": "510"
+      },
+      "sat": {
+        "f": "255",
+        "m": "239",
+        "t": "494"
+      },
+      "sat_pct": "96.86",
+      "division": {
+        "I": {
+          "f": "5",
+          "m": "10",
+          "t": "15"
+        },
+        "II": {
+          "f": "13",
+          "m": "12",
+          "t": "25"
+        },
+        "III": {
+          "f": "26",
+          "m": "27",
+          "t": "53"
+        },
+        "IV": {
+          "f": "204",
+          "m": "168",
+          "t": "372"
+        },
+        "0": {
+          "f": "7",
+          "m": "22",
+          "t": "29"
+        },
+        "0%": "5.87",
+        "I-III": {
+          "f": "44",
+          "m": "49",
+          "t": "93"
+        },
+        "I-III%": "18.83",
+        "I-IV": {
+          "f": "248",
+          "m": "217",
+          "t": "465"
+        },
+        "I-IV%": "94.13"
+      },
+      "gpa": "3.9322",
+      "competency": "Grade D (Satisfactory)",
+      "council_rank": "44",
+      "regional_rank": "258"
+    },
+    {
+      "sno": "45",
+      "ward": "LWANHIMA",
+      "council": "",
+      "school_name": "JUMAKI",
+      "ownership": "PRIVATE",
+      "registered": {
+        "f": "5",
+        "m": "6",
+        "t": "11"
+      },
+      "sat": {
+        "f": "5",
+        "m": "6",
+        "t": "11"
+      },
+      "sat_pct": "100",
+      "division": {
+        "I": {
+          "f": "0",
+          "m": "0",
+          "t": "0"
+        },
+        "II": {
+          "f": "1",
+          "m": "1",
+          "t": "2"
+        },
+        "III": {
+          "f": "0",
+          "m": "1",
+          "t": "1"
+        },
+        "IV": {
+          "f": "4",
+          "m": "3",
+          "t": "7"
+        },
+        "0": {
+          "f": "0",
+          "m": "1",
+          "t": "1"
+        },
+        "0%": "9.09",
+        "I-III": {
+          "f": "1",
+          "m": "2",
+          "t": "3"
+        },
+        "I-III%": "27.27",
+        "I-IV": {
+          "f": "5",
+          "m": "5",
+          "t": "10"
+        },
+        "I-IV%": "90.91"
+      },
+      "gpa": "3.9473",
+      "competency": "Grade D (Satisfactory)",
+      "council_rank": "45",
+      "regional_rank": "266"
+    },
+    {
+      "sno": "46",
+      "ward": "MABATINI",
+      "council": "",
+      "school_name": "MTONI",
+      "ownership": "GOVERNMENT",
+      "registered": {
+        "f": "185",
+        "m": "128",
+        "t": "313"
+      },
+      "sat": {
+        "f": "176",
+        "m": "117",
+        "t": "293"
+      },
+      "sat_pct": "93.61",
+      "division": {
+        "I": {
+          "f": "0",
+          "m": "5",
+          "t": "5"
+        },
+        "II": {
+          "f": "4",
+          "m": "8",
+          "t": "12"
+        },
+        "III": {
+          "f": "12",
+          "m": "12",
+          "t": "24"
+        },
+        "IV": {
+          "f": "153",
+          "m": "88",
+          "t": "241"
+        },
+        "0": {
+          "f": "7",
+          "m": "4",
+          "t": "11"
+        },
+        "0%": "3.75",
+        "I-III": {
+          "f": "16",
+          "m": "25",
+          "t": "41"
+        },
+        "I-III%": "13.99",
+        "I-IV": {
+          "f": "169",
+          "m": "113",
+          "t": "282"
+        },
+        "I-IV%": "96.25"
+      },
+      "gpa": "3.9501",
+      "competency": "Grade D (Satisfactory)",
+      "council_rank": "46",
+      "regional_rank": "267"
+    },
+    {
+      "sno": "47",
+      "ward": "MKUYUNI",
+      "council": "",
+      "school_name": "MKUYUNI",
+      "ownership": "GOVERNMENT",
+      "registered": {
+        "f": "125",
+        "m": "95",
+        "t": "220"
+      },
+      "sat": {
+        "f": "122",
+        "m": "89",
+        "t": "211"
+      },
+      "sat_pct": "95.91",
+      "division": {
+        "I": {
+          "f": "2",
+          "m": "5",
+          "t": "7"
+        },
+        "II": {
+          "f": "5",
+          "m": "7",
+          "t": "12"
+        },
+        "III": {
+          "f": "20",
+          "m": "6",
+          "t": "26"
+        },
+        "IV": {
+          "f": "94",
+          "m": "70",
+          "t": "164"
+        },
+        "0": {
+          "f": "1",
+          "m": "1",
+          "t": "2"
+        },
+        "0%": "0.95",
+        "I-III": {
+          "f": "27",
+          "m": "18",
+          "t": "45"
+        },
+        "I-III%": "21.33",
+        "I-IV": {
+          "f": "121",
+          "m": "88",
+          "t": "209"
+        },
+        "I-IV%": "99.05"
+      },
+      "gpa": "3.9663",
+      "competency": "Grade D (Satisfactory)",
+      "council_rank": "47",
+      "regional_rank": "273"
+    },
+    {
+      "sno": "48",
+      "ward": "MAHINA",
+      "council": "",
+      "school_name": "IGELEGELE",
+      "ownership": "GOVERNMENT",
+      "registered": {
+        "f": "144",
+        "m": "120",
+        "t": "264"
+      },
+      "sat": {
+        "f": "134",
+        "m": "111",
+        "t": "245"
+      },
+      "sat_pct": "92.8",
+      "division": {
+        "I": {
+          "f": "0",
+          "m": "4",
+          "t": "4"
+        },
+        "II": {
+          "f": "8",
+          "m": "9",
+          "t": "17"
+        },
+        "III": {
+          "f": "5",
+          "m": "8",
+          "t": "13"
+        },
+        "IV": {
+          "f": "118",
+          "m": "82",
+          "t": "200"
+        },
+        "0": {
+          "f": "3",
+          "m": "8",
+          "t": "11"
+        },
+        "0%": "4.49",
+        "I-III": {
+          "f": "13",
+          "m": "21",
+          "t": "34"
+        },
+        "I-III%": "13.88",
+        "I-IV": {
+          "f": "131",
+          "m": "103",
+          "t": "234"
+        },
+        "I-IV%": "95.51"
+      },
+      "gpa": "3.9850",
+      "competency": "Grade D (Satisfactory)",
+      "council_rank": "48",
+      "regional_rank": "280"
+    },
+    {
+      "sno": "49",
+      "ward": "IGOGO",
+      "council": "",
+      "school_name": "MAPANGO",
+      "ownership": "GOVERNMENT",
+      "registered": {
+        "f": "96",
+        "m": "89",
+        "t": "185"
+      },
+      "sat": {
+        "f": "95",
+        "m": "81",
+        "t": "176"
+      },
+      "sat_pct": "95.14",
+      "division": {
+        "I": {
+          "f": "0",
+          "m": "3",
+          "t": "3"
+        },
+        "II": {
+          "f": "2",
+          "m": "1",
+          "t": "3"
+        },
+        "III": {
+          "f": "11",
+          "m": "12",
+          "t": "23"
+        },
+        "IV": {
+          "f": "81",
+          "m": "59",
+          "t": "140"
+        },
+        "0": {
+          "f": "1",
+          "m": "6",
+          "t": "7"
+        },
+        "0%": "3.98",
+        "I-III": {
+          "f": "13",
+          "m": "16",
+          "t": "29"
+        },
+        "I-III%": "16.48",
+        "I-IV": {
+          "f": "94",
+          "m": "75",
+          "t": "169"
+        },
+        "I-IV%": "96.02"
+      },
+      "gpa": "3.9919",
+      "competency": "Grade D (Satisfactory)",
+      "council_rank": "49",
+      "regional_rank": "285"
+    },
+    {
+      "sno": "50",
+      "ward": "ISAMILO",
+      "council": "",
+      "school_name": "NYAKABUNGO",
+      "ownership": "GOVERNMENT",
+      "registered": {
+        "f": "96",
+        "m": "59",
+        "t": "155"
+      },
+      "sat": {
+        "f": "94",
+        "m": "58",
+        "t": "152"
+      },
+      "sat_pct": "98.06",
+      "division": {
+        "I": {
+          "f": "2",
+          "m": "1",
+          "t": "3"
+        },
+        "II": {
+          "f": "6",
+          "m": "4",
+          "t": "10"
+        },
+        "III": {
+          "f": "9",
+          "m": "7",
+          "t": "16"
+        },
+        "IV": {
+          "f": "75",
+          "m": "45",
+          "t": "120"
+        },
+        "0": {
+          "f": "2",
+          "m": "1",
+          "t": "3"
+        },
+        "0%": "1.97",
+        "I-III": {
+          "f": "17",
+          "m": "12",
+          "t": "29"
+        },
+        "I-III%": "19.08",
+        "I-IV": {
+          "f": "92",
+          "m": "57",
+          "t": "149"
+        },
+        "I-IV%": "98.03"
+      },
+      "gpa": "4.0144",
+      "competency": "Grade D (Satisfactory)",
+      "council_rank": "50",
+      "regional_rank": "291"
+    },
+    {
+      "sno": "51",
+      "ward": "LWANHIMA",
+      "council": "",
+      "school_name": "SAHWA",
+      "ownership": "GOVERNMENT",
+      "registered": {
+        "f": "224",
+        "m": "136",
+        "t": "360"
+      },
+      "sat": {
+        "f": "220",
+        "m": "132",
+        "t": "352"
+      },
+      "sat_pct": "97.78",
+      "division": {
+        "I": {
+          "f": "0",
+          "m": "5",
+          "t": "5"
+        },
+        "II": {
+          "f": "4",
+          "m": "10",
+          "t": "14"
+        },
+        "III": {
+          "f": "16",
+          "m": "11",
+          "t": "27"
+        },
+        "IV": {
+          "f": "195",
+          "m": "101",
+          "t": "296"
+        },
+        "0": {
+          "f": "5",
+          "m": "5",
+          "t": "10"
+        },
+        "0%": "2.84",
+        "I-III": {
+          "f": "20",
+          "m": "26",
+          "t": "46"
+        },
+        "I-III%": "13.07",
+        "I-IV": {
+          "f": "215",
+          "m": "127",
+          "t": "342"
+        },
+        "I-IV%": "97.16"
+      },
+      "gpa": "4.0785",
+      "competency": "Grade D (Satisfactory)",
+      "council_rank": "51",
+      "regional_rank": "326"
+    },
+    {
+      "sno": "52",
+      "ward": "BUHONGWA",
+      "council": "",
+      "school_name": "BULALE",
+      "ownership": "GOVERNMENT",
+      "registered": {
+        "f": "276",
+        "m": "204",
+        "t": "480"
+      },
+      "sat": {
+        "f": "270",
+        "m": "199",
+        "t": "469"
+      },
+      "sat_pct": "97.71",
+      "division": {
+        "I": {
+          "f": "4",
+          "m": "5",
+          "t": "9"
+        },
+        "II": {
+          "f": "12",
+          "m": "6",
+          "t": "18"
+        },
+        "III": {
+          "f": "25",
+          "m": "19",
+          "t": "44"
+        },
+        "IV": {
+          "f": "219",
+          "m": "158",
+          "t": "377"
+        },
+        "0": {
+          "f": "10",
+          "m": "11",
+          "t": "21"
+        },
+        "0%": "4.48",
+        "I-III": {
+          "f": "41",
+          "m": "30",
+          "t": "71"
+        },
+        "I-III%": "15.14",
+        "I-IV": {
+          "f": "260",
+          "m": "188",
+          "t": "448"
+        },
+        "I-IV%": "95.52"
+      },
+      "gpa": "4.0884",
+      "competency": "Grade D (Satisfactory)",
+      "council_rank": "52",
+      "regional_rank": "331"
+    },
+    {
+      "sno": "53",
+      "ward": "BUTIMBA",
+      "council": "",
+      "school_name": "NYAMAGANA",
+      "ownership": "GOVERNMENT",
+      "registered": {
+        "f": "126",
+        "m": "146",
+        "t": "272"
+      },
+      "sat": {
+        "f": "123",
+        "m": "140",
+        "t": "263"
+      },
+      "sat_pct": "96.69",
+      "division": {
+        "I": {
+          "f": "0",
+          "m": "3",
+          "t": "3"
+        },
+        "II": {
+          "f": "4",
+          "m": "5",
+          "t": "9"
+        },
+        "III": {
+          "f": "9",
+          "m": "10",
+          "t": "19"
+        },
+        "IV": {
+          "f": "101",
+          "m": "112",
+          "t": "213"
+        },
+        "0": {
+          "f": "9",
+          "m": "10",
+          "t": "19"
+        },
+        "0%": "7.22",
+        "I-III": {
+          "f": "13",
+          "m": "18",
+          "t": "31"
+        },
+        "I-III%": "11.79",
+        "I-IV": {
+          "f": "114",
+          "m": "130",
+          "t": "244"
+        },
+        "I-IV%": "92.78"
+      },
+      "gpa": "4.1123",
+      "competency": "Grade D (Satisfactory)",
+      "council_rank": "53",
+      "regional_rank": "341"
+    },
+    {
+      "sno": "54",
+      "ward": "PAMBA",
+      "council": "",
+      "school_name": "MLIMANI",
+      "ownership": "GOVERNMENT",
+      "registered": {
+        "f": "144",
+        "m": "113",
+        "t": "257"
+      },
+      "sat": {
+        "f": "140",
+        "m": "107",
+        "t": "247"
+      },
+      "sat_pct": "96.11",
+      "division": {
+        "I": {
+          "f": "0",
+          "m": "2",
+          "t": "2"
+        },
+        "II": {
+          "f": "3",
+          "m": "10",
+          "t": "13"
+        },
+        "III": {
+          "f": "9",
+          "m": "8",
+          "t": "17"
+        },
+        "IV": {
+          "f": "116",
+          "m": "77",
+          "t": "193"
+        },
+        "0": {
+          "f": "12",
+          "m": "10",
+          "t": "22"
+        },
+        "0%": "8.91",
+        "I-III": {
+          "f": "12",
+          "m": "20",
+          "t": "32"
+        },
+        "I-III%": "12.96",
+        "I-IV": {
+          "f": "128",
+          "m": "97",
+          "t": "225"
+        },
+        "I-IV%": "91.09"
+      },
+      "gpa": "4.1188",
+      "competency": "Grade D (Satisfactory)",
+      "council_rank": "54",
+      "regional_rank": "344"
+    },
+    {
+      "sno": "55",
+      "ward": "IGOGO",
+      "council": "",
+      "school_name": "IGOGO",
+      "ownership": "GOVERNMENT",
+      "registered": {
+        "f": "85",
+        "m": "62",
+        "t": "147"
+      },
+      "sat": {
+        "f": "81",
+        "m": "54",
+        "t": "135"
+      },
+      "sat_pct": "91.84",
+      "division": {
+        "I": {
+          "f": "0",
+          "m": "0",
+          "t": "0"
+        },
+        "II": {
+          "f": "4",
+          "m": "4",
+          "t": "8"
+        },
+        "III": {
+          "f": "6",
+          "m": "4",
+          "t": "10"
+        },
+        "IV": {
+          "f": "70",
+          "m": "42",
+          "t": "112"
+        },
+        "0": {
+          "f": "1",
+          "m": "4",
+          "t": "5"
+        },
+        "0%": "3.7",
+        "I-III": {
+          "f": "10",
+          "m": "8",
+          "t": "18"
+        },
+        "I-III%": "13.33",
+        "I-IV": {
+          "f": "80",
+          "m": "50",
+          "t": "130"
+        },
+        "I-IV%": "96.3"
+      },
+      "gpa": "4.1310",
+      "competency": "Grade D (Satisfactory)",
+      "council_rank": "55",
+      "regional_rank": "350"
+    },
+    {
+      "sno": "56",
+      "ward": "MBUGANI",
+      "council": "",
+      "school_name": "MBUGANI",
+      "ownership": "GOVERNMENT",
+      "registered": {
+        "f": "92",
+        "m": "75",
+        "t": "167"
+      },
+      "sat": {
+        "f": "87",
+        "m": "69",
+        "t": "156"
+      },
+      "sat_pct": "93.41",
+      "division": {
+        "I": {
+          "f": "2",
+          "m": "0",
+          "t": "2"
+        },
+        "II": {
+          "f": "2",
+          "m": "4",
+          "t": "6"
+        },
+        "III": {
+          "f": "5",
+          "m": "5",
+          "t": "10"
+        },
+        "IV": {
+          "f": "77",
+          "m": "58",
+          "t": "135"
+        },
+        "0": {
+          "f": "1",
+          "m": "2",
+          "t": "3"
+        },
+        "0%": "1.92",
+        "I-III": {
+          "f": "9",
+          "m": "9",
+          "t": "18"
+        },
+        "I-III%": "11.54",
+        "I-IV": {
+          "f": "86",
+          "m": "67",
+          "t": "153"
+        },
+        "I-IV%": "98.08"
+      },
+      "gpa": "4.1323",
+      "competency": "Grade D (Satisfactory)",
+      "council_rank": "56",
+      "regional_rank": "351"
+    },
+    {
+      "sno": "57",
+      "ward": "KISHILI",
+      "council": "",
+      "school_name": "FUMAGILA",
+      "ownership": "GOVERNMENT",
+      "registered": {
+        "f": "289",
+        "m": "263",
+        "t": "552"
+      },
+      "sat": {
+        "f": "269",
+        "m": "248",
+        "t": "517"
+      },
+      "sat_pct": "93.66",
+      "division": {
+        "I": {
+          "f": "1",
+          "m": "4",
+          "t": "5"
+        },
+        "II": {
+          "f": "4",
+          "m": "4",
+          "t": "8"
+        },
+        "III": {
+          "f": "15",
+          "m": "17",
+          "t": "32"
+        },
+        "IV": {
+          "f": "244",
+          "m": "207",
+          "t": "451"
+        },
+        "0": {
+          "f": "5",
+          "m": "16",
+          "t": "21"
+        },
+        "0%": "4.06",
+        "I-III": {
+          "f": "20",
+          "m": "25",
+          "t": "45"
+        },
+        "I-III%": "8.7",
+        "I-IV": {
+          "f": "264",
+          "m": "232",
+          "t": "496"
+        },
+        "I-IV%": "95.94"
+      },
+      "gpa": "4.1554",
+      "competency": "Grade D (Satisfactory)",
+      "council_rank": "57",
+      "regional_rank": "357"
+    },
+    {
+      "sno": "58",
+      "ward": "PAMBA",
+      "council": "",
+      "school_name": "MWANZA",
+      "ownership": "GOVERNMENT",
+      "registered": {
+        "f": "261",
+        "m": "230",
+        "t": "491"
+      },
+      "sat": {
+        "f": "253",
+        "m": "222",
+        "t": "475"
+      },
+      "sat_pct": "96.74",
+      "division": {
+        "I": {
+          "f": "7",
+          "m": "2",
+          "t": "9"
+        },
+        "II": {
+          "f": "14",
+          "m": "10",
+          "t": "24"
+        },
+        "III": {
+          "f": "19",
+          "m": "16",
+          "t": "35"
+        },
+        "IV": {
+          "f": "193",
+          "m": "173",
+          "t": "366"
+        },
+        "0": {
+          "f": "20",
+          "m": "21",
+          "t": "41"
+        },
+        "0%": "8.63",
+        "I-III": {
+          "f": "40",
+          "m": "28",
+          "t": "68"
+        },
+        "I-III%": "14.32",
+        "I-IV": {
+          "f": "233",
+          "m": "201",
+          "t": "434"
+        },
+        "I-IV%": "91.37"
+      },
+      "gpa": "4.1593",
+      "competency": "Grade D (Satisfactory)",
+      "council_rank": "58",
+      "regional_rank": "359"
+    },
+    {
+      "sno": "59",
+      "ward": "MIRONGO",
+      "council": "",
+      "school_name": "MIRONGO",
+      "ownership": "GOVERNMENT",
+      "registered": {
+        "f": "205",
+        "m": "171",
+        "t": "376"
+      },
+      "sat": {
+        "f": "199",
+        "m": "166",
+        "t": "365"
+      },
+      "sat_pct": "97.07",
+      "division": {
+        "I": {
+          "f": "0",
+          "m": "1",
+          "t": "1"
+        },
+        "II": {
+          "f": "2",
+          "m": "11",
+          "t": "13"
+        },
+        "III": {
+          "f": "9",
+          "m": "13",
+          "t": "22"
+        },
+        "IV": {
+          "f": "159",
+          "m": "117",
+          "t": "276"
+        },
+        "0": {
+          "f": "29",
+          "m": "24",
+          "t": "53"
+        },
+        "0%": "14.52",
+        "I-III": {
+          "f": "11",
+          "m": "25",
+          "t": "36"
+        },
+        "I-III%": "9.86",
+        "I-IV": {
+          "f": "170",
+          "m": "142",
+          "t": "312"
+        },
+        "I-IV%": "85.48"
+      },
+      "gpa": "4.1982",
+      "competency": "Grade D (Satisfactory)",
+      "council_rank": "59",
+      "regional_rank": "367"
+    },
+    {
+      "sno": "60",
+      "ward": "BUTIMBA",
+      "council": "",
+      "school_name": "NYEGEZI",
+      "ownership": "GOVERNMENT",
+      "registered": {
+        "f": "113",
+        "m": "118",
+        "t": "231"
+      },
+      "sat": {
+        "f": "112",
+        "m": "102",
+        "t": "214"
+      },
+      "sat_pct": "92.64",
+      "division": {
+        "I": {
+          "f": "0",
+          "m": "2",
+          "t": "2"
+        },
+        "II": {
+          "f": "3",
+          "m": "2",
+          "t": "5"
+        },
+        "III": {
+          "f": "5",
+          "m": "8",
+          "t": "13"
+        },
+        "IV": {
+          "f": "100",
+          "m": "78",
+          "t": "178"
+        },
+        "0": {
+          "f": "4",
+          "m": "12",
+          "t": "16"
+        },
+        "0%": "7.48",
+        "I-III": {
+          "f": "8",
+          "m": "12",
+          "t": "20"
+        },
+        "I-III%": "9.35",
+        "I-IV": {
+          "f": "108",
+          "m": "90",
+          "t": "198"
+        },
+        "I-IV%": "92.52"
+      },
+      "gpa": "4.2046",
+      "competency": "Grade D (Satisfactory)",
+      "council_rank": "60",
+      "regional_rank": "368"
+    },
+    {
+      "sno": "61",
+      "ward": "MKOLANI",
+      "council": "",
+      "school_name": "MKOLANI",
+      "ownership": "GOVERNMENT",
+      "registered": {
+        "f": "218",
+        "m": "162",
+        "t": "380"
+      },
+      "sat": {
+        "f": "213",
+        "m": "159",
+        "t": "372"
+      },
+      "sat_pct": "97.89",
+      "division": {
+        "I": {
+          "f": "0",
+          "m": "0",
+          "t": "0"
+        },
+        "II": {
+          "f": "4",
+          "m": "2",
+          "t": "6"
+        },
+        "III": {
+          "f": "17",
+          "m": "11",
+          "t": "28"
+        },
+        "IV": {
+          "f": "180",
+          "m": "138",
+          "t": "318"
+        },
+        "0": {
+          "f": "12",
+          "m": "8",
+          "t": "20"
+        },
+        "0%": "5.38",
+        "I-III": {
+          "f": "21",
+          "m": "13",
+          "t": "34"
+        },
+        "I-III%": "9.14",
+        "I-IV": {
+          "f": "201",
+          "m": "151",
+          "t": "352"
+        },
+        "I-IV%": "94.62"
+      },
+      "gpa": "4.2111",
+      "competency": "Grade D (Satisfactory)",
+      "council_rank": "61",
+      "regional_rank": "369"
+    },
+    {
+      "sno": "62",
+      "ward": "MKUYUNI",
+      "council": "",
+      "school_name": "NYAKURUNDUMA",
+      "ownership": "GOVERNMENT",
+      "registered": {
+        "f": "59",
+        "m": "52",
+        "t": "111"
+      },
+      "sat": {
+        "f": "56",
+        "m": "51",
+        "t": "107"
+      },
+      "sat_pct": "96.4",
+      "division": {
+        "I": {
+          "f": "0",
+          "m": "1",
+          "t": "1"
+        },
+        "II": {
+          "f": "0",
+          "m": "1",
+          "t": "1"
+        },
+        "III": {
+          "f": "0",
+          "m": "6",
+          "t": "6"
+        },
+        "IV": {
+          "f": "50",
+          "m": "40",
+          "t": "90"
+        },
+        "0": {
+          "f": "6",
+          "m": "3",
+          "t": "9"
+        },
+        "0%": "8.41",
+        "I-III": {
+          "f": "0",
+          "m": "8",
+          "t": "8"
+        },
+        "I-III%": "7.48",
+        "I-IV": {
+          "f": "50",
+          "m": "48",
+          "t": "98"
+        },
+        "I-IV%": "91.59"
+      },
+      "gpa": "4.2127",
+      "competency": "Grade D (Satisfactory)",
+      "council_rank": "62",
+      "regional_rank": "370"
+    },
+    {
+      "sno": "63",
+      "ward": "MBUGANI",
+      "council": "",
+      "school_name": "EMARA HIGHLANDS",
+      "ownership": "PRIVATE",
+      "registered": {
+        "f": "5",
+        "m": "6",
+        "t": "11"
+      },
+      "sat": {
+        "f": "4",
+        "m": "5",
+        "t": "9"
+      },
+      "sat_pct": "81.82",
+      "division": {
+        "I": {
+          "f": "0",
+          "m": "0",
+          "t": "0"
+        },
+        "II": {
+          "f": "0",
+          "m": "0",
+          "t": "0"
+        },
+        "III": {
+          "f": "0",
+          "m": "0",
+          "t": "0"
+        },
+        "IV": {
+          "f": "3",
+          "m": "4",
+          "t": "7"
+        },
+        "0": {
+          "f": "1",
+          "m": "1",
+          "t": "2"
+        },
+        "0%": "22.22",
+        "I-III": {
+          "f": "0",
+          "m": "0",
+          "t": "0"
+        },
+        "I-III%": "0",
+        "I-IV": {
+          "f": "3",
+          "m": "4",
+          "t": "7"
+        },
+        "I-IV%": "77.78"
+      },
+      "gpa": "4.3580",
+      "competency": "Grade D (Satisfactory)",
+      "council_rank": "63",
+      "regional_rank": "385"
+    },
+    {
+      "sno": "64",
+      "ward": "MUHANDU",
+      "council": "",
+      "school_name": "ISLAMIYA",
+      "ownership": "PRIVATE",
+      "registered": {
+        "f": "3",
+        "m": "0",
+        "t": "3"
+      },
+      "sat": {
+        "f": "3",
+        "m": "0",
+        "t": "3"
+      },
+      "sat_pct": "100",
+      "division": {
+        "I": {
+          "f": "0",
+          "m": "0",
+          "t": "0"
+        },
+        "II": {
+          "f": "0",
+          "m": "0",
+          "t": "0"
+        },
+        "III": {
+          "f": "0",
+          "m": "0",
+          "t": "0"
+        },
+        "IV": {
+          "f": "2",
+          "m": "0",
+          "t": "2"
+        },
+        "0": {
+          "f": "1",
+          "m": "0",
+          "t": "1"
+        },
+        "0%": "33.33",
+        "I-III": {
+          "f": "0",
+          "m": "0",
+          "t": "0"
+        },
+        "I-III%": "0",
+        "I-IV": {
+          "f": "2",
+          "m": "0",
+          "t": "2"
+        },
+        "I-IV%": "66.67"
+      },
+      "gpa": "4.3788",
+      "competency": "Grade D (Satisfactory)",
+      "council_rank": "64",
+      "regional_rank": "386"
+    }
+  ],
+  "totals": {
+    "TOTAL": [
+      "TOTAL",
+      "",
+      "",
+      "",
+      "6854",
+      "5820",
+      "12674",
+      "6655",
+      "5549",
+      "12204",
+      "96.78",
+      "619",
+      "717",
+      "1336",
+      "514",
+      "560",
+      "1074",
+      "746",
+      "699",
+      "1445",
+      "4603",
+      "3360",
+      "7963",
+      "173",
+      "213",
+      "386",
+      "2.98",
+      "1879",
+      "1976",
+      "3855",
+      "48.99",
+      "6482",
+      "5336",
+      "11818",
+      "97.02",
+      "3.35705",
+      "Grade C (Good)",
+      "",
+      "387"
+    ]
+  },
+  "summary": [
+    {
+      "column_headers": [
+        "SUMMARY  PERFORMANC E",
+        "NO. OF SCHOOLS IN COUNCIL",
+        "NUMBER OF CANDIDATES / REGISTERED / F",
+        "NUMBER OF CANDIDATES / REGISTERED / M",
+        "NUMBER OF CANDIDATES / REGISTERED / T",
+        "NUMBER OF CANDIDATES / SAT / F",
+        "NUMBER OF CANDIDATES / SAT / M",
+        "NUMBER OF CANDIDATES / SAT / T",
+        "NUMBER OF CANDIDATES / SAT / %",
+        "DIVISION PERFORMANCE / I / F",
+        "DIVISION PERFORMANCE / I / M",
+        "DIVISION PERFORMANCE / I / T",
+        "DIVISION PERFORMANCE / II / F",
+        "DIVISION PERFORMANCE / II / M",
+        "DIVISION PERFORMANCE / II / T",
+        "DIVISION PERFORMANCE / III / F",
+        "DIVISION PERFORMANCE / III / M",
+        "DIVISION PERFORMANCE / III / T",
+        "DIVISION PERFORMANCE / IV / F",
+        "DIVISION PERFORMANCE / IV / M",
+        "DIVISION PERFORMANCE / IV / T",
+        "DIVISION PERFORMANCE / 0 / F",
+        "DIVISION PERFORMANCE / 0 / M",
+        "DIVISION PERFORMANCE / 0 / T",
+        "DIVISION PERFORMANCE / 0 / %",
+        "DIVISION PERFORMANCE / I-III / F",
+        "DIVISION PERFORMANCE / I-III / M",
+        "DIVISION PERFORMANCE / I-III / T",
+        "DIVISION PERFORMANCE / I-III / %",
+        "DIVISION PERFORMANCE / I-IV / F",
+        "DIVISION PERFORMANCE / I-IV / M",
+        "DIVISION PERFORMANCE / I-IV / T",
+        "DIVISION PERFORMANCE / I-IV / %",
+        "GPA PERFORMANCE / GPA",
+        "GPA PERFORMANCE / COMPENTENCY LEVEL"
+      ],
+      "rows": [
+        {
+          "values": {
+            "1": "64",
+            "2": "6854",
+            "3": "5820",
+            "4": "12674",
+            "5": "6655",
+            "6": "5549",
+            "7": "12204",
+            "8": "96.78",
+            "9": "619",
+            "10": "717",
+            "11": "1336",
+            "12": "514",
+            "13": "560",
+            "14": "1074",
+            "15": "746",
+            "16": "699",
+            "17": "1445",
+            "18": "4603",
+            "19": "3360",
+            "20": "7963",
+            "21": "173",
+            "22": "213",
+            "23": "386",
+            "24": "3.16",
+            "25": "1879",
+            "26": "1976",
+            "27": "3855",
+            "28": "31.59",
+            "29": "6482",
+            "30": "5336",
+            "31": "11818",
+            "32": "96.84",
+            "33": "3.35705",
+            "34": "Grade C (Good)"
+          }
+        },
+        {
+          "values": {
+            "0": "% PASS",
+            "0.span": "9",
+            "9": "10.95",
+            "9.span": "3",
+            "12": "8.8",
+            "12.span": "3",
+            "15": "11.84",
+            "15.span": "3",
+            "18": "65.25",
+            "18.span": "3",
+            "21": "3.16",
+            "21.span": "4",
+            "25": "31.59",
+            "25.span": "4",
+            "29": "96.84",
+            "29.span": "4"
+          }
+        }
+      ]
+    }
+  ],
+  "column_headers": [
+    "S/NO.",
+    "WARD",
+    "SCHOOL NAME",
+    "OWNERSHIP",
+    "F",
+    "M",
+    "T",
+    "F",
+    "M",
+    "T",
+    "%",
+    "F",
+    "M",
+    "T",
+    "F",
+    "M",
+    "T",
+    "F",
+    "M",
+    "T",
+    "F",
+    "M",
+    "T",
+    "F",
+    "M",
+    "T",
+    "%",
+    "F",
+    "M",
+    "T",
+    "%",
+    "F",
+    "M",
+    "T",
+    "%",
+    "GPA",
+    "COMPETENCY LEVEL",
+    "C/RANK",
+    "R/RANK"
+  ]
+}

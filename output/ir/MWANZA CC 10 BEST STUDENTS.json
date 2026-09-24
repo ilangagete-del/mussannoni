@@ -1,0 +1,3401 @@
+{
+  "stem": "MWANZA CC 10 BEST STUDENTS",
+  "category": "council",
+  "orientation": "landscape",
+  "pages": 5,
+  "page_size": [
+    792,
+    612
+  ],
+  "title_lines": [
+    "THE PRIME MINISTER'S OFFICE",
+    "REGIONAL ADMINISTRATION AND LOCAL GOVERNMENT",
+    "MWANZA REGION",
+    "REGIONAL FORM TWO MOCK ASSESSMENT RESULTS, JULY 2026"
+  ],
+  "captions": [],
+  "tables": [
+    {
+      "caption": "MWANZA CC TOP TEN BEST STUDENTS OVERALL COUNCILWISE",
+      "n_cols": 8,
+      "header_rows": [
+        [
+          {
+            "label": "C/NO",
+            "colspan": 1,
+            "rowspan": 1,
+            "col": 0,
+            "row": 0
+          },
+          {
+            "label": "SCHOOL NAME",
+            "colspan": 1,
+            "rowspan": 1,
+            "col": 1,
+            "row": 0
+          },
+          {
+            "label": "CANDIDATE FULL NAME",
+            "colspan": 1,
+            "rowspan": 1,
+            "col": 2,
+            "row": 0
+          },
+          {
+            "label": "X E S",
+            "colspan": 1,
+            "rowspan": 1,
+            "col": 3,
+            "row": 0
+          },
+          {
+            "label": "T G G A",
+            "colspan": 1,
+            "rowspan": 1,
+            "col": 4,
+            "row": 0
+          },
+          {
+            "label": "N O IS IV ID",
+            "colspan": 1,
+            "rowspan": 1,
+            "col": 5,
+            "row": 0
+          },
+          {
+            "label": "N O IT IS O P",
+            "colspan": 1,
+            "rowspan": 1,
+            "col": 6,
+            "row": 0
+          },
+          {
+            "label": "DETAILED SUBJECTS",
+            "colspan": 1,
+            "rowspan": 1,
+            "col": 7,
+            "row": 0
+          }
+        ]
+      ],
+      "body": [
+        [
+          "S5344-0004",
+          "MUSABE GIRLS",
+          "ADETHA AMWESIGA TALEMWA",
+          "F",
+          "7",
+          "I",
+          "1",
+          "HTM - 97'A' BUSI - 80'A' GEO - 91'A' KISW - 85'A' ENGL - 78'A' PHY - 88'A' CHEM - 93'A' BIO - 83'A' BASIC MATH - 92'A' COM - 85'A'"
+        ],
+        [
+          "S5344-0113",
+          "MUSABE GIRLS",
+          "MARIA CHRISTOPHER KALOKOLA",
+          "F",
+          "7",
+          "I",
+          "2",
+          "HTM - 96'A' BUSI - 85'A' GEO - 85'A' KISW - 84'A' ENGL - 83'A' BASIC MATH - 87'A' HIST - 85'A' B/K - 92'A' CHI - 84'A'"
+        ],
+        [
+          "S5343-0191",
+          "MUSABE BOYS",
+          "REGINALD ELINIONGOZE KIMAMBO",
+          "M",
+          "7",
+          "I",
+          "3",
+          "HTM - 84'A' BUSI - 72'B' GEO - 92'A' KISW - 90'A' ENGL - 84'A' PHY - 77'A' CHEM - 91'A' BIO - 92'A' BASIC MATH - 88'A' COM - 81'A'"
+        ],
+        [
+          "S5343-0103",
+          "MUSABE BOYS",
+          "GODBLESS AMANYA MBELWA",
+          "M",
+          "7",
+          "I",
+          "4",
+          "HTM - 84'A' BUSI - 83'A' GEO - 92'A' KISW - 90'A' ENGL - 77'A' PHY - 76'A' CHEM - 87'A' BIO - 82'A' BASIC MATH - 84'A' CHI - 88'A'"
+        ],
+        [
+          "S5343-0152",
+          "MUSABE BOYS",
+          "LIONEL LINUS LYAKURWA",
+          "M",
+          "7",
+          "I",
+          "5",
+          "HTM - 88'A' BUSI - 81'A' GEO - 82'A' KISW - 95'A' ENGL - 67'B' PHY - 75'A' CHEM - 93'A' BIO - 80'A' BASIC MATH - 96'A'"
+        ],
+        [
+          "S5343-0190",
+          "MUSABE BOYS",
+          "RAYMOND RUBEN RAPHAEL",
+          "M",
+          "7",
+          "I",
+          "6",
+          "HTM - 88'A' BUSI - 79'A' GEO - 85'A' KISW - 88'A' ENGL - 80'A' PHY - 78'A' CHEM - 92'A' BIO - 79'A' BASIC MATH - 84'A' COM - 86'A'"
+        ],
+        [
+          "S5714-0033",
+          "NASCO",
+          "REBEKA KENEDY CHIGURU",
+          "F",
+          "7",
+          "I",
+          "7",
+          "HTM - 97'A' BUSI - 90'A' GEO - 90'A' KISW - 98'A' ENGL - 77'A' PHY - 60'C' CHEM - 92'A' BIO - 86'A' BASIC MATH - 77'A' HIST - 69'B'"
+        ],
+        [
+          "S5344-0072",
+          "MUSABE GIRLS",
+          "FLAVIAH MAJURA MAIJO",
+          "F",
+          "7",
+          "I",
+          "8",
+          "HTM - 97'A' BUSI - 81'A' GEO - 91'A' KISW - 76'A' ENGL - 82'A' PHY - 76'A' CHEM - 89'A' BIO - 86'A' BASIC MATH - 92'A' HIST - 61'C'"
+        ],
+        [
+          "S5343-0169",
+          "MUSABE BOYS",
+          "MURTADHAA RAMADHANI NDIHOLEYE",
+          "M",
+          "7",
+          "I",
+          "9",
+          "HTM - 83'A' BUSI - 65'B' GEO - 81'A' KISW - 93'A' ENGL - 75'A' PHY - 80'A' CHEM - 92'A' BIO - 86'A' BASIC MATH - 88'A' COM - 84'A'"
+        ],
+        [
+          "-",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "10",
+          ""
+        ],
+        [
+          "TOP TEN BEST FEMALE STUDENTS OVERALL COUNCILWISE",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        [
+          "C/NO",
+          "SCHOOL NAME",
+          "CANDIDATE FULL NAME",
+          "X E S",
+          "T G G A",
+          "N O IS IV ID",
+          "N O IT IS O P",
+          "DETAILED SUBJECTS"
+        ],
+        [
+          "S5344-0004",
+          "MUSABE GIRLS",
+          "ADETHA AMWESIGA TALEMWA",
+          "F",
+          "7",
+          "I",
+          "1",
+          "HTM - 97'A' BUSI - 80'A' GEO - 91'A' KISW - 85'A' ENGL - 78'A' PHY - 88'A' CHEM - 93'A' BIO - 83'A' BASIC MATH - 92'A' COM - 85'A'"
+        ],
+        [
+          "S5344-0113",
+          "MUSABE GIRLS",
+          "MARIA CHRISTOPHER KALOKOLA",
+          "F",
+          "7",
+          "I",
+          "2",
+          "HTM - 96'A' BUSI - 85'A' GEO - 85'A' KISW - 84'A' ENGL - 83'A' BASIC MATH - 87'A' HIST - 85'A' B/K - 92'A' CHI - 84'A'"
+        ],
+        [
+          "S5714-0033",
+          "NASCO",
+          "REBEKA KENEDY CHIGURU",
+          "F",
+          "7",
+          "I",
+          "3",
+          "HTM - 97'A' BUSI - 90'A' GEO - 90'A' KISW - 98'A' ENGL - 77'A' PHY - 60'C' CHEM - 92'A' BIO - 86'A' BASIC MATH - 77'A' HIST - 69'B'"
+        ],
+        [
+          "S5344-0072",
+          "MUSABE GIRLS",
+          "FLAVIAH MAJURA MAIJO",
+          "F",
+          "7",
+          "I",
+          "4",
+          "HTM - 97'A' BUSI - 81'A' GEO - 91'A' KISW - 76'A' ENGL - 82'A' PHY - 76'A' CHEM - 89'A' BIO - 86'A' BASIC MATH - 92'A' HIST - 61'C'"
+        ],
+        [
+          "S5344-0115",
+          "MUSABE GIRLS",
+          "MARIA ROBERT MAKALA",
+          "F",
+          "7",
+          "I",
+          "5",
+          "HTM - 98'A' BUSI - 70'B' GEO - 84'A' KISW - 75'A' ENGL - 80'A' PHY - 85'A' CHEM - 80'A' BIO - 85'A' BASIC MATH - 86'A'"
+        ],
+        [
+          "S5344-0108",
+          "MUSABE GIRLS",
+          "LINDA KHATIBU THEODOLA",
+          "F",
+          "7",
+          "I",
+          "6",
+          "HTM - 86'A' BUSI - 67'B' GEO - 77'A' KISW - 83'A' ENGL - 78'A' PHY - 80'A' CHEM - 93'A' BIO - 89'A' BASIC MATH - 88'A'"
+        ],
+        [
+          "S5344-0153",
+          "MUSABE GIRLS",
+          "PROMISE ZACHARIA KAHEMA",
+          "F",
+          "7",
+          "I",
+          "7",
+          "HTM - 95'A' BUSI - 77'A' GEO - 94'A' KISW - 66'B' ENGL - 75'A' PHY - 78'A' CHEM - 85'A' BIO - 84'A' BASIC MATH - 93'A' COM - 75'A'"
+        ],
+        [
+          "S5344-0138",
+          "MUSABE GIRLS",
+          "NATHALIA HASSAN BOKI",
+          "F",
+          "7",
+          "I",
+          "8",
+          "HTM - 96'A' BUSI - 67'B' GEO - 82'A' KISW - 73'B' ENGL - 81'A' BIO - 70'B' BASIC MATH - 84'A' HIST - 88'A' B/K - 85.5'A' CHI - 91'A'"
+        ],
+        [
+          "S5344-0033",
+          "MUSABE GIRLS",
+          "CHRISTINA DARIO DAUSON",
+          "F",
+          "7",
+          "I",
+          "9",
+          "HTM - 84'A' BUSI - 74'B' GEO - 87'A' KISW - 76'A' ENGL - 90'A' PHY - 71'B' CHEM - 78'A' BIO - 90'A' BASIC MATH - 80'A'"
+        ],
+        [
+          "S5344-0176",
+          "MUSABE GIRLS",
+          "STELLAH WALTER ATHONY",
+          "F",
+          "7",
+          "I",
+          "9",
+          "HTM - 98'A' BUSI - 88'A' GEO - 87'A' KISW - 76'A' ENGL - 74'B' PHY - 70'B' CHEM - 79'A' BIO - 81'A' BASIC MATH - 77'A'"
+        ]
+      ],
+      "percent_cells": [
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ]
+      ],
+      "raw": [
+        [
+          "C/NO",
+          "SCHOOL NAME",
+          "CANDIDATE FULL NAME",
+          "X E S",
+          "T G G A",
+          "N O IS IV ID",
+          "N O IT IS O P",
+          "DETAILED SUBJECTS"
+        ],
+        [
+          "S5344-0004",
+          "MUSABE GIRLS",
+          "ADETHA AMWESIGA TALEMWA",
+          "F",
+          "7",
+          "I",
+          "1",
+          "HTM - 97'A' BUSI - 80'A' GEO - 91'A' KISW - 85'A' ENGL - 78'A' PHY - 88'A' CHEM - 93'A' BIO - 83'A' BASIC MATH - 92'A' COM - 85'A'"
+        ],
+        [
+          "S5344-0113",
+          "MUSABE GIRLS",
+          "MARIA CHRISTOPHER KALOKOLA",
+          "F",
+          "7",
+          "I",
+          "2",
+          "HTM - 96'A' BUSI - 85'A' GEO - 85'A' KISW - 84'A' ENGL - 83'A' BASIC MATH - 87'A' HIST - 85'A' B/K - 92'A' CHI - 84'A'"
+        ],
+        [
+          "S5343-0191",
+          "MUSABE BOYS",
+          "REGINALD ELINIONGOZE KIMAMBO",
+          "M",
+          "7",
+          "I",
+          "3",
+          "HTM - 84'A' BUSI - 72'B' GEO - 92'A' KISW - 90'A' ENGL - 84'A' PHY - 77'A' CHEM - 91'A' BIO - 92'A' BASIC MATH - 88'A' COM - 81'A'"
+        ],
+        [
+          "S5343-0103",
+          "MUSABE BOYS",
+          "GODBLESS AMANYA MBELWA",
+          "M",
+          "7",
+          "I",
+          "4",
+          "HTM - 84'A' BUSI - 83'A' GEO - 92'A' KISW - 90'A' ENGL - 77'A' PHY - 76'A' CHEM - 87'A' BIO - 82'A' BASIC MATH - 84'A' CHI - 88'A'"
+        ],
+        [
+          "S5343-0152",
+          "MUSABE BOYS",
+          "LIONEL LINUS LYAKURWA",
+          "M",
+          "7",
+          "I",
+          "5",
+          "HTM - 88'A' BUSI - 81'A' GEO - 82'A' KISW - 95'A' ENGL - 67'B' PHY - 75'A' CHEM - 93'A' BIO - 80'A' BASIC MATH - 96'A'"
+        ],
+        [
+          "S5343-0190",
+          "MUSABE BOYS",
+          "RAYMOND RUBEN RAPHAEL",
+          "M",
+          "7",
+          "I",
+          "6",
+          "HTM - 88'A' BUSI - 79'A' GEO - 85'A' KISW - 88'A' ENGL - 80'A' PHY - 78'A' CHEM - 92'A' BIO - 79'A' BASIC MATH - 84'A' COM - 86'A'"
+        ],
+        [
+          "S5714-0033",
+          "NASCO",
+          "REBEKA KENEDY CHIGURU",
+          "F",
+          "7",
+          "I",
+          "7",
+          "HTM - 97'A' BUSI - 90'A' GEO - 90'A' KISW - 98'A' ENGL - 77'A' PHY - 60'C' CHEM - 92'A' BIO - 86'A' BASIC MATH - 77'A' HIST - 69'B'"
+        ],
+        [
+          "S5344-0072",
+          "MUSABE GIRLS",
+          "FLAVIAH MAJURA MAIJO",
+          "F",
+          "7",
+          "I",
+          "8",
+          "HTM - 97'A' BUSI - 81'A' GEO - 91'A' KISW - 76'A' ENGL - 82'A' PHY - 76'A' CHEM - 89'A' BIO - 86'A' BASIC MATH - 92'A' HIST - 61'C'"
+        ],
+        [
+          "S5343-0169",
+          "MUSABE BOYS",
+          "MURTADHAA RAMADHANI NDIHOLEYE",
+          "M",
+          "7",
+          "I",
+          "9",
+          "HTM - 83'A' BUSI - 65'B' GEO - 81'A' KISW - 93'A' ENGL - 75'A' PHY - 80'A' CHEM - 92'A' BIO - 86'A' BASIC MATH - 88'A' COM - 84'A'"
+        ],
+        [
+          "-",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "10",
+          ""
+        ],
+        [
+          "TOP TEN BEST FEMALE STUDENTS OVERALL COUNCILWISE",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        [
+          "C/NO",
+          "SCHOOL NAME",
+          "CANDIDATE FULL NAME",
+          "X E S",
+          "T G G A",
+          "N O IS IV ID",
+          "N O IT IS O P",
+          "DETAILED SUBJECTS"
+        ],
+        [
+          "S5344-0004",
+          "MUSABE GIRLS",
+          "ADETHA AMWESIGA TALEMWA",
+          "F",
+          "7",
+          "I",
+          "1",
+          "HTM - 97'A' BUSI - 80'A' GEO - 91'A' KISW - 85'A' ENGL - 78'A' PHY - 88'A' CHEM - 93'A' BIO - 83'A' BASIC MATH - 92'A' COM - 85'A'"
+        ],
+        [
+          "S5344-0113",
+          "MUSABE GIRLS",
+          "MARIA CHRISTOPHER KALOKOLA",
+          "F",
+          "7",
+          "I",
+          "2",
+          "HTM - 96'A' BUSI - 85'A' GEO - 85'A' KISW - 84'A' ENGL - 83'A' BASIC MATH - 87'A' HIST - 85'A' B/K - 92'A' CHI - 84'A'"
+        ],
+        [
+          "S5714-0033",
+          "NASCO",
+          "REBEKA KENEDY CHIGURU",
+          "F",
+          "7",
+          "I",
+          "3",
+          "HTM - 97'A' BUSI - 90'A' GEO - 90'A' KISW - 98'A' ENGL - 77'A' PHY - 60'C' CHEM - 92'A' BIO - 86'A' BASIC MATH - 77'A' HIST - 69'B'"
+        ],
+        [
+          "S5344-0072",
+          "MUSABE GIRLS",
+          "FLAVIAH MAJURA MAIJO",
+          "F",
+          "7",
+          "I",
+          "4",
+          "HTM - 97'A' BUSI - 81'A' GEO - 91'A' KISW - 76'A' ENGL - 82'A' PHY - 76'A' CHEM - 89'A' BIO - 86'A' BASIC MATH - 92'A' HIST - 61'C'"
+        ],
+        [
+          "S5344-0115",
+          "MUSABE GIRLS",
+          "MARIA ROBERT MAKALA",
+          "F",
+          "7",
+          "I",
+          "5",
+          "HTM - 98'A' BUSI - 70'B' GEO - 84'A' KISW - 75'A' ENGL - 80'A' PHY - 85'A' CHEM - 80'A' BIO - 85'A' BASIC MATH - 86'A'"
+        ],
+        [
+          "S5344-0108",
+          "MUSABE GIRLS",
+          "LINDA KHATIBU THEODOLA",
+          "F",
+          "7",
+          "I",
+          "6",
+          "HTM - 86'A' BUSI - 67'B' GEO - 77'A' KISW - 83'A' ENGL - 78'A' PHY - 80'A' CHEM - 93'A' BIO - 89'A' BASIC MATH - 88'A'"
+        ],
+        [
+          "S5344-0153",
+          "MUSABE GIRLS",
+          "PROMISE ZACHARIA KAHEMA",
+          "F",
+          "7",
+          "I",
+          "7",
+          "HTM - 95'A' BUSI - 77'A' GEO - 94'A' KISW - 66'B' ENGL - 75'A' PHY - 78'A' CHEM - 85'A' BIO - 84'A' BASIC MATH - 93'A' COM - 75'A'"
+        ],
+        [
+          "S5344-0138",
+          "MUSABE GIRLS",
+          "NATHALIA HASSAN BOKI",
+          "F",
+          "7",
+          "I",
+          "8",
+          "HTM - 96'A' BUSI - 67'B' GEO - 82'A' KISW - 73'B' ENGL - 81'A' BIO - 70'B' BASIC MATH - 84'A' HIST - 88'A' B/K - 85.5'A' CHI - 91'A'"
+        ],
+        [
+          "S5344-0033",
+          "MUSABE GIRLS",
+          "CHRISTINA DARIO DAUSON",
+          "F",
+          "7",
+          "I",
+          "9",
+          "HTM - 84'A' BUSI - 74'B' GEO - 87'A' KISW - 76'A' ENGL - 90'A' PHY - 71'B' CHEM - 78'A' BIO - 90'A' BASIC MATH - 80'A'"
+        ],
+        [
+          "S5344-0176",
+          "MUSABE GIRLS",
+          "STELLAH WALTER ATHONY",
+          "F",
+          "7",
+          "I",
+          "9",
+          "HTM - 98'A' BUSI - 88'A' GEO - 87'A' KISW - 76'A' ENGL - 74'B' PHY - 70'B' CHEM - 79'A' BIO - 81'A' BASIC MATH - 77'A'"
+        ]
+      ],
+      "kind": "table"
+    },
+    {
+      "caption": "TOP TEN BEST MALE STUDENTS OVERALL COUNCILWISE",
+      "n_cols": 8,
+      "header_rows": [
+        [
+          {
+            "label": "C/NO",
+            "colspan": 1,
+            "rowspan": 1,
+            "col": 0,
+            "row": 0
+          },
+          {
+            "label": "SCHOOL NAME",
+            "colspan": 1,
+            "rowspan": 1,
+            "col": 1,
+            "row": 0
+          },
+          {
+            "label": "CANDIDATE FULL NAME",
+            "colspan": 1,
+            "rowspan": 1,
+            "col": 2,
+            "row": 0
+          },
+          {
+            "label": "X E S",
+            "colspan": 1,
+            "rowspan": 1,
+            "col": 3,
+            "row": 0
+          },
+          {
+            "label": "T G G A",
+            "colspan": 1,
+            "rowspan": 1,
+            "col": 4,
+            "row": 0
+          },
+          {
+            "label": "N O IS IV ID",
+            "colspan": 1,
+            "rowspan": 1,
+            "col": 5,
+            "row": 0
+          },
+          {
+            "label": "N O IT IS O P",
+            "colspan": 1,
+            "rowspan": 1,
+            "col": 6,
+            "row": 0
+          },
+          {
+            "label": "DETAILED SUBJECTS",
+            "colspan": 1,
+            "rowspan": 1,
+            "col": 7,
+            "row": 0
+          }
+        ]
+      ],
+      "body": [
+        [
+          "S5343-0191",
+          "MUSABE BOYS",
+          "REGINALD ELINIONGOZE KIMAMBO",
+          "M",
+          "7",
+          "I",
+          "1",
+          "HTM - 84'A' BUSI - 72'B' GEO - 92'A' KISW - 90'A' ENGL - 84'A' PHY - 77'A' CHEM - 91'A' BIO - 92'A' BASIC MATH - 88'A' COM - 81'A'"
+        ],
+        [
+          "S5343-0103",
+          "MUSABE BOYS",
+          "GODBLESS AMANYA MBELWA",
+          "M",
+          "7",
+          "I",
+          "2",
+          "HTM - 84'A' BUSI - 83'A' GEO - 92'A' KISW - 90'A' ENGL - 77'A' PHY - 76'A' CHEM - 87'A' BIO - 82'A' BASIC MATH - 84'A' CHI - 88'A'"
+        ],
+        [
+          "S5343-0152",
+          "MUSABE BOYS",
+          "LIONEL LINUS LYAKURWA",
+          "M",
+          "7",
+          "I",
+          "3",
+          "HTM - 88'A' BUSI - 81'A' GEO - 82'A' KISW - 95'A' ENGL - 67'B' PHY - 75'A' CHEM - 93'A' BIO - 80'A' BASIC MATH - 96'A'"
+        ],
+        [
+          "S5343-0190",
+          "MUSABE BOYS",
+          "RAYMOND RUBEN RAPHAEL",
+          "M",
+          "7",
+          "I",
+          "4",
+          "HTM - 88'A' BUSI - 79'A' GEO - 85'A' KISW - 88'A' ENGL - 80'A' PHY - 78'A' CHEM - 92'A' BIO - 79'A' BASIC MATH - 84'A' COM - 86'A'"
+        ],
+        [
+          "S5343-0169",
+          "MUSABE BOYS",
+          "MURTADHAA RAMADHANI NDIHOLEYE",
+          "M",
+          "7",
+          "I",
+          "5",
+          "HTM - 83'A' BUSI - 65'B' GEO - 81'A' KISW - 93'A' ENGL - 75'A' PHY - 80'A' CHEM - 92'A' BIO - 86'A' BASIC MATH - 88'A' COM - 84'A'"
+        ],
+        [
+          "S5343-0225",
+          "MUSABE BOYS",
+          "ZACHARIA RENATUS ZACHARIA",
+          "M",
+          "7",
+          "I",
+          "6",
+          "HTM - 86'A' BUSI - 79'A' GEO - 84'A' KISW - 88'A' ENGL - 71'B' PHY - 71'B' CHEM - 91'A' BIO - 82'A' BASIC MATH - 83'A' COM - 92'A'"
+        ],
+        [
+          "S5343-0210",
+          "MUSABE BOYS",
+          "SAYI MJUNI KAIJAGE",
+          "M",
+          "7",
+          "I",
+          "7",
+          "HTM - 87'A' BUSI - 77'A' GEO - 97'A' KISW - 94'A' ENGL - 72'B' PHY - 84'A' CHEM - 87'A' BIO - 80'A' BASIC MATH - 61'C' COM - 86'A'"
+        ],
+        [
+          "S1756-0050",
+          "FAMG",
+          "KAHANYA CHANDIKA GERVAS",
+          "M",
+          "7",
+          "I",
+          "8",
+          "HTM - 96'A' BUSI - 65'B' GEO - 84'A' KISW - 85'A' ENGL - 78'A' PHY - 71'B' CHEM - 94'A' BIO - 85'A' BASIC MATH - 86'A' B/K - 80'A'"
+        ],
+        [
+          "S5343-0189",
+          "MUSABE BOYS",
+          "RASHID ABUBAKARY RASHID",
+          "M",
+          "7",
+          "I",
+          "9",
+          "HTM - 84'A' BUSI - 70'B' GEO - 81'A' KISW - 95'A' ENGL - 75'A' PHY - 62'C' CHEM - 92'A' BIO - 88'A' BASIC MATH - 94'A'"
+        ],
+        [
+          "S1756-0034",
+          "FAMG",
+          "GODGIVEN RAPHAEL CHASAMA",
+          "M",
+          "7",
+          "I",
+          "10",
+          "HTM - 93'A' BUSI - 88'A' GEO - 82'A' KISW - 82'A' ENGL - 80'A' PHY - 61'C' CHEM - 90'A' BIO - 65'B' BASIC MATH - 98'A'"
+        ],
+        [
+          "TOP TEN BEST STUDENTS FOR GOVERNMENT SCHOOLS",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        [
+          "C/NO",
+          "SCHOOL NAME",
+          "CANDIDATE FULL NAME",
+          "X E S",
+          "T G G A",
+          "N O IS IV ID",
+          "N O IT IS O P",
+          "DETAILED SUBJECTS"
+        ],
+        [
+          "S7317-0213",
+          "STANSLAUS MABULA",
+          "VICENT ROBERT KALAMU",
+          "M",
+          "7",
+          "I",
+          "1",
+          "HTM - 92'A' BUSI - 75'A' GEO - 67'B' KISW - 76'A' ENGL - 58'C' PHY - 82'A' CHEM - 83'A' BIO - 79'A' BASIC MATH - 66'B' HIST - 75'A'"
+        ],
+        [
+          "S7778-0104",
+          "KAKEBE",
+          "JOSEPH JAMES SIAH",
+          "M",
+          "8",
+          "I",
+          "2",
+          "HTM - 85'A' BUSI - 51'C' GEO - 74'B' KISW - 83'A' ENGL - 79'A' PHY - 67'B' CHEM - 91'A' BIO - 89'A' BASIC MATH - 77'A'"
+        ],
+        [
+          "S3036-0027",
+          "LUCHELELE",
+          "GLORIA DAMSA GILI",
+          "F",
+          "8",
+          "I",
+          "3",
+          "HTM - 82'A' BUSI - 65'B' GEO - 86'A' KISW - 85'A' ENGL - 65'B' PHY - 51'C' CHEM - 78'A' BIO - 84'A' BASIC MATH - 75'A'"
+        ],
+        [
+          "S3034-0305",
+          "MTONI",
+          "WAMBURA KASOA RAMADHAN",
+          "M",
+          "8",
+          "I",
+          "4",
+          "HTM - 75'A' BUSI - 43'D' GEO - 60'C' KISW - 69'B' ENGL - 75'A' PHY - 77'A' CHEM - 86'A' BIO - 77'A' BASIC MATH - 81'A'"
+        ],
+        [
+          "S3278-0101",
+          "BUHONGWA",
+          "HILDA THOMAS NTUNGWANAYO",
+          "F",
+          "9",
+          "I",
+          "5",
+          "HTM - 72'B' BUSI - 84'A' GEO - 80'A' KISW - 81'A' ENGL - 72'B' PHY - 66'B' CHEM - 80'A' BIO - 70'B' BASIC MATH - 83'A'"
+        ],
+        [
+          "S3049-0239",
+          "IGELEGELE",
+          "NIKOLAUS JONH MADARAKA",
+          "M",
+          "9",
+          "I",
+          "6",
+          "HTM - 78'A' BUSI - 68'B' GEO - 55'C' KISW - 74'B' ENGL - 65'B' PHY - 76'A' CHEM - 88'A' BIO - 92'A' BASIC MATH - 83'A'"
+        ],
+        [
+          "S6620-0223",
+          "KASESE",
+          "DAVID KINGI EDWARD",
+          "M",
+          "9",
+          "I",
+          "7",
+          "HTM - 92'A' BUSI - 72'B' GEO - 48'C' KISW - 87'A' ENGL - 87'A' PHY - 70'B' CHEM - 81'A' BIO - 65'B' BASIC MATH - 75'A'"
+        ],
+        [
+          "S2872-0162",
+          "LWANHIMA",
+          "BONIPHACE VICENT MELEKA",
+          "M",
+          "9",
+          "I",
+          "8",
+          "HTM - 90'A' BUSI - 61'C' GEO - 86'A' KISW - 78'A' ENGL - 67'B' PHY - 56'C' CHEM - 88'A' BIO - 65'B' BASIC MATH - 78'A'"
+        ],
+        [
+          "S3278-0070",
+          "BUHONGWA",
+          "FATMA MASHAKA MALULU",
+          "F",
+          "9",
+          "I",
+          "9",
+          "HTM - 82'A' BUSI - 86'A' GEO - 78'A' KISW - 79'A' ENGL - 71'B' PHY - 66'B' CHEM - 68'B' BIO - 82'A' BASIC MATH - 55'C'"
+        ],
+        [
+          "S7317-0208",
+          "STANSLAUS MABULA",
+          "SAMWEL RAPHAEL MICHAEL",
+          "M",
+          "9",
+          "I",
+          "10",
+          "HTM - 83'A' BUSI - 51'C' GEO - 80'A' KISW - 74'B' ENGL - 55'C' PHY - 73'B' CHEM - 75'A' BIO - 76'A' BASIC MATH - 70'B' HIST - 93'A'"
+        ]
+      ],
+      "percent_cells": [
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ]
+      ],
+      "raw": [
+        [
+          "C/NO",
+          "SCHOOL NAME",
+          "CANDIDATE FULL NAME",
+          "X E S",
+          "T G G A",
+          "N O IS IV ID",
+          "N O IT IS O P",
+          "DETAILED SUBJECTS"
+        ],
+        [
+          "S5343-0191",
+          "MUSABE BOYS",
+          "REGINALD ELINIONGOZE KIMAMBO",
+          "M",
+          "7",
+          "I",
+          "1",
+          "HTM - 84'A' BUSI - 72'B' GEO - 92'A' KISW - 90'A' ENGL - 84'A' PHY - 77'A' CHEM - 91'A' BIO - 92'A' BASIC MATH - 88'A' COM - 81'A'"
+        ],
+        [
+          "S5343-0103",
+          "MUSABE BOYS",
+          "GODBLESS AMANYA MBELWA",
+          "M",
+          "7",
+          "I",
+          "2",
+          "HTM - 84'A' BUSI - 83'A' GEO - 92'A' KISW - 90'A' ENGL - 77'A' PHY - 76'A' CHEM - 87'A' BIO - 82'A' BASIC MATH - 84'A' CHI - 88'A'"
+        ],
+        [
+          "S5343-0152",
+          "MUSABE BOYS",
+          "LIONEL LINUS LYAKURWA",
+          "M",
+          "7",
+          "I",
+          "3",
+          "HTM - 88'A' BUSI - 81'A' GEO - 82'A' KISW - 95'A' ENGL - 67'B' PHY - 75'A' CHEM - 93'A' BIO - 80'A' BASIC MATH - 96'A'"
+        ],
+        [
+          "S5343-0190",
+          "MUSABE BOYS",
+          "RAYMOND RUBEN RAPHAEL",
+          "M",
+          "7",
+          "I",
+          "4",
+          "HTM - 88'A' BUSI - 79'A' GEO - 85'A' KISW - 88'A' ENGL - 80'A' PHY - 78'A' CHEM - 92'A' BIO - 79'A' BASIC MATH - 84'A' COM - 86'A'"
+        ],
+        [
+          "S5343-0169",
+          "MUSABE BOYS",
+          "MURTADHAA RAMADHANI NDIHOLEYE",
+          "M",
+          "7",
+          "I",
+          "5",
+          "HTM - 83'A' BUSI - 65'B' GEO - 81'A' KISW - 93'A' ENGL - 75'A' PHY - 80'A' CHEM - 92'A' BIO - 86'A' BASIC MATH - 88'A' COM - 84'A'"
+        ],
+        [
+          "S5343-0225",
+          "MUSABE BOYS",
+          "ZACHARIA RENATUS ZACHARIA",
+          "M",
+          "7",
+          "I",
+          "6",
+          "HTM - 86'A' BUSI - 79'A' GEO - 84'A' KISW - 88'A' ENGL - 71'B' PHY - 71'B' CHEM - 91'A' BIO - 82'A' BASIC MATH - 83'A' COM - 92'A'"
+        ],
+        [
+          "S5343-0210",
+          "MUSABE BOYS",
+          "SAYI MJUNI KAIJAGE",
+          "M",
+          "7",
+          "I",
+          "7",
+          "HTM - 87'A' BUSI - 77'A' GEO - 97'A' KISW - 94'A' ENGL - 72'B' PHY - 84'A' CHEM - 87'A' BIO - 80'A' BASIC MATH - 61'C' COM - 86'A'"
+        ],
+        [
+          "S1756-0050",
+          "FAMG",
+          "KAHANYA CHANDIKA GERVAS",
+          "M",
+          "7",
+          "I",
+          "8",
+          "HTM - 96'A' BUSI - 65'B' GEO - 84'A' KISW - 85'A' ENGL - 78'A' PHY - 71'B' CHEM - 94'A' BIO - 85'A' BASIC MATH - 86'A' B/K - 80'A'"
+        ],
+        [
+          "S5343-0189",
+          "MUSABE BOYS",
+          "RASHID ABUBAKARY RASHID",
+          "M",
+          "7",
+          "I",
+          "9",
+          "HTM - 84'A' BUSI - 70'B' GEO - 81'A' KISW - 95'A' ENGL - 75'A' PHY - 62'C' CHEM - 92'A' BIO - 88'A' BASIC MATH - 94'A'"
+        ],
+        [
+          "S1756-0034",
+          "FAMG",
+          "GODGIVEN RAPHAEL CHASAMA",
+          "M",
+          "7",
+          "I",
+          "10",
+          "HTM - 93'A' BUSI - 88'A' GEO - 82'A' KISW - 82'A' ENGL - 80'A' PHY - 61'C' CHEM - 90'A' BIO - 65'B' BASIC MATH - 98'A'"
+        ],
+        [
+          "TOP TEN BEST STUDENTS FOR GOVERNMENT SCHOOLS",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        [
+          "C/NO",
+          "SCHOOL NAME",
+          "CANDIDATE FULL NAME",
+          "X E S",
+          "T G G A",
+          "N O IS IV ID",
+          "N O IT IS O P",
+          "DETAILED SUBJECTS"
+        ],
+        [
+          "S7317-0213",
+          "STANSLAUS MABULA",
+          "VICENT ROBERT KALAMU",
+          "M",
+          "7",
+          "I",
+          "1",
+          "HTM - 92'A' BUSI - 75'A' GEO - 67'B' KISW - 76'A' ENGL - 58'C' PHY - 82'A' CHEM - 83'A' BIO - 79'A' BASIC MATH - 66'B' HIST - 75'A'"
+        ],
+        [
+          "S7778-0104",
+          "KAKEBE",
+          "JOSEPH JAMES SIAH",
+          "M",
+          "8",
+          "I",
+          "2",
+          "HTM - 85'A' BUSI - 51'C' GEO - 74'B' KISW - 83'A' ENGL - 79'A' PHY - 67'B' CHEM - 91'A' BIO - 89'A' BASIC MATH - 77'A'"
+        ],
+        [
+          "S3036-0027",
+          "LUCHELELE",
+          "GLORIA DAMSA GILI",
+          "F",
+          "8",
+          "I",
+          "3",
+          "HTM - 82'A' BUSI - 65'B' GEO - 86'A' KISW - 85'A' ENGL - 65'B' PHY - 51'C' CHEM - 78'A' BIO - 84'A' BASIC MATH - 75'A'"
+        ],
+        [
+          "S3034-0305",
+          "MTONI",
+          "WAMBURA KASOA RAMADHAN",
+          "M",
+          "8",
+          "I",
+          "4",
+          "HTM - 75'A' BUSI - 43'D' GEO - 60'C' KISW - 69'B' ENGL - 75'A' PHY - 77'A' CHEM - 86'A' BIO - 77'A' BASIC MATH - 81'A'"
+        ],
+        [
+          "S3278-0101",
+          "BUHONGWA",
+          "HILDA THOMAS NTUNGWANAYO",
+          "F",
+          "9",
+          "I",
+          "5",
+          "HTM - 72'B' BUSI - 84'A' GEO - 80'A' KISW - 81'A' ENGL - 72'B' PHY - 66'B' CHEM - 80'A' BIO - 70'B' BASIC MATH - 83'A'"
+        ],
+        [
+          "S3049-0239",
+          "IGELEGELE",
+          "NIKOLAUS JONH MADARAKA",
+          "M",
+          "9",
+          "I",
+          "6",
+          "HTM - 78'A' BUSI - 68'B' GEO - 55'C' KISW - 74'B' ENGL - 65'B' PHY - 76'A' CHEM - 88'A' BIO - 92'A' BASIC MATH - 83'A'"
+        ],
+        [
+          "S6620-0223",
+          "KASESE",
+          "DAVID KINGI EDWARD",
+          "M",
+          "9",
+          "I",
+          "7",
+          "HTM - 92'A' BUSI - 72'B' GEO - 48'C' KISW - 87'A' ENGL - 87'A' PHY - 70'B' CHEM - 81'A' BIO - 65'B' BASIC MATH - 75'A'"
+        ],
+        [
+          "S2872-0162",
+          "LWANHIMA",
+          "BONIPHACE VICENT MELEKA",
+          "M",
+          "9",
+          "I",
+          "8",
+          "HTM - 90'A' BUSI - 61'C' GEO - 86'A' KISW - 78'A' ENGL - 67'B' PHY - 56'C' CHEM - 88'A' BIO - 65'B' BASIC MATH - 78'A'"
+        ],
+        [
+          "S3278-0070",
+          "BUHONGWA",
+          "FATMA MASHAKA MALULU",
+          "F",
+          "9",
+          "I",
+          "9",
+          "HTM - 82'A' BUSI - 86'A' GEO - 78'A' KISW - 79'A' ENGL - 71'B' PHY - 66'B' CHEM - 68'B' BIO - 82'A' BASIC MATH - 55'C'"
+        ],
+        [
+          "S7317-0208",
+          "STANSLAUS MABULA",
+          "SAMWEL RAPHAEL MICHAEL",
+          "M",
+          "9",
+          "I",
+          "10",
+          "HTM - 83'A' BUSI - 51'C' GEO - 80'A' KISW - 74'B' ENGL - 55'C' PHY - 73'B' CHEM - 75'A' BIO - 76'A' BASIC MATH - 70'B' HIST - 93'A'"
+        ]
+      ],
+      "kind": "table"
+    },
+    {
+      "caption": "TOP TEN BEST FEMALE STUDENTS FOR GOVERNMENT SCHOOLS",
+      "n_cols": 8,
+      "header_rows": [
+        [
+          {
+            "label": "C/NO",
+            "colspan": 1,
+            "rowspan": 1,
+            "col": 0,
+            "row": 0
+          },
+          {
+            "label": "SCHOOL NAME",
+            "colspan": 1,
+            "rowspan": 1,
+            "col": 1,
+            "row": 0
+          },
+          {
+            "label": "CANDIDATE FULL NAME",
+            "colspan": 1,
+            "rowspan": 1,
+            "col": 2,
+            "row": 0
+          },
+          {
+            "label": "X E S",
+            "colspan": 1,
+            "rowspan": 1,
+            "col": 3,
+            "row": 0
+          },
+          {
+            "label": "T G G A",
+            "colspan": 1,
+            "rowspan": 1,
+            "col": 4,
+            "row": 0
+          },
+          {
+            "label": "N O IS IV ID",
+            "colspan": 1,
+            "rowspan": 1,
+            "col": 5,
+            "row": 0
+          },
+          {
+            "label": "N O IT IS O P",
+            "colspan": 1,
+            "rowspan": 1,
+            "col": 6,
+            "row": 0
+          },
+          {
+            "label": "DETAILED SUBJECTS",
+            "colspan": 1,
+            "rowspan": 1,
+            "col": 7,
+            "row": 0
+          }
+        ]
+      ],
+      "body": [
+        [
+          "S3036-0027",
+          "LUCHELELE",
+          "GLORIA DAMSA GILI",
+          "F",
+          "8",
+          "I",
+          "1",
+          "HTM - 82'A' BUSI - 65'B' GEO - 86'A' KISW - 85'A' ENGL - 65'B' PHY - 51'C' CHEM - 78'A' BIO - 84'A' BASIC MATH - 75'A'"
+        ],
+        [
+          "S3278-0101",
+          "BUHONGWA",
+          "HILDA THOMAS NTUNGWANAYO",
+          "F",
+          "9",
+          "I",
+          "2",
+          "HTM - 72'B' BUSI - 84'A' GEO - 80'A' KISW - 81'A' ENGL - 72'B' PHY - 66'B' CHEM - 80'A' BIO - 70'B' BASIC MATH - 83'A'"
+        ],
+        [
+          "S3278-0070",
+          "BUHONGWA",
+          "FATMA MASHAKA MALULU",
+          "F",
+          "9",
+          "I",
+          "3",
+          "HTM - 82'A' BUSI - 86'A' GEO - 78'A' KISW - 79'A' ENGL - 71'B' PHY - 66'B' CHEM - 68'B' BIO - 82'A' BASIC MATH - 55'C'"
+        ],
+        [
+          "S3036-0025",
+          "LUCHELELE",
+          "FATUMA SULTAN YUSUPH",
+          "F",
+          "10",
+          "I",
+          "4",
+          "HTM - 92'A' BUSI - 63'C' GEO - 87'A' KISW - 85'A' ENGL - 61'C' PHY - 48'C' CHEM - 83'A' BIO - 75'A' BASIC MATH - 66'B'"
+        ],
+        [
+          "S1835-0171",
+          "MAHINA",
+          "LOYCE JEREMIA YOHANA",
+          "F",
+          "11",
+          "I",
+          "5",
+          "HTM - 96'A' BUSI - 68'B' GEO - 75'A' KISW - 73'B' ENGL - 68'B' PHY - 62'C' CHEM - 55'C' BIO - 75'A' BASIC MATH - 66'B'"
+        ],
+        [
+          "S0546-0246",
+          "PAMBA",
+          "HELLEN DAVID MTINDA",
+          "F",
+          "11",
+          "I",
+          "6",
+          "HTM - 93'A' BUSI - 71'B' GEO - 56'C' KISW - 79'A' ENGL - 29'F' PHY - 62'C' CHEM - 76'A' BIO - 84'A' BASIC MATH - 68'B' COM - 53'C'"
+        ],
+        [
+          "S0333-0294",
+          "MWANZA",
+          "JENIFA JACKSON ARON",
+          "F",
+          "12",
+          "I",
+          "7",
+          "HTM - 75'A' BUSI - 55'C' GEO - 45'C' KISW - 51'C' ENGL - 66'B' PHY - 71'B' CHEM - 75'A' BIO - 63'C' BASIC MATH - 87'A' FOO - 72.5'B'"
+        ],
+        [
+          "S7317-0018",
+          "STANSLAUS MABULA",
+          "CLEMENSIA PHILEMON MBANGA",
+          "F",
+          "12",
+          "I",
+          "8",
+          "HTM - 76'A' BUSI - 68'B' GEO - 75'A' KISW - 79'A' ENGL - 56'C' PHY - 51'C' CHEM - 73'B' BIO - 61'C' BASIC MATH - 30'D' HIST - 65'B'"
+        ],
+        [
+          "S1143-0040",
+          "BUTIMBA DAY",
+          "GRACE KANUTI MTATIFIKORO",
+          "F",
+          "12",
+          "I",
+          "9",
+          "HTM - 76'A' BUSI - 48'C' GEO - 45'C' KISW - 75'A' ENGL - 67'B' PHY - 56'C' CHEM - 56'C' BIO - 75'A' BASIC MATH - 40.5'D' COM - 75'A'"
+        ],
+        [
+          "S0333-0025",
+          "MWANZA",
+          "ELIZABETH SAIMON BARNABA",
+          "F",
+          "13",
+          "I",
+          "10",
+          "HTM - 93'A' BUSI - 60'C' GEO - 43'D' KISW - 76'A' ENGL - 63'C' PHY - 65'B' CHEM - 88'A' BIO - 45'C' BASIC MATH - 67'B'"
+        ],
+        [
+          "TOP TEN BEST MALE STUDENTS FOR GOVERNMENT SCHOOLS",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        [
+          "C/NO",
+          "SCHOOL NAME",
+          "CANDIDATE FULL NAME",
+          "X E S",
+          "T G G A",
+          "N O IS IV ID",
+          "N O IT IS O P",
+          "DETAILED SUBJECTS"
+        ],
+        [
+          "S7317-0213",
+          "STANSLAUS MABULA",
+          "VICENT ROBERT KALAMU",
+          "M",
+          "7",
+          "I",
+          "1",
+          "HTM - 92'A' BUSI - 75'A' GEO - 67'B' KISW - 76'A' ENGL - 58'C' PHY - 82'A' CHEM - 83'A' BIO - 79'A' BASIC MATH - 66'B' HIST - 75'A'"
+        ],
+        [
+          "S7778-0104",
+          "KAKEBE",
+          "JOSEPH JAMES SIAH",
+          "M",
+          "8",
+          "I",
+          "2",
+          "HTM - 85'A' BUSI - 51'C' GEO - 74'B' KISW - 83'A' ENGL - 79'A' PHY - 67'B' CHEM - 91'A' BIO - 89'A' BASIC MATH - 77'A'"
+        ],
+        [
+          "S3034-0305",
+          "MTONI",
+          "WAMBURA KASOA RAMADHAN",
+          "M",
+          "8",
+          "I",
+          "3",
+          "HTM - 75'A' BUSI - 43'D' GEO - 60'C' KISW - 69'B' ENGL - 75'A' PHY - 77'A' CHEM - 86'A' BIO - 77'A' BASIC MATH - 81'A'"
+        ],
+        [
+          "S3049-0239",
+          "IGELEGELE",
+          "NIKOLAUS JONH MADARAKA",
+          "M",
+          "9",
+          "I",
+          "4",
+          "HTM - 78'A' BUSI - 68'B' GEO - 55'C' KISW - 74'B' ENGL - 65'B' PHY - 76'A' CHEM - 88'A' BIO - 92'A' BASIC MATH - 83'A'"
+        ],
+        [
+          "S6620-0223",
+          "KASESE",
+          "DAVID KINGI EDWARD",
+          "M",
+          "9",
+          "I",
+          "5",
+          "HTM - 92'A' BUSI - 72'B' GEO - 48'C' KISW - 87'A' ENGL - 87'A' PHY - 70'B' CHEM - 81'A' BIO - 65'B' BASIC MATH - 75'A'"
+        ],
+        [
+          "S2872-0162",
+          "LWANHIMA",
+          "BONIPHACE VICENT MELEKA",
+          "M",
+          "9",
+          "I",
+          "6",
+          "HTM - 90'A' BUSI - 61'C' GEO - 86'A' KISW - 78'A' ENGL - 67'B' PHY - 56'C' CHEM - 88'A' BIO - 65'B' BASIC MATH - 78'A'"
+        ],
+        [
+          "S7317-0208",
+          "STANSLAUS MABULA",
+          "SAMWEL RAPHAEL MICHAEL",
+          "M",
+          "9",
+          "I",
+          "7",
+          "HTM - 83'A' BUSI - 51'C' GEO - 80'A' KISW - 74'B' ENGL - 55'C' PHY - 73'B' CHEM - 75'A' BIO - 76'A' BASIC MATH - 70'B' HIST - 93'A'"
+        ],
+        [
+          "S7319-0418",
+          "BULALE",
+          "NELSON ANISETH KAWAU",
+          "M",
+          "9",
+          "I",
+          "8",
+          "HTM - 74'B' BUSI - 56'C' GEO - 57'C' KISW - 79'A' ENGL - 72'B' PHY - 76'A' CHEM - 81'A' BIO - 78'A' BASIC MATH - 76'A'"
+        ],
+        [
+          "S1910-0353",
+          "IGOMA",
+          "EMMANUEL ZONGORE WAKEYA",
+          "M",
+          "9",
+          "I",
+          "9",
+          "HTM - 77'A' BUSI - 81'A' GEO - 91'A' KISW - 76'A' ENGL - 49'C' PHY - 66'B' CHEM - 80'A' BIO - 68'B' BASIC MATH - 31'D'"
+        ],
+        [
+          "S6620-0340",
+          "KASESE",
+          "WARREN GILBERT MWANSASU",
+          "M",
+          "10",
+          "I",
+          "10",
+          "HTM - 88'A' BUSI - 62'C' GEO - 75'A' KISW - 77'A' ENGL - 63'C' PHY - 78'A' CHEM - 72'B' BIO - 59'C' BASIC MATH - 100'A'"
+        ]
+      ],
+      "percent_cells": [
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ]
+      ],
+      "raw": [
+        [
+          "C/NO",
+          "SCHOOL NAME",
+          "CANDIDATE FULL NAME",
+          "X E S",
+          "T G G A",
+          "N O IS IV ID",
+          "N O IT IS O P",
+          "DETAILED SUBJECTS"
+        ],
+        [
+          "S3036-0027",
+          "LUCHELELE",
+          "GLORIA DAMSA GILI",
+          "F",
+          "8",
+          "I",
+          "1",
+          "HTM - 82'A' BUSI - 65'B' GEO - 86'A' KISW - 85'A' ENGL - 65'B' PHY - 51'C' CHEM - 78'A' BIO - 84'A' BASIC MATH - 75'A'"
+        ],
+        [
+          "S3278-0101",
+          "BUHONGWA",
+          "HILDA THOMAS NTUNGWANAYO",
+          "F",
+          "9",
+          "I",
+          "2",
+          "HTM - 72'B' BUSI - 84'A' GEO - 80'A' KISW - 81'A' ENGL - 72'B' PHY - 66'B' CHEM - 80'A' BIO - 70'B' BASIC MATH - 83'A'"
+        ],
+        [
+          "S3278-0070",
+          "BUHONGWA",
+          "FATMA MASHAKA MALULU",
+          "F",
+          "9",
+          "I",
+          "3",
+          "HTM - 82'A' BUSI - 86'A' GEO - 78'A' KISW - 79'A' ENGL - 71'B' PHY - 66'B' CHEM - 68'B' BIO - 82'A' BASIC MATH - 55'C'"
+        ],
+        [
+          "S3036-0025",
+          "LUCHELELE",
+          "FATUMA SULTAN YUSUPH",
+          "F",
+          "10",
+          "I",
+          "4",
+          "HTM - 92'A' BUSI - 63'C' GEO - 87'A' KISW - 85'A' ENGL - 61'C' PHY - 48'C' CHEM - 83'A' BIO - 75'A' BASIC MATH - 66'B'"
+        ],
+        [
+          "S1835-0171",
+          "MAHINA",
+          "LOYCE JEREMIA YOHANA",
+          "F",
+          "11",
+          "I",
+          "5",
+          "HTM - 96'A' BUSI - 68'B' GEO - 75'A' KISW - 73'B' ENGL - 68'B' PHY - 62'C' CHEM - 55'C' BIO - 75'A' BASIC MATH - 66'B'"
+        ],
+        [
+          "S0546-0246",
+          "PAMBA",
+          "HELLEN DAVID MTINDA",
+          "F",
+          "11",
+          "I",
+          "6",
+          "HTM - 93'A' BUSI - 71'B' GEO - 56'C' KISW - 79'A' ENGL - 29'F' PHY - 62'C' CHEM - 76'A' BIO - 84'A' BASIC MATH - 68'B' COM - 53'C'"
+        ],
+        [
+          "S0333-0294",
+          "MWANZA",
+          "JENIFA JACKSON ARON",
+          "F",
+          "12",
+          "I",
+          "7",
+          "HTM - 75'A' BUSI - 55'C' GEO - 45'C' KISW - 51'C' ENGL - 66'B' PHY - 71'B' CHEM - 75'A' BIO - 63'C' BASIC MATH - 87'A' FOO - 72.5'B'"
+        ],
+        [
+          "S7317-0018",
+          "STANSLAUS MABULA",
+          "CLEMENSIA PHILEMON MBANGA",
+          "F",
+          "12",
+          "I",
+          "8",
+          "HTM - 76'A' BUSI - 68'B' GEO - 75'A' KISW - 79'A' ENGL - 56'C' PHY - 51'C' CHEM - 73'B' BIO - 61'C' BASIC MATH - 30'D' HIST - 65'B'"
+        ],
+        [
+          "S1143-0040",
+          "BUTIMBA DAY",
+          "GRACE KANUTI MTATIFIKORO",
+          "F",
+          "12",
+          "I",
+          "9",
+          "HTM - 76'A' BUSI - 48'C' GEO - 45'C' KISW - 75'A' ENGL - 67'B' PHY - 56'C' CHEM - 56'C' BIO - 75'A' BASIC MATH - 40.5'D' COM - 75'A'"
+        ],
+        [
+          "S0333-0025",
+          "MWANZA",
+          "ELIZABETH SAIMON BARNABA",
+          "F",
+          "13",
+          "I",
+          "10",
+          "HTM - 93'A' BUSI - 60'C' GEO - 43'D' KISW - 76'A' ENGL - 63'C' PHY - 65'B' CHEM - 88'A' BIO - 45'C' BASIC MATH - 67'B'"
+        ],
+        [
+          "TOP TEN BEST MALE STUDENTS FOR GOVERNMENT SCHOOLS",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        [
+          "C/NO",
+          "SCHOOL NAME",
+          "CANDIDATE FULL NAME",
+          "X E S",
+          "T G G A",
+          "N O IS IV ID",
+          "N O IT IS O P",
+          "DETAILED SUBJECTS"
+        ],
+        [
+          "S7317-0213",
+          "STANSLAUS MABULA",
+          "VICENT ROBERT KALAMU",
+          "M",
+          "7",
+          "I",
+          "1",
+          "HTM - 92'A' BUSI - 75'A' GEO - 67'B' KISW - 76'A' ENGL - 58'C' PHY - 82'A' CHEM - 83'A' BIO - 79'A' BASIC MATH - 66'B' HIST - 75'A'"
+        ],
+        [
+          "S7778-0104",
+          "KAKEBE",
+          "JOSEPH JAMES SIAH",
+          "M",
+          "8",
+          "I",
+          "2",
+          "HTM - 85'A' BUSI - 51'C' GEO - 74'B' KISW - 83'A' ENGL - 79'A' PHY - 67'B' CHEM - 91'A' BIO - 89'A' BASIC MATH - 77'A'"
+        ],
+        [
+          "S3034-0305",
+          "MTONI",
+          "WAMBURA KASOA RAMADHAN",
+          "M",
+          "8",
+          "I",
+          "3",
+          "HTM - 75'A' BUSI - 43'D' GEO - 60'C' KISW - 69'B' ENGL - 75'A' PHY - 77'A' CHEM - 86'A' BIO - 77'A' BASIC MATH - 81'A'"
+        ],
+        [
+          "S3049-0239",
+          "IGELEGELE",
+          "NIKOLAUS JONH MADARAKA",
+          "M",
+          "9",
+          "I",
+          "4",
+          "HTM - 78'A' BUSI - 68'B' GEO - 55'C' KISW - 74'B' ENGL - 65'B' PHY - 76'A' CHEM - 88'A' BIO - 92'A' BASIC MATH - 83'A'"
+        ],
+        [
+          "S6620-0223",
+          "KASESE",
+          "DAVID KINGI EDWARD",
+          "M",
+          "9",
+          "I",
+          "5",
+          "HTM - 92'A' BUSI - 72'B' GEO - 48'C' KISW - 87'A' ENGL - 87'A' PHY - 70'B' CHEM - 81'A' BIO - 65'B' BASIC MATH - 75'A'"
+        ],
+        [
+          "S2872-0162",
+          "LWANHIMA",
+          "BONIPHACE VICENT MELEKA",
+          "M",
+          "9",
+          "I",
+          "6",
+          "HTM - 90'A' BUSI - 61'C' GEO - 86'A' KISW - 78'A' ENGL - 67'B' PHY - 56'C' CHEM - 88'A' BIO - 65'B' BASIC MATH - 78'A'"
+        ],
+        [
+          "S7317-0208",
+          "STANSLAUS MABULA",
+          "SAMWEL RAPHAEL MICHAEL",
+          "M",
+          "9",
+          "I",
+          "7",
+          "HTM - 83'A' BUSI - 51'C' GEO - 80'A' KISW - 74'B' ENGL - 55'C' PHY - 73'B' CHEM - 75'A' BIO - 76'A' BASIC MATH - 70'B' HIST - 93'A'"
+        ],
+        [
+          "S7319-0418",
+          "BULALE",
+          "NELSON ANISETH KAWAU",
+          "M",
+          "9",
+          "I",
+          "8",
+          "HTM - 74'B' BUSI - 56'C' GEO - 57'C' KISW - 79'A' ENGL - 72'B' PHY - 76'A' CHEM - 81'A' BIO - 78'A' BASIC MATH - 76'A'"
+        ],
+        [
+          "S1910-0353",
+          "IGOMA",
+          "EMMANUEL ZONGORE WAKEYA",
+          "M",
+          "9",
+          "I",
+          "9",
+          "HTM - 77'A' BUSI - 81'A' GEO - 91'A' KISW - 76'A' ENGL - 49'C' PHY - 66'B' CHEM - 80'A' BIO - 68'B' BASIC MATH - 31'D'"
+        ],
+        [
+          "S6620-0340",
+          "KASESE",
+          "WARREN GILBERT MWANSASU",
+          "M",
+          "10",
+          "I",
+          "10",
+          "HTM - 88'A' BUSI - 62'C' GEO - 75'A' KISW - 77'A' ENGL - 63'C' PHY - 78'A' CHEM - 72'B' BIO - 59'C' BASIC MATH - 100'A'"
+        ],
+        [
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ]
+      ],
+      "kind": "table"
+    },
+    {
+      "caption": "TOP TEN BEST STUDENTS FOR PRIVATE SCHOOLS",
+      "n_cols": 8,
+      "header_rows": [
+        [
+          {
+            "label": "C/NO",
+            "colspan": 1,
+            "rowspan": 1,
+            "col": 0,
+            "row": 0
+          },
+          {
+            "label": "SCHOOL NAME",
+            "colspan": 1,
+            "rowspan": 1,
+            "col": 1,
+            "row": 0
+          },
+          {
+            "label": "CANDIDATE FULL NAME",
+            "colspan": 1,
+            "rowspan": 1,
+            "col": 2,
+            "row": 0
+          },
+          {
+            "label": "X E S",
+            "colspan": 1,
+            "rowspan": 1,
+            "col": 3,
+            "row": 0
+          },
+          {
+            "label": "T G G A",
+            "colspan": 1,
+            "rowspan": 1,
+            "col": 4,
+            "row": 0
+          },
+          {
+            "label": "N O IS IV ID",
+            "colspan": 1,
+            "rowspan": 1,
+            "col": 5,
+            "row": 0
+          },
+          {
+            "label": "N O IT IS O P",
+            "colspan": 1,
+            "rowspan": 1,
+            "col": 6,
+            "row": 0
+          },
+          {
+            "label": "DETAILED SUBJECTS",
+            "colspan": 1,
+            "rowspan": 1,
+            "col": 7,
+            "row": 0
+          }
+        ]
+      ],
+      "body": [
+        [
+          "S5344-0004",
+          "MUSABE GIRLS",
+          "ADETHA AMWESIGA TALEMWA",
+          "F",
+          "7",
+          "I",
+          "1",
+          "HTM - 97'A' BUSI - 80'A' GEO - 91'A' KISW - 85'A' ENGL - 78'A' PHY - 88'A' CHEM - 93'A' BIO - 83'A' BASIC MATH - 92'A' COM - 85'A'"
+        ],
+        [
+          "S5344-0113",
+          "MUSABE GIRLS",
+          "MARIA CHRISTOPHER KALOKOLA",
+          "F",
+          "7",
+          "I",
+          "2",
+          "HTM - 96'A' BUSI - 85'A' GEO - 85'A' KISW - 84'A' ENGL - 83'A' BASIC MATH - 87'A' HIST - 85'A' B/K - 92'A' CHI - 84'A'"
+        ],
+        [
+          "S5343-0191",
+          "MUSABE BOYS",
+          "REGINALD ELINIONGOZE KIMAMBO",
+          "M",
+          "7",
+          "I",
+          "3",
+          "HTM - 84'A' BUSI - 72'B' GEO - 92'A' KISW - 90'A' ENGL - 84'A' PHY - 77'A' CHEM - 91'A' BIO - 92'A' BASIC MATH - 88'A' COM - 81'A'"
+        ],
+        [
+          "S5343-0103",
+          "MUSABE BOYS",
+          "GODBLESS AMANYA MBELWA",
+          "M",
+          "7",
+          "I",
+          "4",
+          "HTM - 84'A' BUSI - 83'A' GEO - 92'A' KISW - 90'A' ENGL - 77'A' PHY - 76'A' CHEM - 87'A' BIO - 82'A' BASIC MATH - 84'A' CHI - 88'A'"
+        ],
+        [
+          "S5343-0152",
+          "MUSABE BOYS",
+          "LIONEL LINUS LYAKURWA",
+          "M",
+          "7",
+          "I",
+          "5",
+          "HTM - 88'A' BUSI - 81'A' GEO - 82'A' KISW - 95'A' ENGL - 67'B' PHY - 75'A' CHEM - 93'A' BIO - 80'A' BASIC MATH - 96'A'"
+        ],
+        [
+          "S5343-0190",
+          "MUSABE BOYS",
+          "RAYMOND RUBEN RAPHAEL",
+          "M",
+          "7",
+          "I",
+          "6",
+          "HTM - 88'A' BUSI - 79'A' GEO - 85'A' KISW - 88'A' ENGL - 80'A' PHY - 78'A' CHEM - 92'A' BIO - 79'A' BASIC MATH - 84'A' COM - 86'A'"
+        ],
+        [
+          "S5714-0033",
+          "NASCO",
+          "REBEKA KENEDY CHIGURU",
+          "F",
+          "7",
+          "I",
+          "7",
+          "HTM - 97'A' BUSI - 90'A' GEO - 90'A' KISW - 98'A' ENGL - 77'A' PHY - 60'C' CHEM - 92'A' BIO - 86'A' BASIC MATH - 77'A' HIST - 69'B'"
+        ],
+        [
+          "S5344-0072",
+          "MUSABE GIRLS",
+          "FLAVIAH MAJURA MAIJO",
+          "F",
+          "7",
+          "I",
+          "8",
+          "HTM - 97'A' BUSI - 81'A' GEO - 91'A' KISW - 76'A' ENGL - 82'A' PHY - 76'A' CHEM - 89'A' BIO - 86'A' BASIC MATH - 92'A' HIST - 61'C'"
+        ],
+        [
+          "S5343-0169",
+          "MUSABE BOYS",
+          "MURTADHAA RAMADHANI NDIHOLEYE",
+          "M",
+          "7",
+          "I",
+          "9",
+          "HTM - 83'A' BUSI - 65'B' GEO - 81'A' KISW - 93'A' ENGL - 75'A' PHY - 80'A' CHEM - 92'A' BIO - 86'A' BASIC MATH - 88'A' COM - 84'A'"
+        ],
+        [
+          "S5343-0225",
+          "MUSABE BOYS",
+          "ZACHARIA RENATUS ZACHARIA",
+          "M",
+          "7",
+          "I",
+          "10",
+          "HTM - 86'A' BUSI - 79'A' GEO - 84'A' KISW - 88'A' ENGL - 71'B' PHY - 71'B' CHEM - 91'A' BIO - 82'A' BASIC MATH - 83'A' COM - 92'A'"
+        ],
+        [
+          "TOP TEN BEST FEMALE STUDENTS FOR PRIVATE SCHOOLS",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        [
+          "C/NO",
+          "SCHOOL NAME",
+          "CANDIDATE FULL NAME",
+          "X E S",
+          "T G G A",
+          "N O IS IV ID",
+          "N O IT IS O P",
+          "DETAILED SUBJECTS"
+        ],
+        [
+          "S5344-0004",
+          "MUSABE GIRLS",
+          "ADETHA AMWESIGA TALEMWA",
+          "F",
+          "7",
+          "I",
+          "1",
+          "HTM - 97'A' BUSI - 80'A' GEO - 91'A' KISW - 85'A' ENGL - 78'A' PHY - 88'A' CHEM - 93'A' BIO - 83'A' BASIC MATH - 92'A' COM - 85'A'"
+        ],
+        [
+          "S5344-0113",
+          "MUSABE GIRLS",
+          "MARIA CHRISTOPHER KALOKOLA",
+          "F",
+          "7",
+          "I",
+          "2",
+          "HTM - 96'A' BUSI - 85'A' GEO - 85'A' KISW - 84'A' ENGL - 83'A' BASIC MATH - 87'A' HIST - 85'A' B/K - 92'A' CHI - 84'A'"
+        ],
+        [
+          "S5714-0033",
+          "NASCO",
+          "REBEKA KENEDY CHIGURU",
+          "F",
+          "7",
+          "I",
+          "3",
+          "HTM - 97'A' BUSI - 90'A' GEO - 90'A' KISW - 98'A' ENGL - 77'A' PHY - 60'C' CHEM - 92'A' BIO - 86'A' BASIC MATH - 77'A' HIST - 69'B'"
+        ],
+        [
+          "S5344-0072",
+          "MUSABE GIRLS",
+          "FLAVIAH MAJURA MAIJO",
+          "F",
+          "7",
+          "I",
+          "4",
+          "HTM - 97'A' BUSI - 81'A' GEO - 91'A' KISW - 76'A' ENGL - 82'A' PHY - 76'A' CHEM - 89'A' BIO - 86'A' BASIC MATH - 92'A' HIST - 61'C'"
+        ],
+        [
+          "S5344-0115",
+          "MUSABE GIRLS",
+          "MARIA ROBERT MAKALA",
+          "F",
+          "7",
+          "I",
+          "5",
+          "HTM - 98'A' BUSI - 70'B' GEO - 84'A' KISW - 75'A' ENGL - 80'A' PHY - 85'A' CHEM - 80'A' BIO - 85'A' BASIC MATH - 86'A'"
+        ],
+        [
+          "S5344-0108",
+          "MUSABE GIRLS",
+          "LINDA KHATIBU THEODOLA",
+          "F",
+          "7",
+          "I",
+          "6",
+          "HTM - 86'A' BUSI - 67'B' GEO - 77'A' KISW - 83'A' ENGL - 78'A' PHY - 80'A' CHEM - 93'A' BIO - 89'A' BASIC MATH - 88'A'"
+        ],
+        [
+          "S5344-0153",
+          "MUSABE GIRLS",
+          "PROMISE ZACHARIA KAHEMA",
+          "F",
+          "7",
+          "I",
+          "7",
+          "HTM - 95'A' BUSI - 77'A' GEO - 94'A' KISW - 66'B' ENGL - 75'A' PHY - 78'A' CHEM - 85'A' BIO - 84'A' BASIC MATH - 93'A' COM - 75'A'"
+        ],
+        [
+          "S5344-0138",
+          "MUSABE GIRLS",
+          "NATHALIA HASSAN BOKI",
+          "F",
+          "7",
+          "I",
+          "8",
+          "HTM - 96'A' BUSI - 67'B' GEO - 82'A' KISW - 73'B' ENGL - 81'A' BIO - 70'B' BASIC MATH - 84'A' HIST - 88'A' B/K - 85.5'A' CHI - 91'A'"
+        ],
+        [
+          "S5344-0033",
+          "MUSABE GIRLS",
+          "CHRISTINA DARIO DAUSON",
+          "F",
+          "7",
+          "I",
+          "9",
+          "HTM - 84'A' BUSI - 74'B' GEO - 87'A' KISW - 76'A' ENGL - 90'A' PHY - 71'B' CHEM - 78'A' BIO - 90'A' BASIC MATH - 80'A'"
+        ],
+        [
+          "S5344-0176",
+          "MUSABE GIRLS",
+          "STELLAH WALTER ATHONY",
+          "F",
+          "7",
+          "I",
+          "10",
+          "HTM - 98'A' BUSI - 88'A' GEO - 87'A' KISW - 76'A' ENGL - 74'B' PHY - 70'B' CHEM - 79'A' BIO - 81'A' BASIC MATH - 77'A'"
+        ]
+      ],
+      "percent_cells": [
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ]
+      ],
+      "raw": [
+        [
+          "C/NO",
+          "SCHOOL NAME",
+          "CANDIDATE FULL NAME",
+          "X E S",
+          "T G G A",
+          "N O IS IV ID",
+          "N O IT IS O P",
+          "DETAILED SUBJECTS"
+        ],
+        [
+          "S5344-0004",
+          "MUSABE GIRLS",
+          "ADETHA AMWESIGA TALEMWA",
+          "F",
+          "7",
+          "I",
+          "1",
+          "HTM - 97'A' BUSI - 80'A' GEO - 91'A' KISW - 85'A' ENGL - 78'A' PHY - 88'A' CHEM - 93'A' BIO - 83'A' BASIC MATH - 92'A' COM - 85'A'"
+        ],
+        [
+          "S5344-0113",
+          "MUSABE GIRLS",
+          "MARIA CHRISTOPHER KALOKOLA",
+          "F",
+          "7",
+          "I",
+          "2",
+          "HTM - 96'A' BUSI - 85'A' GEO - 85'A' KISW - 84'A' ENGL - 83'A' BASIC MATH - 87'A' HIST - 85'A' B/K - 92'A' CHI - 84'A'"
+        ],
+        [
+          "S5343-0191",
+          "MUSABE BOYS",
+          "REGINALD ELINIONGOZE KIMAMBO",
+          "M",
+          "7",
+          "I",
+          "3",
+          "HTM - 84'A' BUSI - 72'B' GEO - 92'A' KISW - 90'A' ENGL - 84'A' PHY - 77'A' CHEM - 91'A' BIO - 92'A' BASIC MATH - 88'A' COM - 81'A'"
+        ],
+        [
+          "S5343-0103",
+          "MUSABE BOYS",
+          "GODBLESS AMANYA MBELWA",
+          "M",
+          "7",
+          "I",
+          "4",
+          "HTM - 84'A' BUSI - 83'A' GEO - 92'A' KISW - 90'A' ENGL - 77'A' PHY - 76'A' CHEM - 87'A' BIO - 82'A' BASIC MATH - 84'A' CHI - 88'A'"
+        ],
+        [
+          "S5343-0152",
+          "MUSABE BOYS",
+          "LIONEL LINUS LYAKURWA",
+          "M",
+          "7",
+          "I",
+          "5",
+          "HTM - 88'A' BUSI - 81'A' GEO - 82'A' KISW - 95'A' ENGL - 67'B' PHY - 75'A' CHEM - 93'A' BIO - 80'A' BASIC MATH - 96'A'"
+        ],
+        [
+          "S5343-0190",
+          "MUSABE BOYS",
+          "RAYMOND RUBEN RAPHAEL",
+          "M",
+          "7",
+          "I",
+          "6",
+          "HTM - 88'A' BUSI - 79'A' GEO - 85'A' KISW - 88'A' ENGL - 80'A' PHY - 78'A' CHEM - 92'A' BIO - 79'A' BASIC MATH - 84'A' COM - 86'A'"
+        ],
+        [
+          "S5714-0033",
+          "NASCO",
+          "REBEKA KENEDY CHIGURU",
+          "F",
+          "7",
+          "I",
+          "7",
+          "HTM - 97'A' BUSI - 90'A' GEO - 90'A' KISW - 98'A' ENGL - 77'A' PHY - 60'C' CHEM - 92'A' BIO - 86'A' BASIC MATH - 77'A' HIST - 69'B'"
+        ],
+        [
+          "S5344-0072",
+          "MUSABE GIRLS",
+          "FLAVIAH MAJURA MAIJO",
+          "F",
+          "7",
+          "I",
+          "8",
+          "HTM - 97'A' BUSI - 81'A' GEO - 91'A' KISW - 76'A' ENGL - 82'A' PHY - 76'A' CHEM - 89'A' BIO - 86'A' BASIC MATH - 92'A' HIST - 61'C'"
+        ],
+        [
+          "S5343-0169",
+          "MUSABE BOYS",
+          "MURTADHAA RAMADHANI NDIHOLEYE",
+          "M",
+          "7",
+          "I",
+          "9",
+          "HTM - 83'A' BUSI - 65'B' GEO - 81'A' KISW - 93'A' ENGL - 75'A' PHY - 80'A' CHEM - 92'A' BIO - 86'A' BASIC MATH - 88'A' COM - 84'A'"
+        ],
+        [
+          "S5343-0225",
+          "MUSABE BOYS",
+          "ZACHARIA RENATUS ZACHARIA",
+          "M",
+          "7",
+          "I",
+          "10",
+          "HTM - 86'A' BUSI - 79'A' GEO - 84'A' KISW - 88'A' ENGL - 71'B' PHY - 71'B' CHEM - 91'A' BIO - 82'A' BASIC MATH - 83'A' COM - 92'A'"
+        ],
+        [
+          "TOP TEN BEST FEMALE STUDENTS FOR PRIVATE SCHOOLS",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        [
+          "C/NO",
+          "SCHOOL NAME",
+          "CANDIDATE FULL NAME",
+          "X E S",
+          "T G G A",
+          "N O IS IV ID",
+          "N O IT IS O P",
+          "DETAILED SUBJECTS"
+        ],
+        [
+          "S5344-0004",
+          "MUSABE GIRLS",
+          "ADETHA AMWESIGA TALEMWA",
+          "F",
+          "7",
+          "I",
+          "1",
+          "HTM - 97'A' BUSI - 80'A' GEO - 91'A' KISW - 85'A' ENGL - 78'A' PHY - 88'A' CHEM - 93'A' BIO - 83'A' BASIC MATH - 92'A' COM - 85'A'"
+        ],
+        [
+          "S5344-0113",
+          "MUSABE GIRLS",
+          "MARIA CHRISTOPHER KALOKOLA",
+          "F",
+          "7",
+          "I",
+          "2",
+          "HTM - 96'A' BUSI - 85'A' GEO - 85'A' KISW - 84'A' ENGL - 83'A' BASIC MATH - 87'A' HIST - 85'A' B/K - 92'A' CHI - 84'A'"
+        ],
+        [
+          "S5714-0033",
+          "NASCO",
+          "REBEKA KENEDY CHIGURU",
+          "F",
+          "7",
+          "I",
+          "3",
+          "HTM - 97'A' BUSI - 90'A' GEO - 90'A' KISW - 98'A' ENGL - 77'A' PHY - 60'C' CHEM - 92'A' BIO - 86'A' BASIC MATH - 77'A' HIST - 69'B'"
+        ],
+        [
+          "S5344-0072",
+          "MUSABE GIRLS",
+          "FLAVIAH MAJURA MAIJO",
+          "F",
+          "7",
+          "I",
+          "4",
+          "HTM - 97'A' BUSI - 81'A' GEO - 91'A' KISW - 76'A' ENGL - 82'A' PHY - 76'A' CHEM - 89'A' BIO - 86'A' BASIC MATH - 92'A' HIST - 61'C'"
+        ],
+        [
+          "S5344-0115",
+          "MUSABE GIRLS",
+          "MARIA ROBERT MAKALA",
+          "F",
+          "7",
+          "I",
+          "5",
+          "HTM - 98'A' BUSI - 70'B' GEO - 84'A' KISW - 75'A' ENGL - 80'A' PHY - 85'A' CHEM - 80'A' BIO - 85'A' BASIC MATH - 86'A'"
+        ],
+        [
+          "S5344-0108",
+          "MUSABE GIRLS",
+          "LINDA KHATIBU THEODOLA",
+          "F",
+          "7",
+          "I",
+          "6",
+          "HTM - 86'A' BUSI - 67'B' GEO - 77'A' KISW - 83'A' ENGL - 78'A' PHY - 80'A' CHEM - 93'A' BIO - 89'A' BASIC MATH - 88'A'"
+        ],
+        [
+          "S5344-0153",
+          "MUSABE GIRLS",
+          "PROMISE ZACHARIA KAHEMA",
+          "F",
+          "7",
+          "I",
+          "7",
+          "HTM - 95'A' BUSI - 77'A' GEO - 94'A' KISW - 66'B' ENGL - 75'A' PHY - 78'A' CHEM - 85'A' BIO - 84'A' BASIC MATH - 93'A' COM - 75'A'"
+        ],
+        [
+          "S5344-0138",
+          "MUSABE GIRLS",
+          "NATHALIA HASSAN BOKI",
+          "F",
+          "7",
+          "I",
+          "8",
+          "HTM - 96'A' BUSI - 67'B' GEO - 82'A' KISW - 73'B' ENGL - 81'A' BIO - 70'B' BASIC MATH - 84'A' HIST - 88'A' B/K - 85.5'A' CHI - 91'A'"
+        ],
+        [
+          "S5344-0033",
+          "MUSABE GIRLS",
+          "CHRISTINA DARIO DAUSON",
+          "F",
+          "7",
+          "I",
+          "9",
+          "HTM - 84'A' BUSI - 74'B' GEO - 87'A' KISW - 76'A' ENGL - 90'A' PHY - 71'B' CHEM - 78'A' BIO - 90'A' BASIC MATH - 80'A'"
+        ],
+        [
+          "S5344-0176",
+          "MUSABE GIRLS",
+          "STELLAH WALTER ATHONY",
+          "F",
+          "7",
+          "I",
+          "10",
+          "HTM - 98'A' BUSI - 88'A' GEO - 87'A' KISW - 76'A' ENGL - 74'B' PHY - 70'B' CHEM - 79'A' BIO - 81'A' BASIC MATH - 77'A'"
+        ],
+        [
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ]
+      ],
+      "kind": "table"
+    },
+    {
+      "caption": "TOP TEN BEST MALE STUDENTS FOR PRIVATE SCHOOLS",
+      "n_cols": 8,
+      "header_rows": [
+        [
+          {
+            "label": "C/NO",
+            "colspan": 1,
+            "rowspan": 1,
+            "col": 0,
+            "row": 0
+          },
+          {
+            "label": "SCHOOL NAME",
+            "colspan": 1,
+            "rowspan": 1,
+            "col": 1,
+            "row": 0
+          },
+          {
+            "label": "CANDIDATE FULL NAME",
+            "colspan": 1,
+            "rowspan": 1,
+            "col": 2,
+            "row": 0
+          },
+          {
+            "label": "X E S",
+            "colspan": 1,
+            "rowspan": 1,
+            "col": 3,
+            "row": 0
+          },
+          {
+            "label": "T G G A",
+            "colspan": 1,
+            "rowspan": 1,
+            "col": 4,
+            "row": 0
+          },
+          {
+            "label": "N O IS IV ID",
+            "colspan": 1,
+            "rowspan": 1,
+            "col": 5,
+            "row": 0
+          },
+          {
+            "label": "N O IT IS O P",
+            "colspan": 1,
+            "rowspan": 1,
+            "col": 6,
+            "row": 0
+          },
+          {
+            "label": "DETAILED SUBJECTS",
+            "colspan": 1,
+            "rowspan": 1,
+            "col": 7,
+            "row": 0
+          }
+        ]
+      ],
+      "body": [
+        [
+          "S5343-0191",
+          "MUSABE BOYS",
+          "REGINALD ELINIONGOZE KIMAMBO",
+          "M",
+          "7",
+          "I",
+          "1",
+          "HTM - 84'A' BUSI - 72'B' GEO - 92'A' KISW - 90'A' ENGL - 84'A' PHY - 77'A' CHEM - 91'A' BIO - 92'A' BASIC MATH - 88'A' COM - 81'A'"
+        ],
+        [
+          "S5343-0103",
+          "MUSABE BOYS",
+          "GODBLESS AMANYA MBELWA",
+          "M",
+          "7",
+          "I",
+          "2",
+          "HTM - 84'A' BUSI - 83'A' GEO - 92'A' KISW - 90'A' ENGL - 77'A' PHY - 76'A' CHEM - 87'A' BIO - 82'A' BASIC MATH - 84'A' CHI - 88'A'"
+        ],
+        [
+          "S5343-0152",
+          "MUSABE BOYS",
+          "LIONEL LINUS LYAKURWA",
+          "M",
+          "7",
+          "I",
+          "3",
+          "HTM - 88'A' BUSI - 81'A' GEO - 82'A' KISW - 95'A' ENGL - 67'B' PHY - 75'A' CHEM - 93'A' BIO - 80'A' BASIC MATH - 96'A'"
+        ],
+        [
+          "S5343-0190",
+          "MUSABE BOYS",
+          "RAYMOND RUBEN RAPHAEL",
+          "M",
+          "7",
+          "I",
+          "4",
+          "HTM - 88'A' BUSI - 79'A' GEO - 85'A' KISW - 88'A' ENGL - 80'A' PHY - 78'A' CHEM - 92'A' BIO - 79'A' BASIC MATH - 84'A' COM - 86'A'"
+        ],
+        [
+          "S5343-0169",
+          "MUSABE BOYS",
+          "MURTADHAA RAMADHANI NDIHOLEYE",
+          "M",
+          "7",
+          "I",
+          "5",
+          "HTM - 83'A' BUSI - 65'B' GEO - 81'A' KISW - 93'A' ENGL - 75'A' PHY - 80'A' CHEM - 92'A' BIO - 86'A' BASIC MATH - 88'A' COM - 84'A'"
+        ],
+        [
+          "S5343-0225",
+          "MUSABE BOYS",
+          "ZACHARIA RENATUS ZACHARIA",
+          "M",
+          "7",
+          "I",
+          "6",
+          "HTM - 86'A' BUSI - 79'A' GEO - 84'A' KISW - 88'A' ENGL - 71'B' PHY - 71'B' CHEM - 91'A' BIO - 82'A' BASIC MATH - 83'A' COM - 92'A'"
+        ],
+        [
+          "S5343-0210",
+          "MUSABE BOYS",
+          "SAYI MJUNI KAIJAGE",
+          "M",
+          "7",
+          "I",
+          "7",
+          "HTM - 87'A' BUSI - 77'A' GEO - 97'A' KISW - 94'A' ENGL - 72'B' PHY - 84'A' CHEM - 87'A' BIO - 80'A' BASIC MATH - 61'C' COM - 86'A'"
+        ],
+        [
+          "S1756-0050",
+          "FAMG",
+          "KAHANYA CHANDIKA GERVAS",
+          "M",
+          "7",
+          "I",
+          "8",
+          "HTM - 96'A' BUSI - 65'B' GEO - 84'A' KISW - 85'A' ENGL - 78'A' PHY - 71'B' CHEM - 94'A' BIO - 85'A' BASIC MATH - 86'A' B/K - 80'A'"
+        ],
+        [
+          "S5343-0189",
+          "MUSABE BOYS",
+          "RASHID ABUBAKARY RASHID",
+          "M",
+          "7",
+          "I",
+          "9",
+          "HTM - 84'A' BUSI - 70'B' GEO - 81'A' KISW - 95'A' ENGL - 75'A' PHY - 62'C' CHEM - 92'A' BIO - 88'A' BASIC MATH - 94'A'"
+        ],
+        [
+          "S1756-0034",
+          "FAMG",
+          "GODGIVEN RAPHAEL CHASAMA",
+          "M",
+          "7",
+          "I",
+          "10",
+          "HTM - 93'A' BUSI - 88'A' GEO - 82'A' KISW - 82'A' ENGL - 80'A' PHY - 61'C' CHEM - 90'A' BIO - 65'B' BASIC MATH - 98'A'"
+        ]
+      ],
+      "percent_cells": [
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ]
+      ],
+      "raw": [
+        [
+          "C/NO",
+          "SCHOOL NAME",
+          "CANDIDATE FULL NAME",
+          "X E S",
+          "T G G A",
+          "N O IS IV ID",
+          "N O IT IS O P",
+          "DETAILED SUBJECTS"
+        ],
+        [
+          "S5343-0191",
+          "MUSABE BOYS",
+          "REGINALD ELINIONGOZE KIMAMBO",
+          "M",
+          "7",
+          "I",
+          "1",
+          "HTM - 84'A' BUSI - 72'B' GEO - 92'A' KISW - 90'A' ENGL - 84'A' PHY - 77'A' CHEM - 91'A' BIO - 92'A' BASIC MATH - 88'A' COM - 81'A'"
+        ],
+        [
+          "S5343-0103",
+          "MUSABE BOYS",
+          "GODBLESS AMANYA MBELWA",
+          "M",
+          "7",
+          "I",
+          "2",
+          "HTM - 84'A' BUSI - 83'A' GEO - 92'A' KISW - 90'A' ENGL - 77'A' PHY - 76'A' CHEM - 87'A' BIO - 82'A' BASIC MATH - 84'A' CHI - 88'A'"
+        ],
+        [
+          "S5343-0152",
+          "MUSABE BOYS",
+          "LIONEL LINUS LYAKURWA",
+          "M",
+          "7",
+          "I",
+          "3",
+          "HTM - 88'A' BUSI - 81'A' GEO - 82'A' KISW - 95'A' ENGL - 67'B' PHY - 75'A' CHEM - 93'A' BIO - 80'A' BASIC MATH - 96'A'"
+        ],
+        [
+          "S5343-0190",
+          "MUSABE BOYS",
+          "RAYMOND RUBEN RAPHAEL",
+          "M",
+          "7",
+          "I",
+          "4",
+          "HTM - 88'A' BUSI - 79'A' GEO - 85'A' KISW - 88'A' ENGL - 80'A' PHY - 78'A' CHEM - 92'A' BIO - 79'A' BASIC MATH - 84'A' COM - 86'A'"
+        ],
+        [
+          "S5343-0169",
+          "MUSABE BOYS",
+          "MURTADHAA RAMADHANI NDIHOLEYE",
+          "M",
+          "7",
+          "I",
+          "5",
+          "HTM - 83'A' BUSI - 65'B' GEO - 81'A' KISW - 93'A' ENGL - 75'A' PHY - 80'A' CHEM - 92'A' BIO - 86'A' BASIC MATH - 88'A' COM - 84'A'"
+        ],
+        [
+          "S5343-0225",
+          "MUSABE BOYS",
+          "ZACHARIA RENATUS ZACHARIA",
+          "M",
+          "7",
+          "I",
+          "6",
+          "HTM - 86'A' BUSI - 79'A' GEO - 84'A' KISW - 88'A' ENGL - 71'B' PHY - 71'B' CHEM - 91'A' BIO - 82'A' BASIC MATH - 83'A' COM - 92'A'"
+        ],
+        [
+          "S5343-0210",
+          "MUSABE BOYS",
+          "SAYI MJUNI KAIJAGE",
+          "M",
+          "7",
+          "I",
+          "7",
+          "HTM - 87'A' BUSI - 77'A' GEO - 97'A' KISW - 94'A' ENGL - 72'B' PHY - 84'A' CHEM - 87'A' BIO - 80'A' BASIC MATH - 61'C' COM - 86'A'"
+        ],
+        [
+          "S1756-0050",
+          "FAMG",
+          "KAHANYA CHANDIKA GERVAS",
+          "M",
+          "7",
+          "I",
+          "8",
+          "HTM - 96'A' BUSI - 65'B' GEO - 84'A' KISW - 85'A' ENGL - 78'A' PHY - 71'B' CHEM - 94'A' BIO - 85'A' BASIC MATH - 86'A' B/K - 80'A'"
+        ],
+        [
+          "S5343-0189",
+          "MUSABE BOYS",
+          "RASHID ABUBAKARY RASHID",
+          "M",
+          "7",
+          "I",
+          "9",
+          "HTM - 84'A' BUSI - 70'B' GEO - 81'A' KISW - 95'A' ENGL - 75'A' PHY - 62'C' CHEM - 92'A' BIO - 88'A' BASIC MATH - 94'A'"
+        ],
+        [
+          "S1756-0034",
+          "FAMG",
+          "GODGIVEN RAPHAEL CHASAMA",
+          "M",
+          "7",
+          "I",
+          "10",
+          "HTM - 93'A' BUSI - 88'A' GEO - 82'A' KISW - 82'A' ENGL - 80'A' PHY - 61'C' CHEM - 90'A' BIO - 65'B' BASIC MATH - 98'A'"
+        ],
+        [
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ]
+      ],
+      "kind": "table"
+    }
+  ],
+  "crosscheck": {
+    "checked": true,
+    "tokens_checked": 2349,
+    "missing_count": 0,
+    "missing_sample": []
+  },
+  "duplicate_of": null
+}

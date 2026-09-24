@@ -442,6 +442,12 @@ def build_table(pl_table, spans: list[Span], fills: list[Fill]) -> tuple[Table, 
         for s in inner:
             used.add(id(s))
         groups = _group_lines(inner)
+        # Conversion is a faithful reproduction of the reference: a cell's
+        # background is ONLY what was actually painted in the PDF. Where the
+        # reference leaves a competency cell white (no fill), the converted cell
+        # stays white too. The deterministic competency-band colour is reserved
+        # for the data-driven template path (see sars.competency / FEAT-004),
+        # never invented here during extraction.
         background = _pick_background(bbox, fills)
         style = _dominant_style(bbox, groups, background)
 
@@ -461,6 +467,18 @@ def build_table(pl_table, spans: list[Span], fills: list[Fill]) -> tuple[Table, 
                 )
             )
 
+        # A single-line cell whose glyphs are drawn wider than its own ruled
+        # column is one the PDF let overhang; mark it so the emitter lets it
+        # wrap inside the box. Rotated labels are excluded (they overhang along
+        # the other axis by design) and multi-line cells already break in the
+        # PDF, so they keep their explicit line breaks.
+        cell_w = max(bbox[2] - bbox[0], 0.0)
+        wrappable = False
+        if len(line_objs) == 1 and style.rotation == 0 and cell_w > 0:
+            widest = max((max(s.x1 for s in grp) - min(s.x0 for s in grp)) for grp in groups)
+            if widest > cell_w + 1.0:
+                wrappable = True
+
         cells.append(
             Cell(
                 row=r0,
@@ -470,6 +488,7 @@ def build_table(pl_table, spans: list[Span], fills: list[Fill]) -> tuple[Table, 
                 lines=line_objs,
                 style=style,
                 full_width=(c0 == 0 and colspan >= n_cols),
+                wrappable=wrappable,
             )
         )
 

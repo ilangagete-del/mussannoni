@@ -1,6 +1,8 @@
 # Extracted from the committed sars.zip by `sars unpack`; 25 MB of duplicate
-# bytes, so it is rebuilt rather than stored.
-data/
+# bytes, so it is rebuilt rather than stored. Anchored with a leading slash so it
+# matches only the top-level directory: an unanchored `data/` also matches
+# `output/data/`, which silently excluded the extracted report JSON.
+/data/
 
 # NOTE: output/ is intentionally committed so the converted HTML+CSS, the A4
 # PDFs and the reference/output comparison images can be reviewed directly on

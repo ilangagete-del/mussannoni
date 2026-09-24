@@ -296,3 +296,153 @@ def test_generated_pdf_matches_reference(edk_pair):
     assert len(ref) == len(out)
     for a, b in zip(ref, out, strict=True):
         assert Counter("".join(a)) == Counter("".join(b))
+
+
+# ---------------------------------------------------------------------------
+# competency band -> colour mapping (reused by the templates in FEAT-004)
+# ---------------------------------------------------------------------------
+
+
+def test_competency_canonical_colours_by_label():
+    from sars import competency
+
+    assert competency.background_for("Grade A (Excellent)") == "#00b050"
+    assert competency.background_for("Grade B (Very Good)") == "#92d050"
+    assert competency.background_for("Grade C (Good)") == "#ffff00"
+    assert competency.background_for("Grade D (Satisfactory)") == "#ffc000"
+    assert competency.background_for("Grade F (Fail)") == "#ff0000"
+
+
+def test_competency_bands_by_gpa_use_documented_cutoffs():
+    from sars import competency
+
+    assert competency.CUTOFFS == (1.5, 2.5, 3.5, 4.5)
+    assert competency.band_for_gpa(1.0).label == "Excellent"
+    assert competency.band_for_gpa(1.5).label == "Excellent"
+    assert competency.band_for_gpa(2.5).label == "Very Good"
+    assert competency.band_for_gpa(3.5).label == "Good"
+    assert competency.band_for_gpa(4.5).label == "Satisfactory"
+    assert competency.band_for_gpa(5.0).label == "Fail"
+
+
+def test_competency_resolves_synonyms_and_grade_letters():
+    from sars import competency
+
+    assert competency.band_for_label("Excellent").grade == "A"
+    assert competency.band_for_label("A").grade == "A"
+    assert competency.band_for_label("Weak").grade == "F"
+    assert competency.band_for_label("Failed").grade == "F"
+
+
+def test_competency_ignores_ordinary_labels_containing_grade_letters():
+    """A SCHOOL NAME with a stray 'A' must not be mistaken for a competency."""
+    from sars import competency
+
+    assert competency.band_for_label("ALLIANCE GIRLS") is None
+    assert competency.band_for_label("NASCO") is None
+    assert competency.band_for_label("BUHONGWA") is None
+
+
+# ---------------------------------------------------------------------------
+# data extraction (FEAT-003): DATA vs CHROME separation
+# ---------------------------------------------------------------------------
+
+
+def _report_for(name: str):
+    from sars.extract import extract_document
+    from sars.extract_data import extract_report
+
+    pair = next(p for p in sources.discover() if p.name == name)
+    return extract_report(extract_document(pair.pdf, pair.html), name)
+
+
+def test_catalogue_covers_every_document():
+    from sars import reports
+
+    names = {p.name for p in sources.discover()}
+    assert set(reports.CATALOGUE) == names
+    for spec in reports.CATALOGUE.values():
+        assert spec.level in ("school", "council", "region")
+        assert spec.report_type and spec.variant
+
+
+def test_school_slip_extracts_students_and_metadata():
+    from sars import schema
+
+    slip = _report_for("S1051-MKOLANI SECONDARY SCHOOL")
+    assert isinstance(slip, schema.SchoolResultSlip)
+    assert slip.centre_no == "S1051"
+    assert "MKOLANI" in slip.school_name.upper()
+    assert slip.meta.region == "Mwanza"
+    # Every candidate across all continuation pages is captured.
+    assert len(slip.students) >= 380
+    first = slip.students[0]
+    assert first.cno == "S1051-0001"
+    assert first.sex == "F"
+    assert first.subjects  # detailed subjects parsed into structured results
+    assert slip.division_summary  # the F/M/T division summary is data
+
+
+def test_schools_rank_extracts_rows_and_total_data():
+    from sars import schema
+
+    report = _report_for("MWANZA CC SCHOOLS RANK")
+    assert isinstance(report, schema.SchoolsRankReport)
+    assert report.meta.council == "Mwanza CC"
+    assert report.rows
+    row = report.rows[0]
+    assert row.school_name
+    assert row.registered.t  # F/M/T triples populated
+    assert row.gpa and row.competency
+    # The TOTAL row's DATA is kept; its label is the key (chrome).
+    assert report.totals
+
+
+def test_best_students_splits_titled_sections():
+    from sars import schema
+
+    report = _report_for("MWANZA CC 10 BEST STUDENTS")
+    assert isinstance(report, schema.BestStudentsReport)
+    assert len(report.sections) >= 2
+    assert all(sec.students for sec in report.sections)
+    assert report.sections[0].students[0].school_name
+
+
+def test_subjects_rank_extracts_grade_breakdown():
+    from sars import schema
+
+    report = _report_for("MWANZA CC SUBJECTS RANK")
+    assert isinstance(report, schema.SubjectsRankReport)
+    assert report.rows
+    row = report.rows[0]
+    assert row.subject_name and row.gpa
+    assert "A" in row.grades and "TOTAL" in row.grades
+
+
+def test_generic_report_captures_unmapped_layouts():
+    from sars import schema
+
+    report = _report_for("Mwanza f2 Mock Mobility 2026")
+    assert isinstance(report, schema.GenericTabularReport)
+    assert report.column_headers
+    assert report.rows and report.rows[0].values
+
+
+def test_every_document_round_trips_through_json():
+    from sars import schema
+
+    for pair in sources.discover():
+        report = _report_for(pair.name)
+        text = schema.to_json(report)
+        restored = schema.from_json(text)
+        assert schema.to_json(restored) == text, pair.name
+
+
+def test_competency_colour_is_not_stored_as_data():
+    """The deterministic competency colour is derived, never stored."""
+    from sars import schema
+
+    report = _report_for("MWANZA CC SCHOOLS RANK")
+    blob = schema.to_json(report).lower()
+    # No hex colour leaks into the extracted data.
+    assert "#00b050" not in blob and "#ff0000" not in blob

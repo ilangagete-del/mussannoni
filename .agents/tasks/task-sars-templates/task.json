@@ -1,0 +1,13 @@
+{
+  "task_id": "task-sars-templates",
+  "task_description": "Fix visual (colour + cell-merge/overflow) fidelity of the SARS report converter, then refactor the data-specific outputs into reusable data-driven templates: separate data from static chrome, extract each report's data into documented per-type JSON schemas, encode the deterministic competency-band background colour, make table structure elastic (wrap long cells), rename templates by level+purpose (with private/overall/government variants), and expose a callable template-maker API that takes data and returns HTML or a rendered PDF. Preserve the existing 100% text-fidelity guarantee throughout.",
+  "status": "completed",
+  "feature_order": [
+    "FEAT-001",
+    "FEAT-002",
+    "FEAT-003",
+    "FEAT-004",
+    "FEAT-005"
+  ],
+  "blocked_reason": null
+}
