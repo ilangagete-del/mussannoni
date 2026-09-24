@@ -215,6 +215,19 @@ rank and competency label. Chrome is only the fixed furniture: the ministry
 masthead, the column headings, and the `TOTAL` / `% PASS` row *labels* — the
 numbers on those rows are still data.
 
+Each template is **fully self-contained**: it owns its own structure and its own
+complete inline `<style>` and reproduces its report type's reference PDF
+faithfully (fonts, sizes, row heights, the per-column fill washes, rotated rank
+labels). There is no shared `DOC_CSS` / `TEMPLATE_CSS` constant funnelling every
+report through one look and no cross-report CSS harmonisation — a template's
+output is a standalone document with no external stylesheet link. Report types
+may duplicate small bits of CSS/structure rather than share a common blob; the
+only rendering *mechanics* reused (a per-document style accumulator, the
+rotate(-90°) span, the word-boundary wrap safeguards) live in
+`sars.templates.styling` and emit into each report's own inline style. The one
+data-derived colour, the competency band, is computed deterministically from the
+label / GPA (`sars.competency`) and is **never stored** in the data.
+
 ## Template-maker API
 
 ```python

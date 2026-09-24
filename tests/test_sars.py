@@ -473,9 +473,7 @@ def test_extracted_data_carries_no_presentation_fields():
     assert not hasattr(schema, "CellStyle")
     banned = {"styles", "pitch", "total_styles", "total_pitch"}
     schema_classes = [
-        getattr(schema, name)
-        for name in dir(schema)
-        if is_dataclass(getattr(schema, name, None))
+        getattr(schema, name) for name in dir(schema) if is_dataclass(getattr(schema, name, None))
     ]
     for cls in schema_classes:
         names = {f.name for f in fields(cls)}
@@ -485,7 +483,82 @@ def test_extracted_data_carries_no_presentation_fields():
     report = _report_for("MWANZA CC SCHOOLS RANK")
     text = schema.to_json(report)
     payload = json.loads(text)
-    for key in ("background", "size_pt", "family", "pitch", "styles", "total_styles",
-                "total_pitch"):
+    for key in (
+        "background",
+        "size_pt",
+        "family",
+        "pitch",
+        "styles",
+        "total_styles",
+        "total_pitch",
+    ):
         assert key not in text, key
     assert set(payload) >= {"meta", "rows", "totals"}
+
+
+# ---------------------------------------------------------------------------
+# templates (FEAT-003): SELF-CONTAINED, FAITHFUL, no shared CSS constant
+# ---------------------------------------------------------------------------
+
+
+def test_template_output_is_self_contained():
+    """Each templated report is a standalone document styled by its OWN inline
+    <style>: no external stylesheet link, no dependency on a shared cross-report
+    CSS blob. Checked for schools_rank and one other family."""
+    from sars import template_maker
+
+    for name, rtype in (
+        ("MWANZA CC SCHOOLS RANK", "schools_rank"),
+        ("MWANZA CC SUBJECTS RANK", "subjects_rank"),
+    ):
+        html = template_maker.render_html(rtype, _report_for(name))
+        assert "<!DOCTYPE html>" in html
+        assert "<style" in html and "</style>" in html
+        # No external stylesheet is ever linked.
+        assert 'rel="stylesheet"' not in html
+        assert "<link" not in html
+        # A4 page geometry is declared in the document's own inline style.
+        assert "@page{size:A4" in html
+
+
+def test_schools_rank_paints_its_own_fill_washes_and_competency_band():
+    """The report type's fixed fill washes and the DERIVED competency-band colour
+    appear in the output, painted by the template (not read from data)."""
+    from sars import template_maker
+
+    html = template_maker.render_html("schools_rank", _report_for("MWANZA CC SCHOOLS RANK"))
+    # This report type's own division / summary / GPA / rank washes.
+    for wash in ("#fabf8f", "#dce6f1", "#ebf1de", "#65ffab", "#d2fce6", "#daeef3"):
+        assert wash in html, wash
+    # The competency band colour is computed deterministically (Grade C -> yellow
+    # is present in this council report), never stored in the data.
+    assert "#ffff00" in html or "#00b050" in html
+
+
+def test_no_shared_css_constant_across_report_types():
+    """Two different report types must NOT share one identical monolithic style
+    block: each owns its own inline styling. There is also no shared
+    DOC_CSS / TEMPLATE_CSS constant funneling every report through one look."""
+    import re
+
+    from sars import template_maker
+    from sars.templates import base
+
+    # The dismantled shared-funnel constants are gone from the template base.
+    assert not hasattr(base, "TEMPLATE_CSS")
+    assert not hasattr(base, "DOC_CSS")
+    assert not hasattr(base, "document_html")
+
+    def style_block(html: str) -> str:
+        m = re.search(r"<style>(.*?)</style>", html, re.DOTALL)
+        return m.group(1) if m else ""
+
+    sr = style_block(
+        template_maker.render_html("schools_rank", _report_for("MWANZA CC SCHOOLS RANK"))
+    )
+    sj = style_block(
+        template_maker.render_html("subjects_rank", _report_for("MWANZA CC SUBJECTS RANK"))
+    )
+    assert sr and sj
+    # The two report types emit different, independent style blocks.
+    assert sr != sj
