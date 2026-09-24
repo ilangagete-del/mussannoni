@@ -1,32 +1,16 @@
-"""Schools-rank / top-schools template - SELF-CONTAINED and FAITHFUL.
+"""Fixed-layout, self-contained schools-rank report.
 
-Serves the ``schools_rank`` and ``top_schools`` report types (council and
-region level). This template OWNS its complete structure and its complete inline
-styling: the grouped-header band (``NUMBER OF CANDIDATES`` / ``DIVISION
-PERFORMANCE``), the ``SUMMARY PERFORMANCE`` block, the per-division-group fill
-washes, the ``GPA PERFORMANCE`` band, the rotated ``C/RANK`` / ``R/RANK``
-columns, and the data-row font size and row height are all reproduced HERE to
-match the reference PDF cell-by-cell. It shares no cross-report CSS constant;
-its ``<style>`` is inlined into its own ``<head>``.
-
-DATA IS DATA: the row data carries no fonts / colours / fills. The washes are
-this report type's fixed chrome painted by the template's own CSS (keyed to the
-column group); the only data-derived colour is the competency band, computed
-deterministically via :mod:`sars.competency`.
-
-Expected data shape: a :class:`~sars.schema.SchoolsRankReport` (see the schema
-docstrings for ``rows`` / ``totals`` / ``summary`` / ``column_headers``).
+This renderer is deliberately independent from every other report family.  Its
+page box, coordinates, table lattice, fonts, fills, spans, and row pitches are
+owned here and reproduce the council/region schools-rank reference layout.
 """
 
 from __future__ import annotations
 
 from ..schema import PerformanceTable, SchoolRankRow, SchoolsRankReport
-from .base import banner_html, competency_background, orientation_for
-from .generic import _header_matrix
-from .styling import Sheet, document, esc, fit_scale, rot
+from .base import banner_lines, competency_background, orientation_for
+from .styling import Sheet, esc, rot
 
-#: Division-performance sub-columns in printed order and which of F/M/T/% each
-#: carries. Percentages sit under ``0``, ``I-III`` and ``I-IV``.
 _DIVISIONS: tuple[tuple[str, tuple[str, ...]], ...] = (
     ("I", ("f", "m", "t")),
     ("II", ("f", "m", "t")),
@@ -37,256 +21,336 @@ _DIVISIONS: tuple[tuple[str, tuple[str, ...]], ...] = (
     ("I-IV", ("f", "m", "t", "%")),
 )
 
-# --------------------------------------------------------------------------- #
-# The report type's own fill washes (fixed chrome, keyed to the column group).
-# Recovered from the reference PDF; painted by CSS classes, never read from data.
-# --------------------------------------------------------------------------- #
-#: F/M/T tints inside a division group.
-_DIV_FMT_BG = "#d2fce6"
-_DIV_T_BG = "#daeef3"
-#: The ``0`` (fail) division group + its % column.
-_ZERO_FMT_BG = "#fde9d9"
-_ZERO_PCT_BG = "#fabf8f"
-#: The I-III group and its % column.
-_I3_PCT_BG = "#65ffab"
-#: SAT % column, GPA column.
-_SAT_PCT_BG = "#dce6f1"
-_GPA_BG = "#dce6f1"
-#: The rank columns.
-_CRANK_BG = "#ebf1de"
-_RRANK_BG = "#fde9d9"
+# Exact recovered reference colours.
+_REGISTERED_BG = "#eeece1"
+_SAT_BG = "#daeef4"
+_SAT_PCT_BG = "#ffffcc"
+_DIV_T_BG = "#daeef4"
+_ZERO_BG = "#fceada"
+_ZERO_HEAD_BG = "#da9694"
+_ZERO_PCT_BG = "#fabe90"
+_I3_BG = "#d3fce6"
+_I3_PCT_BG = "#65ffac"
+_GPA_HEAD_BG = "#d2fce6"
+_SUMMARY_GPA_BG = "#c4d79b"
+_GPA_BG = "#ffffff"
+_CRANK_BG = "#ebf1df"
+_RANK_HEAD_BG = "#fde9d9"
 
-# True recovered point sizes (pre-scale); multiplied by the fit-to-A4 scale so
-# they print at the reference size. Data rows ~3.98pt, group headings a touch
-# larger, the banner title 5.68pt (all Arial, as the reference uses).
-_PT_DATA = 3.98
-_PT_HEAD = 3.98
-_PT_TITLE = 5.68
-_PT_BANNER = 6.63
-#: True row pitch (pt) for a data row; the reference pitch is ~6.6pt.
-_PT_ROW = 6.6
+# Recovered PDF geometry in points.  The source is a 792 x 612 Letter page.
+_MAIN_X = 13.330
+_MAIN_Y = 117.426
+_MAIN_COLS = (
+    12.830, 38.040, 50.780, 36.981, 13.899, 16.570, 19.570, 16.540, 16.560,
+    16.630, 19.590, 16.490, 13.208, 16.605, 13.147, 13.208, 19.605, 13.148,
+    13.207, 19.605, 16.528, 16.568, 16.603, 19.509, 13.200, 16.598, 19.573,
+    16.509, 16.560, 16.600, 19.613, 16.497, 16.560, 16.573, 19.602, 26.152,
+    61.223, 9.838, 15.699,
+)
+_SUMMARY_X = 64.292
+_SUMMARY_Y = 64.853
+_SUMMARY_COLS = (
+    50.780, 36.981, 13.899, 16.570, 19.570, 16.540, 16.560, 16.630, 19.590,
+    16.490, 13.208, 16.605, 13.147, 13.208, 19.605, 13.148, 13.207, 19.605,
+    16.528, 16.568, 16.603, 19.509, 13.200, 16.598, 19.573, 16.509, 16.560,
+    16.600, 19.613, 16.497, 16.560, 16.573, 19.602, 26.152, 61.237,
+)
 
 
 def _style(orientation: str) -> Sheet:
-    """Build THIS report's own complete inline stylesheet."""
-    s = fit_scale(orientation)
-    px = lambda pt: f"{pt * s:.2f}pt"  # noqa: E731 - local shorthand
+    """Return this report's complete, independent print stylesheet."""
+    del orientation  # This family is fixed to the recovered landscape page.
     sheet = Sheet()
     sheet.extend(f"""
-body{{margin:0;color:#000;font-family:Arial, Helvetica, sans-serif}}
-.report{{padding:{px(4)} {px(6)}}}
-.banner{{text-align:center;font-weight:700;font-size:{px(_PT_BANNER)};
-        line-height:1.4}}
-.banner .title{{margin-top:{px(6)};font-size:{px(_PT_BANNER)}}}
-table.sr{{border-collapse:collapse;table-layout:fixed;width:100%;
-        border-spacing:0;margin-top:{px(6)}}}
-table.sr th,table.sr td{{border:0.4pt solid #000;padding:0 0.6pt;
-        text-align:center;vertical-align:middle;overflow:visible;
-        font-size:{px(_PT_DATA)};line-height:{px(_PT_ROW)};
-        white-space:normal;overflow-wrap:normal;word-break:keep-all}}
-table.sr th{{font-weight:700;font-size:{px(_PT_HEAD)}}}
-table.sr td{{font-weight:700}}
-table.sr td.text,table.sr th.text{{text-align:left}}
-table.sr th.nw,table.sr td.nw{{white-space:nowrap}}
-table.sr tr.total th,table.sr tr.total td{{font-weight:700}}
-/* Vertical rank captions: WeasyPrint has no writing-mode, so rotate(). */
+html,body{{margin:0;padding:0;width:792pt;height:612pt;background:#fff}}
+body{{color:#000;font-family:Arial,"Liberation Sans",Helvetica,sans-serif}}
+.report{{position:relative;width:792pt;height:612pt;overflow:hidden}}
+.banner{{position:absolute;left:-6.90pt;top:17.72pt;width:792pt;text-align:center;
+        font-family:Arial,"Liberation Sans",Helvetica,sans-serif;font-weight:700;font-size:6pt;
+        line-height:7.44pt}}
+.banner .title{{margin-top:7.46pt}}
+table.sr{{position:absolute;border-collapse:collapse;table-layout:fixed;
+        border-spacing:0;margin:0;padding:0}}
+table.sr col{{box-sizing:border-box}}
+table.sr th,table.sr td{{box-sizing:border-box;border:0.18pt solid #000;padding:0 0.55pt;
+        text-align:center;vertical-align:middle;overflow:hidden;white-space:nowrap;
+        font-family:Arial,"Liberation Sans",Helvetica,sans-serif;color:#000;line-height:1}}
+table.sr th{{font-size:4.2pt;font-weight:700}}
+table.sr td{{font-size:4.2pt;font-weight:700}}
+table.sr .text{{text-align:left}}
+table.sr .identity{{font-size:4pt;font-weight:400;text-align:left;overflow:visible}}
+table.sr .sno{{font-size:4pt;font-weight:400}}
+table.sr .division-detail{{font-size:4.2pt;font-weight:400}}
+table.sr .rank-value{{font-size:4pt;font-weight:700}}
+table.sr .competency{{font-size:4pt;font-weight:700;text-align:left}}
+table.sr .times{{font-family:"Times New Roman","Liberation Serif",Times,serif}}
 .rot{{display:inline-block;transform:rotate(-90deg);transform-origin:50% 50%;
       white-space:nowrap;line-height:1}}
-th.vcell,td.vcell{{overflow:visible}}
-/* This report type's own fill washes (fixed chrome, keyed to column group). */
-.bg-fmt{{background-color:{_DIV_FMT_BG}}}
-.bg-t{{background-color:{_DIV_T_BG}}}
-.bg-zero{{background-color:{_ZERO_FMT_BG}}}
-.bg-zeropct{{background-color:{_ZERO_PCT_BG}}}
-.bg-i3pct{{background-color:{_I3_PCT_BG}}}
-.bg-satpct{{background-color:{_SAT_PCT_BG}}}
-.bg-gpa{{background-color:{_GPA_BG}}}
-.bg-crank{{background-color:{_CRANK_BG}}}
-.bg-rrank{{background-color:{_RRANK_BG}}}
+.summary{{left:{_SUMMARY_X}pt;top:{_SUMMARY_Y}pt;width:{sum(_SUMMARY_COLS):.3f}pt}}
+.summary tr:nth-child(1){{height:6.449pt}}
+.summary tr:nth-child(2){{height:6.410pt}}
+.summary tr:nth-child(3){{height:6.450pt}}
+.summary tr:nth-child(4){{height:9.549pt}}
+.summary tr:nth-child(5){{height:8.738pt}}
+.summary .leaf{{font-family:"Times New Roman","Liberation Serif",Times,serif;font-size:4.8pt}}
+.summary .value{{font-size:4.8pt}}
+.summary .summary-vertical{{font-size:3.6pt;overflow:visible}}
+.summary .schools-label{{font-size:3.6pt;white-space:normal;overflow:visible;line-height:3.6pt}}
+.summary .summary-competency{{font-family:"Arial Narrow","Nimbus Sans Narrow",Arial,sans-serif;
+        font-size:3.6pt;text-align:left}}
+.main{{left:{_MAIN_X}pt;top:{_MAIN_Y}pt;width:{sum(_MAIN_COLS):.3f}pt}}
+.main thead tr:nth-child(1){{height:9.256pt}}
+.main thead tr:nth-child(2){{height:6.578pt}}
+.main thead tr:nth-child(3){{height:6.625pt}}
+.main tbody tr.data{{height:6.602pt}}
+.main tbody tr.total{{height:9.037pt}}
+.main thead .group{{font-size:4.8pt}}
+.main thead .division-name{{font-family:"Times New Roman","Liberation Serif",Times,serif;font-size:5.4pt}}
+.main thead .leaf{{font-family:"Times New Roman","Liberation Serif",Times,serif;font-size:4.8pt}}
+.main thead .rank-head{{font-size:4.2pt;overflow:visible}}
+.bg-registered{{background:{_REGISTERED_BG}}}
+.bg-sat{{background:{_SAT_BG}}}
+.bg-satpct{{background:{_SAT_PCT_BG}}}
+.bg-candidate-pct{{background:#dde6f1}}
+.bg-yellow{{background:#ffff00}}
+.bg-t{{background:{_DIV_T_BG}}}
+.bg-zero{{background:{_ZERO_BG}}}
+.bg-zero-head{{background:{_ZERO_HEAD_BG}}}
+.bg-zeropct{{background:{_ZERO_PCT_BG}}}
+.bg-i3{{background:{_I3_BG}}}
+.bg-i3pct{{background:{_I3_PCT_BG}}}
+.bg-gpa-head{{background:{_GPA_HEAD_BG}}}
+.bg-summary-gpa{{background:{_SUMMARY_GPA_BG}}}
+.bg-crank{{background:{_CRANK_BG}}}
+.bg-rank-head{{background:{_RANK_HEAD_BG}}}
 """)
     return sheet
 
 
-def _colgroup(level: str) -> str:
-    """Proportional column widths so wide text columns get room and the many
-    numeric columns stay narrow (a long SCHOOL NAME must not overhang into and
-    merge with its neighbour)."""
-    widths: list[float] = [2.0, 5.5, 8.0, 4.0]  # S/NO, ident, school, ownership
-    widths += [2.1, 2.1, 2.1, 2.1, 2.1, 2.1, 2.1]  # registered F/M/T + sat F/M/T/%
-    div_span = sum(len(sub) for _, sub in _DIVISIONS)
-    widths += [1.95] * div_span
-    # gpa, competency, c/rank, r/rank (rank cols narrow: their headers rotate).
-    widths += [3.6, 9.0, 2.2, 2.2]
-    total = sum(widths)
-    cols = "".join(f'<col style="width:{w / total * 100:.4f}%">' for w in widths)
-    return f"<colgroup>{cols}</colgroup>"
+def _colgroup(widths: tuple[float, ...]) -> str:
+    return "<colgroup>" + "".join(f'<col style="width:{w:.3f}pt">' for w in widths) + "</colgroup>"
+
+
+def _td(value: object = "", *, cls: str = "", colspan: int = 1, rowspan: int = 1) -> str:
+    attrs = f' class="{cls}"' if cls else ""
+    if colspan != 1:
+        attrs += f' colspan="{colspan}"'
+    if rowspan != 1:
+        attrs += f' rowspan="{rowspan}"'
+    return f"<td{attrs}>{esc(str(value) if value is not None else '')}</td>"
+
+
+def _th(value: object = "", *, cls: str = "", colspan: int = 1, rowspan: int = 1) -> str:
+    attrs = f' class="{cls}"' if cls else ""
+    if colspan != 1:
+        attrs += f' colspan="{colspan}"'
+    if rowspan != 1:
+        attrs += f' rowspan="{rowspan}"'
+    body = value if isinstance(value, str) and value.startswith('<span class="rot">') else esc(str(value) if value is not None else "")
+    return f"<th{attrs}>{body}</th>"
+
+
+def _raster_tuned_competency(label: str, gpa: str) -> str | None:
+    """Compensate for WeasyPrint's RGB-to-PDF rounding at rasterisation."""
+    color = competency_background(label, gpa)
+    return {
+        "#00b050": "#00b151",
+        "#92d050": "#93d151",
+        "#ffff00": "#ffff00",
+        "#ffc000": "#ffc100",
+    }.get((color or "").lower(), color)
 
 
 def _division_cells(row: SchoolRankRow) -> list[str]:
-    """Emit the DIVISION PERFORMANCE cells from pure data, wash by column."""
     cells: list[str] = []
-    for label, sub in _DIVISIONS:
+    for label, leaves in _DIVISIONS:
         block = row.division.get(label, {}) if isinstance(row.division, dict) else {}
         pct = row.division.get(f"{label}%", "") if isinstance(row.division, dict) else ""
-        for leaf in sub:
+        for leaf in leaves:
             value = pct if leaf == "%" else (block.get(leaf, "") if isinstance(block, dict) else "")
-            cls = _leaf_wash(label, leaf)
-            attr = f' class="{cls}"' if cls else ""
-            cells.append(f"<td{attr}>{esc(value)}</td>")
+            if label in {"I", "II", "III", "IV"}:
+                cls = "bg-t" if leaf == "t" else "division-detail"
+            elif label == "0":
+                cls = "bg-zeropct" if leaf == "%" else "bg-zero"
+            elif label == "I-III":
+                cls = "bg-i3pct" if leaf == "%" else "bg-i3"
+            else:  # I-IV: only the percentage has a fill in the reference.
+                cls = "bg-t" if leaf == "%" else ""
+            cells.append(_td(value, cls=cls))
     return cells
 
 
-def _leaf_wash(label: str, leaf: str) -> str:
-    """The wash class for a division leaf, matching the reference PDF."""
-    if label in ("I", "II", "III", "IV"):
-        return "bg-t" if leaf == "t" else "bg-fmt"
-    if label == "0":
-        return "bg-zeropct" if leaf == "%" else "bg-zero"
-    if label == "I-III":
-        return "bg-i3pct" if leaf == "%" else "bg-fmt"
-    if label == "I-IV":
-        return "bg-t"
-    return ""
-
-
-def _cell(value: str, *, text: bool = False, cls: str = "", colspan: int = 1) -> str:
-    classes = " ".join(c for c in (("text" if text else ""), cls) if c)
-    attrs = f' class="{classes}"' if classes else ""
-    if colspan > 1:
-        attrs += f' colspan="{colspan}"'
-    return f"<td{attrs}>{esc(value)}</td>"
-
-
-def _competency_cell(label: str, gpa: str) -> str:
-    bg = competency_background(label, gpa)
-    style = f' style="background-color:{bg}"' if bg else ""
-    return f'<td class="text"{style}>{esc(label)}</td>'
-
-
 def _data_row(row: SchoolRankRow, level: str) -> str:
-    """One school row rendered from pure data, with the report's own washes."""
     ident = row.ward if level == "council" else row.council
     cells = [
-        _cell(row.sno),
-        _cell(ident, text=True),
-        _cell(row.school_name, text=True),
-        _cell(row.ownership, text=True),
-        _cell(row.registered.f),
-        _cell(row.registered.m),
-        _cell(row.registered.t),
-        _cell(row.sat.f),
-        _cell(row.sat.m),
-        _cell(row.sat.t),
-        _cell(row.sat_pct, cls="bg-satpct"),
+        _td(row.sno, cls="sno"),
+        _td(ident, cls="identity"),
+        _td(row.school_name, cls="identity"),
+        _td(row.ownership, cls="identity"),
+        _td(row.registered.f), _td(row.registered.m), _td(row.registered.t),
+        _td(row.sat.f), _td(row.sat.m), _td(row.sat.t),
+        _td(row.sat_pct, cls="bg-candidate-pct"),
     ]
-    cells += _division_cells(row)
-    cells.append(_cell(row.gpa, cls="bg-gpa"))
-    cells.append(_competency_cell(row.competency, row.gpa))
-    cells.append(_cell(row.council_rank, cls="bg-crank"))
-    cells.append(_cell(row.regional_rank, cls="bg-rrank"))
-    return "<tr>" + "".join(cells) + "</tr>"
+    cells.extend(_division_cells(row))
+    cells.append(_td(row.gpa))
+    bg = _raster_tuned_competency(row.competency, row.gpa)
+    style = f' style="background:{bg}"' if bg else ""
+    cells.append(f'<td class="competency"{style}>{esc(row.competency)}</td>')
+    cells.append(_td(row.council_rank, cls="rank-value bg-crank"))
+    cells.append(_td(row.regional_rank, cls="rank-value"))
+    return '<tr class="data">' + "".join(cells) + "</tr>"
 
 
 def _total_row(values: list[str]) -> str:
-    """A TOTAL summary row rendered from pure data."""
-    cells = "".join(f"<td>{esc(v)}</td>" for v in values)
-    return f'<tr class="total">{cells}</tr>'
+    if len(values) < 39:
+        values = [*values, *([""] * (39 - len(values)))]
+    cells = [_td(values[0], colspan=4)]
+    for col in range(4, 36):
+        cls = ""
+        if col == 10:
+            cls = "bg-candidate-pct"
+        elif col in {13, 16, 19, 22}:
+            cls = "bg-t"
+        elif col == 26:
+            cls = "bg-zeropct"
+        elif col in {27, 28, 29}:
+            cls = "bg-i3"
+        elif col == 30:
+            cls = "bg-i3pct"
+        cells.append(_td(values[col], cls=cls))
+    cells.append(_td(values[36], cls="competency bg-yellow", colspan=2))
+    cells.append(_td(values[38], cls="bg-satpct rank-value"))
+    return '<tr class="total">' + "".join(cells) + "</tr>"
 
 
-def _thead(level: str) -> str:
-    """The three-row grouped header band (chrome), with group washes."""
+def _main_head(level: str) -> str:
     ident = "WARD" if level == "council" else "COUNCIL"
-    div_span = sum(len(sub) for _, sub in _DIVISIONS)
-    r1 = (
-        '<th rowspan="3" class="nw">S/NO.</th>'
-        f'<th rowspan="3" class="text">{ident}</th>'
-        '<th rowspan="3" class="text">SCHOOL NAME</th>'
-        '<th rowspan="3" class="text">OWNERSHIP</th>'
-        '<th colspan="7">NUMBER OF CANDIDATES</th>'
-        f'<th colspan="{div_span}">DIVISION PERFORMANCE</th>'
-        '<th rowspan="3" class="bg-gpa">GPA</th>'
-        '<th rowspan="3">COMPETENCY LEVEL</th>'
-        '<th rowspan="3" class="nw vcell bg-crank">C/RANK</th>'
-        '<th rowspan="3" class="nw vcell bg-rrank">R/RANK</th>'
-    )
-    r2 = ['<th colspan="3">REGISTERED</th>', '<th colspan="4">SAT</th>']
-    for label, sub in _DIVISIONS:
-        r2.append(f'<th colspan="{len(sub)}">{esc(label)}</th>')
-    r3 = [
-        "<th>F</th>",
-        "<th>M</th>",
-        "<th>T</th>",
-        "<th>F</th>",
-        "<th>M</th>",
-        "<th>T</th>",
-        '<th class="bg-satpct">%</th>',
+    r0 = [
+        _th("S/NO.", rowspan=3), _th(ident, cls="text", rowspan=3),
+        _th("SCHOOL NAME", rowspan=3), _th("OWNERSHIP", rowspan=3),
+        _th("NUMBER OF CANDIDATES", cls="candidate-group bg-satpct", colspan=7),
+        _th("DIVISION PERFORMANCE", cls="group", colspan=24),
+        _th("", cls="bg-gpa-head"), _th(""),
+        _th("", cls="bg-rank-head"), _th("", cls="bg-rank-head"),
     ]
-    for label, sub in _DIVISIONS:
-        for leaf in sub:
-            cls = _leaf_wash(label, leaf)
-            attr = f' class="{cls}"' if cls else ""
-            r3.append(f"<th{attr}>{leaf.upper() if leaf != '%' else '%'}</th>")
-    # Rotate the two rank captions.
-    r1 = r1.replace(">C/RANK<", f">{rot('C/RANK')}<").replace(">R/RANK<", f">{rot('R/RANK')}<")
-    return "<thead>" f"<tr>{r1}</tr>" f"<tr>{''.join(r2)}</tr>" f"<tr>{''.join(r3)}</tr>" "</thead>"
+    r1 = [_th("REGISTERED", colspan=3), _th("SAT", colspan=4)]
+    for label, leaves in _DIVISIONS:
+        r1.append(_th(label, cls="division-name", colspan=len(leaves)))
+    r1.extend([
+        _th("GPA", cls="bg-gpa-head"), _th("COMPETENCY LEVEL"),
+        _th(rot("C/RANK"), cls="rank-head bg-rank-head"),
+        _th(rot("R/RANK"), cls="rank-head bg-rank-head"),
+    ])
+    r2 = [
+        _th("F", cls="leaf bg-registered"), _th("M", cls="leaf bg-registered"),
+        _th("T", cls="leaf bg-registered"), _th("F", cls="leaf bg-sat"),
+        _th("M", cls="leaf bg-sat"), _th("T", cls="leaf bg-sat"),
+        _th("%", cls="bg-satpct"),
+    ]
+    for label, leaves in _DIVISIONS:
+        for leaf in leaves:
+            if label in {"I", "II", "III", "IV"}:
+                cls = "leaf bg-i3"
+            elif label == "0":
+                cls = "leaf bg-zero-head"
+            elif label == "I-III":
+                cls = "leaf bg-i3pct"
+            else:
+                cls = "leaf bg-sat" if leaf != "%" else "bg-i3"
+            r2.append(_th(leaf.upper() if leaf != "%" else "%", cls=cls))
+    r2.extend([_th("", cls="bg-gpa-head"), _th(""), _th("", cls="bg-rank-head"), _th("", cls="bg-rank-head")])
+    return "<thead>" + "".join(f"<tr>{''.join(row)}</tr>" for row in (r0, r1, r2)) + "</thead>"
 
 
 def _summary_html(summary: PerformanceTable) -> str:
-    """Render the SUMMARY / GPA PERFORMANCE block above the ranked table."""
-    n_cols = len(summary.column_headers)
-    body: list[str] = []
-    for prow in summary.rows:
-        cells: list[str] = []
-        c = 0
-        while c < n_cols:
-            text = prow.values.get(str(c), "")
-            span = int(prow.values.get(f"{c}.span", "1"))
-            cells.append(_cell(text, colspan=span))
-            c += span
-        body.append("<tr>" + "".join(cells) + "</tr>")
-    # Grouped header band, so NUMBER OF CANDIDATES / DIVISION PERFORMANCE / GPA
-    # PERFORMANCE span their sub-columns like the reference instead of repeating
-    # the full label path in every leaf cell.
-    matrix = _header_matrix(summary.column_headers)
-    head_rows = []
-    for hrow in matrix:
-        cells = "".join(
-            f'<th colspan="{span}">{esc(text)}</th>' if span > 1 else f"<th>{esc(text)}</th>"
-            for text, span in hrow
-        )
-        head_rows.append(f"<tr>{cells}</tr>")
+    """Render the exact five-row 35-column summary lattice."""
+    values = summary.rows[0].values if summary.rows else {}
+    pass_values = summary.rows[1].values if len(summary.rows) > 1 else {}
+
+    r0 = [_th(""), _th(""), _th(""), _th("")]
+    r0.extend([
+        _th("NUMBER OF CANDIDATES", cls="summary-candidate bg-registered", colspan=5),
+        _th("DIVISION PERFORMANCE", colspan=24),
+        _th("GPA PERFORMANCE", cls="bg-summary-gpa", colspan=2),
+    ])
+    r1 = [
+        _th(""), _th("NO. OF SCHOOLS IN COUNCIL", cls="schools-label"),
+        _th("REGISTERED", cls="bg-registered", colspan=3),
+        _th("SAT", cls="bg-sat", colspan=4),
+    ]
+    for label, leaves in _DIVISIONS:
+        r1.append(_th(label, cls="times", colspan=len(leaves)))
+    r1.extend([_th("GPA", cls="bg-rank-head"), _th("COMPENTENCY LEVEL", cls="bg-rank-head")])
+
+    summary_label = summary.column_headers[0].replace("  ", " ") if summary.column_headers else "SUMMARY PERFORMANC E"
+    r2 = [_th(rot(summary_label), cls="summary-vertical"), _th("")]
+    for col in range(2, 33):
+        leaf = summary.column_headers[col].rsplit("/", 1)[-1].strip()
+        if 2 <= col <= 7 or 9 <= col <= 20:
+            cls = "leaf bg-i3"
+        elif col == 8:
+            cls = "bg-sat"
+        elif 21 <= col <= 24:
+            cls = "leaf bg-zero"
+        elif 25 <= col <= 27:
+            cls = "leaf bg-crank"
+        elif col == 28:
+            cls = "bg-i3pct"
+        elif 29 <= col <= 31:
+            cls = "leaf bg-sat"
+        else:
+            cls = "bg-i3"
+        r2.append(_th(leaf, cls=cls))
+    r2.extend([_th("", cls="bg-rank-head"), _th("", cls="bg-rank-head")])
+
+    r3 = [_td("")]
+    for col in range(1, 35):
+        cls = "value"
+        if 21 <= col <= 24:
+            cls += " bg-zeropct"
+        elif 25 <= col <= 28:
+            cls += " bg-sat"  # Reference total band is pale cyan.
+        elif col == 34:
+            cls += " summary-competency bg-yellow"
+        r3.append(_td(values.get(str(col), ""), cls=cls))
+
+    r4: list[str] = []
+    col = 0
+    while col < 35:
+        span = 2 if col == 33 else int(pass_values.get(f"{col}.span", "1"))
+        r4.append(_td(pass_values.get(str(col), ""), cls="value", colspan=span))
+        col += span
+
+    rows = (r0, r1, r2, r3, r4)
+    return '<table class="sr summary">' + _colgroup(_SUMMARY_COLS) + "".join(
+        f"<tr>{''.join(row)}</tr>" for row in rows
+    ) + "</table>"
+
+
+def _document(title: str, sheet: Sheet, body: str) -> str:
+    """Assemble this report's Letter-landscape standalone document."""
     return (
-        '<table class="sr">'
-        f"<thead>{''.join(head_rows)}</thead>"
-        "<tbody>" + "".join(body) + "</tbody>"
-        "</table>"
+        "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n<meta charset=\"utf-8\">\n"
+        f"<title>{esc(title)}</title>\n<style>\n@page{{size:792pt 612pt;margin:0}}\n"
+        f"{sheet.css()}\n</style>\n</head>\n<body>\n{body}\n</body>\n</html>\n"
     )
 
 
 def render_schools_rank(report: SchoolsRankReport) -> str:
-    """Render a :class:`~sars.schema.SchoolsRankReport` to a standalone HTML doc."""
     level = report.meta.level
-    orientation = orientation_for(report.meta)
-    sheet = _style(orientation)
+    sheet = _style(orientation_for(report.meta))
+    lines = banner_lines(report.meta)
+    banner = '<div class="banner">' + "".join(f"<div>{line}</div>" for line in lines)
+    if report.meta.title.strip():
+        banner += f'<div class="title">{esc(report.meta.title)}</div>'
+    banner += "</div>"
 
-    body = '<section class="report">'
-    body += banner_html(report.meta)
-    for summary in report.summary:
-        body += _summary_html(summary)
-    body_rows = [_data_row(row, level) for row in report.rows]
-    for _label, values in report.totals.items():
-        body_rows.append(_total_row(values))
-    body += (
-        '<table class="sr">'
-        f"{_colgroup(level)}"
-        f"{_thead(level)}"
-        "<tbody>" + "".join(body_rows) + "</tbody>"
-        "</table>"
+    summaries = "".join(_summary_html(summary) for summary in report.summary)
+    rows = "".join(_data_row(row, level) for row in report.rows)
+    rows += "".join(_total_row(values) for values in report.totals.values())
+    main = (
+        '<table class="sr main">' + _colgroup(_MAIN_COLS) + _main_head(level)
+        + f"<tbody>{rows}</tbody></table>"
     )
-    body += "</section>"
-    return document(
-        title=report.meta.title or report.meta.name,
-        orientation=orientation,
-        sheet=sheet,
-        body=body,
-    )
+    body = f'<section class="report">{banner}{summaries}{main}</section>'
+    return _document(report.meta.title or report.meta.name, sheet, body)
