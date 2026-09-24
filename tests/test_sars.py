@@ -525,7 +525,9 @@ def test_template_output_is_self_contained():
         # schools_rank is a fixed-layout renderer that emits the reference's own
         # US-Letter page box (792pt x 612pt), not A4.
         ("MWANZA CC SCHOOLS RANK", "schools_rank", "@page{size:792pt 612pt"),
-        ("MWANZA CC SUBJECTS RANK", "subjects_rank", "@page{size:A4"),
+        # subjects_rank is now a fixed-layout renderer too (FEAT-003): it emits
+        # the reference's own US-Letter page box (792pt x 612pt), not A4.
+        ("MWANZA CC SUBJECTS RANK", "subjects_rank", "@page{size:792pt 612pt"),
     ):
         html = template_maker.render_html(rtype, _report_for(name))
         assert "<!DOCTYPE html>" in html
