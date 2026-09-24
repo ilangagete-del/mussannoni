@@ -31,11 +31,15 @@ from ..schema import (
 )
 from .best_students import render_best_students
 from .best_students_subjectwise import render_best_students_subjectwise
+from .district_performance import render_district_performance
 from .generic import render_generic
+from .mock_mobility import render_mock_mobility
 from .school_result_slip import render_school_result_slip
 from .schools_rank import render_schools_rank
+from .subject_school_rank import render_subject_school_rank
 from .subjects_rank import render_subjects_rank
 from .top_schools import render_top_schools
+from .wards_rank import render_wards_rank
 
 #: report_type -> renderer callable ``(schema_instance) -> str`` (full HTML doc).
 RENDERERS: dict[str, Callable[..., str]] = {
@@ -45,10 +49,10 @@ RENDERERS: dict[str, Callable[..., str]] = {
     "best_students": render_best_students,
     "best_students_subjectwise": render_best_students_subjectwise,
     "subjects_rank": render_subjects_rank,
-    "subject_school_rank": render_generic,
-    "wards_rank": render_generic,
-    "district_performance": render_generic,
-    "mock_mobility": render_generic,
+    "subject_school_rank": render_subject_school_rank,
+    "wards_rank": render_wards_rank,
+    "district_performance": render_district_performance,
+    "mock_mobility": render_mock_mobility,
     "generic": render_generic,
 }
 
