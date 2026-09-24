@@ -4,28 +4,32 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "sars-convert"
-version = "0.1.0"
-description = "Convert pdf2html fixed-layout HTML dumps of Tanzanian school-ranking reports into clean semantic HTML+CSS and render them to A4 PDFs with WeasyPrint."
+version = "1.0.0"
+description = "Convert Mwanza SARS result reports from fixed-layout HTML into pure HTML+CSS printed to A4 via WeasyPrint"
 readme = "README.md"
 requires-python = ">=3.11"
 license = { text = "MIT" }
+# Union of both implementations' runtime needs: `sars` reads the reference PDFs
+# with pdfplumber + pymupdf and rasterises comparisons with pillow, while
+# `sars_convert` parses the messy pdf2html source with beautifulsoup4 + lxml.
 dependencies = [
     "beautifulsoup4>=4.12",
     "lxml>=5.0",
     "pdfplumber>=0.11",
+    "pymupdf>=1.24",
     "weasyprint>=66.0",
+    "pillow>=10",
 ]
 
 [project.optional-dependencies]
-dev = [
-    "pytest>=8.0",
-    "ruff>=0.6",
-    "black>=24.0",
-    "pymupdf>=1.24",
-    "pillow>=10.0",
-]
+dev = ["pytest>=8", "ruff>=0.6", "black>=24"]
 
+# Two console scripts because the repository carries two independent
+# implementations of the conversion (see README "Two implementations"):
+#   sars          - the generic, PDF-grid-driven pipeline (src/sars)
+#   sars-convert  - the per-report HTML-geometry pipeline (src/sars_convert)
 [project.scripts]
+sars = "sars.cli:main"
 sars-convert = "sars_convert.__main__:main"
 
 [tool.setuptools.packages.find]
@@ -34,6 +38,9 @@ where = ["src"]
 [tool.ruff]
 line-length = 100
 target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B"]
 
 [tool.black]
 line-length = 100

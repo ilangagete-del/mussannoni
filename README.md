@@ -1,228 +1,224 @@
-# sars-convert
+# mussannoni — SARS report conversion to pure HTML + CSS
 
-Convert the messy `pdf2html` fixed-layout HTML dumps of Tanzanian school-ranking
-reports into **pure, clean, semantic HTML+CSS**, then print them with
-**WeasyPrint** to **A4** (landscape or portrait per document). The original PDFs
-that shipped alongside the HTML are kept only as **ground truth** to confirm, at
-the very end, that the clean output reproduces them exactly.
-
----
-
-## 1. Purpose
-
-The `data/sars/` inputs are automated `pdf2html` conversions of school and
-council/region performance reports (SARS - School Academic Ranking System style
-reports). They *render* like the original PDFs, but the HTML underneath is a mess:
-every glyph run is an absolutely-positioned `<div>` placed by a CSS transform,
-there is no real document structure, and the "tables" carry no visual layout.
-
-The goal of this project is to turn that mess into **pure clean HTML + CSS** that:
-
-1. reproduces the source report **exactly** (same rows, columns, text, order), and
-2. **prints via WeasyPrint** to an **A4** page in the correct orientation
-   (landscape or portrait) for each document.
-
-The report content is **mostly tabular** (rankings of schools, students, wards,
-subjects), but the tables are complex (multi-column, grouped, sometimes multiple
-tables per document). Reconstructing real `<table>` markup from the geometry is
-the core of the work.
-
-The reference PDFs are **ground truth used only to verify fidelity at the end**.
-They must **never be modified**.
+Converts Mwanza **Form Two Mock Assessment** result reports from messy,
+machine-generated HTML into **pure, clean HTML + CSS** that preserves the
+original data positions and all styling, and prints through **WeasyPrint** to
+**A4 landscape or portrait**.
 
 ---
 
-## 2. Source data model (what `pdf2html` produced)
+## The problem
 
-Each source HTML is a "fixed-layout, faithful page reproduction" dump. Per page:
+The repository ships 19 report documents (`data/sars/`), each as a pair:
 
-- A `.page` `<div>` sized in **pixels**. Each document declares its page box via
-  `@page { size: <w>px <h>px }` at **96 DPI / US-Letter**:
-  - `1056px 816px` = **landscape**
-  - `816px 1056px` = **portrait**
-- Text is emitted as many absolutely-positioned runs:
-  `<div class="t cN">...text...</div>`.
-- Position, rotation and scale of each run are carried by a CSS transform:
-  `transform: matrix(a, b, c, d, X, Y)` where **X / Y are pixel offsets** of the
-  run on the page.
-- Font family, size and colour are **pooled** into generated classes (`.c0`,
-  `.c1`, ... referenced as the `cN` in `class="t cN"`) defined in the page
-  `<style>`.
-- Coarse semantic markup **already exists** as
-  `<table role="table" style="display:contents">` - but `display:contents` means
-  it contributes **no visual layout**, and the grouping is coarse (region files
-  wrap everything in a single table; council files use several).
-- A few decorative `.vec` SVG layers may exist; the S1051 sample has no `.bg`/`.im`
-  raster layers.
+| Set | Documents | Content |
+|---|---|---|
+| `council_html/` + `council_pdf/` | 7 | Mwanza City Council reports |
+| `region_html/` + `region_pdf/` | 11 | Mwanza Region reports |
+| `S1051-MKOLANI SECONDARY SCHOOL.{html,pdf}` | 1 | Single-school result slip |
 
-**Key insight for reconstruction:** runs that belong to the same table **row**
-share (approximately) the same **Y** coordinate; **columns** are separated by
-distinct **X** bands. So a clean table can be rebuilt by parsing X/Y out of each
-`matrix(...)`, clustering runs into rows by Y, splitting rows into columns by X
-bands, and emitting a real `<table>`.
+The supplied `.html` files are **`pdf2html` fixed-layout dumps**. Their own
+stylesheet comment says it plainly:
 
----
+> `pdf2html base stylesheet — fixed-layout, faithful page reproduction`
 
-## 3. Conversion approach
+Concretely, each such file:
 
-A generic geometry converter was prototyped and evaluated on the standalone
-`S1051-MKOLANI SECONDARY SCHOOL` sample first (see `DECISION.md`). It proved
-**fragile**: a single page-wide column model shatters the grouped multi-row
-headers (e.g. `NUMBER OF CANDIDATES -> REGISTERED/SAT -> F/M/T/%` and
-`DIVISION PERFORMANCE -> I/II/III/IV/0/I-III/I-IV -> F/M/T/%`) into dozens of
-misaligned empty cells. Per the top priority - **faithfulness of the final
-output** - we do **not** keep polishing a detector.
+- wraps every page in a `.page` absolute-positioning context sized in pixels;
+- emits **every text run** as an absolutely-positioned `<div class="t cN">`
+  whose position is carried in a `transform: matrix(a,b,c,d,X,Y)`;
+- pools font family / size / colour into opaque `.c1 … .cN` classes;
+- paints table rules and cell shading as **`.vec` SVG layers**, not borders.
 
-**The approach we use instead (per-document, precise, PDF-driven):**
+So the files are visually close to the original but structurally meaningless.
+There are **no `<table>`, `<tr>`, or `<th>` elements at all** — rows and columns
+exist only as a coincidence of X/Y coordinates. They do not reflow, cannot be
+restyled, are up to 3.8 MB each, and carry no semantics for accessibility,
+search, or re-use.
 
-1. **Recover the real tabular data and grid from the ORIGINAL reference PDFs**
-   using [`pdfplumber`](https://github.com/jsvine/pdfplumber). The PDFs are the
-   ground truth for *what data is tabular and how it is structured* - pdfplumber
-   returns the full grouped header and every data cell cleanly, where the messy
-   HTML geometry does not. ([Tabula](https://tabula-technology.github.io/) is a
-   documented alternative for stubborn tables.)
-2. **Label the recovered grid with domain sense.** These are school exam results
-   aggregated across a hierarchy - **schools within wards, wards within councils,
-   councils within regions** - so we know which cells are headers, which are
-   ranking columns (`S/NO.`, `POS`, `C/RANK`), which are entity names
-   (`SCHOOL NAME`, `CANDIDATE FULL NAME`, `WARD`), which are grouped numeric
-   spans, which are totals, and which are free text (`DETAILED SUBJECTS`).
-3. **Rebuild each document as pure, clean HTML+CSS** with real semantic
-   `<table>`/`<thead>`/`<tbody>` and grouped spanned `<th>`, **preserving
-   positions and all styles**: the original fonts, sizes, weights and colours,
-   the cell borders and header tints, per-column alignment, the conditional
-   percentage-cell shading (green ~100%, graded orange/red for lower values) and
-   the rotated `C/RANK` header - so the clean output *looks like* the reference
-   PDF, not a generic re-theme.
-4. **Render to A4** (landscape or portrait per document) with WeasyPrint, and
-5. **Verify** each generated PDF against its reference PDF (ground truth).
+## The approach: let the PDF define the structure
 
-This is done **per document / per template**, not by a generic auto-detector.
-The reports are highly regular within a category (S1051 student-list; council
-multi-table reports; region single-table reports), so a small set of
-per-category profiles covers the whole batch precisely. We prove the workflow on
-S1051 first, then a council report, then apply it to the rest.
+Reconstructing tables by clustering X/Y coordinates out of the HTML was
+evaluated and rejected — page-wide column clustering produces misaligned bands,
+merges unrelated tables, and shatters grouped headers into empty cells.
 
-The pipeline stages (see `src/sars_convert/`):
+Instead this project reads structure from the **original PDFs, which are the
+ground truth**, using [`pdfplumber`](https://github.com/jsvine/pdfplumber).
+These PDFs draw every cell as an explicit filled rectangle, so the table grid
+is *stated*, not guessed:
 
-| Stage | Module | Responsibility |
-| --- | --- | --- |
-| Extract | `extract.py` | recover tabular data + grouped-header structure from the **reference PDFs** via pdfplumber, into a domain-labelled IR (`output/ir/*.json`) |
-| Build | `build_html.py` | IR -> pure, clean semantic HTML+CSS, preserving all styles |
-| Render | `render.py` | clean HTML -> A4 PDF via WeasyPrint (orientation per doc) |
-| Verify | `verify.py` | compare generated PDF vs. reference PDF (ground truth) |
+1. **Grid recovery** — `page.find_tables()` returns real cell rectangles. The
+   sorted unique X and Y edges form the logical column/row lattice; every cell's
+   bbox maps onto it to yield exact **`colspan` / `rowspan`**. This is how
+   grouped headers such as `NUMBER OF CANDIDATES → REGISTERED | SAT → F | M | T`
+   are recovered losslessly.
+2. **Content + style per cell** — text, font name, size, weight, text colour and
+   the cell's fill colour are read from the characters and rectangles inside
+   each cell bbox.
+3. **Domain classification** — these are school results aggregated up a known
+   hierarchy (*school → ward → council → region*), which makes the roles of rows
+   and columns unambiguous: banner/title blocks, grouped header bands, ranking
+   and GPA columns, and `TOTAL` / summary rows are labelled accordingly and
+   emitted as `<thead>` / `<th scope>` / `<tfoot>`.
+4. **Pure HTML + CSS emission** — one semantic `<table>` per detected table,
+   with `table-layout: fixed` and a `<colgroup>` whose widths come from the true
+   cell geometry, so **positions are preserved**; and CSS carrying **all original
+   styles** (fonts, sizes, weights, text colours, cell shading, alignment,
+   rotated rank labels, background washes). No `transform: matrix()`, no opaque
+   per-run positional classes — the data is real table markup.
+5. **Print to A4** — each document declares `@page { size: A4 landscape }` or
+   `A4 portrait` to match its source, and is rendered with **WeasyPrint**.
+6. **Verify against the reference PDF** — the generated PDF is compared with the
+   original page-for-page, so the result is provably faithful.
 
-`converter.py` is retained as a tested geometry **assist** (matrix/font/run
-parsing used for cross-checking recovered text), not the production converter.
+The reference PDFs are read-only inputs and are never modified.
 
----
+### How positioning works
 
-## 4. Repo layout
+Each *block* — a semantic table or a heading — is placed at the coordinates it
+occupies in the source PDF. Blocks are positioned rather than stacked in normal
+flow for two concrete reasons found while building this:
+
+- report pages legitimately contain blocks whose bounding boxes overlap, which
+  normal flow cannot represent; and
+- stacking accumulates every sub-point rounding difference until content spills
+  onto an extra page, silently changing the pagination.
+
+This positions **whole blocks only**. Inside a block, the tabular data is
+ordinary semantic table markup laid out by the CSS table algorithm — which is
+the essential difference from the pdf2html source, where *every individual text
+run* was separately positioned with a transform matrix.
+
+### Row heights
+
+Row height is expressed as `line-height` on the cells rather than `height` on
+`<tr>`. WeasyPrint honours an explicit row height by *dropping* rows that no
+longer fit, which silently lost ~17% of the data on the densest report. The
+rule width is deducted from each line box because a CSS border sits outside it,
+which keeps the row pitch identical to the PDF.
+
+## Page orientation
+
+Source page boxes are US-Letter (`792×612 pt` landscape, `612×792 pt` portrait);
+output is normalised to A4 in the matching orientation.
+
+| Orientation | Documents |
+|---|---|
+| **A4 portrait** | `MWANZA CC SCHOOLS RANK SUBJECTWISE`, `Mwanza School Rank-EDK`, `Mwanza School Rank-English Language`, `Mwanza f2 Mock Mobility 2026` |
+| **A4 landscape** | all 15 others |
+
+## Layout
 
 ```
-mussannoni/
-├── README.md                 # this file (authored first)
-├── pyproject.toml            # package + deps (Python >= 3.11)
-├── .python-version           # pyenv local -> 3.11.15
-├── .gitignore                # ignores output/ and caches; keeps data/sars/
-├── sars.zip                  # original bundle (kept for provenance)
-├── data/
-│   └── sars/                 # extracted inputs + ground-truth PDFs (tracked)
-│       ├── council_html/     # 7 source HTML (council reports)
-│       ├── council_pdf/      # 7 reference PDFs (ground truth)
-│       ├── region_html/      # 11 source HTML (region reports)
-│       ├── region_pdf/       # 11 reference PDFs (ground truth)
-│       ├── S1051-MKOLANI SECONDARY SCHOOL.html   # standalone sample
-│       └── S1051-MKOLANI SECONDARY SCHOOL.pdf    # standalone reference
-├── src/
-│   └── sars_convert/
-│       ├── __init__.py
-│       ├── __main__.py       # CLI entry point (extract -> build -> render)
-│       ├── converter.py      # tested geometry assist (matrix/font/run parsing)
-│       ├── extract.py        # pdfplumber data + structure recovery -> IR
-│       ├── build_html.py     # IR -> clean semantic HTML+CSS (style-preserving)
-│       ├── render.py         # clean HTML -> A4 PDF via WeasyPrint
-│       └── verify.py         # generated PDF vs. reference PDF fidelity check
-├── output/
-│   ├── ir/                   # recovered per-document IR JSON (git-ignored)
-│   ├── html/                 # generated clean HTML (git-ignored)
-│   └── pdf/                  # generated PDFs (git-ignored)
-└── tests/
+sars.zip              the supplied archive (source of truth, committed)
+data/sars/            extracted HTML + reference PDFs (ground truth, read-only)
+src/sars/             conversion package
+  unpack.py           extracts sars.zip into data/sars
+  model.py            Document / Page / Table / Cell / Line / Style
+  extract.py          pdfplumber grid + PyMuPDF style recovery
+  classify.py         school-results domain logic (headers, totals, banners)
+  html_out.py         pure HTML + CSS emission
+  render.py           WeasyPrint -> A4 PDF
+  verify.py           fidelity check against reference PDFs
+  cli.py              command line entry point
+tests/                unit tests + end-to-end fidelity test
+tools/probe.py        read-only PDF diagnostic
+tools/compare.py      side-by-side reference/output page images
+output/html/          generated clean HTML + styles.css
+output/pdf/           generated A4 PDFs
+output/compare/       visual comparison images
 ```
 
-`output/` is a **build artifact** directory and is git-ignored. `data/sars/`
-(source HTML + reference PDFs) is intentionally **tracked** - it is the input and
-the ground truth.
-
----
-
-## 5. Setup and usage
-
-Requires **Python 3.11+**. A `pyenv local 3.11.15` is pinned via
-`.python-version`; alternatively create a virtual environment.
+## Setup
 
 ```bash
-cd mussannoni
-
-# (option A) use the pinned pyenv version
-pyenv local 3.11.15
-
-# (option B) create a venv
-python3.11 -m venv .venv && source .venv/bin/activate
-
-# install the package (editable) plus dev tools
-pip install -e '.[dev]'
+python -m venv .venv && . .venv/bin/activate
+pip install -e .
 ```
 
-WeasyPrint (with its native Pango / Cairo / HarfBuzz libraries) is expected to be
-available in the environment; confirm with:
+Requires Python ≥ 3.11. WeasyPrint needs the system Pango / Cairo / HarfBuzz
+libraries, which are present in this environment.
+
+## Usage
 
 ```bash
-python -c "import weasyprint; print(weasyprint.__version__)"
+sars unpack             # extract sars.zip into data/sars (done automatically)
+sars convert            # messy HTML sources -> pure HTML + CSS in output/html
+sars render             # output/html -> A4 PDFs in output/pdf
+sars verify             # compare output/pdf against the reference PDFs
+sars all                # convert + render + verify
 ```
 
-For verification imaging you need to rasterise PDFs. `pymupdf` + `pillow` are
-included in the `dev` extra; `poppler-utils` (`pdftoppm` / `pdfinfo`) is an
-alternative if installed on the system.
+`sars.zip` is the single source of truth in the repository. `data/` and
+`output/` are build artefacts and are not committed; every command extracts the
+archive automatically if needed.
 
-Planned usage once the pipeline is implemented (later features):
+`sars list` prints the document inventory. Target a single document with
+`--only`:
 
 ```bash
-# convert -> clean HTML in output/html/, render -> A4 PDF in output/pdf/
-sars-convert
+sars all --only "MWANZA CC 10 BEST SCHOOLS"
 ```
 
----
+Inspect or eyeball a document:
 
-## 6. Per-document A4 orientation
+```bash
+python tools/probe.py "10 BEST SCHOOLS"      # grid, fonts, fill colours
+python tools/compare.py "10 BEST SCHOOLS" 1  # reference | output, page 1
+pytest -q                                    # unit + fidelity tests
+```
 
-Each document is printed to A4 in the orientation that matches its original page
-box. **Portrait** documents (source `816px 1056px`); everything else is
-**landscape** (source `1056px 816px`).
+## Result
 
-| Document | Orientation |
-| --- | --- |
-| Mwanza f2 Mock Mobility 2026 | **Portrait** |
-| Mwanza School Rank-EDK | **Portrait** |
-| Mwanza School Rank-English Language | **Portrait** |
-| MWANZA CC SCHOOLS RANK SUBJECTWISE | **Portrait** |
-| S1051-MKOLANI SECONDARY SCHOOL | Landscape |
-| MWANZA CC 10 BEST SCHOOLS | Landscape |
-| MWANZA CC 10 BEST STUDENTS | Landscape |
-| MWANZA CC 10 BEST STUDENTS SUBJECTWISE | Landscape |
-| MWANZA CC SCHOOLS RANK | Landscape |
-| MWANZA CC SUBJECTS RANK | Landscape |
-| MWANZA CC Wards Rank | Landscape |
-| Mwanza Best Students-Overall | Landscape |
-| Mwanza Best students-Subjectwise | Landscape |
-| Mwanza f2 District Performance | Landscape |
-| Mwanza Overall Subjects Performance | Landscape |
-| Mwanza Schools Rank For Governments | Landscape |
-| Mwanza Schools Rank For Governments (1) | Landscape |
-| Mwanza schools rank Overall | Landscape |
-| Mwanza Top 10 Schools | Landscape |
+All 19 documents reproduce their reference PDF exactly:
 
-**Rule of thumb:** exactly four documents are portrait
-(*Mwanza f2 Mock Mobility 2026*, *Mwanza School Rank-EDK*,
-*Mwanza School Rank-English Language*, *MWANZA CC SCHOOLS RANK SUBJECTWISE*); all
-other documents are landscape.
+```
+summary  19/19 documents pass; mean text similarity 100.00%
+```
+
+For every document `sars verify` confirms:
+
+- the same **page count** as the reference;
+- pages that really are **A4** in the expected orientation;
+- **100 % text similarity** — a per-page multiset comparison of every token;
+- `glyphs=identical` — a per-page character-multiset check proving no glyph was
+  lost or invented.
+
+Fidelity is measured on content per page rather than on reading order, because a
+cell means the same thing wherever the PDF's text operators happen to emit it,
+whereas a missing or duplicated value is a real defect.
+
+The clean output is also far smaller than the fixed-layout source: **18.1 MiB of
+pdf2html dumps become 4.6 MiB of HTML + one 1 KB stylesheet (26 %)**, while
+gaining semantic tables, real headers, and restylable CSS.
+
+## Two implementations
+
+The repository carries **two independent implementations** of the conversion,
+built in parallel from the same brief. Both are installed by
+`pip install -e .`, each with its own console script.
+
+| | `sars` (`src/sars/`) | `sars-convert` (`src/sars_convert/`) |
+|---|---|---|
+| Console script | `sars` | `sars-convert` |
+| Reads structure from | the **reference PDFs** — `pdfplumber` returns the cell rectangles the PDF itself draws | the **messy pdf2html HTML** — parses `transform:matrix()` runs, then clusters rows/columns |
+| Per-report code | none; one generic path serves all 19 documents | a precise builder per report layout |
+| Styling | recovered from the PDF (fonts, sizes, weights, text colour, cell fills) | authored per report family, with value-based shading on percentage cells |
+| Documents covered | all 19, verified at 100 % text similarity | S1051 + region single-table layout, council layout in progress |
+
+`sars` is the line this project continues on: reading the grid from the PDFs
+makes it general, and recovering the fills from the PDF means the output's
+colours are the report's real colours rather than a re-theme.
+
+`src/sars_convert/` is kept because its analysis is worth preserving.
+[`DECISION.md`](DECISION.md) records, with reproduced failure modes, *why*
+clustering X/Y coordinates out of the pdf2html HTML was evaluated and rejected —
+the evidence behind the "let the PDF define the structure" choice described
+above. Its `converter.py` geometry helpers and its test suite document those
+failure modes directly.
+
+## Note on duplicate input
+
+`Mwanza Schools Rank For Governments.html` and
+`Mwanza Schools Rank For Governments (1).html` are byte-identical copies of the
+same report; both are converted so the output set mirrors the input set.
