@@ -20,7 +20,7 @@ Expected data shape: a :class:`~sars.schema.GenericTabularReport` with
 from __future__ import annotations
 
 from ..schema import GenericTabularReport, TabularSection
-from .base import banner_html, competency_cell, document_html, esc
+from .base import banner_html, competency_cell, document_html, esc, header_cell
 
 _COMPETENCY_KEYS = ("COMPETENCY LEVEL", "COMPENTENCY LEVEL", "COMPETENCY")
 
@@ -68,10 +68,7 @@ def _thead(paths: list[str]) -> str:
     rows = _header_matrix(paths)
     out: list[str] = []
     for row in rows:
-        cells = "".join(
-            f'<th colspan="{span}">{esc(text)}</th>' if span > 1 else f"<th>{esc(text)}</th>"
-            for text, span in row
-        )
+        cells = "".join(header_cell(text, colspan=span) for text, span in row)
         out.append(f"<tr>{cells}</tr>")
     return "<thead>" + "".join(out) + "</thead>"
 

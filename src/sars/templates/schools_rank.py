@@ -60,7 +60,7 @@ def _thead(level: str) -> str:
     #        block + competency + rank columns.
     div_span = sum(len(sub) for _, sub in _DIVISIONS)
     r1 = (
-        '<th rowspan="3">S/NO.</th>'
+        '<th rowspan="3" class="nw">S/NO.</th>'
         f'<th rowspan="3" class="text">{ident}</th>'
         '<th rowspan="3" class="text">SCHOOL NAME</th>'
         '<th rowspan="3" class="text">OWNERSHIP</th>'
@@ -68,8 +68,8 @@ def _thead(level: str) -> str:
         f'<th colspan="{div_span}">DIVISION PERFORMANCE</th>'
         '<th rowspan="3">GPA</th>'
         '<th rowspan="3">COMPETENCY LEVEL</th>'
-        '<th rowspan="3">C/RANK</th>'
-        '<th rowspan="3">R/RANK</th>'
+        '<th rowspan="3" class="nw">C/RANK</th>'
+        '<th rowspan="3" class="nw">R/RANK</th>'
     )
     # Row 2: REGISTERED / SAT sub-groups + one heading per division group.
     r2 = ['<th colspan="3">REGISTERED</th>', '<th colspan="4">SAT</th>']

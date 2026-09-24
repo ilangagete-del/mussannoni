@@ -16,7 +16,7 @@ Expected data shape: a :class:`~sars.schema.SubjectsRankReport` with
 from __future__ import annotations
 
 from ..schema import SubjectsRankReport
-from .base import banner_html, competency_cell, document_html, esc
+from .base import banner_html, competency_cell, document_html, esc, header_cell
 
 #: Grade / summary columns in printed order.
 _GRADE_COLS = ("A", "B", "C", "D", "F", "TOTAL", "A-C", "%A-C", "A-D", "%A-D")
@@ -39,12 +39,12 @@ def caption(labels: list[str], canonical: str, *aliases: str) -> str:
 
 
 def _thead(labels: list[str]) -> str:
-    head = ["<th>S/NO.</th>", '<th class="text">SUBJECT NAME</th>']
-    head += [f"<th>{esc(g)}</th>" for g in _GRADE_COLS]
+    head = [header_cell("S/NO."), header_cell("SUBJECT NAME", text=True)]
+    head += [header_cell(g) for g in _GRADE_COLS]
     head += [
-        "<th>GPA</th>",
-        f'<th>{esc(caption(labels, "COMPETENCY LEVEL", "COMPENTENCY LEVEL"))}</th>',
-        f'<th>{esc(caption(labels, "RANK", "R/RANK", "C/RANK"))}</th>',
+        header_cell("GPA"),
+        header_cell(caption(labels, "COMPETENCY LEVEL", "COMPENTENCY LEVEL")),
+        header_cell(caption(labels, "RANK", "R/RANK", "C/RANK")),
     ]
     return f"<thead><tr>{''.join(head)}</tr></thead>"
 

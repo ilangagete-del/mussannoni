@@ -320,7 +320,21 @@ no value is lost:
 ```bash
 python tools/template_audit.py            # per-document content completeness
 python tools/template_missing.py "<name>" # which tokens differ, and why
+python tools/compare.py --template        # reference | templated output, side by side
 ```
+
+## Every document has output
+
+All 19 documents are generated on **both** paths, and all of it is committed so
+it can be reviewed on GitHub without running anything:
+
+| Directory | What it holds | Rebuild with |
+|---|---|---|
+| `output/data/` | each report's extracted **data** as JSON (19) | `sars data` |
+| `output/template_html/` | HTML rebuilt **from that data** (19) | `sars template` |
+| `output/template_pdf/` | those templates printed to A4 (19) | `sars template` |
+| `output/html/`, `output/pdf/` | the conversion path's output (19 each) | `sars all` |
+| `output/compare/` | `<name>.jpg` reference vs converted, and `TEMPLATE <name>.jpg` reference vs templated (19 each) | `tools/compare.py [--template]` |
 
 `template_audit.py` reports `lost_kinds` — values present in the reference and
 absent from the templated output. Current state across the 19 documents:

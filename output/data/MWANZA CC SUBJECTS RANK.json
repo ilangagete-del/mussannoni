@@ -1,0 +1,507 @@
+{
+  "meta": {
+    "name": "MWANZA CC SUBJECTS RANK",
+    "report_type": "subjects_rank",
+    "level": "council",
+    "variant": "overall",
+    "region": "Mwanza",
+    "council": "Mwanza CC",
+    "exam_name": "REGIONAL FORM TWO MOCK ASSESSMENT RESULTS, JULY 2026",
+    "title": "MWANZA CC ALL SUBJECTS PERFOMANCE"
+  },
+  "rows": [
+    {
+      "sno": "01",
+      "subject_name": "HTM",
+      "grades": {
+        "A": "4142",
+        "B": "2703",
+        "C": "3912",
+        "D": "1130",
+        "F": "305",
+        "TOTAL": "12192",
+        "A-C": "10757",
+        "%A-C": "89.04",
+        "A-D": "11887",
+        "%A-D": "97.14"
+      },
+      "gpa": "2.1100",
+      "competency": "Grade B (Very Good)",
+      "rank": "1"
+    },
+    {
+      "sno": "02",
+      "subject_name": "ARABIC LANGUAGE",
+      "grades": {
+        "A": "8",
+        "B": "10",
+        "C": "10",
+        "D": "1",
+        "F": "0",
+        "TOTAL": "29",
+        "A-C": "28",
+        "%A-C": "96.55",
+        "A-D": "29",
+        "%A-D": "100"
+      },
+      "gpa": "2.1379",
+      "competency": "Grade B (Very Good)",
+      "rank": "2"
+    },
+    {
+      "sno": "03",
+      "subject_name": "SPORT STUDIES",
+      "grades": {
+        "A": "25",
+        "B": "34",
+        "C": "39",
+        "D": "1",
+        "F": "0",
+        "TOTAL": "99",
+        "A-C": "98",
+        "%A-C": "99.12",
+        "A-D": "99",
+        "%A-D": "100"
+      },
+      "gpa": "2.3877",
+      "competency": "Grade B (Very Good)",
+      "rank": "3"
+    },
+    {
+      "sno": "04",
+      "subject_name": "ELIMU YA DINI YA KIISLAMU",
+      "grades": {
+        "A": "117",
+        "B": "26",
+        "C": "117",
+        "D": "108",
+        "F": "71",
+        "TOTAL": "439",
+        "A-C": "260",
+        "%A-C": "69.22",
+        "A-D": "368",
+        "%A-D": "89.38"
+      },
+      "gpa": "2.5220",
+      "competency": "Grade B (Very Good)",
+      "rank": "4"
+    },
+    {
+      "sno": "05",
+      "subject_name": "KISWAHILI",
+      "grades": {
+        "A": "939",
+        "B": "1651",
+        "C": "6077",
+        "D": "2830",
+        "F": "659",
+        "TOTAL": "12156",
+        "A-C": "8667",
+        "%A-C": "78.71",
+        "A-D": "11497",
+        "%A-D": "96"
+      },
+      "gpa": "2.8045",
+      "competency": "Grade C (Good)",
+      "rank": "5"
+    },
+    {
+      "sno": "06",
+      "subject_name": "BIBLE KNOWLEDGE",
+      "grades": {
+        "A": "69",
+        "B": "70",
+        "C": "110",
+        "D": "49",
+        "F": "219",
+        "TOTAL": "517",
+        "A-C": "249",
+        "%A-C": "72.99",
+        "A-D": "298",
+        "%A-D": "84.1"
+      },
+      "gpa": "2.8673",
+      "competency": "Grade C (Good)",
+      "rank": "6"
+    },
+    {
+      "sno": "07",
+      "subject_name": "COMPUTER SCIENCE",
+      "grades": {
+        "A": "98",
+        "B": "81",
+        "C": "166",
+        "D": "54",
+        "F": "153",
+        "TOTAL": "552",
+        "A-C": "345",
+        "%A-C": "62.08",
+        "A-D": "399",
+        "%A-D": "75.4"
+      },
+      "gpa": "3.0547",
+      "competency": "Grade C (Good)",
+      "rank": "7"
+    },
+    {
+      "sno": "08",
+      "subject_name": "FOOD AND NUTRITION",
+      "grades": {
+        "A": "15",
+        "B": "17",
+        "C": "29",
+        "D": "26",
+        "F": "56",
+        "TOTAL": "143",
+        "A-C": "61",
+        "%A-C": "59.53",
+        "A-D": "87",
+        "%A-D": "78.29"
+      },
+      "gpa": "3.0972",
+      "competency": "Grade C (Good)",
+      "rank": "8"
+    },
+    {
+      "sno": "09",
+      "subject_name": "CHINES LANGUAGE",
+      "grades": {
+        "A": "41",
+        "B": "19",
+        "C": "16",
+        "D": "15",
+        "F": "213",
+        "TOTAL": "304",
+        "A-C": "76",
+        "%A-C": "41.03",
+        "A-D": "91",
+        "%A-D": "53.53"
+      },
+      "gpa": "3.4844",
+      "competency": "Grade C (Good)",
+      "rank": "9"
+    },
+    {
+      "sno": "10",
+      "subject_name": "CHEMISTRY",
+      "grades": {
+        "A": "380",
+        "B": "444",
+        "C": "1350",
+        "D": "1442",
+        "F": "2711",
+        "TOTAL": "6327",
+        "A-C": "2174",
+        "%A-C": "43.65",
+        "A-D": "3616",
+        "%A-D": "68.25"
+      },
+      "gpa": "3.6371",
+      "competency": "Grade D (Satisfactory)",
+      "rank": "10"
+    },
+    {
+      "sno": "11",
+      "subject_name": "ENGLISH LANGUAGE",
+      "grades": {
+        "A": "369",
+        "B": "916",
+        "C": "2500",
+        "D": "2925",
+        "F": "5482",
+        "TOTAL": "12192",
+        "A-C": "3785",
+        "%A-C": "45.8",
+        "A-D": "6710",
+        "%A-D": "67.75"
+      },
+      "gpa": "3.6448",
+      "competency": "Grade D (Satisfactory)",
+      "rank": "11"
+    },
+    {
+      "sno": "12",
+      "subject_name": "FRENCH LANGUAGE",
+      "grades": {
+        "A": "4",
+        "B": "8",
+        "C": "72",
+        "D": "107",
+        "F": "125",
+        "TOTAL": "316",
+        "A-C": "84",
+        "%A-C": "42.53",
+        "A-D": "191",
+        "%A-D": "78.42"
+      },
+      "gpa": "3.6727",
+      "competency": "Grade D (Satisfactory)",
+      "rank": "12"
+    },
+    {
+      "sno": "13",
+      "subject_name": "B/KEEPING",
+      "grades": {
+        "A": "30",
+        "B": "37",
+        "C": "80",
+        "D": "135",
+        "F": "394",
+        "TOTAL": "676",
+        "A-C": "147",
+        "%A-C": "35.26",
+        "A-D": "282",
+        "%A-D": "58.12"
+      },
+      "gpa": "3.8842",
+      "competency": "Grade D (Satisfactory)",
+      "rank": "13"
+    },
+    {
+      "sno": "14",
+      "subject_name": "BUSINESS STUDIES",
+      "grades": {
+        "A": "271",
+        "B": "489",
+        "C": "1549",
+        "D": "2083",
+        "F": "7782",
+        "TOTAL": "12174",
+        "A-C": "2309",
+        "%A-C": "31.77",
+        "A-D": "4392",
+        "%A-D": "49.28"
+      },
+      "gpa": "4.0197",
+      "competency": "Grade D (Satisfactory)",
+      "rank": "14"
+    },
+    {
+      "sno": "15",
+      "subject_name": "HISTORY",
+      "grades": {
+        "A": "96",
+        "B": "133",
+        "C": "799",
+        "D": "1691",
+        "F": "4429",
+        "TOTAL": "7148",
+        "A-C": "1028",
+        "%A-C": "27.86",
+        "A-D": "2719",
+        "%A-D": "52.2"
+      },
+      "gpa": "4.1042",
+      "competency": "Grade D (Satisfactory)",
+      "rank": "15"
+    },
+    {
+      "sno": "16",
+      "subject_name": "GEOGRAPHY",
+      "grades": {
+        "A": "283",
+        "B": "390",
+        "C": "1120",
+        "D": "1674",
+        "F": "8696",
+        "TOTAL": "12163",
+        "A-C": "1793",
+        "%A-C": "26.83",
+        "A-D": "3467",
+        "%A-D": "43.55"
+      },
+      "gpa": "4.1520",
+      "competency": "Grade D (Satisfactory)",
+      "rank": "16"
+    },
+    {
+      "sno": "17",
+      "subject_name": "PHYSICS",
+      "grades": {
+        "A": "63",
+        "B": "160",
+        "C": "736",
+        "D": "1131",
+        "F": "3296",
+        "TOTAL": "5386",
+        "A-C": "959",
+        "%A-C": "20.67",
+        "A-D": "2090",
+        "%A-D": "45.46"
+      },
+      "gpa": "4.2560",
+      "competency": "Grade D (Satisfactory)",
+      "rank": "17"
+    },
+    {
+      "sno": "18",
+      "subject_name": "COMPUTER APPLICATION",
+      "grades": {
+        "A": "0",
+        "B": "0",
+        "C": "4",
+        "D": "12",
+        "F": "14",
+        "TOTAL": "30",
+        "A-C": "4",
+        "%A-C": "13.33",
+        "A-D": "16",
+        "%A-D": "53.33"
+      },
+      "gpa": "4.3333",
+      "competency": "Grade D (Satisfactory)",
+      "rank": "18"
+    },
+    {
+      "sno": "19",
+      "subject_name": "BIOLOGY",
+      "grades": {
+        "A": "225",
+        "B": "220",
+        "C": "666",
+        "D": "935",
+        "F": "8778",
+        "TOTAL": "10824",
+        "A-C": "1111",
+        "%A-C": "19.82",
+        "A-D": "2046",
+        "%A-D": "33.6"
+      },
+      "gpa": "4.3486",
+      "competency": "Grade D (Satisfactory)",
+      "rank": "19"
+    },
+    {
+      "sno": "20",
+      "subject_name": "TOURISM",
+      "grades": {
+        "A": "0",
+        "B": "0",
+        "C": "3",
+        "D": "9",
+        "F": "17",
+        "TOTAL": "29",
+        "A-C": "3",
+        "%A-C": "10.34",
+        "A-D": "12",
+        "%A-D": "41.38"
+      },
+      "gpa": "4.4828",
+      "competency": "Grade D (Satisfactory)",
+      "rank": "20"
+    },
+    {
+      "sno": "21",
+      "subject_name": "BASIC MATHEMATICS",
+      "grades": {
+        "A": "192",
+        "B": "196",
+        "C": "705",
+        "D": "1060",
+        "F": "10040",
+        "TOTAL": "12193",
+        "A-C": "1093",
+        "%A-C": "14.93",
+        "A-D": "2153",
+        "%A-D": "27.8"
+      },
+      "gpa": "4.4876",
+      "competency": "Grade D (Satisfactory)",
+      "rank": "21"
+    },
+    {
+      "sno": "22",
+      "subject_name": "AGRICULTURE",
+      "grades": {
+        "A": "0",
+        "B": "0",
+        "C": "1",
+        "D": "7",
+        "F": "11",
+        "TOTAL": "19",
+        "A-C": "1",
+        "%A-C": "5.26",
+        "A-D": "8",
+        "%A-D": "42.11"
+      },
+      "gpa": "4.5263",
+      "competency": "Grade D (Satisfactory)",
+      "rank": "22"
+    },
+    {
+      "sno": "23",
+      "subject_name": "LIFE SKILLS",
+      "grades": {
+        "A": "0",
+        "B": "0",
+        "C": "0",
+        "D": "0",
+        "F": "30",
+        "TOTAL": "30",
+        "A-C": "0",
+        "%A-C": "0",
+        "A-D": "0",
+        "%A-D": "0"
+      },
+      "gpa": "5.0000",
+      "competency": "Grade F (Fail)",
+      "rank": "23"
+    },
+    {
+      "sno": "OVERALL SUBJECTS  COUNCIL GPA",
+      "subject_name": "",
+      "grades": {
+        "A": "3.6093",
+        "B": "",
+        "C": "",
+        "D": "",
+        "F": "",
+        "TOTAL": "",
+        "A-C": "",
+        "%A-C": "",
+        "A-D": "",
+        "%A-D": ""
+      },
+      "gpa": "",
+      "competency": "",
+      "rank": ""
+    },
+    {
+      "sno": "COMPETENCY LEVEL",
+      "subject_name": "",
+      "grades": {
+        "A": "Grade D (Satisfactory)",
+        "B": "",
+        "C": "",
+        "D": "",
+        "F": "",
+        "TOTAL": "",
+        "A-C": "",
+        "%A-C": "",
+        "A-D": "",
+        "%A-D": ""
+      },
+      "gpa": "",
+      "competency": "",
+      "rank": ""
+    }
+  ],
+  "totals": {},
+  "column_headers": [
+    "S/NO.",
+    "SUBJECT NAME",
+    "A",
+    "B",
+    "C",
+    "D",
+    "F",
+    "TOTAL",
+    "A-C",
+    "%A-C",
+    "A-D",
+    "%A-D",
+    "GPA",
+    "COMPENTENCY LEVEL",
+    "RANK"
+  ]
+}

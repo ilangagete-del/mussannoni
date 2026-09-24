@@ -38,12 +38,13 @@ body{font-family:Arial, Helvetica, sans-serif;color:#000;margin:0}
 .banner .title{margin-top:6pt}
 table.tmpl{border-collapse:collapse;table-layout:fixed;width:100%;
            border-spacing:0;margin-top:6pt;font-size:5.4pt;line-height:1.05}
-/* Dense reports (schools rank, top schools, subjects rank, the wide pivots)
-   pack many rows onto one page just as the reference does, so the whole report
-   stays on the reference's page count and every token lands on the right page.
-   A compact document dials the table font and padding down to fit. */
-.report.compact table.tmpl{font-size:3.6pt;line-height:1.0;margin-top:4pt}
-.report.compact table.tmpl th,.report.compact table.tmpl td{padding:0 0.6pt}
+/* Dense reports (schools rank, top schools, subjects rank, the wide pivots) pack
+   many rows onto one page just as the reference does. The font is sized to fill
+   the page rather than to the smallest that fits: too small and the table hangs
+   in the top third of the sheet with a band of white beneath it, which is what
+   the reference never does. */
+.report.compact table.tmpl{font-size:4.9pt;line-height:1.12;margin-top:4pt}
+.report.compact table.tmpl th,.report.compact table.tmpl td{padding:0.2pt 0.7pt}
 /* Elastic cells: wrap at word boundaries so a long multi-word value (a school
    name, a COMPETENCY LEVEL label) flows onto extra lines inside its ruled box
    and the row grows to fit, but a single long word is never broken mid-token
@@ -54,6 +55,12 @@ table.tmpl th,table.tmpl td{border:0.4pt solid #000;padding:0.4pt 1pt;
            text-align:center;vertical-align:middle;overflow:visible;
            white-space:normal;overflow-wrap:normal;word-break:keep-all}
 table.tmpl th{font-weight:700}
+/* A caption that is a single token ("C/RANK", "S/NO.", "%A-C") must never break
+   inside itself: a line break at the slash turns one token into two and reads as
+   lost text. Such a caption gains nothing from wrapping anyway, so it is held on
+   one line and allowed to overhang. Multi-word captions ("COMPETENCY LEVEL")
+   still wrap at their spaces. */
+table.tmpl th.nw{white-space:nowrap}
 table.tmpl td.text,table.tmpl th.text{text-align:left}
 table.tmpl tr.total th,table.tmpl tr.total td{font-weight:700}
 """
@@ -142,7 +149,19 @@ def competency_cell(label: str, gpa: str = "", *, tag: str = "td") -> str:
 
 
 def cell(value: str, *, tag: str = "td", text: bool = False, colspan: int = 1) -> str:
-    """A plain data / header cell."""
-    cls = ' class="text"' if text else ""
+    """A plain data / header cell.
+
+    A single-token header caption is marked ``nw`` so it cannot break inside
+    itself (see the ``th.nw`` rule in :data:`TEMPLATE_CSS`).
+    """
+    classes = ["text"] if text else []
+    if tag == "th" and value and not str(value).strip().count(" "):
+        classes.append("nw")
+    cls = f' class="{" ".join(classes)}"' if classes else ""
     span = f' colspan="{colspan}"' if colspan > 1 else ""
     return f"<{tag}{cls}{span}>{esc(value)}</{tag}>"
+
+
+def header_cell(value: str, *, text: bool = False, colspan: int = 1) -> str:
+    """A ``<th>`` caption cell, guarding single-token captions against breaking."""
+    return cell(value, tag="th", text=text, colspan=colspan)

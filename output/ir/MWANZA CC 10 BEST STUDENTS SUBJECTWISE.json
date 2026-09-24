@@ -1,0 +1,9853 @@
+{
+  "stem": "MWANZA CC 10 BEST STUDENTS SUBJECTWISE",
+  "category": "council",
+  "orientation": "landscape",
+  "pages": 30,
+  "page_size": [
+    792,
+    612
+  ],
+  "title_lines": [
+    "THE PRIME MINISTER'S OFFICE",
+    "REGIONAL ADMINISTRATION AND LOCAL GOVERNMENT",
+    "MWANZA REGION",
+    "REGIONAL FORM TWO MOCK ASSESSMENT RESULTS, JULY 2026",
+    "TOP TEN BEST STUDENTS IN HTM SUBJECT DISTRICTWISE"
+  ],
+  "captions": [],
+  "tables": [
+    {
+      "caption": "MWANZA CC BEST STUDENTS SUBJECTWISE",
+      "n_cols": 10,
+      "header_rows": [
+        [
+          {
+            "label": "S/NO.",
+            "colspan": 1,
+            "rowspan": 1,
+            "col": 0,
+            "row": 0
+          },
+          {
+            "label": "ID NO.",
+            "colspan": 1,
+            "rowspan": 1,
+            "col": 1,
+            "row": 0
+          },
+          {
+            "label": "SCHOOL",
+            "colspan": 1,
+            "rowspan": 1,
+            "col": 2,
+            "row": 0
+          },
+          {
+            "label": "CATEGORY",
+            "colspan": 1,
+            "rowspan": 1,
+            "col": 3,
+            "row": 0
+          },
+          {
+            "label": "CANDIDATE FULL NAME",
+            "colspan": 1,
+            "rowspan": 1,
+            "col": 4,
+            "row": 0
+          },
+          {
+            "label": "X E S",
+            "colspan": 1,
+            "rowspan": 1,
+            "col": 5,
+            "row": 0
+          },
+          {
+            "label": "S K R A M",
+            "colspan": 1,
+            "rowspan": 1,
+            "col": 6,
+            "row": 0
+          },
+          {
+            "label": "E D A R G",
+            "colspan": 1,
+            "rowspan": 1,
+            "col": 7,
+            "row": 0
+          },
+          {
+            "label": "N O IT IS O P",
+            "colspan": 2,
+            "rowspan": 1,
+            "col": 8,
+            "row": 0
+          }
+        ]
+      ],
+      "body": [
+        [
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "COMPETENCY LEVEL"
+        ],
+        [
+          "1",
+          "0265",
+          "BUHONGWA",
+          "GOVERNMENT",
+          "ZAINABU MARCO NGWALABU",
+          "F",
+          "98",
+          "A",
+          "1",
+          "Excellent"
+        ],
+        [
+          "2",
+          "0067",
+          "FAMG",
+          "PRIVATE",
+          "PASCHAL SIMON MAGUBU",
+          "M",
+          "98",
+          "A",
+          "2",
+          "Excellent"
+        ],
+        [
+          "3",
+          "0080",
+          "FAMG",
+          "PRIVATE",
+          "SHADRACK MARCO NGHWAYA",
+          "M",
+          "98",
+          "A",
+          "3",
+          "Excellent"
+        ],
+        [
+          "4",
+          "0004",
+          "FR. RAMON",
+          "PRIVATE",
+          "AIDAN KAZAWADI PIUS",
+          "M",
+          "98",
+          "A",
+          "4",
+          "Excellent"
+        ],
+        [
+          "5",
+          "0018",
+          "FR. RAMON",
+          "PRIVATE",
+          "BRIAN BONIFANCE SABANYA",
+          "M",
+          "98",
+          "A",
+          "5",
+          "Excellent"
+        ],
+        [
+          "6",
+          "0049",
+          "HOLY FAMILY GIRLS",
+          "PRIVATE",
+          "ESTHER LYANTUZU JITUNDA",
+          "F",
+          "98",
+          "A",
+          "6",
+          "Excellent"
+        ],
+        [
+          "7",
+          "0087",
+          "MUSABE GIRLS",
+          "PRIVATE",
+          "IRENE RAPSON PASTORY",
+          "F",
+          "98",
+          "A",
+          "7",
+          "Excellent"
+        ],
+        [
+          "8",
+          "0115",
+          "MUSABE GIRLS",
+          "PRIVATE",
+          "MARIA ROBERT MAKALA",
+          "F",
+          "98",
+          "A",
+          "8",
+          "Excellent"
+        ],
+        [
+          "9",
+          "0129",
+          "MUSABE GIRLS",
+          "PRIVATE",
+          "NANCY ADOLF MHANDO",
+          "F",
+          "98",
+          "A",
+          "9",
+          "Excellent"
+        ],
+        [
+          "10",
+          "0176",
+          "MUSABE GIRLS",
+          "PRIVATE",
+          "STELLAH WALTER ATHONY",
+          "F",
+          "98",
+          "A",
+          "10",
+          "Excellent"
+        ]
+      ],
+      "percent_cells": [
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ]
+      ],
+      "raw": [
+        [
+          "S/NO.",
+          "ID NO.",
+          "SCHOOL",
+          "CATEGORY",
+          "CANDIDATE FULL NAME",
+          "X E S",
+          "S K R A M",
+          "E D A R G",
+          "N O IT IS O P",
+          ""
+        ],
+        [
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "COMPETENCY LEVEL"
+        ],
+        [
+          "1",
+          "0265",
+          "BUHONGWA",
+          "GOVERNMENT",
+          "ZAINABU MARCO NGWALABU",
+          "F",
+          "98",
+          "A",
+          "1",
+          "Excellent"
+        ],
+        [
+          "2",
+          "0067",
+          "FAMG",
+          "PRIVATE",
+          "PASCHAL SIMON MAGUBU",
+          "M",
+          "98",
+          "A",
+          "2",
+          "Excellent"
+        ],
+        [
+          "3",
+          "0080",
+          "FAMG",
+          "PRIVATE",
+          "SHADRACK MARCO NGHWAYA",
+          "M",
+          "98",
+          "A",
+          "3",
+          "Excellent"
+        ],
+        [
+          "4",
+          "0004",
+          "FR. RAMON",
+          "PRIVATE",
+          "AIDAN KAZAWADI PIUS",
+          "M",
+          "98",
+          "A",
+          "4",
+          "Excellent"
+        ],
+        [
+          "5",
+          "0018",
+          "FR. RAMON",
+          "PRIVATE",
+          "BRIAN BONIFANCE SABANYA",
+          "M",
+          "98",
+          "A",
+          "5",
+          "Excellent"
+        ],
+        [
+          "6",
+          "0049",
+          "HOLY FAMILY GIRLS",
+          "PRIVATE",
+          "ESTHER LYANTUZU JITUNDA",
+          "F",
+          "98",
+          "A",
+          "6",
+          "Excellent"
+        ],
+        [
+          "7",
+          "0087",
+          "MUSABE GIRLS",
+          "PRIVATE",
+          "IRENE RAPSON PASTORY",
+          "F",
+          "98",
+          "A",
+          "7",
+          "Excellent"
+        ],
+        [
+          "8",
+          "0115",
+          "MUSABE GIRLS",
+          "PRIVATE",
+          "MARIA ROBERT MAKALA",
+          "F",
+          "98",
+          "A",
+          "8",
+          "Excellent"
+        ],
+        [
+          "9",
+          "0129",
+          "MUSABE GIRLS",
+          "PRIVATE",
+          "NANCY ADOLF MHANDO",
+          "F",
+          "98",
+          "A",
+          "9",
+          "Excellent"
+        ],
+        [
+          "10",
+          "0176",
+          "MUSABE GIRLS",
+          "PRIVATE",
+          "STELLAH WALTER ATHONY",
+          "F",
+          "98",
+          "A",
+          "10",
+          "Excellent"
+        ],
+        [
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ]
+      ],
+      "kind": "table"
+    },
+    {
+      "caption": "TOP TEN BEST STUDENTS IN BUSINESS STUDIES SUBJECT DISTRICTWISE",
+      "n_cols": 10,
+      "header_rows": [
+        [
+          {
+            "label": "S/NO.",
+            "colspan": 1,
+            "rowspan": 1,
+            "col": 0,
+            "row": 0
+          },
+          {
+            "label": "ID NO.",
+            "colspan": 1,
+            "rowspan": 1,
+            "col": 1,
+            "row": 0
+          },
+          {
+            "label": "SCHOOL",
+            "colspan": 1,
+            "rowspan": 1,
+            "col": 2,
+            "row": 0
+          },
+          {
+            "label": "CATEGORY",
+            "colspan": 1,
+            "rowspan": 1,
+            "col": 3,
+            "row": 0
+          },
+          {
+            "label": "CANDIDATE FULL NAME",
+            "colspan": 1,
+            "rowspan": 1,
+            "col": 4,
+            "row": 0
+          },
+          {
+            "label": "X E S",
+            "colspan": 1,
+            "rowspan": 1,
+            "col": 5,
+            "row": 0
+          },
+          {
+            "label": "S K R A M",
+            "colspan": 1,
+            "rowspan": 1,
+            "col": 6,
+            "row": 0
+          },
+          {
+            "label": "E D A R G",
+            "colspan": 1,
+            "rowspan": 1,
+            "col": 7,
+            "row": 0
+          },
+          {
+            "label": "IT IS O P",
+            "colspan": 2,
+            "rowspan": 1,
+            "col": 8,
+            "row": 0
+          }
+        ]
+      ],
+      "body": [
+        [
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "COMPETENCY LEVEL"
+        ],
+        [
+          "1",
+          "0091",
+          "HOLY FAMILY GIRLS",
+          "PRIVATE",
+          "JENIFER SHEBY KESI",
+          "F",
+          "95",
+          "A",
+          "1",
+          "Excellent"
+        ],
+        [
+          "2",
+          "0042",
+          "MUSABE BOYS",
+          "PRIVATE",
+          "BRYTHON GRAYSON WILLIAM",
+          "M",
+          "94",
+          "A",
+          "2",
+          "Excellent"
+        ],
+        [
+          "3",
+          "0048",
+          "MUSABE BOYS",
+          "PRIVATE",
+          "COLINE ALEXANDER RUGARA",
+          "M",
+          "94",
+          "A",
+          "3",
+          "Excellent"
+        ],
+        [
+          "4",
+          "0149",
+          "MUSABE BOYS",
+          "PRIVATE",
+          "LEONARD CHARLES SELEKWA",
+          "M",
+          "93",
+          "A",
+          "4",
+          "Excellent"
+        ],
+        [
+          "5",
+          "0055",
+          "MUSABE BOYS",
+          "PRIVATE",
+          "DAVID EMMANUEL MASHIMBA",
+          "M",
+          "91",
+          "A",
+          "5",
+          "Excellent"
+        ],
+        [
+          "6",
+          "0010",
+          "MUSABE BOYS",
+          "PRIVATE",
+          "ALEX JULIUS SYLVESTER",
+          "M",
+          "90",
+          "A",
+          "6",
+          "Excellent"
+        ],
+        [
+          "7",
+          "0211",
+          "MUSABE BOYS",
+          "PRIVATE",
+          "SAYI NCHERE MAHANGI",
+          "M",
+          "90",
+          "A",
+          "7",
+          "Excellent"
+        ],
+        [
+          "8",
+          "0033",
+          "NASCO",
+          "PRIVATE",
+          "REBEKA KENEDY CHIGURU",
+          "F",
+          "90",
+          "A",
+          "8",
+          "Excellent"
+        ],
+        [
+          "9",
+          "0052",
+          "MESSA",
+          "PRIVATE",
+          "DANIEL PETER DATTI",
+          "M",
+          "89",
+          "A",
+          "9",
+          "Excellent"
+        ],
+        [
+          "10",
+          "0020",
+          "MUSABE BOYS",
+          "PRIVATE",
+          "ANDREW ROBERT SITTA",
+          "M",
+          "89",
+          "A",
+          "10",
+          "Excellent"
+        ]
+      ],
+      "percent_cells": [
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ]
+      ],
+      "raw": [
+        [
+          "S/NO.",
+          "ID NO.",
+          "SCHOOL",
+          "CATEGORY",
+          "CANDIDATE FULL NAME",
+          "X E S",
+          "S K R A M",
+          "E D A R G",
+          "IT IS O P",
+          ""
+        ],
+        [
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "COMPETENCY LEVEL"
+        ],
+        [
+          "1",
+          "0091",
+          "HOLY FAMILY GIRLS",
+          "PRIVATE",
+          "JENIFER SHEBY KESI",
+          "F",
+          "95",
+          "A",
+          "1",
+          "Excellent"
+        ],
+        [
+          "2",
+          "0042",
+          "MUSABE BOYS",
+          "PRIVATE",
+          "BRYTHON GRAYSON WILLIAM",
+          "M",
+          "94",
+          "A",
+          "2",
+          "Excellent"
+        ],
+        [
+          "3",
+          "0048",
+          "MUSABE BOYS",
+          "PRIVATE",
+          "COLINE ALEXANDER RUGARA",
+          "M",
+          "94",
+          "A",
+          "3",
+          "Excellent"
+        ],
+        [
+          "4",
+          "0149",
+          "MUSABE BOYS",
+          "PRIVATE",
+          "LEONARD CHARLES SELEKWA",
+          "M",
+          "93",
+          "A",
+          "4",
+          "Excellent"
+        ],
+        [
+          "5",
+          "0055",
+          "MUSABE BOYS",
+          "PRIVATE",
+          "DAVID EMMANUEL MASHIMBA",
+          "M",
+          "91",
+          "A",
+          "5",
+          "Excellent"
+        ],
+        [
+          "6",
+          "0010",
+          "MUSABE BOYS",
+          "PRIVATE",
+          "ALEX JULIUS SYLVESTER",
+          "M",
+          "90",
+          "A",
+          "6",
+          "Excellent"
+        ],
+        [
+          "7",
+          "0211",
+          "MUSABE BOYS",
+          "PRIVATE",
+          "SAYI NCHERE MAHANGI",
+          "M",
+          "90",
+          "A",
+          "7",
+          "Excellent"
+        ],
+        [
+          "8",
+          "0033",
+          "NASCO",
+          "PRIVATE",
+          "REBEKA KENEDY CHIGURU",
+          "F",
+          "90",
+          "A",
+          "8",
+          "Excellent"
+        ],
+        [
+          "9",
+          "0052",
+          "MESSA",
+          "PRIVATE",
+          "DANIEL PETER DATTI",
+          "M",
+          "89",
+          "A",
+          "9",
+          "Excellent"
+        ],
+        [
+          "10",
+          "0020",
+          "MUSABE BOYS",
+          "PRIVATE",
+          "ANDREW ROBERT SITTA",
+          "M",
+          "89",
+          "A",
+          "10",
+          "Excellent"
+        ]
+      ],
+      "kind": "table"
+    },
+    {
+      "caption": "TOP TEN BEST STUDENTS IN GEOGRAPHY SUBJECT DISTRICTWISE",
+      "n_cols": 10,
+      "header_rows": [
+        [
+          {
+            "label": "S/NO.",
+            "colspan": 1,
+            "rowspan": 1,
+            "col": 0,
+            "row": 0
+          },
+          {
+            "label": "ID NO.",
+            "colspan": 1,
+            "rowspan": 1,
+            "col": 1,
+            "row": 0
+          },
+          {
+            "label": "SCHOOL",
+            "colspan": 1,
+            "rowspan": 1,
+            "col": 2,
+            "row": 0
+          },
+          {
+            "label": "CATEGORY",
+            "colspan": 1,
+            "rowspan": 1,
+            "col": 3,
+            "row": 0
+          },
+          {
+            "label": "CANDIDATE FULL NAME",
+            "colspan": 1,
+            "rowspan": 1,
+            "col": 4,
+            "row": 0
+          },
+          {
+            "label": "X E S",
+            "colspan": 1,
+            "rowspan": 1,
+            "col": 5,
+            "row": 0
+          },
+          {
+            "label": "S K R A M",
+            "colspan": 1,
+            "rowspan": 1,
+            "col": 6,
+            "row": 0
+          },
+          {
+            "label": "E D A R G",
+            "colspan": 1,
+            "rowspan": 1,
+            "col": 7,
+            "row": 0
+          },
+          {
+            "label": "IT IS O P",
+            "colspan": 2,
+            "rowspan": 1,
+            "col": 8,
+            "row": 0
+          }
+        ]
+      ],
+      "body": [
+        [
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "COMPETENCY LEVEL"
+        ],
+        [
+          "1",
+          "0210",
+          "MUSABE BOYS",
+          "PRIVATE",
+          "SAYI MJUNI KAIJAGE",
+          "M",
+          "97",
+          "A",
+          "1",
+          "Excellent"
+        ],
+        [
+          "2",
+          "0153",
+          "MUSABE GIRLS",
+          "PRIVATE",
+          "PROMISE ZACHARIA KAHEMA",
+          "F",
+          "94",
+          "A",
+          "2",
+          "Excellent"
+        ],
+        [
+          "3",
+          "0056",
+          "MESSA",
+          "PRIVATE",
+          "EMMANUEL JOHN DANKAN",
+          "M",
+          "92",
+          "A",
+          "3",
+          "Excellent"
+        ],
+        [
+          "4",
+          "0103",
+          "MUSABE BOYS",
+          "PRIVATE",
+          "GODBLESS AMANYA MBELWA",
+          "M",
+          "92",
+          "A",
+          "4",
+          "Excellent"
+        ],
+        [
+          "5",
+          "0191",
+          "MUSABE BOYS",
+          "PRIVATE",
+          "REGINALD ELINIONGOZE KIMAMBO",
+          "M",
+          "92",
+          "A",
+          "5",
+          "Excellent"
+        ],
+        [
+          "6",
+          "0353",
+          "IGOMA",
+          "GOVERNMENT",
+          "EMMANUEL ZONGORE WAKEYA",
+          "M",
+          "91",
+          "A",
+          "6",
+          "Excellent"
+        ],
+        [
+          "7",
+          "0310",
+          "MAHINA",
+          "GOVERNMENT",
+          "ABEL JOHN NKWABI",
+          "M",
+          "91",
+          "A",
+          "7",
+          "Excellent"
+        ],
+        [
+          "8",
+          "0004",
+          "MUSABE GIRLS",
+          "PRIVATE",
+          "ADETHA AMWESIGA TALEMWA",
+          "F",
+          "91",
+          "A",
+          "8",
+          "Excellent"
+        ],
+        [
+          "9",
+          "0072",
+          "MUSABE GIRLS",
+          "PRIVATE",
+          "FLAVIAH MAJURA MAIJO",
+          "F",
+          "91",
+          "A",
+          "9",
+          "Excellent"
+        ],
+        [
+          "10",
+          "0145",
+          "MUSABE BOYS",
+          "PRIVATE",
+          "KEVIN MARCO SIGERA",
+          "M",
+          "90",
+          "A",
+          "10",
+          "Excellent"
+        ]
+      ],
+      "percent_cells": [
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ]
+      ],
+      "raw": [
+        [
+          "S/NO.",
+          "ID NO.",
+          "SCHOOL",
+          "CATEGORY",
+          "CANDIDATE FULL NAME",
+          "X E S",
+          "S K R A M",
+          "E D A R G",
+          "IT IS O P",
+          ""
+        ],
+        [
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "COMPETENCY LEVEL"
+        ],
+        [
+          "1",
+          "0210",
+          "MUSABE BOYS",
+          "PRIVATE",
+          "SAYI MJUNI KAIJAGE",
+          "M",
+          "97",
+          "A",
+          "1",
+          "Excellent"
+        ],
+        [
+          "2",
+          "0153",
+          "MUSABE GIRLS",
+          "PRIVATE",
+          "PROMISE ZACHARIA KAHEMA",
+          "F",
+          "94",
+          "A",
+          "2",
+          "Excellent"
+        ],
+        [
+          "3",
+          "0056",
+          "MESSA",
+          "PRIVATE",
+          "EMMANUEL JOHN DANKAN",
+          "M",
+          "92",
+          "A",
+          "3",
+          "Excellent"
+        ],
+        [
+          "4",
+          "0103",
+          "MUSABE BOYS",
+          "PRIVATE",
+          "GODBLESS AMANYA MBELWA",
+          "M",
+          "92",
+          "A",
+          "4",
+          "Excellent"
+        ],
+        [
+          "5",
+          "0191",
+          "MUSABE BOYS",
+          "PRIVATE",
+          "REGINALD ELINIONGOZE KIMAMBO",
+          "M",
+          "92",
+          "A",
+          "5",
+          "Excellent"
+        ],
+        [
+          "6",
+          "0353",
+          "IGOMA",
+          "GOVERNMENT",
+          "EMMANUEL ZONGORE WAKEYA",
+          "M",
+          "91",
+          "A",
+          "6",
+          "Excellent"
+        ],
+        [
+          "7",
+          "0310",
+          "MAHINA",
+          "GOVERNMENT",
+          "ABEL JOHN NKWABI",
+          "M",
+          "91",
+          "A",
+          "7",
+          "Excellent"
+        ],
+        [
+          "8",
+          "0004",
+          "MUSABE GIRLS",
+          "PRIVATE",
+          "ADETHA AMWESIGA TALEMWA",
+          "F",
+          "91",
+          "A",
+          "8",
+          "Excellent"
+        ],
+        [
+          "9",
+          "0072",
+          "MUSABE GIRLS",
+          "PRIVATE",
+          "FLAVIAH MAJURA MAIJO",
+          "F",
+          "91",
+          "A",
+          "9",
+          "Excellent"
+        ],
+        [
+          "10",
+          "0145",
+          "MUSABE BOYS",
+          "PRIVATE",
+          "KEVIN MARCO SIGERA",
+          "M",
+          "90",
+          "A",
+          "10",
+          "Excellent"
+        ]
+      ],
+      "kind": "table"
+    },
+    {
+      "caption": "TOP TEN BEST STUDENTS IN KISWAHILI SUBJECT DISTRICTWISE",
+      "n_cols": 10,
+      "header_rows": [
+        [
+          {
+            "label": "S/NO.",
+            "colspan": 1,
+            "rowspan": 1,
+            "col": 0,
+            "row": 0
+          },
+          {
+            "label": "ID NO.",
+            "colspan": 1,
+            "rowspan": 1,
+            "col": 1,
+            "row": 0
+          },
+          {
+            "label": "SCHOOL",
+            "colspan": 1,
+            "rowspan": 1,
+            "col": 2,
+            "row": 0
+          },
+          {
+            "label": "CATEGORY",
+            "colspan": 1,
+            "rowspan": 1,
+            "col": 3,
+            "row": 0
+          },
+          {
+            "label": "CANDIDATE FULL NAME",
+            "colspan": 1,
+            "rowspan": 1,
+            "col": 4,
+            "row": 0
+          },
+          {
+            "label": "X E S",
+            "colspan": 1,
+            "rowspan": 1,
+            "col": 5,
+            "row": 0
+          },
+          {
+            "label": "S K R A M",
+            "colspan": 1,
+            "rowspan": 1,
+            "col": 6,
+            "row": 0
+          },
+          {
+            "label": "E D A R G",
+            "colspan": 1,
+            "rowspan": 1,
+            "col": 7,
+            "row": 0
+          },
+          {
+            "label": "IT IS O P",
+            "colspan": 2,
+            "rowspan": 1,
+            "col": 8,
+            "row": 0
+          }
+        ]
+      ],
+      "body": [
+        [
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "COMPETENCY LEVEL"
+        ],
+        [
+          "1",
+          "0072",
+          "LWANHIMA",
+          "GOVERNMENT",
+          "LOVENESS DAUD JUMA",
+          "F",
+          "98",
+          "A",
+          "1",
+          "Excellent"
+        ],
+        [
+          "2",
+          "0033",
+          "NASCO",
+          "PRIVATE",
+          "REBEKA KENEDY CHIGURU",
+          "F",
+          "98",
+          "A",
+          "2",
+          "Excellent"
+        ],
+        [
+          "3",
+          "0045",
+          "IGELEGELE",
+          "GOVERNMENT",
+          "GODRIVA GOODFREY GAMBA",
+          "F",
+          "97",
+          "A",
+          "3",
+          "Excellent"
+        ],
+        [
+          "4",
+          "0117",
+          "LWANHIMA",
+          "GOVERNMENT",
+          "SARA LUCAS KUBEZYA",
+          "F",
+          "95",
+          "A",
+          "4",
+          "Excellent"
+        ],
+        [
+          "5",
+          "0152",
+          "MUSABE BOYS",
+          "PRIVATE",
+          "LIONEL LINUS LYAKURWA",
+          "M",
+          "95",
+          "A",
+          "5",
+          "Excellent"
+        ],
+        [
+          "6",
+          "0189",
+          "MUSABE BOYS",
+          "PRIVATE",
+          "RASHID ABUBAKARY RASHID",
+          "M",
+          "95",
+          "A",
+          "6",
+          "Excellent"
+        ],
+        [
+          "7",
+          "0210",
+          "MUSABE BOYS",
+          "PRIVATE",
+          "SAYI MJUNI KAIJAGE",
+          "M",
+          "94",
+          "A",
+          "7",
+          "Excellent"
+        ],
+        [
+          "8",
+          "0016",
+          "NASCO",
+          "PRIVATE",
+          "GIFT JOASHI MACHIRA",
+          "F",
+          "94",
+          "A",
+          "8",
+          "Excellent"
+        ],
+        [
+          "9",
+          "0026",
+          "ST. JOSEPH GIRLS",
+          "PRIVATE",
+          "ESTER MAGELE MATHIAS",
+          "F",
+          "94",
+          "A",
+          "9",
+          "Excellent"
+        ],
+        [
+          "10",
+          "0004",
+          "TWIHULUMILE",
+          "PRIVATE",
+          "DEBORA KASANKARA ROBERT",
+          "F",
+          "94",
+          "A",
+          "10",
+          "Excellent"
+        ]
+      ],
+      "percent_cells": [
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ]
+      ],
+      "raw": [
+        [
+          "S/NO.",
+          "ID NO.",
+          "SCHOOL",
+          "CATEGORY",
+          "CANDIDATE FULL NAME",
+          "X E S",
+          "S K R A M",
+          "E D A R G",
+          "IT IS O P",
+          ""
+        ],
+        [
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "COMPETENCY LEVEL"
+        ],
+        [
+          "1",
+          "0072",
+          "LWANHIMA",
+          "GOVERNMENT",
+          "LOVENESS DAUD JUMA",
+          "F",
+          "98",
+          "A",
+          "1",
+          "Excellent"
+        ],
+        [
+          "2",
+          "0033",
+          "NASCO",
+          "PRIVATE",
+          "REBEKA KENEDY CHIGURU",
+          "F",
+          "98",
+          "A",
+          "2",
+          "Excellent"
+        ],
+        [
+          "3",
+          "0045",
+          "IGELEGELE",
+          "GOVERNMENT",
+          "GODRIVA GOODFREY GAMBA",
+          "F",
+          "97",
+          "A",
+          "3",
+          "Excellent"
+        ],
+        [
+          "4",
+          "0117",
+          "LWANHIMA",
+          "GOVERNMENT",
+          "SARA LUCAS KUBEZYA",
+          "F",
+          "95",
+          "A",
+          "4",
+          "Excellent"
+        ],
+        [
+          "5",
+          "0152",
+          "MUSABE BOYS",
+          "PRIVATE",
+          "LIONEL LINUS LYAKURWA",
+          "M",
+          "95",
+          "A",
+          "5",
+          "Excellent"
+        ],
+        [
+          "6",
+          "0189",
+          "MUSABE BOYS",
+          "PRIVATE",
+          "RASHID ABUBAKARY RASHID",
+          "M",
+          "95",
+          "A",
+          "6",
+          "Excellent"
+        ],
+        [
+          "7",
+          "0210",
+          "MUSABE BOYS",
+          "PRIVATE",
+          "SAYI MJUNI KAIJAGE",
+          "M",
+          "94",
+          "A",
+          "7",
+          "Excellent"
+        ],
+        [
+          "8",
+          "0016",
+          "NASCO",
+          "PRIVATE",
+          "GIFT JOASHI MACHIRA",
+          "F",
+          "94",
+          "A",
+          "8",
+          "Excellent"
+        ],
+        [
+          "9",
+          "0026",
+          "ST. JOSEPH GIRLS",
+          "PRIVATE",
+          "ESTER MAGELE MATHIAS",
+          "F",
+          "94",
+          "A",
+          "9",
+          "Excellent"
+        ],
+        [
+          "10",
+          "0004",
+          "TWIHULUMILE",
+          "PRIVATE",
+          "DEBORA KASANKARA ROBERT",
+          "F",
+          "94",
+          "A",
+          "10",
+          "Excellent"
+        ]
+      ],
+      "kind": "table"
+    },
+    {
+      "caption": "TOP TEN BEST STUDENTS IN ENGLISH LANGUAGE SUBJECT DISTRICTWISE",
+      "n_cols": 10,
+      "header_rows": [
+        [
+          {
+            "label": "S/NO.",
+            "colspan": 1,
+            "rowspan": 1,
+            "col": 0,
+            "row": 0
+          },
+          {
+            "label": "ID NO.",
+            "colspan": 1,
+            "rowspan": 1,
+            "col": 1,
+            "row": 0
+          },
+          {
+            "label": "SCHOOL",
+            "colspan": 1,
+            "rowspan": 1,
+            "col": 2,
+            "row": 0
+          },
+          {
+            "label": "CATEGORY",
+            "colspan": 1,
+            "rowspan": 1,
+            "col": 3,
+            "row": 0
+          },
+          {
+            "label": "CANDIDATE FULL NAME",
+            "colspan": 1,
+            "rowspan": 1,
+            "col": 4,
+            "row": 0
+          },
+          {
+            "label": "X E S",
+            "colspan": 1,
+            "rowspan": 1,
+            "col": 5,
+            "row": 0
+          },
+          {
+            "label": "S K R A M",
+            "colspan": 1,
+            "rowspan": 1,
+            "col": 6,
+            "row": 0
+          },
+          {
+            "label": "E D A R G",
+            "colspan": 1,
+            "rowspan": 1,
+            "col": 7,
+            "row": 0
+          },
+          {
+            "label": "IT IS O P",
+            "colspan": 2,
+            "rowspan": 1,
+            "col": 8,
+            "row": 0
+          }
+        ]
+      ],
+      "body": [
+        [
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "COMPETENCY LEVEL"
+        ],
+        [
+          "1",
+          "0006",
+          "LAKE",
+          "PRIVATE",
+          "ASILE SAID HAMAD",
+          "F",
+          "91",
+          "A",
+          "1",
+          "Excellent"
+        ],
+        [
+          "2",
+          "0033",
+          "MUSABE GIRLS",
+          "PRIVATE",
+          "CHRISTINA DARIO DAUSON",
+          "F",
+          "90",
+          "A",
+          "2",
+          "Excellent"
+        ],
+        [
+          "3",
+          "0154",
+          "MUSABE GIRLS",
+          "PRIVATE",
+          "PROSCOVIA VERELIAN CREMENCE",
+          "F",
+          "90",
+          "A",
+          "3",
+          "Excellent"
+        ],
+        [
+          "4",
+          "0013",
+          "HOLY FAMILY GIRLS",
+          "PRIVATE",
+          "BEATHA EPAPHRACE RUGAKINGIRA",
+          "F",
+          "88",
+          "A",
+          "4",
+          "Excellent"
+        ],
+        [
+          "5",
+          "0031",
+          "MUSABE BOYS",
+          "PRIVATE",
+          "BENSONATUS MUGISHA BENJAMIN",
+          "M",
+          "88",
+          "A",
+          "5",
+          "Excellent"
+        ],
+        [
+          "6",
+          "0008",
+          "MUSABE GIRLS",
+          "PRIVATE",
+          "AKSA BAHAME MSONGE",
+          "F",
+          "88",
+          "A",
+          "6",
+          "Excellent"
+        ],
+        [
+          "7",
+          "0086",
+          "MUSABE GIRLS",
+          "PRIVATE",
+          "ILHAM AMINI TUNDA",
+          "F",
+          "88",
+          "A",
+          "7",
+          "Excellent"
+        ],
+        [
+          "8",
+          "0050",
+          "FR. RAMON",
+          "PRIVATE",
+          "EZEKIEL MARTIN MATHEW",
+          "M",
+          "87",
+          "A",
+          "8",
+          "Excellent"
+        ],
+        [
+          "9",
+          "0223",
+          "KASESE",
+          "GOVERNMENT",
+          "DAVID KINGI EDWARD",
+          "M",
+          "87",
+          "A",
+          "9",
+          "Excellent"
+        ],
+        [
+          "10",
+          "0069",
+          "MUSABE GIRLS",
+          "PRIVATE",
+          "FATUMA ABDALLAH MTUNGA",
+          "F",
+          "87",
+          "A",
+          "10",
+          "Excellent"
+        ]
+      ],
+      "percent_cells": [
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ]
+      ],
+      "raw": [
+        [
+          "S/NO.",
+          "ID NO.",
+          "SCHOOL",
+          "CATEGORY",
+          "CANDIDATE FULL NAME",
+          "X E S",
+          "S K R A M",
+          "E D A R G",
+          "IT IS O P",
+          ""
+        ],
+        [
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "COMPETENCY LEVEL"
+        ],
+        [
+          "1",
+          "0006",
+          "LAKE",
+          "PRIVATE",
+          "ASILE SAID HAMAD",
+          "F",
+          "91",
+          "A",
+          "1",
+          "Excellent"
+        ],
+        [
+          "2",
+          "0033",
+          "MUSABE GIRLS",
+          "PRIVATE",
+          "CHRISTINA DARIO DAUSON",
+          "F",
+          "90",
+          "A",
+          "2",
+          "Excellent"
+        ],
+        [
+          "3",
+          "0154",
+          "MUSABE GIRLS",
+          "PRIVATE",
+          "PROSCOVIA VERELIAN CREMENCE",
+          "F",
+          "90",
+          "A",
+          "3",
+          "Excellent"
+        ],
+        [
+          "4",
+          "0013",
+          "HOLY FAMILY GIRLS",
+          "PRIVATE",
+          "BEATHA EPAPHRACE RUGAKINGIRA",
+          "F",
+          "88",
+          "A",
+          "4",
+          "Excellent"
+        ],
+        [
+          "5",
+          "0031",
+          "MUSABE BOYS",
+          "PRIVATE",
+          "BENSONATUS MUGISHA BENJAMIN",
+          "M",
+          "88",
+          "A",
+          "5",
+          "Excellent"
+        ],
+        [
+          "6",
+          "0008",
+          "MUSABE GIRLS",
+          "PRIVATE",
+          "AKSA BAHAME MSONGE",
+          "F",
+          "88",
+          "A",
+          "6",
+          "Excellent"
+        ],
+        [
+          "7",
+          "0086",
+          "MUSABE GIRLS",
+          "PRIVATE",
+          "ILHAM AMINI TUNDA",
+          "F",
+          "88",
+          "A",
+          "7",
+          "Excellent"
+        ],
+        [
+          "8",
+          "0050",
+          "FR. RAMON",
+          "PRIVATE",
+          "EZEKIEL MARTIN MATHEW",
+          "M",
+          "87",
+          "A",
+          "8",
+          "Excellent"
+        ],
+        [
+          "9",
+          "0223",
+          "KASESE",
+          "GOVERNMENT",
+          "DAVID KINGI EDWARD",
+          "M",
+          "87",
+          "A",
+          "9",
+          "Excellent"
+        ],
+        [
+          "10",
+          "0069",
+          "MUSABE GIRLS",
+          "PRIVATE",
+          "FATUMA ABDALLAH MTUNGA",
+          "F",
+          "87",
+          "A",
+          "10",
+          "Excellent"
+        ],
+        [
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ]
+      ],
+      "kind": "table"
+    },
+    {
+      "caption": "TOP TEN BEST STUDENTS IN PHYSICS SUBJECT DISTRICTWISE",
+      "n_cols": 10,
+      "header_rows": [
+        [
+          {
+            "label": "S/NO.",
+            "colspan": 1,
+            "rowspan": 1,
+            "col": 0,
+            "row": 0
+          },
+          {
+            "label": "ID NO.",
+            "colspan": 1,
+            "rowspan": 1,
+            "col": 1,
+            "row": 0
+          },
+          {
+            "label": "SCHOOL",
+            "colspan": 1,
+            "rowspan": 1,
+            "col": 2,
+            "row": 0
+          },
+          {
+            "label": "CATEGORY",
+            "colspan": 1,
+            "rowspan": 1,
+            "col": 3,
+            "row": 0
+          },
+          {
+            "label": "CANDIDATE FULL NAME",
+            "colspan": 1,
+            "rowspan": 1,
+            "col": 4,
+            "row": 0
+          },
+          {
+            "label": "X E S",
+            "colspan": 1,
+            "rowspan": 1,
+            "col": 5,
+            "row": 0
+          },
+          {
+            "label": "S K R A M",
+            "colspan": 1,
+            "rowspan": 1,
+            "col": 6,
+            "row": 0
+          },
+          {
+            "label": "E D A R G",
+            "colspan": 1,
+            "rowspan": 1,
+            "col": 7,
+            "row": 0
+          },
+          {
+            "label": "IT IS O P",
+            "colspan": 2,
+            "rowspan": 1,
+            "col": 8,
+            "row": 0
+          }
+        ]
+      ],
+      "body": [
+        [
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "COMPETENCY LEVEL"
+        ],
+        [
+          "1",
+          "0393",
+          "SHAMALIWA",
+          "GOVERNMENT",
+          "COLLIN WILLIUM MAKUNJA",
+          "M",
+          "91.0",
+          "A",
+          "1",
+          "Excellent"
+        ],
+        [
+          "2",
+          "0004",
+          "MUSABE GIRLS",
+          "PRIVATE",
+          "ADETHA AMWESIGA TALEMWA",
+          "F",
+          "88.0",
+          "A",
+          "2",
+          "Excellent"
+        ],
+        [
+          "3",
+          "0005",
+          "ALLIANCE ROCK ARM",
+          "PY RIVATE",
+          "CATHERINE MSIRALI MRIMI",
+          "F",
+          "86.0",
+          "A",
+          "3",
+          "Excellent"
+        ],
+        [
+          "4",
+          "0427",
+          "SHAMALIWA",
+          "GOVERNMENT",
+          "ELISHA NIMILWA SUNGWA",
+          "M",
+          "86.0",
+          "A",
+          "4",
+          "Excellent"
+        ],
+        [
+          "5",
+          "0115",
+          "MUSABE GIRLS",
+          "PRIVATE",
+          "MARIA ROBERT MAKALA",
+          "F",
+          "85.0",
+          "A",
+          "5",
+          "Excellent"
+        ],
+        [
+          "6",
+          "0210",
+          "MUSABE BOYS",
+          "PRIVATE",
+          "SAYI MJUNI KAIJAGE",
+          "M",
+          "84.0",
+          "A",
+          "6",
+          "Excellent"
+        ],
+        [
+          "7",
+          "0411",
+          "BUHONGWA",
+          "GOVERNMENT",
+          "WILLISON NAFTARI JONAS",
+          "M",
+          "83.0",
+          "A",
+          "7",
+          "Excellent"
+        ],
+        [
+          "8",
+          "0098",
+          "BUHONGWA ISLAMIC",
+          "PRIVATE",
+          "ABDUL KHALID SULTAN",
+          "M",
+          "83.0",
+          "A",
+          "8",
+          "Excellent"
+        ],
+        [
+          "9",
+          "0088",
+          "MUSABE GIRLS",
+          "PRIVATE",
+          "IRENE TIMOTHY REUBEN",
+          "F",
+          "83.0",
+          "A",
+          "9",
+          "Excellent"
+        ],
+        [
+          "10",
+          "0145",
+          "NYAMAGANA",
+          "GOVERNMENT",
+          "ANTHONY JOHN MWANGENDE",
+          "M",
+          "83.0",
+          "A",
+          "10",
+          "Excellent"
+        ]
+      ],
+      "percent_cells": [
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ]
+      ],
+      "raw": [
+        [
+          "S/NO.",
+          "ID NO.",
+          "SCHOOL",
+          "CATEGORY",
+          "CANDIDATE FULL NAME",
+          "X E S",
+          "S K R A M",
+          "E D A R G",
+          "IT IS O P",
+          ""
+        ],
+        [
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "COMPETENCY LEVEL"
+        ],
+        [
+          "1",
+          "0393",
+          "SHAMALIWA",
+          "GOVERNMENT",
+          "COLLIN WILLIUM MAKUNJA",
+          "M",
+          "91.0",
+          "A",
+          "1",
+          "Excellent"
+        ],
+        [
+          "2",
+          "0004",
+          "MUSABE GIRLS",
+          "PRIVATE",
+          "ADETHA AMWESIGA TALEMWA",
+          "F",
+          "88.0",
+          "A",
+          "2",
+          "Excellent"
+        ],
+        [
+          "3",
+          "0005",
+          "ALLIANCE ROCK ARM",
+          "PY RIVATE",
+          "CATHERINE MSIRALI MRIMI",
+          "F",
+          "86.0",
+          "A",
+          "3",
+          "Excellent"
+        ],
+        [
+          "4",
+          "0427",
+          "SHAMALIWA",
+          "GOVERNMENT",
+          "ELISHA NIMILWA SUNGWA",
+          "M",
+          "86.0",
+          "A",
+          "4",
+          "Excellent"
+        ],
+        [
+          "5",
+          "0115",
+          "MUSABE GIRLS",
+          "PRIVATE",
+          "MARIA ROBERT MAKALA",
+          "F",
+          "85.0",
+          "A",
+          "5",
+          "Excellent"
+        ],
+        [
+          "6",
+          "0210",
+          "MUSABE BOYS",
+          "PRIVATE",
+          "SAYI MJUNI KAIJAGE",
+          "M",
+          "84.0",
+          "A",
+          "6",
+          "Excellent"
+        ],
+        [
+          "7",
+          "0411",
+          "BUHONGWA",
+          "GOVERNMENT",
+          "WILLISON NAFTARI JONAS",
+          "M",
+          "83.0",
+          "A",
+          "7",
+          "Excellent"
+        ],
+        [
+          "8",
+          "0098",
+          "BUHONGWA ISLAMIC",
+          "PRIVATE",
+          "ABDUL KHALID SULTAN",
+          "M",
+          "83.0",
+          "A",
+          "8",
+          "Excellent"
+        ],
+        [
+          "9",
+          "0088",
+          "MUSABE GIRLS",
+          "PRIVATE",
+          "IRENE TIMOTHY REUBEN",
+          "F",
+          "83.0",
+          "A",
+          "9",
+          "Excellent"
+        ],
+        [
+          "10",
+          "0145",
+          "NYAMAGANA",
+          "GOVERNMENT",
+          "ANTHONY JOHN MWANGENDE",
+          "M",
+          "83.0",
+          "A",
+          "10",
+          "Excellent"
+        ]
+      ],
+      "kind": "table"
+    },
+    {
+      "caption": "TOP TEN BEST STUDENTS IN CHEMISTRY SUBJECT DISTRICTWISE",
+      "n_cols": 10,
+      "header_rows": [
+        [
+          {
+            "label": "S/NO.",
+            "colspan": 1,
+            "rowspan": 1,
+            "col": 0,
+            "row": 0
+          },
+          {
+            "label": "ID NO.",
+            "colspan": 1,
+            "rowspan": 1,
+            "col": 1,
+            "row": 0
+          },
+          {
+            "label": "SCHOOL",
+            "colspan": 1,
+            "rowspan": 1,
+            "col": 2,
+            "row": 0
+          },
+          {
+            "label": "CATEGORY",
+            "colspan": 1,
+            "rowspan": 1,
+            "col": 3,
+            "row": 0
+          },
+          {
+            "label": "CANDIDATE FULL NAME",
+            "colspan": 1,
+            "rowspan": 1,
+            "col": 4,
+            "row": 0
+          },
+          {
+            "label": "X E S",
+            "colspan": 1,
+            "rowspan": 1,
+            "col": 5,
+            "row": 0
+          },
+          {
+            "label": "S K R A M",
+            "colspan": 1,
+            "rowspan": 1,
+            "col": 6,
+            "row": 0
+          },
+          {
+            "label": "E D A R G",
+            "colspan": 1,
+            "rowspan": 1,
+            "col": 7,
+            "row": 0
+          },
+          {
+            "label": "IT IS O P",
+            "colspan": 2,
+            "rowspan": 1,
+            "col": 8,
+            "row": 0
+          }
+        ]
+      ],
+      "body": [
+        [
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "COMPETENCY LEVEL"
+        ],
+        [
+          "1",
+          "0192",
+          "MUSABE BOYS",
+          "PRIVATE",
+          "RENATUS LUCAS MARWA",
+          "M",
+          "96.0",
+          "A",
+          "1",
+          "Excellent"
+        ],
+        [
+          "2",
+          "0344",
+          "BUHONGWA",
+          "GOVERNMENT",
+          "ITANISA JOHN MUHAZI",
+          "M",
+          "95.0",
+          "A",
+          "2",
+          "Excellent"
+        ],
+        [
+          "3",
+          "0019",
+          "NASCO",
+          "PRIVATE",
+          "IRENE ELIUD JAMES",
+          "F",
+          "95.0",
+          "A",
+          "3",
+          "Excellent"
+        ],
+        [
+          "4",
+          "0066",
+          "BUHONGWA ISLAMIC",
+          "PRIVATE",
+          "SAFINA SAID KISAMBA",
+          "F",
+          "94.0",
+          "A",
+          "4",
+          "Excellent"
+        ],
+        [
+          "5",
+          "0086",
+          "BUHONGWA ISLAMIC",
+          "PRIVATE",
+          "YUSRA AMIN MSHARABA",
+          "F",
+          "94.0",
+          "A",
+          "5",
+          "Excellent"
+        ],
+        [
+          "6",
+          "0050",
+          "FAMG",
+          "PRIVATE",
+          "KAHANYA CHANDIKA GERVAS",
+          "M",
+          "94.0",
+          "A",
+          "6",
+          "Excellent"
+        ],
+        [
+          "7",
+          "0052",
+          "LAKE",
+          "PRIVATE",
+          "ARMAAN SHANIF RATTANSI",
+          "M",
+          "94.0",
+          "A",
+          "7",
+          "Excellent"
+        ],
+        [
+          "8",
+          "0152",
+          "MUSABE BOYS",
+          "PRIVATE",
+          "LIONEL LINUS LYAKURWA",
+          "M",
+          "93.0",
+          "A",
+          "8",
+          "Excellent"
+        ],
+        [
+          "9",
+          "0004",
+          "MUSABE GIRLS",
+          "PRIVATE",
+          "ADETHA AMWESIGA TALEMWA",
+          "F",
+          "93.0",
+          "A",
+          "9",
+          "Excellent"
+        ],
+        [
+          "10",
+          "0108",
+          "MUSABE GIRLS",
+          "PRIVATE",
+          "LINDA KHATIBU THEODOLA",
+          "F",
+          "93.0",
+          "A",
+          "10",
+          "Excellent"
+        ]
+      ],
+      "percent_cells": [
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ]
+      ],
+      "raw": [
+        [
+          "S/NO.",
+          "ID NO.",
+          "SCHOOL",
+          "CATEGORY",
+          "CANDIDATE FULL NAME",
+          "X E S",
+          "S K R A M",
+          "E D A R G",
+          "IT IS O P",
+          ""
+        ],
+        [
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "COMPETENCY LEVEL"
+        ],
+        [
+          "1",
+          "0192",
+          "MUSABE BOYS",
+          "PRIVATE",
+          "RENATUS LUCAS MARWA",
+          "M",
+          "96.0",
+          "A",
+          "1",
+          "Excellent"
+        ],
+        [
+          "2",
+          "0344",
+          "BUHONGWA",
+          "GOVERNMENT",
+          "ITANISA JOHN MUHAZI",
+          "M",
+          "95.0",
+          "A",
+          "2",
+          "Excellent"
+        ],
+        [
+          "3",
+          "0019",
+          "NASCO",
+          "PRIVATE",
+          "IRENE ELIUD JAMES",
+          "F",
+          "95.0",
+          "A",
+          "3",
+          "Excellent"
+        ],
+        [
+          "4",
+          "0066",
+          "BUHONGWA ISLAMIC",
+          "PRIVATE",
+          "SAFINA SAID KISAMBA",
+          "F",
+          "94.0",
+          "A",
+          "4",
+          "Excellent"
+        ],
+        [
+          "5",
+          "0086",
+          "BUHONGWA ISLAMIC",
+          "PRIVATE",
+          "YUSRA AMIN MSHARABA",
+          "F",
+          "94.0",
+          "A",
+          "5",
+          "Excellent"
+        ],
+        [
+          "6",
+          "0050",
+          "FAMG",
+          "PRIVATE",
+          "KAHANYA CHANDIKA GERVAS",
+          "M",
+          "94.0",
+          "A",
+          "6",
+          "Excellent"
+        ],
+        [
+          "7",
+          "0052",
+          "LAKE",
+          "PRIVATE",
+          "ARMAAN SHANIF RATTANSI",
+          "M",
+          "94.0",
+          "A",
+          "7",
+          "Excellent"
+        ],
+        [
+          "8",
+          "0152",
+          "MUSABE BOYS",
+          "PRIVATE",
+          "LIONEL LINUS LYAKURWA",
+          "M",
+          "93.0",
+          "A",
+          "8",
+          "Excellent"
+        ],
+        [
+          "9",
+          "0004",
+          "MUSABE GIRLS",
+          "PRIVATE",
+          "ADETHA AMWESIGA TALEMWA",
+          "F",
+          "93.0",
+          "A",
+          "9",
+          "Excellent"
+        ],
+        [
+          "10",
+          "0108",
+          "MUSABE GIRLS",
+          "PRIVATE",
+          "LINDA KHATIBU THEODOLA",
+          "F",
+          "93.0",
+          "A",
+          "10",
+          "Excellent"
+        ]
+      ],
+      "kind": "table"
+    },
+    {
+      "caption": "TOP TEN BEST STUDENTS IN BIOLOGY SUBJECT DISTRICTWISE",
+      "n_cols": 10,
+      "header_rows": [
+        [
+          {
+            "label": "S/NO.",
+            "colspan": 1,
+            "rowspan": 1,
+            "col": 0,
+            "row": 0
+          },
+          {
+            "label": "ID NO.",
+            "colspan": 1,
+            "rowspan": 1,
+            "col": 1,
+            "row": 0
+          },
+          {
+            "label": "SCHOOL",
+            "colspan": 1,
+            "rowspan": 1,
+            "col": 2,
+            "row": 0
+          },
+          {
+            "label": "CATEGORY",
+            "colspan": 1,
+            "rowspan": 1,
+            "col": 3,
+            "row": 0
+          },
+          {
+            "label": "CANDIDATE FULL NAME",
+            "colspan": 1,
+            "rowspan": 1,
+            "col": 4,
+            "row": 0
+          },
+          {
+            "label": "X E S",
+            "colspan": 1,
+            "rowspan": 1,
+            "col": 5,
+            "row": 0
+          },
+          {
+            "label": "S K R A M",
+            "colspan": 1,
+            "rowspan": 1,
+            "col": 6,
+            "row": 0
+          },
+          {
+            "label": "E D A R G",
+            "colspan": 1,
+            "rowspan": 1,
+            "col": 7,
+            "row": 0
+          },
+          {
+            "label": "IT IS O P",
+            "colspan": 2,
+            "rowspan": 1,
+            "col": 8,
+            "row": 0
+          }
+        ]
+      ],
+      "body": [
+        [
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "COMPETENCY LEVEL"
+        ],
+        [
+          "1",
+          "0239",
+          "IGELEGELE",
+          "GOVERNMENT",
+          "NIKOLAUS JONH MADARAKA",
+          "M",
+          "92.0",
+          "A",
+          "1",
+          "Excellent"
+        ],
+        [
+          "2",
+          "0191",
+          "MUSABE BOYS",
+          "PRIVATE",
+          "REGINALD ELINIONGOZE KIMAMBO",
+          "M",
+          "92.0",
+          "A",
+          "2",
+          "Excellent"
+        ],
+        [
+          "3",
+          "0021",
+          "MUSABE BOYS",
+          "PRIVATE",
+          "ANTONY DANIEL MICHAEL",
+          "M",
+          "91.0",
+          "A",
+          "3",
+          "Excellent"
+        ],
+        [
+          "4",
+          "0017",
+          "NASCO",
+          "PRIVATE",
+          "HAPPYNESS WALES SLYVANUS",
+          "F",
+          "91.0",
+          "A",
+          "4",
+          "Excellent"
+        ],
+        [
+          "5",
+          "0080",
+          "FR. RAMON",
+          "PRIVATE",
+          "JOVINE ELISHA LUGWISHA",
+          "M",
+          "90.0",
+          "A",
+          "5",
+          "Excellent"
+        ],
+        [
+          "6",
+          "0171",
+          "MUSABE BOYS",
+          "PRIVATE",
+          "MUTAWASIFU SALEHE MUDRIKATI",
+          "M",
+          "90.0",
+          "A",
+          "6",
+          "Excellent"
+        ],
+        [
+          "7",
+          "0177",
+          "MUSABE BOYS",
+          "PRIVATE",
+          "PATRICK JAMES BWIMBO",
+          "M",
+          "90.0",
+          "A",
+          "7",
+          "Excellent"
+        ],
+        [
+          "8",
+          "0207",
+          "MUSABE BOYS",
+          "PRIVATE",
+          "SAMWEL MASHAKA NOTI",
+          "M",
+          "90.0",
+          "A",
+          "8",
+          "Excellent"
+        ],
+        [
+          "9",
+          "0033",
+          "MUSABE GIRLS",
+          "PRIVATE",
+          "CHRISTINA DARIO DAUSON",
+          "F",
+          "90.0",
+          "A",
+          "9",
+          "Excellent"
+        ],
+        [
+          "10",
+          "0108",
+          "MUSABE GIRLS",
+          "PRIVATE",
+          "LINDA KHATIBU THEODOLA",
+          "F",
+          "89.0",
+          "A",
+          "10",
+          "Excellent"
+        ]
+      ],
+      "percent_cells": [
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ]
+      ],
+      "raw": [
+        [
+          "S/NO.",
+          "ID NO.",
+          "SCHOOL",
+          "CATEGORY",
+          "CANDIDATE FULL NAME",
+          "X E S",
+          "S K R A M",
+          "E D A R G",
+          "IT IS O P",
+          ""
+        ],
+        [
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "COMPETENCY LEVEL"
+        ],
+        [
+          "1",
+          "0239",
+          "IGELEGELE",
+          "GOVERNMENT",
+          "NIKOLAUS JONH MADARAKA",
+          "M",
+          "92.0",
+          "A",
+          "1",
+          "Excellent"
+        ],
+        [
+          "2",
+          "0191",
+          "MUSABE BOYS",
+          "PRIVATE",
+          "REGINALD ELINIONGOZE KIMAMBO",
+          "M",
+          "92.0",
+          "A",
+          "2",
+          "Excellent"
+        ],
+        [
+          "3",
+          "0021",
+          "MUSABE BOYS",
+          "PRIVATE",
+          "ANTONY DANIEL MICHAEL",
+          "M",
+          "91.0",
+          "A",
+          "3",
+          "Excellent"
+        ],
+        [
+          "4",
+          "0017",
+          "NASCO",
+          "PRIVATE",
+          "HAPPYNESS WALES SLYVANUS",
+          "F",
+          "91.0",
+          "A",
+          "4",
+          "Excellent"
+        ],
+        [
+          "5",
+          "0080",
+          "FR. RAMON",
+          "PRIVATE",
+          "JOVINE ELISHA LUGWISHA",
+          "M",
+          "90.0",
+          "A",
+          "5",
+          "Excellent"
+        ],
+        [
+          "6",
+          "0171",
+          "MUSABE BOYS",
+          "PRIVATE",
+          "MUTAWASIFU SALEHE MUDRIKATI",
+          "M",
+          "90.0",
+          "A",
+          "6",
+          "Excellent"
+        ],
+        [
+          "7",
+          "0177",
+          "MUSABE BOYS",
+          "PRIVATE",
+          "PATRICK JAMES BWIMBO",
+          "M",
+          "90.0",
+          "A",
+          "7",
+          "Excellent"
+        ],
+        [
+          "8",
+          "0207",
+          "MUSABE BOYS",
+          "PRIVATE",
+          "SAMWEL MASHAKA NOTI",
+          "M",
+          "90.0",
+          "A",
+          "8",
+          "Excellent"
+        ],
+        [
+          "9",
+          "0033",
+          "MUSABE GIRLS",
+          "PRIVATE",
+          "CHRISTINA DARIO DAUSON",
+          "F",
+          "90.0",
+          "A",
+          "9",
+          "Excellent"
+        ],
+        [
+          "10",
+          "0108",
+          "MUSABE GIRLS",
+          "PRIVATE",
+          "LINDA KHATIBU THEODOLA",
+          "F",
+          "89.0",
+          "A",
+          "10",
+          "Excellent"
+        ]
+      ],
+      "kind": "table"
+    },
+    {
+      "caption": "TOP TEN BEST STUDENTS IN BASIC MATHEMATICS SUBJECT DISTRICTWISE",
+      "n_cols": 10,
+      "header_rows": [
+        [
+          {
+            "label": "S/NO.",
+            "colspan": 1,
+            "rowspan": 1,
+            "col": 0,
+            "row": 0
+          },
+          {
+            "label": "ID NO.",
+            "colspan": 1,
+            "rowspan": 1,
+            "col": 1,
+            "row": 0
+          },
+          {
+            "label": "SCHOOL",
+            "colspan": 1,
+            "rowspan": 1,
+            "col": 2,
+            "row": 0
+          },
+          {
+            "label": "CATEGORY",
+            "colspan": 1,
+            "rowspan": 1,
+            "col": 3,
+            "row": 0
+          },
+          {
+            "label": "CANDIDATE FULL NAME",
+            "colspan": 1,
+            "rowspan": 1,
+            "col": 4,
+            "row": 0
+          },
+          {
+            "label": "X E S",
+            "colspan": 1,
+            "rowspan": 1,
+            "col": 5,
+            "row": 0
+          },
+          {
+            "label": "S K R A M",
+            "colspan": 1,
+            "rowspan": 1,
+            "col": 6,
+            "row": 0
+          },
+          {
+            "label": "E D A R G",
+            "colspan": 1,
+            "rowspan": 1,
+            "col": 7,
+            "row": 0
+          },
+          {
+            "label": "IT IS O P",
+            "colspan": 2,
+            "rowspan": 1,
+            "col": 8,
+            "row": 0
+          }
+        ]
+      ],
+      "body": [
+        [
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "COMPETENCY LEVEL"
+        ],
+        [
+          "1",
+          "0340",
+          "KASESE",
+          "GOVERNMENT",
+          "WARREN GILBERT MWANSASU",
+          "M",
+          "100",
+          "A",
+          "1",
+          "Excellent"
+        ],
+        [
+          "2",
+          "0050",
+          "KIKALA",
+          "PRIVATE",
+          "ALHAJI NAFA ATHUMAN",
+          "M",
+          "100",
+          "A",
+          "2",
+          "Excellent"
+        ],
+        [
+          "3",
+          "0104",
+          "MUSABE GIRLS",
+          "PRIVATE",
+          "JULIANA MASANJA SABUNI",
+          "F",
+          "100",
+          "A",
+          "3",
+          "Excellent"
+        ],
+        [
+          "4",
+          "0012",
+          "MWANZA LUTHERAN",
+          "PRIVATE",
+          "JENITA DIDAS REMEGIO",
+          "F",
+          "100",
+          "A",
+          "4",
+          "Excellent"
+        ],
+        [
+          "5",
+          "0068",
+          "KIKALA",
+          "PRIVATE",
+          "JOVIN ELIAS SYLVESTER",
+          "M",
+          "99",
+          "A",
+          "5",
+          "Excellent"
+        ],
+        [
+          "6",
+          "0034",
+          "FAMG",
+          "PRIVATE",
+          "GODGIVEN RAPHAEL CHASAMA",
+          "M",
+          "98",
+          "A",
+          "6",
+          "Excellent"
+        ],
+        [
+          "7",
+          "0011",
+          "MWANZA LUTHERAN",
+          "PRIVATE",
+          "GRACE SAMSON ADONGO",
+          "F",
+          "98",
+          "A",
+          "7",
+          "Excellent"
+        ],
+        [
+          "8",
+          "0071",
+          "KIKALA",
+          "PRIVATE",
+          "KAMANI NONI KAMANI",
+          "M",
+          "97",
+          "A",
+          "8",
+          "Excellent"
+        ],
+        [
+          "9",
+          "0144",
+          "BUGARIKA",
+          "GOVERNMENT",
+          "ABDALA MOHAMED MWAITA",
+          "M",
+          "96",
+          "A",
+          "9",
+          "Excellent"
+        ],
+        [
+          "10",
+          "0409",
+          "IGOMA",
+          "GOVERNMENT",
+          "JOSHUA ISACKA NYEREMBE",
+          "M",
+          "96",
+          "A",
+          "10",
+          "Excellent"
+        ]
+      ],
+      "percent_cells": [
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ]
+      ],
+      "raw": [
+        [
+          "S/NO.",
+          "ID NO.",
+          "SCHOOL",
+          "CATEGORY",
+          "CANDIDATE FULL NAME",
+          "X E S",
+          "S K R A M",
+          "E D A R G",
+          "IT IS O P",
+          ""
+        ],
+        [
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "COMPETENCY LEVEL"
+        ],
+        [
+          "1",
+          "0340",
+          "KASESE",
+          "GOVERNMENT",
+          "WARREN GILBERT MWANSASU",
+          "M",
+          "100",
+          "A",
+          "1",
+          "Excellent"
+        ],
+        [
+          "2",
+          "0050",
+          "KIKALA",
+          "PRIVATE",
+          "ALHAJI NAFA ATHUMAN",
+          "M",
+          "100",
+          "A",
+          "2",
+          "Excellent"
+        ],
+        [
+          "3",
+          "0104",
+          "MUSABE GIRLS",
+          "PRIVATE",
+          "JULIANA MASANJA SABUNI",
+          "F",
+          "100",
+          "A",
+          "3",
+          "Excellent"
+        ],
+        [
+          "4",
+          "0012",
+          "MWANZA LUTHERAN",
+          "PRIVATE",
+          "JENITA DIDAS REMEGIO",
+          "F",
+          "100",
+          "A",
+          "4",
+          "Excellent"
+        ],
+        [
+          "5",
+          "0068",
+          "KIKALA",
+          "PRIVATE",
+          "JOVIN ELIAS SYLVESTER",
+          "M",
+          "99",
+          "A",
+          "5",
+          "Excellent"
+        ],
+        [
+          "6",
+          "0034",
+          "FAMG",
+          "PRIVATE",
+          "GODGIVEN RAPHAEL CHASAMA",
+          "M",
+          "98",
+          "A",
+          "6",
+          "Excellent"
+        ],
+        [
+          "7",
+          "0011",
+          "MWANZA LUTHERAN",
+          "PRIVATE",
+          "GRACE SAMSON ADONGO",
+          "F",
+          "98",
+          "A",
+          "7",
+          "Excellent"
+        ],
+        [
+          "8",
+          "0071",
+          "KIKALA",
+          "PRIVATE",
+          "KAMANI NONI KAMANI",
+          "M",
+          "97",
+          "A",
+          "8",
+          "Excellent"
+        ],
+        [
+          "9",
+          "0144",
+          "BUGARIKA",
+          "GOVERNMENT",
+          "ABDALA MOHAMED MWAITA",
+          "M",
+          "96",
+          "A",
+          "9",
+          "Excellent"
+        ],
+        [
+          "10",
+          "0409",
+          "IGOMA",
+          "GOVERNMENT",
+          "JOSHUA ISACKA NYEREMBE",
+          "M",
+          "96",
+          "A",
+          "10",
+          "Excellent"
+        ]
+      ],
+      "kind": "table"
+    },
+    {
+      "caption": "TOP TEN BEST STUDENTS IN HISTORY SUBJECT DISTRICTWISE",
+      "n_cols": 10,
+      "header_rows": [
+        [
+          {
+            "label": "S/NO.",
+            "colspan": 1,
+            "rowspan": 1,
+            "col": 0,
+            "row": 0
+          },
+          {
+            "label": "ID NO.",
+            "colspan": 1,
+            "rowspan": 1,
+            "col": 1,
+            "row": 0
+          },
+          {
+            "label": "SCHOOL",
+            "colspan": 1,
+            "rowspan": 1,
+            "col": 2,
+            "row": 0
+          },
+          {
+            "label": "CATEGORY",
+            "colspan": 1,
+            "rowspan": 1,
+            "col": 3,
+            "row": 0
+          },
+          {
+            "label": "CANDIDATE FULL NAME",
+            "colspan": 1,
+            "rowspan": 1,
+            "col": 4,
+            "row": 0
+          },
+          {
+            "label": "X E S",
+            "colspan": 1,
+            "rowspan": 1,
+            "col": 5,
+            "row": 0
+          },
+          {
+            "label": "S K R A M",
+            "colspan": 1,
+            "rowspan": 1,
+            "col": 6,
+            "row": 0
+          },
+          {
+            "label": "E D A R G",
+            "colspan": 1,
+            "rowspan": 1,
+            "col": 7,
+            "row": 0
+          },
+          {
+            "label": "IT IS O P",
+            "colspan": 2,
+            "rowspan": 1,
+            "col": 8,
+            "row": 0
+          }
+        ]
+      ],
+      "body": [
+        [
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "COMPETENCY LEVEL"
+        ],
+        [
+          "1",
+          "0208",
+          "STANSLAUS MABULA",
+          "GOVERNMENT",
+          "SAMWEL RAPHAEL MICHAEL",
+          "M",
+          "93",
+          "A",
+          "1",
+          "Excellent"
+        ],
+        [
+          "2",
+          "0186",
+          "MUSABE GIRLS",
+          "PRIVATE",
+          "WINFRIDA JOSEPH MGEMA",
+          "F",
+          "91",
+          "A",
+          "2",
+          "Excellent"
+        ],
+        [
+          "3",
+          "0063",
+          "MUSABE GIRLS",
+          "PRIVATE",
+          "EVELYN PHILBERT BALUGAHARA",
+          "F",
+          "90",
+          "A",
+          "3",
+          "Excellent"
+        ],
+        [
+          "4",
+          "0019",
+          "HOLY FAMILY GIRLS",
+          "PRIVATE",
+          "CAREN HEZRON LUSANGIJA",
+          "F",
+          "89",
+          "A",
+          "4",
+          "Excellent"
+        ],
+        [
+          "5",
+          "0011",
+          "MUSABE GIRLS",
+          "PRIVATE",
+          "ANISIA KOMBE ANDREW",
+          "F",
+          "88.5",
+          "A",
+          "5",
+          "Excellent"
+        ],
+        [
+          "6",
+          "0272",
+          "KASESE",
+          "GOVERNMENT",
+          "JOHNSON JIMY HAMIS",
+          "M",
+          "88",
+          "A",
+          "6",
+          "Excellent"
+        ],
+        [
+          "7",
+          "0139",
+          "MUSABE BOYS",
+          "PRIVATE",
+          "JUNIOR JOSEPH MOSABI",
+          "M",
+          "88",
+          "A",
+          "7",
+          "Excellent"
+        ],
+        [
+          "8",
+          "0204",
+          "MUSABE BOYS",
+          "PRIVATE",
+          "SALVIO MWEMA MAGEZI",
+          "M",
+          "88",
+          "A",
+          "8",
+          "Excellent"
+        ],
+        [
+          "9",
+          "0049",
+          "MUSABE GIRLS",
+          "PRIVATE",
+          "DOREEN MICHAEL KOMBA",
+          "F",
+          "88",
+          "A",
+          "9",
+          "Excellent"
+        ],
+        [
+          "10",
+          "0053",
+          "MUSABE GIRLS",
+          "PRIVATE",
+          "ELISIFA HEZRON ZACHARIA",
+          "F",
+          "88",
+          "A",
+          "10",
+          "Excellent"
+        ]
+      ],
+      "percent_cells": [
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ]
+      ],
+      "raw": [
+        [
+          "S/NO.",
+          "ID NO.",
+          "SCHOOL",
+          "CATEGORY",
+          "CANDIDATE FULL NAME",
+          "X E S",
+          "S K R A M",
+          "E D A R G",
+          "IT IS O P",
+          ""
+        ],
+        [
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "COMPETENCY LEVEL"
+        ],
+        [
+          "1",
+          "0208",
+          "STANSLAUS MABULA",
+          "GOVERNMENT",
+          "SAMWEL RAPHAEL MICHAEL",
+          "M",
+          "93",
+          "A",
+          "1",
+          "Excellent"
+        ],
+        [
+          "2",
+          "0186",
+          "MUSABE GIRLS",
+          "PRIVATE",
+          "WINFRIDA JOSEPH MGEMA",
+          "F",
+          "91",
+          "A",
+          "2",
+          "Excellent"
+        ],
+        [
+          "3",
+          "0063",
+          "MUSABE GIRLS",
+          "PRIVATE",
+          "EVELYN PHILBERT BALUGAHARA",
+          "F",
+          "90",
+          "A",
+          "3",
+          "Excellent"
+        ],
+        [
+          "4",
+          "0019",
+          "HOLY FAMILY GIRLS",
+          "PRIVATE",
+          "CAREN HEZRON LUSANGIJA",
+          "F",
+          "89",
+          "A",
+          "4",
+          "Excellent"
+        ],
+        [
+          "5",
+          "0011",
+          "MUSABE GIRLS",
+          "PRIVATE",
+          "ANISIA KOMBE ANDREW",
+          "F",
+          "88.5",
+          "A",
+          "5",
+          "Excellent"
+        ],
+        [
+          "6",
+          "0272",
+          "KASESE",
+          "GOVERNMENT",
+          "JOHNSON JIMY HAMIS",
+          "M",
+          "88",
+          "A",
+          "6",
+          "Excellent"
+        ],
+        [
+          "7",
+          "0139",
+          "MUSABE BOYS",
+          "PRIVATE",
+          "JUNIOR JOSEPH MOSABI",
+          "M",
+          "88",
+          "A",
+          "7",
+          "Excellent"
+        ],
+        [
+          "8",
+          "0204",
+          "MUSABE BOYS",
+          "PRIVATE",
+          "SALVIO MWEMA MAGEZI",
+          "M",
+          "88",
+          "A",
+          "8",
+          "Excellent"
+        ],
+        [
+          "9",
+          "0049",
+          "MUSABE GIRLS",
+          "PRIVATE",
+          "DOREEN MICHAEL KOMBA",
+          "F",
+          "88",
+          "A",
+          "9",
+          "Excellent"
+        ],
+        [
+          "10",
+          "0053",
+          "MUSABE GIRLS",
+          "PRIVATE",
+          "ELISIFA HEZRON ZACHARIA",
+          "F",
+          "88",
+          "A",
+          "10",
+          "Excellent"
+        ]
+      ],
+      "kind": "table"
+    },
+    {
+      "caption": "TOP TEN BEST STUDENTS IN B/KEEPING SUBJECT DISTRICTWISE",
+      "n_cols": 10,
+      "header_rows": [
+        [
+          {
+            "label": "S/NO.",
+            "colspan": 1,
+            "rowspan": 1,
+            "col": 0,
+            "row": 0
+          },
+          {
+            "label": "ID NO.",
+            "colspan": 1,
+            "rowspan": 1,
+            "col": 1,
+            "row": 0
+          },
+          {
+            "label": "SCHOOL",
+            "colspan": 1,
+            "rowspan": 1,
+            "col": 2,
+            "row": 0
+          },
+          {
+            "label": "CATEGORY",
+            "colspan": 1,
+            "rowspan": 1,
+            "col": 3,
+            "row": 0
+          },
+          {
+            "label": "CANDIDATE FULL NAME",
+            "colspan": 1,
+            "rowspan": 1,
+            "col": 4,
+            "row": 0
+          },
+          {
+            "label": "X E S",
+            "colspan": 1,
+            "rowspan": 1,
+            "col": 5,
+            "row": 0
+          },
+          {
+            "label": "S K R A M",
+            "colspan": 1,
+            "rowspan": 1,
+            "col": 6,
+            "row": 0
+          },
+          {
+            "label": "E D A R G",
+            "colspan": 1,
+            "rowspan": 1,
+            "col": 7,
+            "row": 0
+          },
+          {
+            "label": "IT IS O P",
+            "colspan": 2,
+            "rowspan": 1,
+            "col": 8,
+            "row": 0
+          }
+        ]
+      ],
+      "body": [
+        [
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "COMPETENCY LEVEL"
+        ],
+        [
+          "1",
+          "0113",
+          "MUSABE GIRLS",
+          "PRIVATE",
+          "MARIA CHRISTOPHER KALOKOLA",
+          "F",
+          "92",
+          "A",
+          "1",
+          "Excellent"
+        ],
+        [
+          "2",
+          "0098",
+          "MUSABE BOYS",
+          "PRIVATE",
+          "FRANK NYAKOHANDA GESERE",
+          "M",
+          "89",
+          "A",
+          "2",
+          "Excellent"
+        ],
+        [
+          "3",
+          "0145",
+          "MUSABE BOYS",
+          "PRIVATE",
+          "KEVIN MARCO SIGERA",
+          "M",
+          "87.5",
+          "A",
+          "3",
+          "Excellent"
+        ],
+        [
+          "4",
+          "0011",
+          "MUSABE GIRLS",
+          "PRIVATE",
+          "ANISIA KOMBE ANDREW",
+          "F",
+          "86",
+          "A",
+          "4",
+          "Excellent"
+        ],
+        [
+          "5",
+          "0138",
+          "MUSABE GIRLS",
+          "PRIVATE",
+          "NATHALIA HASSAN BOKI",
+          "F",
+          "85.5",
+          "A",
+          "5",
+          "Excellent"
+        ],
+        [
+          "6",
+          "0009",
+          "MUSABE GIRLS",
+          "PRIVATE",
+          "ALVIVA ALEX MATONO",
+          "F",
+          "83",
+          "A",
+          "6",
+          "Excellent"
+        ],
+        [
+          "7",
+          "0021",
+          "MUSABE GIRLS",
+          "PRIVATE",
+          "BUSAGO THOMAS KADIKO",
+          "F",
+          "83",
+          "A",
+          "7",
+          "Excellent"
+        ],
+        [
+          "8",
+          "0018",
+          "ALLIANCE ROCK ARM",
+          "PY RIVATE",
+          "BARAKA JUMA RYOBA",
+          "M",
+          "82",
+          "A",
+          "8",
+          "Excellent"
+        ],
+        [
+          "9",
+          "0142",
+          "MUSABE GIRLS",
+          "PRIVATE",
+          "NURU ALFRED SOTOKA",
+          "F",
+          "81.5",
+          "A",
+          "9",
+          "Excellent"
+        ],
+        [
+          "10",
+          "0019",
+          "NASCO",
+          "PRIVATE",
+          "IRENE ELIUD JAMES",
+          "F",
+          "81",
+          "A",
+          "10",
+          "Excellent"
+        ]
+      ],
+      "percent_cells": [
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ]
+      ],
+      "raw": [
+        [
+          "S/NO.",
+          "ID NO.",
+          "SCHOOL",
+          "CATEGORY",
+          "CANDIDATE FULL NAME",
+          "X E S",
+          "S K R A M",
+          "E D A R G",
+          "IT IS O P",
+          ""
+        ],
+        [
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "COMPETENCY LEVEL"
+        ],
+        [
+          "1",
+          "0113",
+          "MUSABE GIRLS",
+          "PRIVATE",
+          "MARIA CHRISTOPHER KALOKOLA",
+          "F",
+          "92",
+          "A",
+          "1",
+          "Excellent"
+        ],
+        [
+          "2",
+          "0098",
+          "MUSABE BOYS",
+          "PRIVATE",
+          "FRANK NYAKOHANDA GESERE",
+          "M",
+          "89",
+          "A",
+          "2",
+          "Excellent"
+        ],
+        [
+          "3",
+          "0145",
+          "MUSABE BOYS",
+          "PRIVATE",
+          "KEVIN MARCO SIGERA",
+          "M",
+          "87.5",
+          "A",
+          "3",
+          "Excellent"
+        ],
+        [
+          "4",
+          "0011",
+          "MUSABE GIRLS",
+          "PRIVATE",
+          "ANISIA KOMBE ANDREW",
+          "F",
+          "86",
+          "A",
+          "4",
+          "Excellent"
+        ],
+        [
+          "5",
+          "0138",
+          "MUSABE GIRLS",
+          "PRIVATE",
+          "NATHALIA HASSAN BOKI",
+          "F",
+          "85.5",
+          "A",
+          "5",
+          "Excellent"
+        ],
+        [
+          "6",
+          "0009",
+          "MUSABE GIRLS",
+          "PRIVATE",
+          "ALVIVA ALEX MATONO",
+          "F",
+          "83",
+          "A",
+          "6",
+          "Excellent"
+        ],
+        [
+          "7",
+          "0021",
+          "MUSABE GIRLS",
+          "PRIVATE",
+          "BUSAGO THOMAS KADIKO",
+          "F",
+          "83",
+          "A",
+          "7",
+          "Excellent"
+        ],
+        [
+          "8",
+          "0018",
+          "ALLIANCE ROCK ARM",
+          "PY RIVATE",
+          "BARAKA JUMA RYOBA",
+          "M",
+          "82",
+          "A",
+          "8",
+          "Excellent"
+        ],
+        [
+          "9",
+          "0142",
+          "MUSABE GIRLS",
+          "PRIVATE",
+          "NURU ALFRED SOTOKA",
+          "F",
+          "81.5",
+          "A",
+          "9",
+          "Excellent"
+        ],
+        [
+          "10",
+          "0019",
+          "NASCO",
+          "PRIVATE",
+          "IRENE ELIUD JAMES",
+          "F",
+          "81",
+          "A",
+          "10",
+          "Excellent"
+        ]
+      ],
+      "kind": "table"
+    },
+    {
+      "caption": "TOP TEN BEST STUDENTS IN BIBLE KNOWLEDGE SUBJECT DISTRICTWISE",
+      "n_cols": 10,
+      "header_rows": [
+        [
+          {
+            "label": "S/NO.",
+            "colspan": 1,
+            "rowspan": 1,
+            "col": 0,
+            "row": 0
+          },
+          {
+            "label": "ID NO.",
+            "colspan": 1,
+            "rowspan": 1,
+            "col": 1,
+            "row": 0
+          },
+          {
+            "label": "SCHOOL",
+            "colspan": 1,
+            "rowspan": 1,
+            "col": 2,
+            "row": 0
+          },
+          {
+            "label": "CATEGORY",
+            "colspan": 1,
+            "rowspan": 1,
+            "col": 3,
+            "row": 0
+          },
+          {
+            "label": "CANDIDATE FULL NAME",
+            "colspan": 1,
+            "rowspan": 1,
+            "col": 4,
+            "row": 0
+          },
+          {
+            "label": "X E S",
+            "colspan": 1,
+            "rowspan": 1,
+            "col": 5,
+            "row": 0
+          },
+          {
+            "label": "S K R A M",
+            "colspan": 1,
+            "rowspan": 1,
+            "col": 6,
+            "row": 0
+          },
+          {
+            "label": "E D A R G",
+            "colspan": 1,
+            "rowspan": 1,
+            "col": 7,
+            "row": 0
+          },
+          {
+            "label": "IT IS O P",
+            "colspan": 2,
+            "rowspan": 1,
+            "col": 8,
+            "row": 0
+          }
+        ]
+      ],
+      "body": [
+        [
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "COMPETENCY LEVEL"
+        ],
+        [
+          "1",
+          "0113",
+          "NYANZA ADVENTIST",
+          "PRIVATE",
+          "JUNIOR SHAFII RASHIDI",
+          "M",
+          "93",
+          "A",
+          "1",
+          "Excellent"
+        ],
+        [
+          "2",
+          "0116",
+          "HOLY FAMILY GIRLS",
+          "PRIVATE",
+          "MARIAMU ALPHAN PATRICK",
+          "F",
+          "92",
+          "A",
+          "2",
+          "Excellent"
+        ],
+        [
+          "3",
+          "0036",
+          "NYEGEZI SEMINARY",
+          "PRIVATE",
+          "EDWIN THOMAS MASUBO",
+          "M",
+          "91",
+          "A",
+          "3",
+          "Excellent"
+        ],
+        [
+          "4",
+          "0084",
+          "NYEGEZI SEMINARY",
+          "PRIVATE",
+          "PETER CHARLES MAGONDOLA",
+          "M",
+          "89",
+          "A",
+          "4",
+          "Excellent"
+        ],
+        [
+          "5",
+          "0028",
+          "HOLY FAMILY GIRLS",
+          "PRIVATE",
+          "CHRISTINA BONIPHACE MACHAGE",
+          "F",
+          "88",
+          "A",
+          "5",
+          "Excellent"
+        ],
+        [
+          "6",
+          "0141",
+          "HOLY FAMILY GIRLS",
+          "PRIVATE",
+          "PURITY ARON KALONDWA",
+          "F",
+          "88",
+          "A",
+          "6",
+          "Excellent"
+        ],
+        [
+          "7",
+          "0153",
+          "HOLY FAMILY GIRLS",
+          "PRIVATE",
+          "SELINA JOHN DEO",
+          "F",
+          "88",
+          "A",
+          "7",
+          "Excellent"
+        ],
+        [
+          "8",
+          "0001",
+          "MWANZA LUTHERAN",
+          "PRIVATE",
+          "ANGEL SILAS CHARLES",
+          "F",
+          "88",
+          "A",
+          "8",
+          "Excellent"
+        ],
+        [
+          "9",
+          "0003",
+          "MWANZA LUTHERAN",
+          "PRIVATE",
+          "ANITHA WAZIRI SAMSON",
+          "F",
+          "88",
+          "A",
+          "9",
+          "Excellent"
+        ],
+        [
+          "10",
+          "0123",
+          "NYANZA ADVENTIST",
+          "PRIVATE",
+          "MANASSEH TUMAINI LUGEMBE",
+          "M",
+          "88",
+          "A",
+          "10",
+          "Excellent"
+        ]
+      ],
+      "percent_cells": [
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ]
+      ],
+      "raw": [
+        [
+          "S/NO.",
+          "ID NO.",
+          "SCHOOL",
+          "CATEGORY",
+          "CANDIDATE FULL NAME",
+          "X E S",
+          "S K R A M",
+          "E D A R G",
+          "IT IS O P",
+          ""
+        ],
+        [
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "COMPETENCY LEVEL"
+        ],
+        [
+          "1",
+          "0113",
+          "NYANZA ADVENTIST",
+          "PRIVATE",
+          "JUNIOR SHAFII RASHIDI",
+          "M",
+          "93",
+          "A",
+          "1",
+          "Excellent"
+        ],
+        [
+          "2",
+          "0116",
+          "HOLY FAMILY GIRLS",
+          "PRIVATE",
+          "MARIAMU ALPHAN PATRICK",
+          "F",
+          "92",
+          "A",
+          "2",
+          "Excellent"
+        ],
+        [
+          "3",
+          "0036",
+          "NYEGEZI SEMINARY",
+          "PRIVATE",
+          "EDWIN THOMAS MASUBO",
+          "M",
+          "91",
+          "A",
+          "3",
+          "Excellent"
+        ],
+        [
+          "4",
+          "0084",
+          "NYEGEZI SEMINARY",
+          "PRIVATE",
+          "PETER CHARLES MAGONDOLA",
+          "M",
+          "89",
+          "A",
+          "4",
+          "Excellent"
+        ],
+        [
+          "5",
+          "0028",
+          "HOLY FAMILY GIRLS",
+          "PRIVATE",
+          "CHRISTINA BONIPHACE MACHAGE",
+          "F",
+          "88",
+          "A",
+          "5",
+          "Excellent"
+        ],
+        [
+          "6",
+          "0141",
+          "HOLY FAMILY GIRLS",
+          "PRIVATE",
+          "PURITY ARON KALONDWA",
+          "F",
+          "88",
+          "A",
+          "6",
+          "Excellent"
+        ],
+        [
+          "7",
+          "0153",
+          "HOLY FAMILY GIRLS",
+          "PRIVATE",
+          "SELINA JOHN DEO",
+          "F",
+          "88",
+          "A",
+          "7",
+          "Excellent"
+        ],
+        [
+          "8",
+          "0001",
+          "MWANZA LUTHERAN",
+          "PRIVATE",
+          "ANGEL SILAS CHARLES",
+          "F",
+          "88",
+          "A",
+          "8",
+          "Excellent"
+        ],
+        [
+          "9",
+          "0003",
+          "MWANZA LUTHERAN",
+          "PRIVATE",
+          "ANITHA WAZIRI SAMSON",
+          "F",
+          "88",
+          "A",
+          "9",
+          "Excellent"
+        ],
+        [
+          "10",
+          "0123",
+          "NYANZA ADVENTIST",
+          "PRIVATE",
+          "MANASSEH TUMAINI LUGEMBE",
+          "M",
+          "88",
+          "A",
+          "10",
+          "Excellent"
+        ],
+        [
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ]
+      ],
+      "kind": "table"
+    },
+    {
+      "caption": "TOP TEN BEST STUDENTS IN ELIMU YA DINI YA KIISLAMU SUBJECT DISTRICTWISE",
+      "n_cols": 10,
+      "header_rows": [
+        [
+          {
+            "label": "S/NO.",
+            "colspan": 1,
+            "rowspan": 1,
+            "col": 0,
+            "row": 0
+          },
+          {
+            "label": "ID NO.",
+            "colspan": 1,
+            "rowspan": 1,
+            "col": 1,
+            "row": 0
+          },
+          {
+            "label": "SCHOOL",
+            "colspan": 1,
+            "rowspan": 1,
+            "col": 2,
+            "row": 0
+          },
+          {
+            "label": "CATEGORY",
+            "colspan": 1,
+            "rowspan": 1,
+            "col": 3,
+            "row": 0
+          },
+          {
+            "label": "CANDIDATE FULL NAME",
+            "colspan": 1,
+            "rowspan": 1,
+            "col": 4,
+            "row": 0
+          },
+          {
+            "label": "X E S",
+            "colspan": 1,
+            "rowspan": 1,
+            "col": 5,
+            "row": 0
+          },
+          {
+            "label": "S K R A M",
+            "colspan": 1,
+            "rowspan": 1,
+            "col": 6,
+            "row": 0
+          },
+          {
+            "label": "E D A R G",
+            "colspan": 1,
+            "rowspan": 1,
+            "col": 7,
+            "row": 0
+          },
+          {
+            "label": "IT IS O P",
+            "colspan": 2,
+            "rowspan": 1,
+            "col": 8,
+            "row": 0
+          }
+        ]
+      ],
+      "body": [
+        [
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "COMPETENCY LEVEL"
+        ],
+        [
+          "1",
+          "0177",
+          "BUTIMBA DAY",
+          "GOVERNMENT",
+          "KHAMIS ISSA KHAMIS",
+          "M",
+          "96",
+          "A",
+          "1",
+          "Excellent"
+        ],
+        [
+          "2",
+          "0124",
+          "BUTIMBA DAY",
+          "GOVERNMENT",
+          "ABAS BATIHO SADICK",
+          "M",
+          "95",
+          "A",
+          "2",
+          "Excellent"
+        ],
+        [
+          "3",
+          "0208",
+          "BUTIMBA DAY",
+          "GOVERNMENT",
+          "SULEIMAN TAWFIQ SULEIMAN",
+          "M",
+          "95",
+          "A",
+          "3",
+          "Excellent"
+        ],
+        [
+          "4",
+          "0126",
+          "MAPANGO",
+          "GOVERNMENT",
+          "HAMZA SADICK ISSA",
+          "M",
+          "95",
+          "A",
+          "4",
+          "Excellent"
+        ],
+        [
+          "5",
+          "0086",
+          "BUTIMBA DAY",
+          "GOVERNMENT",
+          "MULHATI HASSAN HAMIS",
+          "F",
+          "94",
+          "A",
+          "5",
+          "Excellent"
+        ],
+        [
+          "6",
+          "0182",
+          "MAPANGO",
+          "GOVERNMENT",
+          "SWALEHE JUMA ATHUMAN",
+          "M",
+          "94",
+          "A",
+          "6",
+          "Excellent"
+        ],
+        [
+          "7",
+          "0150",
+          "BUHONGWA",
+          "GOVERNMENT",
+          "LUCINA BAKARI MRISHO",
+          "F",
+          "92",
+          "A",
+          "7",
+          "Excellent"
+        ],
+        [
+          "8",
+          "0044",
+          "BUTIMBA DAY",
+          "GOVERNMENT",
+          "HAMISA ABASI MUSSA",
+          "F",
+          "92",
+          "A",
+          "8",
+          "Excellent"
+        ],
+        [
+          "9",
+          "0115",
+          "BUTIMBA DAY",
+          "GOVERNMENT",
+          "UMMY JUMA OMARY",
+          "F",
+          "92",
+          "A",
+          "9",
+          "Excellent"
+        ],
+        [
+          "10",
+          "0100",
+          "MAPANGO",
+          "GOVERNMENT",
+          "ALLY JUMANNE SAID",
+          "M",
+          "92",
+          "A",
+          "10",
+          "Excellent"
+        ]
+      ],
+      "percent_cells": [
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ]
+      ],
+      "raw": [
+        [
+          "S/NO.",
+          "ID NO.",
+          "SCHOOL",
+          "CATEGORY",
+          "CANDIDATE FULL NAME",
+          "X E S",
+          "S K R A M",
+          "E D A R G",
+          "IT IS O P",
+          ""
+        ],
+        [
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "COMPETENCY LEVEL"
+        ],
+        [
+          "1",
+          "0177",
+          "BUTIMBA DAY",
+          "GOVERNMENT",
+          "KHAMIS ISSA KHAMIS",
+          "M",
+          "96",
+          "A",
+          "1",
+          "Excellent"
+        ],
+        [
+          "2",
+          "0124",
+          "BUTIMBA DAY",
+          "GOVERNMENT",
+          "ABAS BATIHO SADICK",
+          "M",
+          "95",
+          "A",
+          "2",
+          "Excellent"
+        ],
+        [
+          "3",
+          "0208",
+          "BUTIMBA DAY",
+          "GOVERNMENT",
+          "SULEIMAN TAWFIQ SULEIMAN",
+          "M",
+          "95",
+          "A",
+          "3",
+          "Excellent"
+        ],
+        [
+          "4",
+          "0126",
+          "MAPANGO",
+          "GOVERNMENT",
+          "HAMZA SADICK ISSA",
+          "M",
+          "95",
+          "A",
+          "4",
+          "Excellent"
+        ],
+        [
+          "5",
+          "0086",
+          "BUTIMBA DAY",
+          "GOVERNMENT",
+          "MULHATI HASSAN HAMIS",
+          "F",
+          "94",
+          "A",
+          "5",
+          "Excellent"
+        ],
+        [
+          "6",
+          "0182",
+          "MAPANGO",
+          "GOVERNMENT",
+          "SWALEHE JUMA ATHUMAN",
+          "M",
+          "94",
+          "A",
+          "6",
+          "Excellent"
+        ],
+        [
+          "7",
+          "0150",
+          "BUHONGWA",
+          "GOVERNMENT",
+          "LUCINA BAKARI MRISHO",
+          "F",
+          "92",
+          "A",
+          "7",
+          "Excellent"
+        ],
+        [
+          "8",
+          "0044",
+          "BUTIMBA DAY",
+          "GOVERNMENT",
+          "HAMISA ABASI MUSSA",
+          "F",
+          "92",
+          "A",
+          "8",
+          "Excellent"
+        ],
+        [
+          "9",
+          "0115",
+          "BUTIMBA DAY",
+          "GOVERNMENT",
+          "UMMY JUMA OMARY",
+          "F",
+          "92",
+          "A",
+          "9",
+          "Excellent"
+        ],
+        [
+          "10",
+          "0100",
+          "MAPANGO",
+          "GOVERNMENT",
+          "ALLY JUMANNE SAID",
+          "M",
+          "92",
+          "A",
+          "10",
+          "Excellent"
+        ],
+        [
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ]
+      ],
+      "kind": "table"
+    },
+    {
+      "caption": "TOP TEN BEST STUDENTS IN ARABIC LANGUAGE SUBJECT DISTRICTWISE",
+      "n_cols": 10,
+      "header_rows": [
+        [
+          {
+            "label": "S/NO.",
+            "colspan": 1,
+            "rowspan": 1,
+            "col": 0,
+            "row": 0
+          },
+          {
+            "label": "ID NO.",
+            "colspan": 1,
+            "rowspan": 1,
+            "col": 1,
+            "row": 0
+          },
+          {
+            "label": "SCHOOL",
+            "colspan": 1,
+            "rowspan": 1,
+            "col": 2,
+            "row": 0
+          },
+          {
+            "label": "CATEGORY",
+            "colspan": 1,
+            "rowspan": 1,
+            "col": 3,
+            "row": 0
+          },
+          {
+            "label": "CANDIDATE FULL NAME",
+            "colspan": 1,
+            "rowspan": 1,
+            "col": 4,
+            "row": 0
+          },
+          {
+            "label": "X E S",
+            "colspan": 1,
+            "rowspan": 1,
+            "col": 5,
+            "row": 0
+          },
+          {
+            "label": "S K R A M",
+            "colspan": 1,
+            "rowspan": 1,
+            "col": 6,
+            "row": 0
+          },
+          {
+            "label": "E D A R G",
+            "colspan": 1,
+            "rowspan": 1,
+            "col": 7,
+            "row": 0
+          },
+          {
+            "label": "IT IS O P",
+            "colspan": 2,
+            "rowspan": 1,
+            "col": 8,
+            "row": 0
+          }
+        ]
+      ],
+      "body": [
+        [
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "COMPETENCY LEVEL"
+        ],
+        [
+          "1",
+          "0093",
+          "BUHONGWA ISLAMIC",
+          "PRIVATE",
+          "ZUBEDA ENOCK GEZA",
+          "F",
+          "88",
+          "A",
+          "1",
+          "Excellent"
+        ],
+        [
+          "2",
+          "0020",
+          "BUHONGWA ISLAMIC",
+          "PRIVATE",
+          "FATUMA MUSSA ALLY",
+          "F",
+          "86",
+          "A",
+          "2",
+          "Excellent"
+        ],
+        [
+          "3",
+          "0086",
+          "BUHONGWA ISLAMIC",
+          "PRIVATE",
+          "YUSRA AMIN MSHARABA",
+          "F",
+          "82",
+          "A",
+          "3",
+          "Excellent"
+        ],
+        [
+          "4",
+          "0018",
+          "BUHONGWA ISLAMIC",
+          "PRIVATE",
+          "FATMAH IBRAHIM MALILO",
+          "F",
+          "81",
+          "A",
+          "4",
+          "Excellent"
+        ],
+        [
+          "5",
+          "0103",
+          "BUHONGWA ISLAMIC",
+          "PRIVATE",
+          "AHMED MUSA SELEMAN",
+          "M",
+          "79",
+          "A",
+          "5",
+          "Excellent"
+        ],
+        [
+          "6",
+          "0132",
+          "BUHONGWA ISLAMIC",
+          "PRIVATE",
+          "MUDATHIR MZEE MWALIM",
+          "M",
+          "78",
+          "A",
+          "6",
+          "Excellent"
+        ],
+        [
+          "7",
+          "0011",
+          "BUHONGWA ISLAMIC",
+          "PRIVATE",
+          "AYMAN MDOGO MAKAME",
+          "F",
+          "77",
+          "A",
+          "7",
+          "Excellent"
+        ],
+        [
+          "8",
+          "0017",
+          "BUHONGWA ISLAMIC",
+          "PRIVATE",
+          "FATMA KUDRA ABDUL",
+          "F",
+          "75",
+          "A",
+          "8",
+          "Excellent"
+        ],
+        [
+          "9",
+          "0080",
+          "BUHONGWA ISLAMIC",
+          "PRIVATE",
+          "SUMAIYA SULEIMAN TIMOTH",
+          "F",
+          "73",
+          "B",
+          "9",
+          "Very Good"
+        ],
+        [
+          "10",
+          "0068",
+          "BUHONGWA ISLAMIC",
+          "PRIVATE",
+          "SALHA HAJI MANGILI",
+          "F",
+          "71",
+          "B",
+          "10",
+          "Very Good"
+        ]
+      ],
+      "percent_cells": [
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ]
+      ],
+      "raw": [
+        [
+          "S/NO.",
+          "ID NO.",
+          "SCHOOL",
+          "CATEGORY",
+          "CANDIDATE FULL NAME",
+          "X E S",
+          "S K R A M",
+          "E D A R G",
+          "IT IS O P",
+          ""
+        ],
+        [
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "COMPETENCY LEVEL"
+        ],
+        [
+          "1",
+          "0093",
+          "BUHONGWA ISLAMIC",
+          "PRIVATE",
+          "ZUBEDA ENOCK GEZA",
+          "F",
+          "88",
+          "A",
+          "1",
+          "Excellent"
+        ],
+        [
+          "2",
+          "0020",
+          "BUHONGWA ISLAMIC",
+          "PRIVATE",
+          "FATUMA MUSSA ALLY",
+          "F",
+          "86",
+          "A",
+          "2",
+          "Excellent"
+        ],
+        [
+          "3",
+          "0086",
+          "BUHONGWA ISLAMIC",
+          "PRIVATE",
+          "YUSRA AMIN MSHARABA",
+          "F",
+          "82",
+          "A",
+          "3",
+          "Excellent"
+        ],
+        [
+          "4",
+          "0018",
+          "BUHONGWA ISLAMIC",
+          "PRIVATE",
+          "FATMAH IBRAHIM MALILO",
+          "F",
+          "81",
+          "A",
+          "4",
+          "Excellent"
+        ],
+        [
+          "5",
+          "0103",
+          "BUHONGWA ISLAMIC",
+          "PRIVATE",
+          "AHMED MUSA SELEMAN",
+          "M",
+          "79",
+          "A",
+          "5",
+          "Excellent"
+        ],
+        [
+          "6",
+          "0132",
+          "BUHONGWA ISLAMIC",
+          "PRIVATE",
+          "MUDATHIR MZEE MWALIM",
+          "M",
+          "78",
+          "A",
+          "6",
+          "Excellent"
+        ],
+        [
+          "7",
+          "0011",
+          "BUHONGWA ISLAMIC",
+          "PRIVATE",
+          "AYMAN MDOGO MAKAME",
+          "F",
+          "77",
+          "A",
+          "7",
+          "Excellent"
+        ],
+        [
+          "8",
+          "0017",
+          "BUHONGWA ISLAMIC",
+          "PRIVATE",
+          "FATMA KUDRA ABDUL",
+          "F",
+          "75",
+          "A",
+          "8",
+          "Excellent"
+        ],
+        [
+          "9",
+          "0080",
+          "BUHONGWA ISLAMIC",
+          "PRIVATE",
+          "SUMAIYA SULEIMAN TIMOTH",
+          "F",
+          "73",
+          "B",
+          "9",
+          "Very Good"
+        ],
+        [
+          "10",
+          "0068",
+          "BUHONGWA ISLAMIC",
+          "PRIVATE",
+          "SALHA HAJI MANGILI",
+          "F",
+          "71",
+          "B",
+          "10",
+          "Very Good"
+        ]
+      ],
+      "kind": "table"
+    },
+    {
+      "caption": "TOP TEN BEST STUDENTS IN CHINES LANGUAGE SUBJECT DISTRICTWISE",
+      "n_cols": 10,
+      "header_rows": [
+        [
+          {
+            "label": "S/NO.",
+            "colspan": 1,
+            "rowspan": 1,
+            "col": 0,
+            "row": 0
+          },
+          {
+            "label": "ID NO.",
+            "colspan": 1,
+            "rowspan": 1,
+            "col": 1,
+            "row": 0
+          },
+          {
+            "label": "SCHOOL",
+            "colspan": 1,
+            "rowspan": 1,
+            "col": 2,
+            "row": 0
+          },
+          {
+            "label": "CATEGORY",
+            "colspan": 1,
+            "rowspan": 1,
+            "col": 3,
+            "row": 0
+          },
+          {
+            "label": "CANDIDATE FULL NAME",
+            "colspan": 1,
+            "rowspan": 1,
+            "col": 4,
+            "row": 0
+          },
+          {
+            "label": "X E S",
+            "colspan": 1,
+            "rowspan": 1,
+            "col": 5,
+            "row": 0
+          },
+          {
+            "label": "S K R A M",
+            "colspan": 1,
+            "rowspan": 1,
+            "col": 6,
+            "row": 0
+          },
+          {
+            "label": "E D A R G",
+            "colspan": 1,
+            "rowspan": 1,
+            "col": 7,
+            "row": 0
+          },
+          {
+            "label": "IT IS O P",
+            "colspan": 2,
+            "rowspan": 1,
+            "col": 8,
+            "row": 0
+          }
+        ]
+      ],
+      "body": [
+        [
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "COMPETENCY LEVEL"
+        ],
+        [
+          "1",
+          "0021",
+          "MUSABE GIRLS",
+          "PRIVATE",
+          "BUSAGO THOMAS KADIKO",
+          "F",
+          "92",
+          "A",
+          "1",
+          "Excellent"
+        ],
+        [
+          "2",
+          "0119",
+          "MUSABE GIRLS",
+          "PRIVATE",
+          "MARTHA RICHARD ROBERT",
+          "F",
+          "91",
+          "A",
+          "2",
+          "Excellent"
+        ],
+        [
+          "3",
+          "0138",
+          "MUSABE GIRLS",
+          "PRIVATE",
+          "NATHALIA HASSAN BOKI",
+          "F",
+          "91",
+          "A",
+          "3",
+          "Excellent"
+        ],
+        [
+          "4",
+          "0005",
+          "MUSABE GIRLS",
+          "PRIVATE",
+          "ADIA BYERA HASSAN",
+          "F",
+          "89",
+          "A",
+          "4",
+          "Excellent"
+        ],
+        [
+          "5",
+          "0103",
+          "MUSABE BOYS",
+          "PRIVATE",
+          "GODBLESS AMANYA MBELWA",
+          "M",
+          "88",
+          "A",
+          "5",
+          "Excellent"
+        ],
+        [
+          "6",
+          "0127",
+          "MUSABE GIRLS",
+          "PRIVATE",
+          "MYRIAM FRANCIS KANGETHE",
+          "F",
+          "88",
+          "A",
+          "6",
+          "Excellent"
+        ],
+        [
+          "7",
+          "0040",
+          "MUSABE BOYS",
+          "PRIVATE",
+          "BRIGHTON PIUS MAKUNJA",
+          "M",
+          "86",
+          "A",
+          "7",
+          "Excellent"
+        ],
+        [
+          "8",
+          "0168",
+          "MUSABE BOYS",
+          "PRIVATE",
+          "MUHAMMAD ABDALLAH JUMATATU",
+          "M",
+          "86",
+          "A",
+          "8",
+          "Excellent"
+        ],
+        [
+          "9",
+          "0017",
+          "MUSABE GIRLS",
+          "PRIVATE",
+          "ASIA MAULID DEGE",
+          "F",
+          "86",
+          "A",
+          "9",
+          "Excellent"
+        ],
+        [
+          "10",
+          "0222",
+          "MUSABE BOYS",
+          "PRIVATE",
+          "YAHAYA SAID MAJAJA",
+          "M",
+          "85",
+          "A",
+          "10",
+          "Excellent"
+        ]
+      ],
+      "percent_cells": [
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ]
+      ],
+      "raw": [
+        [
+          "S/NO.",
+          "ID NO.",
+          "SCHOOL",
+          "CATEGORY",
+          "CANDIDATE FULL NAME",
+          "X E S",
+          "S K R A M",
+          "E D A R G",
+          "IT IS O P",
+          ""
+        ],
+        [
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "COMPETENCY LEVEL"
+        ],
+        [
+          "1",
+          "0021",
+          "MUSABE GIRLS",
+          "PRIVATE",
+          "BUSAGO THOMAS KADIKO",
+          "F",
+          "92",
+          "A",
+          "1",
+          "Excellent"
+        ],
+        [
+          "2",
+          "0119",
+          "MUSABE GIRLS",
+          "PRIVATE",
+          "MARTHA RICHARD ROBERT",
+          "F",
+          "91",
+          "A",
+          "2",
+          "Excellent"
+        ],
+        [
+          "3",
+          "0138",
+          "MUSABE GIRLS",
+          "PRIVATE",
+          "NATHALIA HASSAN BOKI",
+          "F",
+          "91",
+          "A",
+          "3",
+          "Excellent"
+        ],
+        [
+          "4",
+          "0005",
+          "MUSABE GIRLS",
+          "PRIVATE",
+          "ADIA BYERA HASSAN",
+          "F",
+          "89",
+          "A",
+          "4",
+          "Excellent"
+        ],
+        [
+          "5",
+          "0103",
+          "MUSABE BOYS",
+          "PRIVATE",
+          "GODBLESS AMANYA MBELWA",
+          "M",
+          "88",
+          "A",
+          "5",
+          "Excellent"
+        ],
+        [
+          "6",
+          "0127",
+          "MUSABE GIRLS",
+          "PRIVATE",
+          "MYRIAM FRANCIS KANGETHE",
+          "F",
+          "88",
+          "A",
+          "6",
+          "Excellent"
+        ],
+        [
+          "7",
+          "0040",
+          "MUSABE BOYS",
+          "PRIVATE",
+          "BRIGHTON PIUS MAKUNJA",
+          "M",
+          "86",
+          "A",
+          "7",
+          "Excellent"
+        ],
+        [
+          "8",
+          "0168",
+          "MUSABE BOYS",
+          "PRIVATE",
+          "MUHAMMAD ABDALLAH JUMATATU",
+          "M",
+          "86",
+          "A",
+          "8",
+          "Excellent"
+        ],
+        [
+          "9",
+          "0017",
+          "MUSABE GIRLS",
+          "PRIVATE",
+          "ASIA MAULID DEGE",
+          "F",
+          "86",
+          "A",
+          "9",
+          "Excellent"
+        ],
+        [
+          "10",
+          "0222",
+          "MUSABE BOYS",
+          "PRIVATE",
+          "YAHAYA SAID MAJAJA",
+          "M",
+          "85",
+          "A",
+          "10",
+          "Excellent"
+        ],
+        [
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ]
+      ],
+      "kind": "table"
+    },
+    {
+      "caption": "TOP TEN BEST STUDENTS IN FRENCH LANGUAGE SUBJECT DISTRICTWISE",
+      "n_cols": 10,
+      "header_rows": [
+        [
+          {
+            "label": "S/NO.",
+            "colspan": 1,
+            "rowspan": 1,
+            "col": 0,
+            "row": 0
+          },
+          {
+            "label": "ID NO.",
+            "colspan": 1,
+            "rowspan": 1,
+            "col": 1,
+            "row": 0
+          },
+          {
+            "label": "SCHOOL",
+            "colspan": 1,
+            "rowspan": 1,
+            "col": 2,
+            "row": 0
+          },
+          {
+            "label": "CATEGORY",
+            "colspan": 1,
+            "rowspan": 1,
+            "col": 3,
+            "row": 0
+          },
+          {
+            "label": "CANDIDATE FULL NAME",
+            "colspan": 1,
+            "rowspan": 1,
+            "col": 4,
+            "row": 0
+          },
+          {
+            "label": "X E S",
+            "colspan": 1,
+            "rowspan": 1,
+            "col": 5,
+            "row": 0
+          },
+          {
+            "label": "S K R A M",
+            "colspan": 1,
+            "rowspan": 1,
+            "col": 6,
+            "row": 0
+          },
+          {
+            "label": "E D A R G",
+            "colspan": 1,
+            "rowspan": 1,
+            "col": 7,
+            "row": 0
+          },
+          {
+            "label": "IT IS O P",
+            "colspan": 2,
+            "rowspan": 1,
+            "col": 8,
+            "row": 0
+          }
+        ]
+      ],
+      "body": [
+        [
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "COMPETENCY LEVEL"
+        ],
+        [
+          "1",
+          "0114",
+          "FR. RAMON",
+          "PRIVATE",
+          "ZABRON LEONARD WILLIAM",
+          "M",
+          "87",
+          "A",
+          "1",
+          "Excellent"
+        ],
+        [
+          "2",
+          "0074",
+          "FR. RAMON",
+          "PRIVATE",
+          "JOHNSON LISTER STANLEY",
+          "M",
+          "80",
+          "A",
+          "2",
+          "Excellent"
+        ],
+        [
+          "3",
+          "0082",
+          "FR. RAMON",
+          "PRIVATE",
+          "JUSTINE ISAAC MAWUA",
+          "M",
+          "79",
+          "A",
+          "3",
+          "Excellent"
+        ],
+        [
+          "4",
+          "0051",
+          "FR. RAMON",
+          "PRIVATE",
+          "FELIX BHOKE IGONGA",
+          "M",
+          "75",
+          "A",
+          "4",
+          "Excellent"
+        ],
+        [
+          "5",
+          "0055",
+          "FR. RAMON",
+          "PRIVATE",
+          "FRANCIS TIBA JULIUS",
+          "M",
+          "72",
+          "B",
+          "5",
+          "Very Good"
+        ],
+        [
+          "6",
+          "0094",
+          "FR. RAMON",
+          "PRIVATE",
+          "NESTORY ALPHONCE LUBILO",
+          "M",
+          "71",
+          "B",
+          "6",
+          "Very Good"
+        ],
+        [
+          "7",
+          "0024",
+          "FR. RAMON",
+          "PRIVATE",
+          "BRILLIANCE MARWA DAUDI",
+          "M",
+          "70",
+          "B",
+          "7",
+          "Very Good"
+        ],
+        [
+          "8",
+          "0097",
+          "FR. RAMON",
+          "PRIVATE",
+          "PAUL KIKUBE MANG'ERA",
+          "M",
+          "69",
+          "B",
+          "8",
+          "Very Good"
+        ],
+        [
+          "9",
+          "0031",
+          "NYEGEZI SEMINARY",
+          "PRIVATE",
+          "DANIEL DAVID KATIKIRO",
+          "M",
+          "69",
+          "B",
+          "9",
+          "Very Good"
+        ],
+        [
+          "10",
+          "0078",
+          "NYEGEZI SEMINARY",
+          "PRIVATE",
+          "MOSES ELIAS POLLE",
+          "M",
+          "67",
+          "B",
+          "10",
+          "Very Good"
+        ]
+      ],
+      "percent_cells": [
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ]
+      ],
+      "raw": [
+        [
+          "S/NO.",
+          "ID NO.",
+          "SCHOOL",
+          "CATEGORY",
+          "CANDIDATE FULL NAME",
+          "X E S",
+          "S K R A M",
+          "E D A R G",
+          "IT IS O P",
+          ""
+        ],
+        [
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "COMPETENCY LEVEL"
+        ],
+        [
+          "1",
+          "0114",
+          "FR. RAMON",
+          "PRIVATE",
+          "ZABRON LEONARD WILLIAM",
+          "M",
+          "87",
+          "A",
+          "1",
+          "Excellent"
+        ],
+        [
+          "2",
+          "0074",
+          "FR. RAMON",
+          "PRIVATE",
+          "JOHNSON LISTER STANLEY",
+          "M",
+          "80",
+          "A",
+          "2",
+          "Excellent"
+        ],
+        [
+          "3",
+          "0082",
+          "FR. RAMON",
+          "PRIVATE",
+          "JUSTINE ISAAC MAWUA",
+          "M",
+          "79",
+          "A",
+          "3",
+          "Excellent"
+        ],
+        [
+          "4",
+          "0051",
+          "FR. RAMON",
+          "PRIVATE",
+          "FELIX BHOKE IGONGA",
+          "M",
+          "75",
+          "A",
+          "4",
+          "Excellent"
+        ],
+        [
+          "5",
+          "0055",
+          "FR. RAMON",
+          "PRIVATE",
+          "FRANCIS TIBA JULIUS",
+          "M",
+          "72",
+          "B",
+          "5",
+          "Very Good"
+        ],
+        [
+          "6",
+          "0094",
+          "FR. RAMON",
+          "PRIVATE",
+          "NESTORY ALPHONCE LUBILO",
+          "M",
+          "71",
+          "B",
+          "6",
+          "Very Good"
+        ],
+        [
+          "7",
+          "0024",
+          "FR. RAMON",
+          "PRIVATE",
+          "BRILLIANCE MARWA DAUDI",
+          "M",
+          "70",
+          "B",
+          "7",
+          "Very Good"
+        ],
+        [
+          "8",
+          "0097",
+          "FR. RAMON",
+          "PRIVATE",
+          "PAUL KIKUBE MANG'ERA",
+          "M",
+          "69",
+          "B",
+          "8",
+          "Very Good"
+        ],
+        [
+          "9",
+          "0031",
+          "NYEGEZI SEMINARY",
+          "PRIVATE",
+          "DANIEL DAVID KATIKIRO",
+          "M",
+          "69",
+          "B",
+          "9",
+          "Very Good"
+        ],
+        [
+          "10",
+          "0078",
+          "NYEGEZI SEMINARY",
+          "PRIVATE",
+          "MOSES ELIAS POLLE",
+          "M",
+          "67",
+          "B",
+          "10",
+          "Very Good"
+        ],
+        [
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ]
+      ],
+      "kind": "table"
+    },
+    {
+      "caption": "TOP TEN BEST STUDENTS IN COMPUTER SCIENCE SUBJECT DISTRICTWISE",
+      "n_cols": 10,
+      "header_rows": [
+        [
+          {
+            "label": "S/NO.",
+            "colspan": 1,
+            "rowspan": 1,
+            "col": 0,
+            "row": 0
+          },
+          {
+            "label": "ID NO.",
+            "colspan": 1,
+            "rowspan": 1,
+            "col": 1,
+            "row": 0
+          },
+          {
+            "label": "SCHOOL",
+            "colspan": 1,
+            "rowspan": 1,
+            "col": 2,
+            "row": 0
+          },
+          {
+            "label": "CATEGORY",
+            "colspan": 1,
+            "rowspan": 1,
+            "col": 3,
+            "row": 0
+          },
+          {
+            "label": "CANDIDATE FULL NAME",
+            "colspan": 1,
+            "rowspan": 1,
+            "col": 4,
+            "row": 0
+          },
+          {
+            "label": "X E S",
+            "colspan": 1,
+            "rowspan": 1,
+            "col": 5,
+            "row": 0
+          },
+          {
+            "label": "S K R A M",
+            "colspan": 1,
+            "rowspan": 1,
+            "col": 6,
+            "row": 0
+          },
+          {
+            "label": "E D A R G",
+            "colspan": 1,
+            "rowspan": 1,
+            "col": 7,
+            "row": 0
+          },
+          {
+            "label": "IT IS O P",
+            "colspan": 2,
+            "rowspan": 1,
+            "col": 8,
+            "row": 0
+          }
+        ]
+      ],
+      "body": [
+        [
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "COMPETENCY LEVEL"
+        ],
+        [
+          "1",
+          "0031",
+          "MUSABE BOYS",
+          "PRIVATE",
+          "BENSONATUS MUGISHA BENJAMIN",
+          "M",
+          "93",
+          "A",
+          "1",
+          "Excellent"
+        ],
+        [
+          "2",
+          "0121",
+          "MUSABE BOYS",
+          "PRIVATE",
+          "ISAAC BONIFACE MOSES",
+          "M",
+          "93",
+          "A",
+          "2",
+          "Excellent"
+        ],
+        [
+          "3",
+          "0225",
+          "MUSABE BOYS",
+          "PRIVATE",
+          "ZACHARIA RENATUS ZACHARIA",
+          "M",
+          "92",
+          "A",
+          "3",
+          "Excellent"
+        ],
+        [
+          "4",
+          "0032",
+          "MUSABE BOYS",
+          "PRIVATE",
+          "BONIPHACE PAUL MAIGA",
+          "M",
+          "91",
+          "A",
+          "4",
+          "Excellent"
+        ],
+        [
+          "5",
+          "0115",
+          "MUSABE BOYS",
+          "PRIVATE",
+          "HUSSEIN SHOMARI ABDALLAH",
+          "M",
+          "91",
+          "A",
+          "5",
+          "Excellent"
+        ],
+        [
+          "6",
+          "0001",
+          "MUSABE BOYS",
+          "PRIVATE",
+          "ABDUKARIM FADHILI SIKWALA",
+          "M",
+          "89",
+          "A",
+          "6",
+          "Excellent"
+        ],
+        [
+          "7",
+          "0125",
+          "MUSABE BOYS",
+          "PRIVATE",
+          "JAMES MATHIAS JAMES",
+          "M",
+          "89",
+          "A",
+          "7",
+          "Excellent"
+        ],
+        [
+          "8",
+          "0157",
+          "MUSABE BOYS",
+          "PRIVATE",
+          "MAHAGIJA KIJA MAHAGIJA",
+          "M",
+          "89",
+          "A",
+          "8",
+          "Excellent"
+        ],
+        [
+          "9",
+          "0171",
+          "MUSABE BOYS",
+          "PRIVATE",
+          "MUTAWASIFU SALEHE MUDRIKATI",
+          "M",
+          "88",
+          "A",
+          "9",
+          "Excellent"
+        ],
+        [
+          "10",
+          "0071",
+          "MUSABE GIRLS",
+          "PRIVATE",
+          "FIRDAUS MOHAMED GOMBATI",
+          "F",
+          "87",
+          "A",
+          "10",
+          "Excellent"
+        ]
+      ],
+      "percent_cells": [
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ]
+      ],
+      "raw": [
+        [
+          "S/NO.",
+          "ID NO.",
+          "SCHOOL",
+          "CATEGORY",
+          "CANDIDATE FULL NAME",
+          "X E S",
+          "S K R A M",
+          "E D A R G",
+          "IT IS O P",
+          ""
+        ],
+        [
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "COMPETENCY LEVEL"
+        ],
+        [
+          "1",
+          "0031",
+          "MUSABE BOYS",
+          "PRIVATE",
+          "BENSONATUS MUGISHA BENJAMIN",
+          "M",
+          "93",
+          "A",
+          "1",
+          "Excellent"
+        ],
+        [
+          "2",
+          "0121",
+          "MUSABE BOYS",
+          "PRIVATE",
+          "ISAAC BONIFACE MOSES",
+          "M",
+          "93",
+          "A",
+          "2",
+          "Excellent"
+        ],
+        [
+          "3",
+          "0225",
+          "MUSABE BOYS",
+          "PRIVATE",
+          "ZACHARIA RENATUS ZACHARIA",
+          "M",
+          "92",
+          "A",
+          "3",
+          "Excellent"
+        ],
+        [
+          "4",
+          "0032",
+          "MUSABE BOYS",
+          "PRIVATE",
+          "BONIPHACE PAUL MAIGA",
+          "M",
+          "91",
+          "A",
+          "4",
+          "Excellent"
+        ],
+        [
+          "5",
+          "0115",
+          "MUSABE BOYS",
+          "PRIVATE",
+          "HUSSEIN SHOMARI ABDALLAH",
+          "M",
+          "91",
+          "A",
+          "5",
+          "Excellent"
+        ],
+        [
+          "6",
+          "0001",
+          "MUSABE BOYS",
+          "PRIVATE",
+          "ABDUKARIM FADHILI SIKWALA",
+          "M",
+          "89",
+          "A",
+          "6",
+          "Excellent"
+        ],
+        [
+          "7",
+          "0125",
+          "MUSABE BOYS",
+          "PRIVATE",
+          "JAMES MATHIAS JAMES",
+          "M",
+          "89",
+          "A",
+          "7",
+          "Excellent"
+        ],
+        [
+          "8",
+          "0157",
+          "MUSABE BOYS",
+          "PRIVATE",
+          "MAHAGIJA KIJA MAHAGIJA",
+          "M",
+          "89",
+          "A",
+          "8",
+          "Excellent"
+        ],
+        [
+          "9",
+          "0171",
+          "MUSABE BOYS",
+          "PRIVATE",
+          "MUTAWASIFU SALEHE MUDRIKATI",
+          "M",
+          "88",
+          "A",
+          "9",
+          "Excellent"
+        ],
+        [
+          "10",
+          "0071",
+          "MUSABE GIRLS",
+          "PRIVATE",
+          "FIRDAUS MOHAMED GOMBATI",
+          "F",
+          "87",
+          "A",
+          "10",
+          "Excellent"
+        ],
+        [
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ]
+      ],
+      "kind": "table"
+    },
+    {
+      "caption": "TOP TEN BEST STUDENTS IN SPORT STUDIES SUBJECT DISTRICTWISE",
+      "n_cols": 10,
+      "header_rows": [
+        [
+          {
+            "label": "S/NO.",
+            "colspan": 1,
+            "rowspan": 1,
+            "col": 0,
+            "row": 0
+          },
+          {
+            "label": "ID NO.",
+            "colspan": 1,
+            "rowspan": 1,
+            "col": 1,
+            "row": 0
+          },
+          {
+            "label": "SCHOOL",
+            "colspan": 1,
+            "rowspan": 1,
+            "col": 2,
+            "row": 0
+          },
+          {
+            "label": "CATEGORY",
+            "colspan": 1,
+            "rowspan": 1,
+            "col": 3,
+            "row": 0
+          },
+          {
+            "label": "CANDIDATE FULL NAME",
+            "colspan": 1,
+            "rowspan": 1,
+            "col": 4,
+            "row": 0
+          },
+          {
+            "label": "X E S",
+            "colspan": 1,
+            "rowspan": 1,
+            "col": 5,
+            "row": 0
+          },
+          {
+            "label": "S K R A M",
+            "colspan": 1,
+            "rowspan": 1,
+            "col": 6,
+            "row": 0
+          },
+          {
+            "label": "E D A R G",
+            "colspan": 1,
+            "rowspan": 1,
+            "col": 7,
+            "row": 0
+          },
+          {
+            "label": "O IT IS O P",
+            "colspan": 1,
+            "rowspan": 1,
+            "col": 8,
+            "row": 0
+          },
+          {
+            "label": "COMPETENCY LEVEL",
+            "colspan": 1,
+            "rowspan": 1,
+            "col": 9,
+            "row": 0
+          }
+        ]
+      ],
+      "body": [
+        [
+          "1",
+          "0267",
+          "MTONI",
+          "GOVERNMENT",
+          "MATIKU JOHN MGENDA",
+          "M",
+          "86",
+          "A",
+          "1",
+          "Excellent"
+        ],
+        [
+          "2",
+          "0290",
+          "MTONI",
+          "GOVERNMENT",
+          "RAPHAEL MARWA MLIMI",
+          "M",
+          "86",
+          "A",
+          "2",
+          "Excellent"
+        ],
+        [
+          "3",
+          "0114",
+          "LUCHELELE",
+          "GOVERNMENT",
+          "JOHN STEVEN KIGABO",
+          "M",
+          "85",
+          "A",
+          "3",
+          "Excellent"
+        ],
+        [
+          "4",
+          "0215",
+          "MTONI",
+          "GOVERNMENT",
+          "DEOGRATIAS LEONARD ENOS",
+          "M",
+          "85",
+          "A",
+          "4",
+          "Excellent"
+        ],
+        [
+          "5",
+          "0001",
+          "MTONI",
+          "GOVERNMENT",
+          "ABIA LEONARD SYLIVESTER",
+          "F",
+          "83",
+          "A",
+          "5",
+          "Excellent"
+        ],
+        [
+          "6",
+          "0115",
+          "MTONI",
+          "GOVERNMENT",
+          "MIRIAM MKUMBO ZEPHANIA",
+          "F",
+          "83",
+          "A",
+          "6",
+          "Excellent"
+        ],
+        [
+          "7",
+          "0035",
+          "MTONI",
+          "GOVERNMENT",
+          "DIANA ODILA YENJE",
+          "F",
+          "82",
+          "A",
+          "7",
+          "Excellent"
+        ],
+        [
+          "8",
+          "0082",
+          "LUCHELELE",
+          "GOVERNMENT",
+          "CHARLES KULWA SABINI",
+          "M",
+          "81",
+          "A",
+          "8",
+          "Excellent"
+        ],
+        [
+          "9",
+          "0055",
+          "LUCHELELE",
+          "GOVERNMENT",
+          "MERRYCIANA DANIEL STEPHANO",
+          "F",
+          "80",
+          "A",
+          "9",
+          "Excellent"
+        ],
+        [
+          "10",
+          "0108",
+          "LUCHELELE",
+          "GOVERNMENT",
+          "ISACK AMON LAZARO",
+          "M",
+          "80",
+          "A",
+          "10",
+          "Excellent"
+        ]
+      ],
+      "percent_cells": [
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ]
+      ],
+      "raw": [
+        [
+          "S/NO.",
+          "ID NO.",
+          "SCHOOL",
+          "CATEGORY",
+          "CANDIDATE FULL NAME",
+          "X E S",
+          "S K R A M",
+          "E D A R G",
+          "O IT IS O P",
+          "COMPETENCY LEVEL"
+        ],
+        [
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        [
+          "1",
+          "0267",
+          "MTONI",
+          "GOVERNMENT",
+          "MATIKU JOHN MGENDA",
+          "M",
+          "86",
+          "A",
+          "1",
+          "Excellent"
+        ],
+        [
+          "2",
+          "0290",
+          "MTONI",
+          "GOVERNMENT",
+          "RAPHAEL MARWA MLIMI",
+          "M",
+          "86",
+          "A",
+          "2",
+          "Excellent"
+        ],
+        [
+          "3",
+          "0114",
+          "LUCHELELE",
+          "GOVERNMENT",
+          "JOHN STEVEN KIGABO",
+          "M",
+          "85",
+          "A",
+          "3",
+          "Excellent"
+        ],
+        [
+          "4",
+          "0215",
+          "MTONI",
+          "GOVERNMENT",
+          "DEOGRATIAS LEONARD ENOS",
+          "M",
+          "85",
+          "A",
+          "4",
+          "Excellent"
+        ],
+        [
+          "5",
+          "0001",
+          "MTONI",
+          "GOVERNMENT",
+          "ABIA LEONARD SYLIVESTER",
+          "F",
+          "83",
+          "A",
+          "5",
+          "Excellent"
+        ],
+        [
+          "6",
+          "0115",
+          "MTONI",
+          "GOVERNMENT",
+          "MIRIAM MKUMBO ZEPHANIA",
+          "F",
+          "83",
+          "A",
+          "6",
+          "Excellent"
+        ],
+        [
+          "7",
+          "0035",
+          "MTONI",
+          "GOVERNMENT",
+          "DIANA ODILA YENJE",
+          "F",
+          "82",
+          "A",
+          "7",
+          "Excellent"
+        ],
+        [
+          "8",
+          "0082",
+          "LUCHELELE",
+          "GOVERNMENT",
+          "CHARLES KULWA SABINI",
+          "M",
+          "81",
+          "A",
+          "8",
+          "Excellent"
+        ],
+        [
+          "9",
+          "0055",
+          "LUCHELELE",
+          "GOVERNMENT",
+          "MERRYCIANA DANIEL STEPHANO",
+          "F",
+          "80",
+          "A",
+          "9",
+          "Excellent"
+        ],
+        [
+          "10",
+          "0108",
+          "LUCHELELE",
+          "GOVERNMENT",
+          "ISACK AMON LAZARO",
+          "M",
+          "80",
+          "A",
+          "10",
+          "Excellent"
+        ],
+        [
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ]
+      ],
+      "kind": "table"
+    },
+    {
+      "caption": "TOP TEN BEST STUDENTS IN AGRICULTURE SUBJECT DISTRICTWISE",
+      "n_cols": 10,
+      "header_rows": [
+        [
+          {
+            "label": "S/NO.",
+            "colspan": 1,
+            "rowspan": 1,
+            "col": 0,
+            "row": 0
+          },
+          {
+            "label": "ID NO.",
+            "colspan": 1,
+            "rowspan": 1,
+            "col": 1,
+            "row": 0
+          },
+          {
+            "label": "SCHOOL",
+            "colspan": 1,
+            "rowspan": 1,
+            "col": 2,
+            "row": 0
+          },
+          {
+            "label": "CATEGORY",
+            "colspan": 1,
+            "rowspan": 1,
+            "col": 3,
+            "row": 0
+          },
+          {
+            "label": "CANDIDATE FULL NAME",
+            "colspan": 1,
+            "rowspan": 1,
+            "col": 4,
+            "row": 0
+          },
+          {
+            "label": "X E S",
+            "colspan": 1,
+            "rowspan": 1,
+            "col": 5,
+            "row": 0
+          },
+          {
+            "label": "S K R A M",
+            "colspan": 1,
+            "rowspan": 1,
+            "col": 6,
+            "row": 0
+          },
+          {
+            "label": "E D A R G",
+            "colspan": 1,
+            "rowspan": 1,
+            "col": 7,
+            "row": 0
+          },
+          {
+            "label": "O IT IS O P",
+            "colspan": 2,
+            "rowspan": 1,
+            "col": 8,
+            "row": 0
+          }
+        ]
+      ],
+      "body": [
+        [
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "COMPETENCY LEVEL"
+        ],
+        [
+          "1",
+          "0139",
+          "NYAMAGANA",
+          "GOVERNMENT",
+          "ALLY RAMADHANI JUMA",
+          "M",
+          "48.5",
+          "C",
+          "1",
+          "Good"
+        ],
+        [
+          "2",
+          "0179",
+          "NYAMAGANA",
+          "GOVERNMENT",
+          "ELIAS SIMEO THOMAS",
+          "M",
+          "41",
+          "D",
+          "2",
+          "Satisfactory"
+        ],
+        [
+          "3",
+          "0099",
+          "NYAMAGANA",
+          "GOVERNMENT",
+          "SALHA NICHAS ALLY",
+          "F",
+          "39.5",
+          "D",
+          "3",
+          "Satisfactory"
+        ],
+        [
+          "4",
+          "0182",
+          "NYAMAGANA",
+          "GOVERNMENT",
+          "ERASTO KASWAHILI NDALAWA",
+          "M",
+          "37.5",
+          "D",
+          "4",
+          "Satisfactory"
+        ],
+        [
+          "5",
+          "0064",
+          "NYAMAGANA",
+          "GOVERNMENT",
+          "LEILA MARICK AMIR",
+          "F",
+          "36.5",
+          "D",
+          "5",
+          "Satisfactory"
+        ],
+        [
+          "6",
+          "0166",
+          "NYAMAGANA",
+          "GOVERNMENT",
+          "DAVID LEONARD NDEGE",
+          "M",
+          "36",
+          "D",
+          "6",
+          "Satisfactory"
+        ],
+        [
+          "7",
+          "0150",
+          "NYAMAGANA",
+          "GOVERNMENT",
+          "AZIZI SHABANI HARUNA",
+          "M",
+          "32",
+          "D",
+          "7",
+          "Satisfactory"
+        ],
+        [
+          "8",
+          "0117",
+          "NYAMAGANA",
+          "GOVERNMENT",
+          "WAHIDA AHAMED OMARY",
+          "F",
+          "31",
+          "D",
+          "8",
+          "Satisfactory"
+        ],
+        [
+          "9",
+          "0119",
+          "NYAMAGANA",
+          "GOVERNMENT",
+          "YUSRA ISSA METUSELA",
+          "F",
+          "25",
+          "F",
+          "9",
+          "Fail"
+        ],
+        [
+          "10",
+          "0247",
+          "NYAMAGANA",
+          "GOVERNMENT",
+          "RAJABU MASHAKA THOMASI",
+          "M",
+          "24.5",
+          "F",
+          "10",
+          "Fail"
+        ]
+      ],
+      "percent_cells": [
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ]
+      ],
+      "raw": [
+        [
+          "S/NO.",
+          "ID NO.",
+          "SCHOOL",
+          "CATEGORY",
+          "CANDIDATE FULL NAME",
+          "X E S",
+          "S K R A M",
+          "E D A R G",
+          "O IT IS O P",
+          ""
+        ],
+        [
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "COMPETENCY LEVEL"
+        ],
+        [
+          "1",
+          "0139",
+          "NYAMAGANA",
+          "GOVERNMENT",
+          "ALLY RAMADHANI JUMA",
+          "M",
+          "48.5",
+          "C",
+          "1",
+          "Good"
+        ],
+        [
+          "2",
+          "0179",
+          "NYAMAGANA",
+          "GOVERNMENT",
+          "ELIAS SIMEO THOMAS",
+          "M",
+          "41",
+          "D",
+          "2",
+          "Satisfactory"
+        ],
+        [
+          "3",
+          "0099",
+          "NYAMAGANA",
+          "GOVERNMENT",
+          "SALHA NICHAS ALLY",
+          "F",
+          "39.5",
+          "D",
+          "3",
+          "Satisfactory"
+        ],
+        [
+          "4",
+          "0182",
+          "NYAMAGANA",
+          "GOVERNMENT",
+          "ERASTO KASWAHILI NDALAWA",
+          "M",
+          "37.5",
+          "D",
+          "4",
+          "Satisfactory"
+        ],
+        [
+          "5",
+          "0064",
+          "NYAMAGANA",
+          "GOVERNMENT",
+          "LEILA MARICK AMIR",
+          "F",
+          "36.5",
+          "D",
+          "5",
+          "Satisfactory"
+        ],
+        [
+          "6",
+          "0166",
+          "NYAMAGANA",
+          "GOVERNMENT",
+          "DAVID LEONARD NDEGE",
+          "M",
+          "36",
+          "D",
+          "6",
+          "Satisfactory"
+        ],
+        [
+          "7",
+          "0150",
+          "NYAMAGANA",
+          "GOVERNMENT",
+          "AZIZI SHABANI HARUNA",
+          "M",
+          "32",
+          "D",
+          "7",
+          "Satisfactory"
+        ],
+        [
+          "8",
+          "0117",
+          "NYAMAGANA",
+          "GOVERNMENT",
+          "WAHIDA AHAMED OMARY",
+          "F",
+          "31",
+          "D",
+          "8",
+          "Satisfactory"
+        ],
+        [
+          "9",
+          "0119",
+          "NYAMAGANA",
+          "GOVERNMENT",
+          "YUSRA ISSA METUSELA",
+          "F",
+          "25",
+          "F",
+          "9",
+          "Fail"
+        ],
+        [
+          "10",
+          "0247",
+          "NYAMAGANA",
+          "GOVERNMENT",
+          "RAJABU MASHAKA THOMASI",
+          "M",
+          "24.5",
+          "F",
+          "10",
+          "Fail"
+        ],
+        [
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ]
+      ],
+      "kind": "table"
+    },
+    {
+      "caption": "TOP TEN BEST STUDENTS IN FOOD AND NUTRITION SUBJECT DISTRICTWISE",
+      "n_cols": 10,
+      "header_rows": [
+        [
+          {
+            "label": "S/NO.",
+            "colspan": 1,
+            "rowspan": 1,
+            "col": 0,
+            "row": 0
+          },
+          {
+            "label": "ID NO.",
+            "colspan": 1,
+            "rowspan": 1,
+            "col": 1,
+            "row": 0
+          },
+          {
+            "label": "SCHOOL",
+            "colspan": 1,
+            "rowspan": 1,
+            "col": 2,
+            "row": 0
+          },
+          {
+            "label": "CATEGORY",
+            "colspan": 1,
+            "rowspan": 1,
+            "col": 3,
+            "row": 0
+          },
+          {
+            "label": "CANDIDATE FULL NAME",
+            "colspan": 1,
+            "rowspan": 1,
+            "col": 4,
+            "row": 0
+          },
+          {
+            "label": "X E S",
+            "colspan": 1,
+            "rowspan": 1,
+            "col": 5,
+            "row": 0
+          },
+          {
+            "label": "S K R A M",
+            "colspan": 1,
+            "rowspan": 1,
+            "col": 6,
+            "row": 0
+          },
+          {
+            "label": "E D A R G",
+            "colspan": 1,
+            "rowspan": 1,
+            "col": 7,
+            "row": 0
+          },
+          {
+            "label": "O IT IS O P",
+            "colspan": 2,
+            "rowspan": 1,
+            "col": 8,
+            "row": 0
+          }
+        ]
+      ],
+      "body": [
+        [
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "COMPETENCY LEVEL"
+        ],
+        [
+          "1",
+          "0064",
+          "ST. JOSEPH GIRLS",
+          "PRIVATE",
+          "MARIA SIRA MNANKA",
+          "F",
+          "86.5",
+          "A",
+          "1",
+          "Excellent"
+        ],
+        [
+          "2",
+          "0045",
+          "MWANZA",
+          "GOVERNMENT",
+          "ILHAM ANANIA KAPINGA",
+          "F",
+          "85",
+          "A",
+          "2",
+          "Excellent"
+        ],
+        [
+          "3",
+          "0035",
+          "ST. JOSEPH GIRLS",
+          "PRIVATE",
+          "GODLIVER FRANK PETER",
+          "F",
+          "84.5",
+          "A",
+          "3",
+          "Excellent"
+        ],
+        [
+          "4",
+          "0005",
+          "ST. JOSEPH GIRLS",
+          "PRIVATE",
+          "ANISSA SAMWEL VILIMA",
+          "F",
+          "84",
+          "A",
+          "4",
+          "Excellent"
+        ],
+        [
+          "5",
+          "0056",
+          "ST. JOSEPH GIRLS",
+          "PRIVATE",
+          "KEFREN SAMWEL KUBONA",
+          "F",
+          "84",
+          "A",
+          "5",
+          "Excellent"
+        ],
+        [
+          "6",
+          "0072",
+          "ST. JOSEPH GIRLS",
+          "PRIVATE",
+          "NAITO FRANK SENDWA",
+          "F",
+          "84",
+          "A",
+          "6",
+          "Excellent"
+        ],
+        [
+          "7",
+          "0004",
+          "ST. JOSEPH GIRLS",
+          "PRIVATE",
+          "ANGERINA GEORGE JONAS",
+          "F",
+          "83",
+          "A",
+          "7",
+          "Excellent"
+        ],
+        [
+          "8",
+          "0047",
+          "ST. JOSEPH GIRLS",
+          "PRIVATE",
+          "JOSEPHINA COSMAS CHARLES",
+          "F",
+          "78.5",
+          "A",
+          "8",
+          "Excellent"
+        ],
+        [
+          "9",
+          "0053",
+          "ST. JOSEPH GIRLS",
+          "PRIVATE",
+          "JULIETH KIYU MALABA",
+          "F",
+          "78.5",
+          "A",
+          "9",
+          "Excellent"
+        ],
+        [
+          "10",
+          "0040",
+          "ST. JOSEPH GIRLS",
+          "PRIVATE",
+          "IRENE ANATORY BULAHYA",
+          "F",
+          "78",
+          "A",
+          "10",
+          "Excellent"
+        ]
+      ],
+      "percent_cells": [
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ]
+      ],
+      "raw": [
+        [
+          "S/NO.",
+          "ID NO.",
+          "SCHOOL",
+          "CATEGORY",
+          "CANDIDATE FULL NAME",
+          "X E S",
+          "S K R A M",
+          "E D A R G",
+          "O IT IS O P",
+          ""
+        ],
+        [
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "COMPETENCY LEVEL"
+        ],
+        [
+          "1",
+          "0064",
+          "ST. JOSEPH GIRLS",
+          "PRIVATE",
+          "MARIA SIRA MNANKA",
+          "F",
+          "86.5",
+          "A",
+          "1",
+          "Excellent"
+        ],
+        [
+          "2",
+          "0045",
+          "MWANZA",
+          "GOVERNMENT",
+          "ILHAM ANANIA KAPINGA",
+          "F",
+          "85",
+          "A",
+          "2",
+          "Excellent"
+        ],
+        [
+          "3",
+          "0035",
+          "ST. JOSEPH GIRLS",
+          "PRIVATE",
+          "GODLIVER FRANK PETER",
+          "F",
+          "84.5",
+          "A",
+          "3",
+          "Excellent"
+        ],
+        [
+          "4",
+          "0005",
+          "ST. JOSEPH GIRLS",
+          "PRIVATE",
+          "ANISSA SAMWEL VILIMA",
+          "F",
+          "84",
+          "A",
+          "4",
+          "Excellent"
+        ],
+        [
+          "5",
+          "0056",
+          "ST. JOSEPH GIRLS",
+          "PRIVATE",
+          "KEFREN SAMWEL KUBONA",
+          "F",
+          "84",
+          "A",
+          "5",
+          "Excellent"
+        ],
+        [
+          "6",
+          "0072",
+          "ST. JOSEPH GIRLS",
+          "PRIVATE",
+          "NAITO FRANK SENDWA",
+          "F",
+          "84",
+          "A",
+          "6",
+          "Excellent"
+        ],
+        [
+          "7",
+          "0004",
+          "ST. JOSEPH GIRLS",
+          "PRIVATE",
+          "ANGERINA GEORGE JONAS",
+          "F",
+          "83",
+          "A",
+          "7",
+          "Excellent"
+        ],
+        [
+          "8",
+          "0047",
+          "ST. JOSEPH GIRLS",
+          "PRIVATE",
+          "JOSEPHINA COSMAS CHARLES",
+          "F",
+          "78.5",
+          "A",
+          "8",
+          "Excellent"
+        ],
+        [
+          "9",
+          "0053",
+          "ST. JOSEPH GIRLS",
+          "PRIVATE",
+          "JULIETH KIYU MALABA",
+          "F",
+          "78.5",
+          "A",
+          "9",
+          "Excellent"
+        ],
+        [
+          "10",
+          "0040",
+          "ST. JOSEPH GIRLS",
+          "PRIVATE",
+          "IRENE ANATORY BULAHYA",
+          "F",
+          "78",
+          "A",
+          "10",
+          "Excellent"
+        ],
+        [
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ]
+      ],
+      "kind": "table"
+    }
+  ],
+  "crosscheck": {
+    "checked": true,
+    "tokens_checked": 1653,
+    "missing_count": 2,
+    "missing_sample": [
+      "ARM",
+      "RIVATE"
+    ]
+  },
+  "duplicate_of": null
+}
