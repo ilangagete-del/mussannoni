@@ -249,6 +249,15 @@ class SchoolsRankReport:
     #: The report's own column captions in printed order, as chrome (see
     #: :attr:`SubjectsRankReport.column_headers`).
     column_headers: list[str] = field(default_factory=list)
+    #: Section headings printed above each block, in reading order, as chrome.
+    #: The top-ten reports print several titled blocks ("TOP 10 BEST PRIVATE
+    #: SCHOOLS", "TEN LOOSER SCHOOLS OVERALL"); this records the heading of each
+    #: so the template can reproduce them. Empty for a single-block report.
+    section_titles: list[str] = field(default_factory=list)
+    #: The number of data rows in each titled block, aligned with
+    #: :attr:`section_titles`, so the template knows where each heading falls
+    #: within :attr:`rows`. Empty for a single-block report.
+    section_row_counts: list[int] = field(default_factory=list)
 
 
 # --------------------------------------------------------------------------- #

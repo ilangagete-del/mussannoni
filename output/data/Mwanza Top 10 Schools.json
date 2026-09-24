@@ -3768,5 +3768,21 @@
     "GPA",
     "COMPETENCY LEVEL",
     "R/RANK"
+  ],
+  "section_titles": [
+    "",
+    "TOP 10 BEST GOVERNMENT SCHOOLS",
+    "TOP 10 BEST PRIVATE SCHOOLS",
+    "TEN LOOSER SCHOOLS  OVERALL",
+    "TEN LOOSER GOVERNMENT SCHOOLS",
+    "TEN LOOSER PRIVATE SCHOOLS"
+  ],
+  "section_row_counts": [
+    10,
+    10,
+    10,
+    10,
+    10,
+    10
   ]
 }
