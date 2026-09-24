@@ -27,7 +27,160 @@
       },
       "gpa": "2.1100",
       "competency": "Grade B (Very Good)",
-      "rank": "1"
+      "rank": "1",
+      "styles": {
+        "0": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.0,
+          "bold": false,
+          "italic": false,
+          "color": "#000000",
+          "background": null,
+          "align": "center",
+          "rotation": 0
+        },
+        "1": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.0,
+          "bold": false,
+          "italic": false,
+          "color": "#000000",
+          "background": null,
+          "align": "left",
+          "rotation": 0
+        },
+        "2": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.8,
+          "bold": false,
+          "italic": false,
+          "color": "#000000",
+          "background": null,
+          "align": "center",
+          "rotation": 0
+        },
+        "3": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.8,
+          "bold": false,
+          "italic": false,
+          "color": "#000000",
+          "background": null,
+          "align": "center",
+          "rotation": 0
+        },
+        "4": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.8,
+          "bold": false,
+          "italic": false,
+          "color": "#000000",
+          "background": null,
+          "align": "center",
+          "rotation": 0
+        },
+        "5": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.8,
+          "bold": false,
+          "italic": false,
+          "color": "#000000",
+          "background": null,
+          "align": "center",
+          "rotation": 0
+        },
+        "6": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.8,
+          "bold": true,
+          "italic": false,
+          "color": "#000000",
+          "background": "#fcd5b4",
+          "align": "center",
+          "rotation": 0
+        },
+        "7": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.8,
+          "bold": true,
+          "italic": false,
+          "color": "#000000",
+          "background": null,
+          "align": "center",
+          "rotation": 0
+        },
+        "8": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.8,
+          "bold": true,
+          "italic": false,
+          "color": "#000000",
+          "background": "#65ffab",
+          "align": "center",
+          "rotation": 0
+        },
+        "9": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.8,
+          "bold": true,
+          "italic": false,
+          "color": "#000000",
+          "background": "#65ffab",
+          "align": "center",
+          "rotation": 0
+        },
+        "10": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.8,
+          "bold": true,
+          "italic": false,
+          "color": "#000000",
+          "background": "#d2fce6",
+          "align": "center",
+          "rotation": 0
+        },
+        "11": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.8,
+          "bold": true,
+          "italic": false,
+          "color": "#000000",
+          "background": "#d2fce6",
+          "align": "center",
+          "rotation": 0
+        },
+        "12": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.8,
+          "bold": true,
+          "italic": false,
+          "color": "#000000",
+          "background": "#ffffcc",
+          "align": "center",
+          "rotation": 0
+        },
+        "13": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.0,
+          "bold": true,
+          "italic": false,
+          "color": "#000000",
+          "background": "#92d050",
+          "align": "left",
+          "rotation": 0
+        },
+        "14": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.0,
+          "bold": true,
+          "italic": false,
+          "color": "#000000",
+          "background": "#f2f2f2",
+          "align": "center",
+          "rotation": 0
+        }
+      },
+      "pitch": 18.183
     },
     {
       "sno": "02",
@@ -46,7 +199,160 @@
       },
       "gpa": "2.1379",
       "competency": "Grade B (Very Good)",
-      "rank": "2"
+      "rank": "2",
+      "styles": {
+        "0": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.0,
+          "bold": false,
+          "italic": false,
+          "color": "#000000",
+          "background": null,
+          "align": "center",
+          "rotation": 0
+        },
+        "1": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.0,
+          "bold": false,
+          "italic": false,
+          "color": "#000000",
+          "background": null,
+          "align": "left",
+          "rotation": 0
+        },
+        "2": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.8,
+          "bold": false,
+          "italic": false,
+          "color": "#000000",
+          "background": null,
+          "align": "center",
+          "rotation": 0
+        },
+        "3": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.8,
+          "bold": false,
+          "italic": false,
+          "color": "#000000",
+          "background": null,
+          "align": "center",
+          "rotation": 0
+        },
+        "4": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.8,
+          "bold": false,
+          "italic": false,
+          "color": "#000000",
+          "background": null,
+          "align": "center",
+          "rotation": 0
+        },
+        "5": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.8,
+          "bold": false,
+          "italic": false,
+          "color": "#000000",
+          "background": null,
+          "align": "center",
+          "rotation": 0
+        },
+        "6": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.8,
+          "bold": true,
+          "italic": false,
+          "color": "#000000",
+          "background": "#fcd5b4",
+          "align": "center",
+          "rotation": 0
+        },
+        "7": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.8,
+          "bold": true,
+          "italic": false,
+          "color": "#000000",
+          "background": null,
+          "align": "center",
+          "rotation": 0
+        },
+        "8": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.8,
+          "bold": true,
+          "italic": false,
+          "color": "#000000",
+          "background": "#65ffab",
+          "align": "center",
+          "rotation": 0
+        },
+        "9": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.8,
+          "bold": true,
+          "italic": false,
+          "color": "#000000",
+          "background": "#65ffab",
+          "align": "center",
+          "rotation": 0
+        },
+        "10": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.8,
+          "bold": true,
+          "italic": false,
+          "color": "#000000",
+          "background": "#d2fce6",
+          "align": "center",
+          "rotation": 0
+        },
+        "11": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.8,
+          "bold": true,
+          "italic": false,
+          "color": "#000000",
+          "background": "#d2fce6",
+          "align": "center",
+          "rotation": 0
+        },
+        "12": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.8,
+          "bold": true,
+          "italic": false,
+          "color": "#000000",
+          "background": "#ffffcc",
+          "align": "center",
+          "rotation": 0
+        },
+        "13": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.0,
+          "bold": true,
+          "italic": false,
+          "color": "#000000",
+          "background": "#92d050",
+          "align": "left",
+          "rotation": 0
+        },
+        "14": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.0,
+          "bold": true,
+          "italic": false,
+          "color": "#000000",
+          "background": "#f2f2f2",
+          "align": "center",
+          "rotation": 0
+        }
+      },
+      "pitch": 18.24
     },
     {
       "sno": "03",
@@ -65,7 +371,160 @@
       },
       "gpa": "2.3877",
       "competency": "Grade B (Very Good)",
-      "rank": "3"
+      "rank": "3",
+      "styles": {
+        "0": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.0,
+          "bold": false,
+          "italic": false,
+          "color": "#000000",
+          "background": null,
+          "align": "center",
+          "rotation": 0
+        },
+        "1": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.0,
+          "bold": false,
+          "italic": false,
+          "color": "#000000",
+          "background": null,
+          "align": "left",
+          "rotation": 0
+        },
+        "2": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.8,
+          "bold": false,
+          "italic": false,
+          "color": "#000000",
+          "background": null,
+          "align": "center",
+          "rotation": 0
+        },
+        "3": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.8,
+          "bold": false,
+          "italic": false,
+          "color": "#000000",
+          "background": null,
+          "align": "center",
+          "rotation": 0
+        },
+        "4": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.8,
+          "bold": false,
+          "italic": false,
+          "color": "#000000",
+          "background": null,
+          "align": "center",
+          "rotation": 0
+        },
+        "5": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.8,
+          "bold": false,
+          "italic": false,
+          "color": "#000000",
+          "background": null,
+          "align": "center",
+          "rotation": 0
+        },
+        "6": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.8,
+          "bold": true,
+          "italic": false,
+          "color": "#000000",
+          "background": "#fcd5b4",
+          "align": "center",
+          "rotation": 0
+        },
+        "7": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.8,
+          "bold": true,
+          "italic": false,
+          "color": "#000000",
+          "background": null,
+          "align": "center",
+          "rotation": 0
+        },
+        "8": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.8,
+          "bold": true,
+          "italic": false,
+          "color": "#000000",
+          "background": "#65ffab",
+          "align": "center",
+          "rotation": 0
+        },
+        "9": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.8,
+          "bold": true,
+          "italic": false,
+          "color": "#000000",
+          "background": "#65ffab",
+          "align": "center",
+          "rotation": 0
+        },
+        "10": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.8,
+          "bold": true,
+          "italic": false,
+          "color": "#000000",
+          "background": "#d2fce6",
+          "align": "center",
+          "rotation": 0
+        },
+        "11": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.8,
+          "bold": true,
+          "italic": false,
+          "color": "#000000",
+          "background": "#d2fce6",
+          "align": "center",
+          "rotation": 0
+        },
+        "12": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.8,
+          "bold": true,
+          "italic": false,
+          "color": "#000000",
+          "background": "#ffffcc",
+          "align": "center",
+          "rotation": 0
+        },
+        "13": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.0,
+          "bold": true,
+          "italic": false,
+          "color": "#000000",
+          "background": "#92d050",
+          "align": "left",
+          "rotation": 0
+        },
+        "14": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.0,
+          "bold": true,
+          "italic": false,
+          "color": "#000000",
+          "background": "#f2f2f2",
+          "align": "center",
+          "rotation": 0
+        }
+      },
+      "pitch": 18.24
     },
     {
       "sno": "04",
@@ -84,7 +543,160 @@
       },
       "gpa": "2.5220",
       "competency": "Grade B (Very Good)",
-      "rank": "4"
+      "rank": "4",
+      "styles": {
+        "0": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.0,
+          "bold": false,
+          "italic": false,
+          "color": "#000000",
+          "background": null,
+          "align": "center",
+          "rotation": 0
+        },
+        "1": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.0,
+          "bold": false,
+          "italic": false,
+          "color": "#000000",
+          "background": null,
+          "align": "center",
+          "rotation": 0
+        },
+        "2": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.8,
+          "bold": false,
+          "italic": false,
+          "color": "#000000",
+          "background": null,
+          "align": "center",
+          "rotation": 0
+        },
+        "3": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.8,
+          "bold": false,
+          "italic": false,
+          "color": "#000000",
+          "background": null,
+          "align": "center",
+          "rotation": 0
+        },
+        "4": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.8,
+          "bold": false,
+          "italic": false,
+          "color": "#000000",
+          "background": null,
+          "align": "center",
+          "rotation": 0
+        },
+        "5": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.8,
+          "bold": false,
+          "italic": false,
+          "color": "#000000",
+          "background": null,
+          "align": "center",
+          "rotation": 0
+        },
+        "6": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.8,
+          "bold": true,
+          "italic": false,
+          "color": "#000000",
+          "background": "#fcd5b4",
+          "align": "center",
+          "rotation": 0
+        },
+        "7": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.8,
+          "bold": true,
+          "italic": false,
+          "color": "#000000",
+          "background": null,
+          "align": "center",
+          "rotation": 0
+        },
+        "8": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.8,
+          "bold": true,
+          "italic": false,
+          "color": "#000000",
+          "background": "#65ffab",
+          "align": "center",
+          "rotation": 0
+        },
+        "9": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.8,
+          "bold": true,
+          "italic": false,
+          "color": "#000000",
+          "background": "#65ffab",
+          "align": "center",
+          "rotation": 0
+        },
+        "10": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.8,
+          "bold": true,
+          "italic": false,
+          "color": "#000000",
+          "background": "#d2fce6",
+          "align": "center",
+          "rotation": 0
+        },
+        "11": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.8,
+          "bold": true,
+          "italic": false,
+          "color": "#000000",
+          "background": "#d2fce6",
+          "align": "center",
+          "rotation": 0
+        },
+        "12": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.8,
+          "bold": true,
+          "italic": false,
+          "color": "#000000",
+          "background": "#ffffcc",
+          "align": "center",
+          "rotation": 0
+        },
+        "13": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.0,
+          "bold": true,
+          "italic": false,
+          "color": "#000000",
+          "background": "#92d050",
+          "align": "left",
+          "rotation": 0
+        },
+        "14": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.0,
+          "bold": true,
+          "italic": false,
+          "color": "#000000",
+          "background": "#f2f2f2",
+          "align": "center",
+          "rotation": 0
+        }
+      },
+      "pitch": 18.239
     },
     {
       "sno": "05",
@@ -103,7 +715,160 @@
       },
       "gpa": "2.8045",
       "competency": "Grade C (Good)",
-      "rank": "5"
+      "rank": "5",
+      "styles": {
+        "0": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.0,
+          "bold": false,
+          "italic": false,
+          "color": "#000000",
+          "background": null,
+          "align": "center",
+          "rotation": 0
+        },
+        "1": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.0,
+          "bold": false,
+          "italic": false,
+          "color": "#000000",
+          "background": null,
+          "align": "left",
+          "rotation": 0
+        },
+        "2": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.8,
+          "bold": false,
+          "italic": false,
+          "color": "#000000",
+          "background": null,
+          "align": "center",
+          "rotation": 0
+        },
+        "3": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.8,
+          "bold": false,
+          "italic": false,
+          "color": "#000000",
+          "background": null,
+          "align": "center",
+          "rotation": 0
+        },
+        "4": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.8,
+          "bold": false,
+          "italic": false,
+          "color": "#000000",
+          "background": null,
+          "align": "center",
+          "rotation": 0
+        },
+        "5": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.8,
+          "bold": false,
+          "italic": false,
+          "color": "#000000",
+          "background": null,
+          "align": "center",
+          "rotation": 0
+        },
+        "6": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.8,
+          "bold": true,
+          "italic": false,
+          "color": "#000000",
+          "background": "#fcd5b4",
+          "align": "center",
+          "rotation": 0
+        },
+        "7": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.8,
+          "bold": true,
+          "italic": false,
+          "color": "#000000",
+          "background": null,
+          "align": "center",
+          "rotation": 0
+        },
+        "8": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.8,
+          "bold": true,
+          "italic": false,
+          "color": "#000000",
+          "background": "#65ffab",
+          "align": "center",
+          "rotation": 0
+        },
+        "9": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.8,
+          "bold": true,
+          "italic": false,
+          "color": "#000000",
+          "background": "#65ffab",
+          "align": "center",
+          "rotation": 0
+        },
+        "10": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.8,
+          "bold": true,
+          "italic": false,
+          "color": "#000000",
+          "background": "#d2fce6",
+          "align": "center",
+          "rotation": 0
+        },
+        "11": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.8,
+          "bold": true,
+          "italic": false,
+          "color": "#000000",
+          "background": "#d2fce6",
+          "align": "center",
+          "rotation": 0
+        },
+        "12": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.8,
+          "bold": true,
+          "italic": false,
+          "color": "#000000",
+          "background": "#ffffcc",
+          "align": "center",
+          "rotation": 0
+        },
+        "13": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.0,
+          "bold": true,
+          "italic": false,
+          "color": "#000000",
+          "background": "#ffff00",
+          "align": "left",
+          "rotation": 0
+        },
+        "14": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.0,
+          "bold": true,
+          "italic": false,
+          "color": "#000000",
+          "background": "#f2f2f2",
+          "align": "center",
+          "rotation": 0
+        }
+      },
+      "pitch": 18.241
     },
     {
       "sno": "06",
@@ -122,7 +887,160 @@
       },
       "gpa": "2.8673",
       "competency": "Grade C (Good)",
-      "rank": "6"
+      "rank": "6",
+      "styles": {
+        "0": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.0,
+          "bold": false,
+          "italic": false,
+          "color": "#000000",
+          "background": null,
+          "align": "center",
+          "rotation": 0
+        },
+        "1": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.0,
+          "bold": false,
+          "italic": false,
+          "color": "#000000",
+          "background": null,
+          "align": "left",
+          "rotation": 0
+        },
+        "2": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.8,
+          "bold": false,
+          "italic": false,
+          "color": "#000000",
+          "background": null,
+          "align": "center",
+          "rotation": 0
+        },
+        "3": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.8,
+          "bold": false,
+          "italic": false,
+          "color": "#000000",
+          "background": null,
+          "align": "center",
+          "rotation": 0
+        },
+        "4": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.8,
+          "bold": false,
+          "italic": false,
+          "color": "#000000",
+          "background": null,
+          "align": "center",
+          "rotation": 0
+        },
+        "5": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.8,
+          "bold": false,
+          "italic": false,
+          "color": "#000000",
+          "background": null,
+          "align": "center",
+          "rotation": 0
+        },
+        "6": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.8,
+          "bold": true,
+          "italic": false,
+          "color": "#000000",
+          "background": "#fcd5b4",
+          "align": "center",
+          "rotation": 0
+        },
+        "7": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.8,
+          "bold": true,
+          "italic": false,
+          "color": "#000000",
+          "background": null,
+          "align": "center",
+          "rotation": 0
+        },
+        "8": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.8,
+          "bold": true,
+          "italic": false,
+          "color": "#000000",
+          "background": "#65ffab",
+          "align": "center",
+          "rotation": 0
+        },
+        "9": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.8,
+          "bold": true,
+          "italic": false,
+          "color": "#000000",
+          "background": "#65ffab",
+          "align": "center",
+          "rotation": 0
+        },
+        "10": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.8,
+          "bold": true,
+          "italic": false,
+          "color": "#000000",
+          "background": "#d2fce6",
+          "align": "center",
+          "rotation": 0
+        },
+        "11": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.8,
+          "bold": true,
+          "italic": false,
+          "color": "#000000",
+          "background": "#d2fce6",
+          "align": "center",
+          "rotation": 0
+        },
+        "12": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.8,
+          "bold": true,
+          "italic": false,
+          "color": "#000000",
+          "background": "#ffffcc",
+          "align": "center",
+          "rotation": 0
+        },
+        "13": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.0,
+          "bold": true,
+          "italic": false,
+          "color": "#000000",
+          "background": "#ffff00",
+          "align": "left",
+          "rotation": 0
+        },
+        "14": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.0,
+          "bold": true,
+          "italic": false,
+          "color": "#000000",
+          "background": "#f2f2f2",
+          "align": "center",
+          "rotation": 0
+        }
+      },
+      "pitch": 18.24
     },
     {
       "sno": "07",
@@ -141,7 +1059,160 @@
       },
       "gpa": "3.0547",
       "competency": "Grade C (Good)",
-      "rank": "7"
+      "rank": "7",
+      "styles": {
+        "0": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.0,
+          "bold": false,
+          "italic": false,
+          "color": "#000000",
+          "background": null,
+          "align": "center",
+          "rotation": 0
+        },
+        "1": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.0,
+          "bold": false,
+          "italic": false,
+          "color": "#000000",
+          "background": null,
+          "align": "left",
+          "rotation": 0
+        },
+        "2": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.8,
+          "bold": false,
+          "italic": false,
+          "color": "#000000",
+          "background": null,
+          "align": "center",
+          "rotation": 0
+        },
+        "3": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.8,
+          "bold": false,
+          "italic": false,
+          "color": "#000000",
+          "background": null,
+          "align": "center",
+          "rotation": 0
+        },
+        "4": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.8,
+          "bold": false,
+          "italic": false,
+          "color": "#000000",
+          "background": null,
+          "align": "center",
+          "rotation": 0
+        },
+        "5": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.8,
+          "bold": false,
+          "italic": false,
+          "color": "#000000",
+          "background": null,
+          "align": "center",
+          "rotation": 0
+        },
+        "6": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.8,
+          "bold": true,
+          "italic": false,
+          "color": "#000000",
+          "background": "#fcd5b4",
+          "align": "center",
+          "rotation": 0
+        },
+        "7": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.8,
+          "bold": true,
+          "italic": false,
+          "color": "#000000",
+          "background": null,
+          "align": "center",
+          "rotation": 0
+        },
+        "8": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.8,
+          "bold": true,
+          "italic": false,
+          "color": "#000000",
+          "background": "#65ffab",
+          "align": "center",
+          "rotation": 0
+        },
+        "9": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.8,
+          "bold": true,
+          "italic": false,
+          "color": "#000000",
+          "background": "#65ffab",
+          "align": "center",
+          "rotation": 0
+        },
+        "10": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.8,
+          "bold": true,
+          "italic": false,
+          "color": "#000000",
+          "background": "#d2fce6",
+          "align": "center",
+          "rotation": 0
+        },
+        "11": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.8,
+          "bold": true,
+          "italic": false,
+          "color": "#000000",
+          "background": "#d2fce6",
+          "align": "center",
+          "rotation": 0
+        },
+        "12": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.8,
+          "bold": true,
+          "italic": false,
+          "color": "#000000",
+          "background": "#ffffcc",
+          "align": "center",
+          "rotation": 0
+        },
+        "13": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.0,
+          "bold": true,
+          "italic": false,
+          "color": "#000000",
+          "background": "#ffff00",
+          "align": "left",
+          "rotation": 0
+        },
+        "14": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.0,
+          "bold": true,
+          "italic": false,
+          "color": "#000000",
+          "background": "#f2f2f2",
+          "align": "center",
+          "rotation": 0
+        }
+      },
+      "pitch": 18.24
     },
     {
       "sno": "08",
@@ -160,7 +1231,160 @@
       },
       "gpa": "3.0972",
       "competency": "Grade C (Good)",
-      "rank": "8"
+      "rank": "8",
+      "styles": {
+        "0": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.0,
+          "bold": false,
+          "italic": false,
+          "color": "#000000",
+          "background": null,
+          "align": "center",
+          "rotation": 0
+        },
+        "1": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.0,
+          "bold": false,
+          "italic": false,
+          "color": "#000000",
+          "background": null,
+          "align": "left",
+          "rotation": 0
+        },
+        "2": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.8,
+          "bold": false,
+          "italic": false,
+          "color": "#000000",
+          "background": null,
+          "align": "center",
+          "rotation": 0
+        },
+        "3": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.8,
+          "bold": false,
+          "italic": false,
+          "color": "#000000",
+          "background": null,
+          "align": "center",
+          "rotation": 0
+        },
+        "4": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.8,
+          "bold": false,
+          "italic": false,
+          "color": "#000000",
+          "background": null,
+          "align": "center",
+          "rotation": 0
+        },
+        "5": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.8,
+          "bold": false,
+          "italic": false,
+          "color": "#000000",
+          "background": null,
+          "align": "center",
+          "rotation": 0
+        },
+        "6": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.8,
+          "bold": true,
+          "italic": false,
+          "color": "#000000",
+          "background": "#fcd5b4",
+          "align": "center",
+          "rotation": 0
+        },
+        "7": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.8,
+          "bold": true,
+          "italic": false,
+          "color": "#000000",
+          "background": null,
+          "align": "center",
+          "rotation": 0
+        },
+        "8": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.8,
+          "bold": true,
+          "italic": false,
+          "color": "#000000",
+          "background": "#65ffab",
+          "align": "center",
+          "rotation": 0
+        },
+        "9": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.8,
+          "bold": true,
+          "italic": false,
+          "color": "#000000",
+          "background": "#65ffab",
+          "align": "center",
+          "rotation": 0
+        },
+        "10": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.8,
+          "bold": true,
+          "italic": false,
+          "color": "#000000",
+          "background": "#d2fce6",
+          "align": "center",
+          "rotation": 0
+        },
+        "11": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.8,
+          "bold": true,
+          "italic": false,
+          "color": "#000000",
+          "background": "#d2fce6",
+          "align": "center",
+          "rotation": 0
+        },
+        "12": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.8,
+          "bold": true,
+          "italic": false,
+          "color": "#000000",
+          "background": "#ffffcc",
+          "align": "center",
+          "rotation": 0
+        },
+        "13": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.0,
+          "bold": true,
+          "italic": false,
+          "color": "#000000",
+          "background": "#ffff00",
+          "align": "left",
+          "rotation": 0
+        },
+        "14": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.0,
+          "bold": true,
+          "italic": false,
+          "color": "#000000",
+          "background": "#f2f2f2",
+          "align": "center",
+          "rotation": 0
+        }
+      },
+      "pitch": 18.26
     },
     {
       "sno": "09",
@@ -179,7 +1403,160 @@
       },
       "gpa": "3.4844",
       "competency": "Grade C (Good)",
-      "rank": "9"
+      "rank": "9",
+      "styles": {
+        "0": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.0,
+          "bold": false,
+          "italic": false,
+          "color": "#000000",
+          "background": null,
+          "align": "center",
+          "rotation": 0
+        },
+        "1": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.0,
+          "bold": false,
+          "italic": false,
+          "color": "#000000",
+          "background": null,
+          "align": "left",
+          "rotation": 0
+        },
+        "2": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.8,
+          "bold": false,
+          "italic": false,
+          "color": "#000000",
+          "background": null,
+          "align": "center",
+          "rotation": 0
+        },
+        "3": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.8,
+          "bold": false,
+          "italic": false,
+          "color": "#000000",
+          "background": null,
+          "align": "center",
+          "rotation": 0
+        },
+        "4": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.8,
+          "bold": false,
+          "italic": false,
+          "color": "#000000",
+          "background": null,
+          "align": "center",
+          "rotation": 0
+        },
+        "5": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.8,
+          "bold": false,
+          "italic": false,
+          "color": "#000000",
+          "background": null,
+          "align": "center",
+          "rotation": 0
+        },
+        "6": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.8,
+          "bold": true,
+          "italic": false,
+          "color": "#000000",
+          "background": "#fcd5b4",
+          "align": "center",
+          "rotation": 0
+        },
+        "7": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.8,
+          "bold": true,
+          "italic": false,
+          "color": "#000000",
+          "background": null,
+          "align": "center",
+          "rotation": 0
+        },
+        "8": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.8,
+          "bold": true,
+          "italic": false,
+          "color": "#000000",
+          "background": "#65ffab",
+          "align": "center",
+          "rotation": 0
+        },
+        "9": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.8,
+          "bold": true,
+          "italic": false,
+          "color": "#000000",
+          "background": "#65ffab",
+          "align": "center",
+          "rotation": 0
+        },
+        "10": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.8,
+          "bold": true,
+          "italic": false,
+          "color": "#000000",
+          "background": "#d2fce6",
+          "align": "center",
+          "rotation": 0
+        },
+        "11": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.8,
+          "bold": true,
+          "italic": false,
+          "color": "#000000",
+          "background": "#d2fce6",
+          "align": "center",
+          "rotation": 0
+        },
+        "12": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.8,
+          "bold": true,
+          "italic": false,
+          "color": "#000000",
+          "background": "#ffffcc",
+          "align": "center",
+          "rotation": 0
+        },
+        "13": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.0,
+          "bold": true,
+          "italic": false,
+          "color": "#000000",
+          "background": "#ffff00",
+          "align": "left",
+          "rotation": 0
+        },
+        "14": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.0,
+          "bold": true,
+          "italic": false,
+          "color": "#000000",
+          "background": "#f2f2f2",
+          "align": "center",
+          "rotation": 0
+        }
+      },
+      "pitch": 18.242
     },
     {
       "sno": "10",
@@ -198,7 +1575,160 @@
       },
       "gpa": "3.6371",
       "competency": "Grade D (Satisfactory)",
-      "rank": "10"
+      "rank": "10",
+      "styles": {
+        "0": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.0,
+          "bold": false,
+          "italic": false,
+          "color": "#000000",
+          "background": null,
+          "align": "center",
+          "rotation": 0
+        },
+        "1": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.0,
+          "bold": false,
+          "italic": false,
+          "color": "#000000",
+          "background": null,
+          "align": "left",
+          "rotation": 0
+        },
+        "2": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.8,
+          "bold": false,
+          "italic": false,
+          "color": "#000000",
+          "background": null,
+          "align": "center",
+          "rotation": 0
+        },
+        "3": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.8,
+          "bold": false,
+          "italic": false,
+          "color": "#000000",
+          "background": null,
+          "align": "center",
+          "rotation": 0
+        },
+        "4": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.8,
+          "bold": false,
+          "italic": false,
+          "color": "#000000",
+          "background": null,
+          "align": "center",
+          "rotation": 0
+        },
+        "5": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.8,
+          "bold": false,
+          "italic": false,
+          "color": "#000000",
+          "background": null,
+          "align": "center",
+          "rotation": 0
+        },
+        "6": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.8,
+          "bold": true,
+          "italic": false,
+          "color": "#000000",
+          "background": "#fcd5b4",
+          "align": "center",
+          "rotation": 0
+        },
+        "7": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.8,
+          "bold": true,
+          "italic": false,
+          "color": "#000000",
+          "background": null,
+          "align": "center",
+          "rotation": 0
+        },
+        "8": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.8,
+          "bold": true,
+          "italic": false,
+          "color": "#000000",
+          "background": "#65ffab",
+          "align": "center",
+          "rotation": 0
+        },
+        "9": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.8,
+          "bold": true,
+          "italic": false,
+          "color": "#000000",
+          "background": "#65ffab",
+          "align": "center",
+          "rotation": 0
+        },
+        "10": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.8,
+          "bold": true,
+          "italic": false,
+          "color": "#000000",
+          "background": "#d2fce6",
+          "align": "center",
+          "rotation": 0
+        },
+        "11": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.8,
+          "bold": true,
+          "italic": false,
+          "color": "#000000",
+          "background": "#d2fce6",
+          "align": "center",
+          "rotation": 0
+        },
+        "12": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.8,
+          "bold": true,
+          "italic": false,
+          "color": "#000000",
+          "background": "#ffffcc",
+          "align": "center",
+          "rotation": 0
+        },
+        "13": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.0,
+          "bold": true,
+          "italic": false,
+          "color": "#000000",
+          "background": "#ffc000",
+          "align": "center",
+          "rotation": 0
+        },
+        "14": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.0,
+          "bold": true,
+          "italic": false,
+          "color": "#000000",
+          "background": "#f2f2f2",
+          "align": "center",
+          "rotation": 0
+        }
+      },
+      "pitch": 18.238
     },
     {
       "sno": "11",
@@ -217,7 +1747,160 @@
       },
       "gpa": "3.6448",
       "competency": "Grade D (Satisfactory)",
-      "rank": "11"
+      "rank": "11",
+      "styles": {
+        "0": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.0,
+          "bold": false,
+          "italic": false,
+          "color": "#000000",
+          "background": null,
+          "align": "center",
+          "rotation": 0
+        },
+        "1": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.0,
+          "bold": false,
+          "italic": false,
+          "color": "#000000",
+          "background": null,
+          "align": "left",
+          "rotation": 0
+        },
+        "2": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.8,
+          "bold": false,
+          "italic": false,
+          "color": "#000000",
+          "background": null,
+          "align": "center",
+          "rotation": 0
+        },
+        "3": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.8,
+          "bold": false,
+          "italic": false,
+          "color": "#000000",
+          "background": null,
+          "align": "center",
+          "rotation": 0
+        },
+        "4": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.8,
+          "bold": false,
+          "italic": false,
+          "color": "#000000",
+          "background": null,
+          "align": "center",
+          "rotation": 0
+        },
+        "5": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.8,
+          "bold": false,
+          "italic": false,
+          "color": "#000000",
+          "background": null,
+          "align": "center",
+          "rotation": 0
+        },
+        "6": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.8,
+          "bold": true,
+          "italic": false,
+          "color": "#000000",
+          "background": "#fcd5b4",
+          "align": "center",
+          "rotation": 0
+        },
+        "7": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.8,
+          "bold": true,
+          "italic": false,
+          "color": "#000000",
+          "background": null,
+          "align": "center",
+          "rotation": 0
+        },
+        "8": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.8,
+          "bold": true,
+          "italic": false,
+          "color": "#000000",
+          "background": "#65ffab",
+          "align": "center",
+          "rotation": 0
+        },
+        "9": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.8,
+          "bold": true,
+          "italic": false,
+          "color": "#000000",
+          "background": "#65ffab",
+          "align": "center",
+          "rotation": 0
+        },
+        "10": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.8,
+          "bold": true,
+          "italic": false,
+          "color": "#000000",
+          "background": "#d2fce6",
+          "align": "center",
+          "rotation": 0
+        },
+        "11": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.8,
+          "bold": true,
+          "italic": false,
+          "color": "#000000",
+          "background": "#d2fce6",
+          "align": "center",
+          "rotation": 0
+        },
+        "12": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.8,
+          "bold": true,
+          "italic": false,
+          "color": "#000000",
+          "background": "#ffffcc",
+          "align": "center",
+          "rotation": 0
+        },
+        "13": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.0,
+          "bold": true,
+          "italic": false,
+          "color": "#000000",
+          "background": "#ffc000",
+          "align": "center",
+          "rotation": 0
+        },
+        "14": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.0,
+          "bold": true,
+          "italic": false,
+          "color": "#000000",
+          "background": "#f2f2f2",
+          "align": "center",
+          "rotation": 0
+        }
+      },
+      "pitch": 18.24
     },
     {
       "sno": "12",
@@ -236,7 +1919,160 @@
       },
       "gpa": "3.6727",
       "competency": "Grade D (Satisfactory)",
-      "rank": "12"
+      "rank": "12",
+      "styles": {
+        "0": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.0,
+          "bold": false,
+          "italic": false,
+          "color": "#000000",
+          "background": null,
+          "align": "center",
+          "rotation": 0
+        },
+        "1": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.0,
+          "bold": false,
+          "italic": false,
+          "color": "#000000",
+          "background": null,
+          "align": "left",
+          "rotation": 0
+        },
+        "2": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.8,
+          "bold": false,
+          "italic": false,
+          "color": "#000000",
+          "background": null,
+          "align": "center",
+          "rotation": 0
+        },
+        "3": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.8,
+          "bold": false,
+          "italic": false,
+          "color": "#000000",
+          "background": null,
+          "align": "center",
+          "rotation": 0
+        },
+        "4": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.8,
+          "bold": false,
+          "italic": false,
+          "color": "#000000",
+          "background": null,
+          "align": "center",
+          "rotation": 0
+        },
+        "5": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.8,
+          "bold": false,
+          "italic": false,
+          "color": "#000000",
+          "background": null,
+          "align": "center",
+          "rotation": 0
+        },
+        "6": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.8,
+          "bold": true,
+          "italic": false,
+          "color": "#000000",
+          "background": "#fcd5b4",
+          "align": "center",
+          "rotation": 0
+        },
+        "7": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.8,
+          "bold": true,
+          "italic": false,
+          "color": "#000000",
+          "background": null,
+          "align": "center",
+          "rotation": 0
+        },
+        "8": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.8,
+          "bold": true,
+          "italic": false,
+          "color": "#000000",
+          "background": "#65ffab",
+          "align": "center",
+          "rotation": 0
+        },
+        "9": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.8,
+          "bold": true,
+          "italic": false,
+          "color": "#000000",
+          "background": "#65ffab",
+          "align": "center",
+          "rotation": 0
+        },
+        "10": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.8,
+          "bold": true,
+          "italic": false,
+          "color": "#000000",
+          "background": "#d2fce6",
+          "align": "center",
+          "rotation": 0
+        },
+        "11": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.8,
+          "bold": true,
+          "italic": false,
+          "color": "#000000",
+          "background": "#d2fce6",
+          "align": "center",
+          "rotation": 0
+        },
+        "12": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.8,
+          "bold": true,
+          "italic": false,
+          "color": "#000000",
+          "background": "#ffffcc",
+          "align": "center",
+          "rotation": 0
+        },
+        "13": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.0,
+          "bold": true,
+          "italic": false,
+          "color": "#000000",
+          "background": "#ffc000",
+          "align": "center",
+          "rotation": 0
+        },
+        "14": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.0,
+          "bold": true,
+          "italic": false,
+          "color": "#000000",
+          "background": "#f2f2f2",
+          "align": "center",
+          "rotation": 0
+        }
+      },
+      "pitch": 18.24
     },
     {
       "sno": "13",
@@ -255,7 +2091,160 @@
       },
       "gpa": "3.8842",
       "competency": "Grade D (Satisfactory)",
-      "rank": "13"
+      "rank": "13",
+      "styles": {
+        "0": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.0,
+          "bold": false,
+          "italic": false,
+          "color": "#000000",
+          "background": null,
+          "align": "center",
+          "rotation": 0
+        },
+        "1": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.0,
+          "bold": false,
+          "italic": false,
+          "color": "#000000",
+          "background": null,
+          "align": "left",
+          "rotation": 0
+        },
+        "2": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.8,
+          "bold": false,
+          "italic": false,
+          "color": "#000000",
+          "background": null,
+          "align": "center",
+          "rotation": 0
+        },
+        "3": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.8,
+          "bold": false,
+          "italic": false,
+          "color": "#000000",
+          "background": null,
+          "align": "center",
+          "rotation": 0
+        },
+        "4": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.8,
+          "bold": false,
+          "italic": false,
+          "color": "#000000",
+          "background": null,
+          "align": "center",
+          "rotation": 0
+        },
+        "5": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.8,
+          "bold": false,
+          "italic": false,
+          "color": "#000000",
+          "background": null,
+          "align": "center",
+          "rotation": 0
+        },
+        "6": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.8,
+          "bold": true,
+          "italic": false,
+          "color": "#000000",
+          "background": "#fcd5b4",
+          "align": "center",
+          "rotation": 0
+        },
+        "7": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.8,
+          "bold": true,
+          "italic": false,
+          "color": "#000000",
+          "background": null,
+          "align": "center",
+          "rotation": 0
+        },
+        "8": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.8,
+          "bold": true,
+          "italic": false,
+          "color": "#000000",
+          "background": "#65ffab",
+          "align": "center",
+          "rotation": 0
+        },
+        "9": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.8,
+          "bold": true,
+          "italic": false,
+          "color": "#000000",
+          "background": "#65ffab",
+          "align": "center",
+          "rotation": 0
+        },
+        "10": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.8,
+          "bold": true,
+          "italic": false,
+          "color": "#000000",
+          "background": "#d2fce6",
+          "align": "center",
+          "rotation": 0
+        },
+        "11": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.8,
+          "bold": true,
+          "italic": false,
+          "color": "#000000",
+          "background": "#d2fce6",
+          "align": "center",
+          "rotation": 0
+        },
+        "12": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.8,
+          "bold": true,
+          "italic": false,
+          "color": "#000000",
+          "background": "#ffffcc",
+          "align": "center",
+          "rotation": 0
+        },
+        "13": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.0,
+          "bold": true,
+          "italic": false,
+          "color": "#000000",
+          "background": "#ffc000",
+          "align": "center",
+          "rotation": 0
+        },
+        "14": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.0,
+          "bold": true,
+          "italic": false,
+          "color": "#000000",
+          "background": "#f2f2f2",
+          "align": "center",
+          "rotation": 0
+        }
+      },
+      "pitch": 18.24
     },
     {
       "sno": "14",
@@ -274,7 +2263,160 @@
       },
       "gpa": "4.0197",
       "competency": "Grade D (Satisfactory)",
-      "rank": "14"
+      "rank": "14",
+      "styles": {
+        "0": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.0,
+          "bold": false,
+          "italic": false,
+          "color": "#000000",
+          "background": null,
+          "align": "center",
+          "rotation": 0
+        },
+        "1": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.0,
+          "bold": false,
+          "italic": false,
+          "color": "#000000",
+          "background": null,
+          "align": "left",
+          "rotation": 0
+        },
+        "2": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.8,
+          "bold": false,
+          "italic": false,
+          "color": "#000000",
+          "background": null,
+          "align": "center",
+          "rotation": 0
+        },
+        "3": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.8,
+          "bold": false,
+          "italic": false,
+          "color": "#000000",
+          "background": null,
+          "align": "center",
+          "rotation": 0
+        },
+        "4": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.8,
+          "bold": false,
+          "italic": false,
+          "color": "#000000",
+          "background": null,
+          "align": "center",
+          "rotation": 0
+        },
+        "5": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.8,
+          "bold": false,
+          "italic": false,
+          "color": "#000000",
+          "background": null,
+          "align": "center",
+          "rotation": 0
+        },
+        "6": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.8,
+          "bold": true,
+          "italic": false,
+          "color": "#000000",
+          "background": "#fcd5b4",
+          "align": "center",
+          "rotation": 0
+        },
+        "7": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.8,
+          "bold": true,
+          "italic": false,
+          "color": "#000000",
+          "background": null,
+          "align": "center",
+          "rotation": 0
+        },
+        "8": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.8,
+          "bold": true,
+          "italic": false,
+          "color": "#000000",
+          "background": "#65ffab",
+          "align": "center",
+          "rotation": 0
+        },
+        "9": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.8,
+          "bold": true,
+          "italic": false,
+          "color": "#000000",
+          "background": "#65ffab",
+          "align": "center",
+          "rotation": 0
+        },
+        "10": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.8,
+          "bold": true,
+          "italic": false,
+          "color": "#000000",
+          "background": "#d2fce6",
+          "align": "center",
+          "rotation": 0
+        },
+        "11": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.8,
+          "bold": true,
+          "italic": false,
+          "color": "#000000",
+          "background": "#d2fce6",
+          "align": "center",
+          "rotation": 0
+        },
+        "12": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.8,
+          "bold": true,
+          "italic": false,
+          "color": "#000000",
+          "background": "#ffffcc",
+          "align": "center",
+          "rotation": 0
+        },
+        "13": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.0,
+          "bold": true,
+          "italic": false,
+          "color": "#000000",
+          "background": "#ffc000",
+          "align": "center",
+          "rotation": 0
+        },
+        "14": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.0,
+          "bold": true,
+          "italic": false,
+          "color": "#000000",
+          "background": "#f2f2f2",
+          "align": "center",
+          "rotation": 0
+        }
+      },
+      "pitch": 18.24
     },
     {
       "sno": "15",
@@ -293,7 +2435,160 @@
       },
       "gpa": "4.1042",
       "competency": "Grade D (Satisfactory)",
-      "rank": "15"
+      "rank": "15",
+      "styles": {
+        "0": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.0,
+          "bold": false,
+          "italic": false,
+          "color": "#000000",
+          "background": null,
+          "align": "center",
+          "rotation": 0
+        },
+        "1": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.0,
+          "bold": false,
+          "italic": false,
+          "color": "#000000",
+          "background": null,
+          "align": "left",
+          "rotation": 0
+        },
+        "2": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.8,
+          "bold": false,
+          "italic": false,
+          "color": "#000000",
+          "background": null,
+          "align": "center",
+          "rotation": 0
+        },
+        "3": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.8,
+          "bold": false,
+          "italic": false,
+          "color": "#000000",
+          "background": null,
+          "align": "center",
+          "rotation": 0
+        },
+        "4": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.8,
+          "bold": false,
+          "italic": false,
+          "color": "#000000",
+          "background": null,
+          "align": "center",
+          "rotation": 0
+        },
+        "5": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.8,
+          "bold": false,
+          "italic": false,
+          "color": "#000000",
+          "background": null,
+          "align": "center",
+          "rotation": 0
+        },
+        "6": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.8,
+          "bold": true,
+          "italic": false,
+          "color": "#000000",
+          "background": "#fcd5b4",
+          "align": "center",
+          "rotation": 0
+        },
+        "7": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.8,
+          "bold": true,
+          "italic": false,
+          "color": "#000000",
+          "background": null,
+          "align": "center",
+          "rotation": 0
+        },
+        "8": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.8,
+          "bold": true,
+          "italic": false,
+          "color": "#000000",
+          "background": "#65ffab",
+          "align": "center",
+          "rotation": 0
+        },
+        "9": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.8,
+          "bold": true,
+          "italic": false,
+          "color": "#000000",
+          "background": "#65ffab",
+          "align": "center",
+          "rotation": 0
+        },
+        "10": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.8,
+          "bold": true,
+          "italic": false,
+          "color": "#000000",
+          "background": "#d2fce6",
+          "align": "center",
+          "rotation": 0
+        },
+        "11": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.8,
+          "bold": true,
+          "italic": false,
+          "color": "#000000",
+          "background": "#d2fce6",
+          "align": "center",
+          "rotation": 0
+        },
+        "12": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.8,
+          "bold": true,
+          "italic": false,
+          "color": "#000000",
+          "background": "#ffffcc",
+          "align": "center",
+          "rotation": 0
+        },
+        "13": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.0,
+          "bold": true,
+          "italic": false,
+          "color": "#000000",
+          "background": "#ffc000",
+          "align": "center",
+          "rotation": 0
+        },
+        "14": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.0,
+          "bold": true,
+          "italic": false,
+          "color": "#000000",
+          "background": "#f2f2f2",
+          "align": "center",
+          "rotation": 0
+        }
+      },
+      "pitch": 18.27
     },
     {
       "sno": "16",
@@ -312,7 +2607,160 @@
       },
       "gpa": "4.1520",
       "competency": "Grade D (Satisfactory)",
-      "rank": "16"
+      "rank": "16",
+      "styles": {
+        "0": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.0,
+          "bold": false,
+          "italic": false,
+          "color": "#000000",
+          "background": null,
+          "align": "center",
+          "rotation": 0
+        },
+        "1": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.0,
+          "bold": false,
+          "italic": false,
+          "color": "#000000",
+          "background": null,
+          "align": "left",
+          "rotation": 0
+        },
+        "2": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.8,
+          "bold": false,
+          "italic": false,
+          "color": "#000000",
+          "background": null,
+          "align": "center",
+          "rotation": 0
+        },
+        "3": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.8,
+          "bold": false,
+          "italic": false,
+          "color": "#000000",
+          "background": null,
+          "align": "center",
+          "rotation": 0
+        },
+        "4": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.8,
+          "bold": false,
+          "italic": false,
+          "color": "#000000",
+          "background": null,
+          "align": "center",
+          "rotation": 0
+        },
+        "5": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.8,
+          "bold": false,
+          "italic": false,
+          "color": "#000000",
+          "background": null,
+          "align": "center",
+          "rotation": 0
+        },
+        "6": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.8,
+          "bold": true,
+          "italic": false,
+          "color": "#000000",
+          "background": "#fcd5b4",
+          "align": "center",
+          "rotation": 0
+        },
+        "7": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.8,
+          "bold": true,
+          "italic": false,
+          "color": "#000000",
+          "background": null,
+          "align": "center",
+          "rotation": 0
+        },
+        "8": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.8,
+          "bold": true,
+          "italic": false,
+          "color": "#000000",
+          "background": "#65ffab",
+          "align": "center",
+          "rotation": 0
+        },
+        "9": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.8,
+          "bold": true,
+          "italic": false,
+          "color": "#000000",
+          "background": "#65ffab",
+          "align": "center",
+          "rotation": 0
+        },
+        "10": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.8,
+          "bold": true,
+          "italic": false,
+          "color": "#000000",
+          "background": "#d2fce6",
+          "align": "center",
+          "rotation": 0
+        },
+        "11": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.8,
+          "bold": true,
+          "italic": false,
+          "color": "#000000",
+          "background": "#d2fce6",
+          "align": "center",
+          "rotation": 0
+        },
+        "12": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.8,
+          "bold": true,
+          "italic": false,
+          "color": "#000000",
+          "background": "#ffffcc",
+          "align": "center",
+          "rotation": 0
+        },
+        "13": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.0,
+          "bold": true,
+          "italic": false,
+          "color": "#000000",
+          "background": "#ffc000",
+          "align": "center",
+          "rotation": 0
+        },
+        "14": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.0,
+          "bold": true,
+          "italic": false,
+          "color": "#000000",
+          "background": "#f2f2f2",
+          "align": "center",
+          "rotation": 0
+        }
+      },
+      "pitch": 18.24
     },
     {
       "sno": "17",
@@ -331,7 +2779,160 @@
       },
       "gpa": "4.2560",
       "competency": "Grade D (Satisfactory)",
-      "rank": "17"
+      "rank": "17",
+      "styles": {
+        "0": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.0,
+          "bold": false,
+          "italic": false,
+          "color": "#000000",
+          "background": null,
+          "align": "center",
+          "rotation": 0
+        },
+        "1": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.0,
+          "bold": false,
+          "italic": false,
+          "color": "#000000",
+          "background": null,
+          "align": "left",
+          "rotation": 0
+        },
+        "2": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.8,
+          "bold": false,
+          "italic": false,
+          "color": "#000000",
+          "background": null,
+          "align": "center",
+          "rotation": 0
+        },
+        "3": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.8,
+          "bold": false,
+          "italic": false,
+          "color": "#000000",
+          "background": null,
+          "align": "center",
+          "rotation": 0
+        },
+        "4": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.8,
+          "bold": false,
+          "italic": false,
+          "color": "#000000",
+          "background": null,
+          "align": "center",
+          "rotation": 0
+        },
+        "5": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.8,
+          "bold": false,
+          "italic": false,
+          "color": "#000000",
+          "background": null,
+          "align": "center",
+          "rotation": 0
+        },
+        "6": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.8,
+          "bold": true,
+          "italic": false,
+          "color": "#000000",
+          "background": "#fcd5b4",
+          "align": "center",
+          "rotation": 0
+        },
+        "7": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.8,
+          "bold": true,
+          "italic": false,
+          "color": "#000000",
+          "background": null,
+          "align": "center",
+          "rotation": 0
+        },
+        "8": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.8,
+          "bold": true,
+          "italic": false,
+          "color": "#000000",
+          "background": "#65ffab",
+          "align": "center",
+          "rotation": 0
+        },
+        "9": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.8,
+          "bold": true,
+          "italic": false,
+          "color": "#000000",
+          "background": "#65ffab",
+          "align": "center",
+          "rotation": 0
+        },
+        "10": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.8,
+          "bold": true,
+          "italic": false,
+          "color": "#000000",
+          "background": "#d2fce6",
+          "align": "center",
+          "rotation": 0
+        },
+        "11": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.8,
+          "bold": true,
+          "italic": false,
+          "color": "#000000",
+          "background": "#d2fce6",
+          "align": "center",
+          "rotation": 0
+        },
+        "12": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.8,
+          "bold": true,
+          "italic": false,
+          "color": "#000000",
+          "background": "#ffffcc",
+          "align": "center",
+          "rotation": 0
+        },
+        "13": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.0,
+          "bold": true,
+          "italic": false,
+          "color": "#000000",
+          "background": "#ffc000",
+          "align": "center",
+          "rotation": 0
+        },
+        "14": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.0,
+          "bold": true,
+          "italic": false,
+          "color": "#000000",
+          "background": "#f2f2f2",
+          "align": "center",
+          "rotation": 0
+        }
+      },
+      "pitch": 18.24
     },
     {
       "sno": "18",
@@ -350,7 +2951,160 @@
       },
       "gpa": "4.3333",
       "competency": "Grade D (Satisfactory)",
-      "rank": "18"
+      "rank": "18",
+      "styles": {
+        "0": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.0,
+          "bold": false,
+          "italic": false,
+          "color": "#000000",
+          "background": null,
+          "align": "center",
+          "rotation": 0
+        },
+        "1": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.0,
+          "bold": false,
+          "italic": false,
+          "color": "#000000",
+          "background": null,
+          "align": "center",
+          "rotation": 0
+        },
+        "2": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.8,
+          "bold": false,
+          "italic": false,
+          "color": "#000000",
+          "background": null,
+          "align": "center",
+          "rotation": 0
+        },
+        "3": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.8,
+          "bold": false,
+          "italic": false,
+          "color": "#000000",
+          "background": null,
+          "align": "center",
+          "rotation": 0
+        },
+        "4": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.8,
+          "bold": false,
+          "italic": false,
+          "color": "#000000",
+          "background": null,
+          "align": "center",
+          "rotation": 0
+        },
+        "5": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.8,
+          "bold": false,
+          "italic": false,
+          "color": "#000000",
+          "background": null,
+          "align": "center",
+          "rotation": 0
+        },
+        "6": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.8,
+          "bold": true,
+          "italic": false,
+          "color": "#000000",
+          "background": "#fcd5b4",
+          "align": "center",
+          "rotation": 0
+        },
+        "7": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.8,
+          "bold": true,
+          "italic": false,
+          "color": "#000000",
+          "background": null,
+          "align": "center",
+          "rotation": 0
+        },
+        "8": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.8,
+          "bold": true,
+          "italic": false,
+          "color": "#000000",
+          "background": "#65ffab",
+          "align": "center",
+          "rotation": 0
+        },
+        "9": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.8,
+          "bold": true,
+          "italic": false,
+          "color": "#000000",
+          "background": "#65ffab",
+          "align": "center",
+          "rotation": 0
+        },
+        "10": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.8,
+          "bold": true,
+          "italic": false,
+          "color": "#000000",
+          "background": "#d2fce6",
+          "align": "center",
+          "rotation": 0
+        },
+        "11": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.8,
+          "bold": true,
+          "italic": false,
+          "color": "#000000",
+          "background": "#d2fce6",
+          "align": "center",
+          "rotation": 0
+        },
+        "12": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.8,
+          "bold": true,
+          "italic": false,
+          "color": "#000000",
+          "background": "#ffffcc",
+          "align": "center",
+          "rotation": 0
+        },
+        "13": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.0,
+          "bold": true,
+          "italic": false,
+          "color": "#000000",
+          "background": "#ffc000",
+          "align": "center",
+          "rotation": 0
+        },
+        "14": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.0,
+          "bold": true,
+          "italic": false,
+          "color": "#000000",
+          "background": "#f2f2f2",
+          "align": "center",
+          "rotation": 0
+        }
+      },
+      "pitch": 18.236
     },
     {
       "sno": "19",
@@ -369,7 +3123,160 @@
       },
       "gpa": "4.3486",
       "competency": "Grade D (Satisfactory)",
-      "rank": "19"
+      "rank": "19",
+      "styles": {
+        "0": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.0,
+          "bold": false,
+          "italic": false,
+          "color": "#000000",
+          "background": null,
+          "align": "center",
+          "rotation": 0
+        },
+        "1": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.0,
+          "bold": false,
+          "italic": false,
+          "color": "#000000",
+          "background": null,
+          "align": "left",
+          "rotation": 0
+        },
+        "2": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.8,
+          "bold": false,
+          "italic": false,
+          "color": "#000000",
+          "background": null,
+          "align": "center",
+          "rotation": 0
+        },
+        "3": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.8,
+          "bold": false,
+          "italic": false,
+          "color": "#000000",
+          "background": null,
+          "align": "center",
+          "rotation": 0
+        },
+        "4": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.8,
+          "bold": false,
+          "italic": false,
+          "color": "#000000",
+          "background": null,
+          "align": "center",
+          "rotation": 0
+        },
+        "5": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.8,
+          "bold": false,
+          "italic": false,
+          "color": "#000000",
+          "background": null,
+          "align": "center",
+          "rotation": 0
+        },
+        "6": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.8,
+          "bold": true,
+          "italic": false,
+          "color": "#000000",
+          "background": "#fcd5b4",
+          "align": "center",
+          "rotation": 0
+        },
+        "7": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.8,
+          "bold": true,
+          "italic": false,
+          "color": "#000000",
+          "background": null,
+          "align": "center",
+          "rotation": 0
+        },
+        "8": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.8,
+          "bold": true,
+          "italic": false,
+          "color": "#000000",
+          "background": "#65ffab",
+          "align": "center",
+          "rotation": 0
+        },
+        "9": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.8,
+          "bold": true,
+          "italic": false,
+          "color": "#000000",
+          "background": "#65ffab",
+          "align": "center",
+          "rotation": 0
+        },
+        "10": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.8,
+          "bold": true,
+          "italic": false,
+          "color": "#000000",
+          "background": "#d2fce6",
+          "align": "center",
+          "rotation": 0
+        },
+        "11": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.8,
+          "bold": true,
+          "italic": false,
+          "color": "#000000",
+          "background": "#d2fce6",
+          "align": "center",
+          "rotation": 0
+        },
+        "12": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.8,
+          "bold": true,
+          "italic": false,
+          "color": "#000000",
+          "background": "#ffffcc",
+          "align": "center",
+          "rotation": 0
+        },
+        "13": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.0,
+          "bold": true,
+          "italic": false,
+          "color": "#000000",
+          "background": "#ffc000",
+          "align": "center",
+          "rotation": 0
+        },
+        "14": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.0,
+          "bold": true,
+          "italic": false,
+          "color": "#000000",
+          "background": "#f2f2f2",
+          "align": "center",
+          "rotation": 0
+        }
+      },
+      "pitch": 18.24
     },
     {
       "sno": "20",
@@ -388,7 +3295,160 @@
       },
       "gpa": "4.4828",
       "competency": "Grade D (Satisfactory)",
-      "rank": "20"
+      "rank": "20",
+      "styles": {
+        "0": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.0,
+          "bold": false,
+          "italic": false,
+          "color": "#000000",
+          "background": null,
+          "align": "center",
+          "rotation": 0
+        },
+        "1": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.0,
+          "bold": false,
+          "italic": false,
+          "color": "#000000",
+          "background": null,
+          "align": "left",
+          "rotation": 0
+        },
+        "2": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.8,
+          "bold": false,
+          "italic": false,
+          "color": "#000000",
+          "background": null,
+          "align": "center",
+          "rotation": 0
+        },
+        "3": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.8,
+          "bold": false,
+          "italic": false,
+          "color": "#000000",
+          "background": null,
+          "align": "center",
+          "rotation": 0
+        },
+        "4": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.8,
+          "bold": false,
+          "italic": false,
+          "color": "#000000",
+          "background": null,
+          "align": "center",
+          "rotation": 0
+        },
+        "5": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.8,
+          "bold": false,
+          "italic": false,
+          "color": "#000000",
+          "background": null,
+          "align": "center",
+          "rotation": 0
+        },
+        "6": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.8,
+          "bold": true,
+          "italic": false,
+          "color": "#000000",
+          "background": "#fcd5b4",
+          "align": "center",
+          "rotation": 0
+        },
+        "7": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.8,
+          "bold": true,
+          "italic": false,
+          "color": "#000000",
+          "background": null,
+          "align": "center",
+          "rotation": 0
+        },
+        "8": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.8,
+          "bold": true,
+          "italic": false,
+          "color": "#000000",
+          "background": "#65ffab",
+          "align": "center",
+          "rotation": 0
+        },
+        "9": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.8,
+          "bold": true,
+          "italic": false,
+          "color": "#000000",
+          "background": "#65ffab",
+          "align": "center",
+          "rotation": 0
+        },
+        "10": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.8,
+          "bold": true,
+          "italic": false,
+          "color": "#000000",
+          "background": "#d2fce6",
+          "align": "center",
+          "rotation": 0
+        },
+        "11": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.8,
+          "bold": true,
+          "italic": false,
+          "color": "#000000",
+          "background": "#d2fce6",
+          "align": "center",
+          "rotation": 0
+        },
+        "12": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.8,
+          "bold": true,
+          "italic": false,
+          "color": "#000000",
+          "background": "#ffffcc",
+          "align": "center",
+          "rotation": 0
+        },
+        "13": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.0,
+          "bold": true,
+          "italic": false,
+          "color": "#000000",
+          "background": "#ffc000",
+          "align": "center",
+          "rotation": 0
+        },
+        "14": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.0,
+          "bold": true,
+          "italic": false,
+          "color": "#000000",
+          "background": "#f2f2f2",
+          "align": "center",
+          "rotation": 0
+        }
+      },
+      "pitch": 18.326
     },
     {
       "sno": "21",
@@ -407,7 +3467,160 @@
       },
       "gpa": "4.4876",
       "competency": "Grade D (Satisfactory)",
-      "rank": "21"
+      "rank": "21",
+      "styles": {
+        "0": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.0,
+          "bold": false,
+          "italic": false,
+          "color": "#000000",
+          "background": null,
+          "align": "center",
+          "rotation": 0
+        },
+        "1": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.0,
+          "bold": false,
+          "italic": false,
+          "color": "#000000",
+          "background": null,
+          "align": "left",
+          "rotation": 0
+        },
+        "2": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.8,
+          "bold": false,
+          "italic": false,
+          "color": "#000000",
+          "background": null,
+          "align": "center",
+          "rotation": 0
+        },
+        "3": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.8,
+          "bold": false,
+          "italic": false,
+          "color": "#000000",
+          "background": null,
+          "align": "center",
+          "rotation": 0
+        },
+        "4": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.8,
+          "bold": false,
+          "italic": false,
+          "color": "#000000",
+          "background": null,
+          "align": "center",
+          "rotation": 0
+        },
+        "5": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.8,
+          "bold": false,
+          "italic": false,
+          "color": "#000000",
+          "background": null,
+          "align": "center",
+          "rotation": 0
+        },
+        "6": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.8,
+          "bold": true,
+          "italic": false,
+          "color": "#000000",
+          "background": "#fcd5b4",
+          "align": "center",
+          "rotation": 0
+        },
+        "7": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.8,
+          "bold": true,
+          "italic": false,
+          "color": "#000000",
+          "background": null,
+          "align": "center",
+          "rotation": 0
+        },
+        "8": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.8,
+          "bold": true,
+          "italic": false,
+          "color": "#000000",
+          "background": "#65ffab",
+          "align": "center",
+          "rotation": 0
+        },
+        "9": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.8,
+          "bold": true,
+          "italic": false,
+          "color": "#000000",
+          "background": "#65ffab",
+          "align": "center",
+          "rotation": 0
+        },
+        "10": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.8,
+          "bold": true,
+          "italic": false,
+          "color": "#000000",
+          "background": "#d2fce6",
+          "align": "center",
+          "rotation": 0
+        },
+        "11": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.8,
+          "bold": true,
+          "italic": false,
+          "color": "#000000",
+          "background": "#d2fce6",
+          "align": "center",
+          "rotation": 0
+        },
+        "12": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.8,
+          "bold": true,
+          "italic": false,
+          "color": "#000000",
+          "background": "#ffffcc",
+          "align": "center",
+          "rotation": 0
+        },
+        "13": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.0,
+          "bold": true,
+          "italic": false,
+          "color": "#000000",
+          "background": "#ffc000",
+          "align": "center",
+          "rotation": 0
+        },
+        "14": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.0,
+          "bold": true,
+          "italic": false,
+          "color": "#000000",
+          "background": "#f2f2f2",
+          "align": "center",
+          "rotation": 0
+        }
+      },
+      "pitch": 18.348
     },
     {
       "sno": "22",
@@ -426,7 +3639,160 @@
       },
       "gpa": "4.5263",
       "competency": "Grade D (Satisfactory)",
-      "rank": "22"
+      "rank": "22",
+      "styles": {
+        "0": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.0,
+          "bold": false,
+          "italic": false,
+          "color": "#000000",
+          "background": null,
+          "align": "center",
+          "rotation": 0
+        },
+        "1": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.0,
+          "bold": false,
+          "italic": false,
+          "color": "#000000",
+          "background": null,
+          "align": "left",
+          "rotation": 0
+        },
+        "2": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.8,
+          "bold": false,
+          "italic": false,
+          "color": "#000000",
+          "background": null,
+          "align": "center",
+          "rotation": 0
+        },
+        "3": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.8,
+          "bold": false,
+          "italic": false,
+          "color": "#000000",
+          "background": null,
+          "align": "center",
+          "rotation": 0
+        },
+        "4": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.8,
+          "bold": false,
+          "italic": false,
+          "color": "#000000",
+          "background": null,
+          "align": "center",
+          "rotation": 0
+        },
+        "5": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.8,
+          "bold": false,
+          "italic": false,
+          "color": "#000000",
+          "background": null,
+          "align": "center",
+          "rotation": 0
+        },
+        "6": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.8,
+          "bold": true,
+          "italic": false,
+          "color": "#000000",
+          "background": "#fcd5b4",
+          "align": "center",
+          "rotation": 0
+        },
+        "7": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.8,
+          "bold": true,
+          "italic": false,
+          "color": "#000000",
+          "background": null,
+          "align": "center",
+          "rotation": 0
+        },
+        "8": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.8,
+          "bold": true,
+          "italic": false,
+          "color": "#000000",
+          "background": "#65ffab",
+          "align": "center",
+          "rotation": 0
+        },
+        "9": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.8,
+          "bold": true,
+          "italic": false,
+          "color": "#000000",
+          "background": "#65ffab",
+          "align": "center",
+          "rotation": 0
+        },
+        "10": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.8,
+          "bold": true,
+          "italic": false,
+          "color": "#000000",
+          "background": "#d2fce6",
+          "align": "center",
+          "rotation": 0
+        },
+        "11": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.8,
+          "bold": true,
+          "italic": false,
+          "color": "#000000",
+          "background": "#d2fce6",
+          "align": "center",
+          "rotation": 0
+        },
+        "12": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.8,
+          "bold": true,
+          "italic": false,
+          "color": "#000000",
+          "background": "#ffffcc",
+          "align": "center",
+          "rotation": 0
+        },
+        "13": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.0,
+          "bold": true,
+          "italic": false,
+          "color": "#000000",
+          "background": "#ffc000",
+          "align": "center",
+          "rotation": 0
+        },
+        "14": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.0,
+          "bold": true,
+          "italic": false,
+          "color": "#000000",
+          "background": "#f2f2f2",
+          "align": "center",
+          "rotation": 0
+        }
+      },
+      "pitch": 18.24
     },
     {
       "sno": "23",
@@ -445,7 +3811,160 @@
       },
       "gpa": "5.0000",
       "competency": "Grade F (Fail)",
-      "rank": "23"
+      "rank": "23",
+      "styles": {
+        "0": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.0,
+          "bold": false,
+          "italic": false,
+          "color": "#000000",
+          "background": null,
+          "align": "center",
+          "rotation": 0
+        },
+        "1": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.0,
+          "bold": false,
+          "italic": false,
+          "color": "#000000",
+          "background": null,
+          "align": "left",
+          "rotation": 0
+        },
+        "2": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.8,
+          "bold": false,
+          "italic": false,
+          "color": "#000000",
+          "background": null,
+          "align": "center",
+          "rotation": 0
+        },
+        "3": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.8,
+          "bold": false,
+          "italic": false,
+          "color": "#000000",
+          "background": null,
+          "align": "center",
+          "rotation": 0
+        },
+        "4": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.8,
+          "bold": false,
+          "italic": false,
+          "color": "#000000",
+          "background": null,
+          "align": "center",
+          "rotation": 0
+        },
+        "5": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.8,
+          "bold": false,
+          "italic": false,
+          "color": "#000000",
+          "background": null,
+          "align": "center",
+          "rotation": 0
+        },
+        "6": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.8,
+          "bold": true,
+          "italic": false,
+          "color": "#000000",
+          "background": "#fcd5b4",
+          "align": "center",
+          "rotation": 0
+        },
+        "7": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.8,
+          "bold": true,
+          "italic": false,
+          "color": "#000000",
+          "background": null,
+          "align": "center",
+          "rotation": 0
+        },
+        "8": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.8,
+          "bold": true,
+          "italic": false,
+          "color": "#000000",
+          "background": "#65ffab",
+          "align": "center",
+          "rotation": 0
+        },
+        "9": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.8,
+          "bold": true,
+          "italic": false,
+          "color": "#000000",
+          "background": "#65ffab",
+          "align": "center",
+          "rotation": 0
+        },
+        "10": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.8,
+          "bold": true,
+          "italic": false,
+          "color": "#000000",
+          "background": "#d2fce6",
+          "align": "center",
+          "rotation": 0
+        },
+        "11": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.8,
+          "bold": true,
+          "italic": false,
+          "color": "#000000",
+          "background": "#d2fce6",
+          "align": "center",
+          "rotation": 0
+        },
+        "12": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.8,
+          "bold": true,
+          "italic": false,
+          "color": "#000000",
+          "background": "#ffffcc",
+          "align": "center",
+          "rotation": 0
+        },
+        "13": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.0,
+          "bold": true,
+          "italic": false,
+          "color": "#000000",
+          "background": "#ff0000",
+          "align": "left",
+          "rotation": 0
+        },
+        "14": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.0,
+          "bold": true,
+          "italic": false,
+          "color": "#000000",
+          "background": "#f2f2f2",
+          "align": "center",
+          "rotation": 0
+        }
+      },
+      "pitch": 18.405
     },
     {
       "sno": "OVERALL SUBJECTS  COUNCIL GPA",
@@ -464,7 +3983,40 @@
       },
       "gpa": "",
       "competency": "",
-      "rank": ""
+      "rank": "",
+      "styles": {
+        "0": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.0,
+          "bold": true,
+          "italic": false,
+          "color": "#000000",
+          "background": null,
+          "align": "center",
+          "rotation": 0
+        },
+        "2": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 11.6,
+          "bold": true,
+          "italic": false,
+          "color": "#000000",
+          "background": null,
+          "align": "center",
+          "rotation": 0
+        },
+        "14": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 7.0,
+          "bold": false,
+          "italic": false,
+          "color": "#000000",
+          "background": null,
+          "align": "center",
+          "rotation": 0
+        }
+      },
+      "pitch": 20.583
     },
     {
       "sno": "COMPETENCY LEVEL",
@@ -483,10 +4035,45 @@
       },
       "gpa": "",
       "competency": "",
-      "rank": ""
+      "rank": "",
+      "styles": {
+        "0": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 10.0,
+          "bold": true,
+          "italic": false,
+          "color": "#000000",
+          "background": null,
+          "align": "right",
+          "rotation": 0
+        },
+        "2": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 11.6,
+          "bold": true,
+          "italic": false,
+          "color": "#000000",
+          "background": "#ffc000",
+          "align": "center",
+          "rotation": 0
+        },
+        "14": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 7.0,
+          "bold": false,
+          "italic": false,
+          "color": "#000000",
+          "background": null,
+          "align": "center",
+          "rotation": 0
+        }
+      },
+      "pitch": 20.856
     }
   ],
   "totals": {},
+  "total_styles": {},
+  "total_pitch": {},
   "column_headers": [
     "S/NO.",
     "SUBJECT NAME",

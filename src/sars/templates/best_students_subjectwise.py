@@ -28,7 +28,15 @@ The competency cell's background is derived deterministically from the label via
 from __future__ import annotations
 
 from ..schema import BestStudentsReport, BestStudentsSection, StudentRow
-from .base import banner_html, cell, competency_cell, document_html, esc
+from .base import (
+    TemplatePool,
+    banner_html,
+    cell,
+    competency_cell,
+    document_html,
+    esc,
+    orientation_for,
+)
 
 #: Candidate columns, as ``(field, heading, left_aligned)``. A column is printed
 #: only when at least one candidate in the section carries a value for it, so
@@ -59,7 +67,7 @@ def _present_columns(students: list[StudentRow]) -> tuple[tuple[str, str, bool],
     )
 
 
-def _section_html(section: BestStudentsSection) -> str:
+def _section_html(section: BestStudentsSection, pool: TemplatePool) -> str:
     if not section.students:
         return ""
     columns = _present_columns(section.students)
@@ -73,11 +81,13 @@ def _section_html(section: BestStudentsSection) -> str:
         cells: list[str] = []
         for field_name, _heading, left in columns:
             value = str(getattr(st, field_name, "") or "")
+            cs = st.styles.get(field_name) if st.styles else None
             if field_name == "competency":
-                # Deterministic colour from the label, never stored in the data.
-                cells.append(competency_cell(value))
+                # The recovered source fill wins; the deterministic colour from
+                # the label is only a fallback when no fill was recovered.
+                cells.append(competency_cell(value, pool=pool, style=cs, pitch=st.pitch))
             else:
-                cells.append(cell(value, text=left))
+                cells.append(cell(value, text=left, pool=pool, style=cs, pitch=st.pitch))
         rows.append("<tr>" + "".join(cells) + "</tr>")
 
     title = (
@@ -98,6 +108,7 @@ def _section_html(section: BestStudentsSection) -> str:
 
 def render_best_students_subjectwise(report: BestStudentsReport) -> str:
     """Render a subjectwise :class:`~sars.schema.BestStudentsReport` to HTML."""
+    pool = TemplatePool(orientation_for(report.meta))
     body = banner_html(report.meta)
-    body += "".join(_section_html(sec) for sec in report.sections)
-    return document_html(report.meta, body)
+    body += "".join(_section_html(sec, pool) for sec in report.sections)
+    return document_html(report.meta, body, pool=pool)

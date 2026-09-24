@@ -1,0 +1,33 @@
+{
+  "id": "FEAT-003",
+  "type": "chore",
+  "description": "Regenerate every committed templated artefact so the visual improvement is reviewable without running anything, re-audit ALL 19 comparisons (not just the one in the screenshot), record the before/after fidelity delta, confirm the conversion path did not regress, and commit the changes locally. Depends on FEAT-002.",
+  "status": "pending",
+  "steps": [
+    "Activate the environment: `. .venv/bin/activate` (and `sars unpack` if data/sars is absent).",
+    "Regenerate the committed data + templated artefacts: `sars data` (output/data/*.json), then `sars template` (output/template_html/* and output/template_pdf/*).",
+    "Regenerate ALL templated comparison images for page 1 of every document: `python tools/compare.py --template` (writes output/compare/TEMPLATE *.jpg, reference left vs templated right).",
+    "Re-audit every document: run `python tools/template_audit.py` and record the full per-document table plus the summary line in this feature's findings. Compare against the baseline recorded in FEAT-001 (no value lost 5/19; pagination 8/19; mean document similarity 97.27%) and state the delta.",
+    "Visually re-review the regenerated TEMPLATE *.jpg for all 19 documents (read each output/compare/TEMPLATE *.jpg). For each, note whether per-cell colours, row heights, fonts and structure now match the reference, and list any remaining gaps. Pay attention to the families that reflow to fewer pages (top_schools, best_students subjectwise) - confirm no cells are visually dropped even though page 1 differs.",
+    "Confirm the conversion path is untouched: `sars all` reports `19/19 documents pass; mean text similarity 100.00%`.",
+    "Run the full test suite `pytest -q` and `ruff check src tools` + `black --check src tools`; fix any findings.",
+    "Stage and commit locally the source changes and the regenerated artefacts (git add the specific changed files under src/sars, output/data, output/template_html, output/template_pdf, output/compare/TEMPLATE *.jpg, and any changed tests; then `git commit` with a clear message). Do NOT push, do NOT create a PR, do NOT force-add unrelated files. Report the commit hash and a summary of what changed with before/after numbers."
+  ],
+  "acceptance_criteria": [
+    "output/data/*.json, output/template_html/*, output/template_pdf/* and output/compare/TEMPLATE *.jpg are all regenerated and reflect the FEAT-002 styling (per-cell colours, matched fonts/heights).",
+    "`python tools/template_audit.py` summary is recorded and is no worse than baseline on token completeness and mean document similarity; the before/after delta is stated in findings.",
+    "A visual review note for all 19 TEMPLATE comparison images is recorded, listing restored fidelity and any residual gaps.",
+    "`sars all` still reports `19/19 documents pass; mean text similarity 100.00%`.",
+    "`pytest -q` passes; `ruff check` and `black --check` clean.",
+    "The source changes and regenerated artefacts are committed locally (commit hash reported); nothing pushed."
+  ],
+  "verification": [
+    ". .venv/bin/activate && sars data && sars template && python tools/compare.py --template 2>&1 | tail -5",
+    ". .venv/bin/activate && python tools/template_audit.py 2>&1 | tail -25",
+    ". .venv/bin/activate && sars all 2>&1 | tail -2",
+    ". .venv/bin/activate && pytest -q 2>&1 | tail -5",
+    "cd /projects/sandbox/mussannoni && git log --oneline -1 && git status --short | head"
+  ],
+  "blocked_reason": null,
+  "findings": ""
+}

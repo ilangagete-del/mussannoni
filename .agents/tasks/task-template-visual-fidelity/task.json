@@ -1,0 +1,7 @@
+{
+  "task_id": "task-template-visual-fidelity",
+  "task_description": "Make the data-driven (templated) SARS report path reproduce each reference report as a faithful cell-by-cell visual replica, matching the conversion path: emit the recovered per-cell background fill colours (DIVISION PERFORMANCE / SUMMARY / GPA-band washes currently rendered white), recovered per-cell fonts (family/size/weight/italic) and text colour, recovered alignment and rotated rank labels, and recovered per-row pitch (fixing the too-narrow rows), across all 19 documents. Honour the user's constraint to reproduce each report faithfully on its own terms rather than forcing different report types into one shared abstraction. Regenerate the committed artefacts (output/data, output/template_html, output/template_pdf, output/compare/TEMPLATE *.jpg), re-audit every comparison, and keep the conversion path at 19/19 100%.",
+  "status": "in_progress",
+  "feature_order": ["FEAT-001", "FEAT-002", "FEAT-003"],
+  "blocked_reason": null
+}

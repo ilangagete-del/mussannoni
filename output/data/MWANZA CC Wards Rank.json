@@ -47,7 +47,170 @@
         "DIVISION PERFORMANCE / DIV - 0 / %": "3.62",
         "GPA PERFORMANCE / GPA": "3.54350",
         "GPA PERFORMANCE / COMPENTENCY LEVEL": "Grade C (Good)"
-      }
+      },
+      "styles": {
+        "NO. OF / WARDS IN / COUNCIL": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 7.8,
+          "bold": true,
+          "italic": false,
+          "color": "#000000",
+          "background": null,
+          "align": "center",
+          "rotation": 0
+        },
+        "NUMBER OF CANDIDATES / REG": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 7.8,
+          "bold": true,
+          "italic": false,
+          "color": "#000000",
+          "background": null,
+          "align": "center",
+          "rotation": 0
+        },
+        "NUMBER OF CANDIDATES / SAT / TOTAL": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 7.8,
+          "bold": true,
+          "italic": false,
+          "color": "#000000",
+          "background": null,
+          "align": "center",
+          "rotation": 0
+        },
+        "NUMBER OF CANDIDATES / SAT / %": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 7.8,
+          "bold": true,
+          "italic": false,
+          "color": "#000000",
+          "background": null,
+          "align": "center",
+          "rotation": 0
+        },
+        "DIVISION PERFORMANCE / I": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 7.8,
+          "bold": false,
+          "italic": false,
+          "color": "#000000",
+          "background": null,
+          "align": "center",
+          "rotation": 0
+        },
+        "DIVISION PERFORMANCE / II": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 7.8,
+          "bold": false,
+          "italic": false,
+          "color": "#000000",
+          "background": null,
+          "align": "center",
+          "rotation": 0
+        },
+        "DIVISION PERFORMANCE / III": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 7.8,
+          "bold": false,
+          "italic": false,
+          "color": "#000000",
+          "background": null,
+          "align": "center",
+          "rotation": 0
+        },
+        "DIVISION PERFORMANCE / I-III / TOTAL": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 7.8,
+          "bold": true,
+          "italic": false,
+          "color": "#000000",
+          "background": null,
+          "align": "center",
+          "rotation": 0
+        },
+        "DIVISION PERFORMANCE / I-III / %": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 7.8,
+          "bold": true,
+          "italic": false,
+          "color": "#000000",
+          "background": null,
+          "align": "center",
+          "rotation": 0
+        },
+        "DIVISION PERFORMANCE / IV": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 7.8,
+          "bold": false,
+          "italic": false,
+          "color": "#000000",
+          "background": null,
+          "align": "center",
+          "rotation": 0
+        },
+        "DIVISION PERFORMANCE / I-IV / TOTAL": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 7.8,
+          "bold": true,
+          "italic": false,
+          "color": "#000000",
+          "background": null,
+          "align": "center",
+          "rotation": 0
+        },
+        "DIVISION PERFORMANCE / I-IV / %": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 7.8,
+          "bold": true,
+          "italic": false,
+          "color": "#000000",
+          "background": null,
+          "align": "center",
+          "rotation": 0
+        },
+        "DIVISION PERFORMANCE / DIV - 0 / TOTAL": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 7.8,
+          "bold": false,
+          "italic": false,
+          "color": "#000000",
+          "background": null,
+          "align": "center",
+          "rotation": 0
+        },
+        "DIVISION PERFORMANCE / DIV - 0 / %": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 7.8,
+          "bold": true,
+          "italic": false,
+          "color": "#000000",
+          "background": null,
+          "align": "center",
+          "rotation": 0
+        },
+        "GPA PERFORMANCE / GPA": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 7.8,
+          "bold": true,
+          "italic": false,
+          "color": "#000000",
+          "background": "#ccffff",
+          "align": "center",
+          "rotation": 0
+        },
+        "GPA PERFORMANCE / COMPENTENCY LEVEL": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 7.8,
+          "bold": true,
+          "italic": false,
+          "color": "#000000",
+          "background": "#ffff00",
+          "align": "left",
+          "rotation": 0
+        }
+      },
+      "pitch": 18.109
     },
     {
       "values": {
@@ -60,10 +223,105 @@
         "DIVISION PERFORMANCE / IV": "65.25",
         "DIVISION PERFORMANCE / I-IV / TOTAL": "96.38",
         "DIVISION PERFORMANCE / DIV - 0 / TOTAL": "3.62"
-      }
+      },
+      "styles": {
+        "SUMMARY  PERFORMANCE": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 7.8,
+          "bold": true,
+          "italic": false,
+          "color": "#000000",
+          "background": null,
+          "align": "left",
+          "rotation": 0
+        },
+        "NUMBER OF CANDIDATES / SAT / TOTAL": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 7.8,
+          "bold": true,
+          "italic": false,
+          "color": "#000000",
+          "background": null,
+          "align": "center",
+          "rotation": 0
+        },
+        "DIVISION PERFORMANCE / I": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 7.8,
+          "bold": true,
+          "italic": false,
+          "color": "#000000",
+          "background": null,
+          "align": "center",
+          "rotation": 0
+        },
+        "DIVISION PERFORMANCE / II": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 7.8,
+          "bold": true,
+          "italic": false,
+          "color": "#000000",
+          "background": null,
+          "align": "center",
+          "rotation": 0
+        },
+        "DIVISION PERFORMANCE / III": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 7.8,
+          "bold": true,
+          "italic": false,
+          "color": "#000000",
+          "background": null,
+          "align": "center",
+          "rotation": 0
+        },
+        "DIVISION PERFORMANCE / I-III / TOTAL": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 7.8,
+          "bold": true,
+          "italic": false,
+          "color": "#000000",
+          "background": null,
+          "align": "center",
+          "rotation": 0
+        },
+        "DIVISION PERFORMANCE / IV": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 7.8,
+          "bold": true,
+          "italic": false,
+          "color": "#000000",
+          "background": null,
+          "align": "center",
+          "rotation": 0
+        },
+        "DIVISION PERFORMANCE / I-IV / TOTAL": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 7.8,
+          "bold": true,
+          "italic": false,
+          "color": "#000000",
+          "background": null,
+          "align": "center",
+          "rotation": 0
+        },
+        "DIVISION PERFORMANCE / DIV - 0 / TOTAL": {
+          "family": "Arial, Helvetica, sans-serif",
+          "size_pt": 7.8,
+          "bold": true,
+          "italic": false,
+          "color": "#000000",
+          "background": null,
+          "align": "center",
+          "rotation": 0
+        }
+      },
+      "pitch": 12.257
     }
   ],
   "totals": {},
+  "total_styles": {},
+  "total_pitch": {},
   "sections": [
     {
       "column_headers": [
@@ -104,7 +362,170 @@
             "DIVISION PERFORMANCE / DIV - 0 / %": "3.62",
             "GPA PERFORMANCE / GPA": "3.54350",
             "GPA PERFORMANCE / COMPENTENCY LEVEL": "Grade C (Good)"
-          }
+          },
+          "styles": {
+            "NO. OF / WARDS IN / COUNCIL": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.8,
+              "bold": true,
+              "italic": false,
+              "color": "#000000",
+              "background": null,
+              "align": "center",
+              "rotation": 0
+            },
+            "NUMBER OF CANDIDATES / REG": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.8,
+              "bold": true,
+              "italic": false,
+              "color": "#000000",
+              "background": null,
+              "align": "center",
+              "rotation": 0
+            },
+            "NUMBER OF CANDIDATES / SAT / TOTAL": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.8,
+              "bold": true,
+              "italic": false,
+              "color": "#000000",
+              "background": null,
+              "align": "center",
+              "rotation": 0
+            },
+            "NUMBER OF CANDIDATES / SAT / %": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.8,
+              "bold": true,
+              "italic": false,
+              "color": "#000000",
+              "background": null,
+              "align": "center",
+              "rotation": 0
+            },
+            "DIVISION PERFORMANCE / I": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.8,
+              "bold": false,
+              "italic": false,
+              "color": "#000000",
+              "background": null,
+              "align": "center",
+              "rotation": 0
+            },
+            "DIVISION PERFORMANCE / II": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.8,
+              "bold": false,
+              "italic": false,
+              "color": "#000000",
+              "background": null,
+              "align": "center",
+              "rotation": 0
+            },
+            "DIVISION PERFORMANCE / III": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.8,
+              "bold": false,
+              "italic": false,
+              "color": "#000000",
+              "background": null,
+              "align": "center",
+              "rotation": 0
+            },
+            "DIVISION PERFORMANCE / I-III / TOTAL": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.8,
+              "bold": true,
+              "italic": false,
+              "color": "#000000",
+              "background": null,
+              "align": "center",
+              "rotation": 0
+            },
+            "DIVISION PERFORMANCE / I-III / %": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.8,
+              "bold": true,
+              "italic": false,
+              "color": "#000000",
+              "background": null,
+              "align": "center",
+              "rotation": 0
+            },
+            "DIVISION PERFORMANCE / IV": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.8,
+              "bold": false,
+              "italic": false,
+              "color": "#000000",
+              "background": null,
+              "align": "center",
+              "rotation": 0
+            },
+            "DIVISION PERFORMANCE / I-IV / TOTAL": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.8,
+              "bold": true,
+              "italic": false,
+              "color": "#000000",
+              "background": null,
+              "align": "center",
+              "rotation": 0
+            },
+            "DIVISION PERFORMANCE / I-IV / %": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.8,
+              "bold": true,
+              "italic": false,
+              "color": "#000000",
+              "background": null,
+              "align": "center",
+              "rotation": 0
+            },
+            "DIVISION PERFORMANCE / DIV - 0 / TOTAL": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.8,
+              "bold": false,
+              "italic": false,
+              "color": "#000000",
+              "background": null,
+              "align": "center",
+              "rotation": 0
+            },
+            "DIVISION PERFORMANCE / DIV - 0 / %": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.8,
+              "bold": true,
+              "italic": false,
+              "color": "#000000",
+              "background": null,
+              "align": "center",
+              "rotation": 0
+            },
+            "GPA PERFORMANCE / GPA": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.8,
+              "bold": true,
+              "italic": false,
+              "color": "#000000",
+              "background": "#ccffff",
+              "align": "center",
+              "rotation": 0
+            },
+            "GPA PERFORMANCE / COMPENTENCY LEVEL": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.8,
+              "bold": true,
+              "italic": false,
+              "color": "#000000",
+              "background": "#ffff00",
+              "align": "left",
+              "rotation": 0
+            }
+          },
+          "pitch": 18.109
         },
         {
           "values": {
@@ -117,10 +538,105 @@
             "DIVISION PERFORMANCE / IV": "65.25",
             "DIVISION PERFORMANCE / I-IV / TOTAL": "96.38",
             "DIVISION PERFORMANCE / DIV - 0 / TOTAL": "3.62"
-          }
+          },
+          "styles": {
+            "SUMMARY  PERFORMANCE": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.8,
+              "bold": true,
+              "italic": false,
+              "color": "#000000",
+              "background": null,
+              "align": "left",
+              "rotation": 0
+            },
+            "NUMBER OF CANDIDATES / SAT / TOTAL": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.8,
+              "bold": true,
+              "italic": false,
+              "color": "#000000",
+              "background": null,
+              "align": "center",
+              "rotation": 0
+            },
+            "DIVISION PERFORMANCE / I": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.8,
+              "bold": true,
+              "italic": false,
+              "color": "#000000",
+              "background": null,
+              "align": "center",
+              "rotation": 0
+            },
+            "DIVISION PERFORMANCE / II": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.8,
+              "bold": true,
+              "italic": false,
+              "color": "#000000",
+              "background": null,
+              "align": "center",
+              "rotation": 0
+            },
+            "DIVISION PERFORMANCE / III": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.8,
+              "bold": true,
+              "italic": false,
+              "color": "#000000",
+              "background": null,
+              "align": "center",
+              "rotation": 0
+            },
+            "DIVISION PERFORMANCE / I-III / TOTAL": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.8,
+              "bold": true,
+              "italic": false,
+              "color": "#000000",
+              "background": null,
+              "align": "center",
+              "rotation": 0
+            },
+            "DIVISION PERFORMANCE / IV": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.8,
+              "bold": true,
+              "italic": false,
+              "color": "#000000",
+              "background": null,
+              "align": "center",
+              "rotation": 0
+            },
+            "DIVISION PERFORMANCE / I-IV / TOTAL": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.8,
+              "bold": true,
+              "italic": false,
+              "color": "#000000",
+              "background": null,
+              "align": "center",
+              "rotation": 0
+            },
+            "DIVISION PERFORMANCE / DIV - 0 / TOTAL": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.8,
+              "bold": true,
+              "italic": false,
+              "color": "#000000",
+              "background": null,
+              "align": "center",
+              "rotation": 0
+            }
+          },
+          "pitch": 12.257
         }
       ],
       "totals": {},
+      "total_styles": {},
+      "total_pitch": {},
       "title": ""
     },
     {
@@ -167,7 +683,200 @@
             "GPA PERFORMANCE / GPA": "2.75594",
             "GPA PERFORMANCE / COMPETENCY LEVEL": "Grade C (Good)",
             "RANK": "1"
-          }
+          },
+          "styles": {
+            "S/NO.": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 6.7,
+              "bold": false,
+              "italic": false,
+              "color": "#000000",
+              "background": null,
+              "align": "center",
+              "rotation": 0
+            },
+            "WARD": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": false,
+              "italic": false,
+              "color": "#000000",
+              "background": null,
+              "align": "left",
+              "rotation": 0
+            },
+            "NUMBER OF SCHOOLS": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": true,
+              "italic": false,
+              "color": "#000000",
+              "background": "#ebf1de",
+              "align": "center",
+              "rotation": 0
+            },
+            "NUMBER OF CANDIDATES / REG": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": true,
+              "italic": false,
+              "color": "#000000",
+              "background": null,
+              "align": "center",
+              "rotation": 0
+            },
+            "NUMBER OF CANDIDATES / SAT / TOTAL": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": true,
+              "italic": false,
+              "color": "#000000",
+              "background": null,
+              "align": "center",
+              "rotation": 0
+            },
+            "NUMBER OF CANDIDATES / SAT / %": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": true,
+              "italic": false,
+              "color": "#000000",
+              "background": null,
+              "align": "center",
+              "rotation": 0
+            },
+            "DIVISION PERFORMANCE / I": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": false,
+              "italic": false,
+              "color": "#000000",
+              "background": null,
+              "align": "center",
+              "rotation": 0
+            },
+            "DIVISION PERFORMANCE / II": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": false,
+              "italic": false,
+              "color": "#000000",
+              "background": null,
+              "align": "center",
+              "rotation": 0
+            },
+            "DIVISION PERFORMANCE / III": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": false,
+              "italic": false,
+              "color": "#000000",
+              "background": null,
+              "align": "center",
+              "rotation": 0
+            },
+            "DIVISION PERFORMANCE / I-III / TOTAL": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": true,
+              "italic": false,
+              "color": "#000000",
+              "background": "#65ffab",
+              "align": "center",
+              "rotation": 0
+            },
+            "DIVISION PERFORMANCE / I-III / %": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": true,
+              "italic": false,
+              "color": "#000000",
+              "background": "#65ffab",
+              "align": "center",
+              "rotation": 0
+            },
+            "DIVISION PERFORMANCE / IV": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": false,
+              "italic": false,
+              "color": "#000000",
+              "background": null,
+              "align": "center",
+              "rotation": 0
+            },
+            "DIVISION PERFORMANCE / I-IV / TOTAL": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": true,
+              "italic": false,
+              "color": "#000000",
+              "background": null,
+              "align": "center",
+              "rotation": 0
+            },
+            "DIVISION PERFORMANCE / I-IV / %": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": true,
+              "italic": false,
+              "color": "#000000",
+              "background": "#daeef3",
+              "align": "center",
+              "rotation": 0
+            },
+            "DIVISION PERFORMANCE / DIV - 0 / TOTAL": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": true,
+              "italic": false,
+              "color": "#000000",
+              "background": "#fcd5b4",
+              "align": "center",
+              "rotation": 0
+            },
+            "DIVISION PERFORMANCE / DIV - 0 / %": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": true,
+              "italic": false,
+              "color": "#000000",
+              "background": "#fcd5b4",
+              "align": "center",
+              "rotation": 0
+            },
+            "GPA PERFORMANCE / GPA": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": true,
+              "italic": false,
+              "color": "#000000",
+              "background": "#ccffff",
+              "align": "center",
+              "rotation": 0
+            },
+            "GPA PERFORMANCE / COMPETENCY LEVEL": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": true,
+              "italic": false,
+              "color": "#000000",
+              "background": "#ffff00",
+              "align": "left",
+              "rotation": 0
+            },
+            "RANK": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": true,
+              "italic": false,
+              "color": "#000000",
+              "background": null,
+              "align": "center",
+              "rotation": 0
+            }
+          },
+          "pitch": 12.083
         },
         {
           "values": {
@@ -190,7 +899,200 @@
             "GPA PERFORMANCE / GPA": "2.84138",
             "GPA PERFORMANCE / COMPETENCY LEVEL": "Grade C (Good)",
             "RANK": "2"
-          }
+          },
+          "styles": {
+            "S/NO.": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 6.7,
+              "bold": false,
+              "italic": false,
+              "color": "#000000",
+              "background": null,
+              "align": "center",
+              "rotation": 0
+            },
+            "WARD": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": false,
+              "italic": false,
+              "color": "#000000",
+              "background": null,
+              "align": "left",
+              "rotation": 0
+            },
+            "NUMBER OF SCHOOLS": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": true,
+              "italic": false,
+              "color": "#000000",
+              "background": "#ebf1de",
+              "align": "center",
+              "rotation": 0
+            },
+            "NUMBER OF CANDIDATES / REG": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": true,
+              "italic": false,
+              "color": "#000000",
+              "background": null,
+              "align": "center",
+              "rotation": 0
+            },
+            "NUMBER OF CANDIDATES / SAT / TOTAL": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": true,
+              "italic": false,
+              "color": "#000000",
+              "background": null,
+              "align": "center",
+              "rotation": 0
+            },
+            "NUMBER OF CANDIDATES / SAT / %": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": true,
+              "italic": false,
+              "color": "#000000",
+              "background": null,
+              "align": "center",
+              "rotation": 0
+            },
+            "DIVISION PERFORMANCE / I": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": false,
+              "italic": false,
+              "color": "#000000",
+              "background": null,
+              "align": "center",
+              "rotation": 0
+            },
+            "DIVISION PERFORMANCE / II": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": false,
+              "italic": false,
+              "color": "#000000",
+              "background": null,
+              "align": "center",
+              "rotation": 0
+            },
+            "DIVISION PERFORMANCE / III": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": false,
+              "italic": false,
+              "color": "#000000",
+              "background": null,
+              "align": "center",
+              "rotation": 0
+            },
+            "DIVISION PERFORMANCE / I-III / TOTAL": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": true,
+              "italic": false,
+              "color": "#000000",
+              "background": "#65ffab",
+              "align": "center",
+              "rotation": 0
+            },
+            "DIVISION PERFORMANCE / I-III / %": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": true,
+              "italic": false,
+              "color": "#000000",
+              "background": "#65ffab",
+              "align": "center",
+              "rotation": 0
+            },
+            "DIVISION PERFORMANCE / IV": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": false,
+              "italic": false,
+              "color": "#000000",
+              "background": null,
+              "align": "center",
+              "rotation": 0
+            },
+            "DIVISION PERFORMANCE / I-IV / TOTAL": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": true,
+              "italic": false,
+              "color": "#000000",
+              "background": null,
+              "align": "center",
+              "rotation": 0
+            },
+            "DIVISION PERFORMANCE / I-IV / %": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": true,
+              "italic": false,
+              "color": "#000000",
+              "background": "#daeef3",
+              "align": "center",
+              "rotation": 0
+            },
+            "DIVISION PERFORMANCE / DIV - 0 / TOTAL": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": true,
+              "italic": false,
+              "color": "#000000",
+              "background": "#fcd5b4",
+              "align": "center",
+              "rotation": 0
+            },
+            "DIVISION PERFORMANCE / DIV - 0 / %": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": true,
+              "italic": false,
+              "color": "#000000",
+              "background": "#fcd5b4",
+              "align": "center",
+              "rotation": 0
+            },
+            "GPA PERFORMANCE / GPA": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": true,
+              "italic": false,
+              "color": "#000000",
+              "background": "#ccffff",
+              "align": "center",
+              "rotation": 0
+            },
+            "GPA PERFORMANCE / COMPETENCY LEVEL": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": true,
+              "italic": false,
+              "color": "#000000",
+              "background": "#ffff00",
+              "align": "left",
+              "rotation": 0
+            },
+            "RANK": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": true,
+              "italic": false,
+              "color": "#000000",
+              "background": null,
+              "align": "center",
+              "rotation": 0
+            }
+          },
+          "pitch": 12.24
         },
         {
           "values": {
@@ -213,7 +1115,200 @@
             "GPA PERFORMANCE / GPA": "2.88470",
             "GPA PERFORMANCE / COMPETENCY LEVEL": "Grade C (Good)",
             "RANK": "3"
-          }
+          },
+          "styles": {
+            "S/NO.": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 6.7,
+              "bold": false,
+              "italic": false,
+              "color": "#000000",
+              "background": null,
+              "align": "center",
+              "rotation": 0
+            },
+            "WARD": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": false,
+              "italic": false,
+              "color": "#000000",
+              "background": null,
+              "align": "left",
+              "rotation": 0
+            },
+            "NUMBER OF SCHOOLS": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": true,
+              "italic": false,
+              "color": "#000000",
+              "background": "#ebf1de",
+              "align": "center",
+              "rotation": 0
+            },
+            "NUMBER OF CANDIDATES / REG": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": true,
+              "italic": false,
+              "color": "#000000",
+              "background": null,
+              "align": "center",
+              "rotation": 0
+            },
+            "NUMBER OF CANDIDATES / SAT / TOTAL": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": true,
+              "italic": false,
+              "color": "#000000",
+              "background": null,
+              "align": "center",
+              "rotation": 0
+            },
+            "NUMBER OF CANDIDATES / SAT / %": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": true,
+              "italic": false,
+              "color": "#000000",
+              "background": null,
+              "align": "center",
+              "rotation": 0
+            },
+            "DIVISION PERFORMANCE / I": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": false,
+              "italic": false,
+              "color": "#000000",
+              "background": null,
+              "align": "center",
+              "rotation": 0
+            },
+            "DIVISION PERFORMANCE / II": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": false,
+              "italic": false,
+              "color": "#000000",
+              "background": null,
+              "align": "center",
+              "rotation": 0
+            },
+            "DIVISION PERFORMANCE / III": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": false,
+              "italic": false,
+              "color": "#000000",
+              "background": null,
+              "align": "center",
+              "rotation": 0
+            },
+            "DIVISION PERFORMANCE / I-III / TOTAL": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": true,
+              "italic": false,
+              "color": "#000000",
+              "background": "#65ffab",
+              "align": "center",
+              "rotation": 0
+            },
+            "DIVISION PERFORMANCE / I-III / %": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": true,
+              "italic": false,
+              "color": "#000000",
+              "background": "#65ffab",
+              "align": "center",
+              "rotation": 0
+            },
+            "DIVISION PERFORMANCE / IV": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": false,
+              "italic": false,
+              "color": "#000000",
+              "background": null,
+              "align": "center",
+              "rotation": 0
+            },
+            "DIVISION PERFORMANCE / I-IV / TOTAL": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": true,
+              "italic": false,
+              "color": "#000000",
+              "background": null,
+              "align": "center",
+              "rotation": 0
+            },
+            "DIVISION PERFORMANCE / I-IV / %": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": true,
+              "italic": false,
+              "color": "#000000",
+              "background": "#daeef3",
+              "align": "center",
+              "rotation": 0
+            },
+            "DIVISION PERFORMANCE / DIV - 0 / TOTAL": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": true,
+              "italic": false,
+              "color": "#000000",
+              "background": "#fcd5b4",
+              "align": "center",
+              "rotation": 0
+            },
+            "DIVISION PERFORMANCE / DIV - 0 / %": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": true,
+              "italic": false,
+              "color": "#000000",
+              "background": "#fcd5b4",
+              "align": "center",
+              "rotation": 0
+            },
+            "GPA PERFORMANCE / GPA": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": true,
+              "italic": false,
+              "color": "#000000",
+              "background": "#ccffff",
+              "align": "center",
+              "rotation": 0
+            },
+            "GPA PERFORMANCE / COMPETENCY LEVEL": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": true,
+              "italic": false,
+              "color": "#000000",
+              "background": "#ffff00",
+              "align": "left",
+              "rotation": 0
+            },
+            "RANK": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": true,
+              "italic": false,
+              "color": "#000000",
+              "background": null,
+              "align": "center",
+              "rotation": 0
+            }
+          },
+          "pitch": 12.24
         },
         {
           "values": {
@@ -236,7 +1331,200 @@
             "GPA PERFORMANCE / GPA": "3.06370",
             "GPA PERFORMANCE / COMPETENCY LEVEL": "Grade C (Good)",
             "RANK": "4"
-          }
+          },
+          "styles": {
+            "S/NO.": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 6.7,
+              "bold": false,
+              "italic": false,
+              "color": "#000000",
+              "background": null,
+              "align": "center",
+              "rotation": 0
+            },
+            "WARD": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": false,
+              "italic": false,
+              "color": "#000000",
+              "background": null,
+              "align": "left",
+              "rotation": 0
+            },
+            "NUMBER OF SCHOOLS": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": true,
+              "italic": false,
+              "color": "#000000",
+              "background": "#ebf1de",
+              "align": "center",
+              "rotation": 0
+            },
+            "NUMBER OF CANDIDATES / REG": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": true,
+              "italic": false,
+              "color": "#000000",
+              "background": null,
+              "align": "center",
+              "rotation": 0
+            },
+            "NUMBER OF CANDIDATES / SAT / TOTAL": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": true,
+              "italic": false,
+              "color": "#000000",
+              "background": null,
+              "align": "center",
+              "rotation": 0
+            },
+            "NUMBER OF CANDIDATES / SAT / %": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": true,
+              "italic": false,
+              "color": "#000000",
+              "background": null,
+              "align": "center",
+              "rotation": 0
+            },
+            "DIVISION PERFORMANCE / I": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": false,
+              "italic": false,
+              "color": "#000000",
+              "background": null,
+              "align": "center",
+              "rotation": 0
+            },
+            "DIVISION PERFORMANCE / II": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": false,
+              "italic": false,
+              "color": "#000000",
+              "background": null,
+              "align": "center",
+              "rotation": 0
+            },
+            "DIVISION PERFORMANCE / III": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": false,
+              "italic": false,
+              "color": "#000000",
+              "background": null,
+              "align": "center",
+              "rotation": 0
+            },
+            "DIVISION PERFORMANCE / I-III / TOTAL": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": true,
+              "italic": false,
+              "color": "#000000",
+              "background": "#65ffab",
+              "align": "center",
+              "rotation": 0
+            },
+            "DIVISION PERFORMANCE / I-III / %": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": true,
+              "italic": false,
+              "color": "#000000",
+              "background": "#65ffab",
+              "align": "center",
+              "rotation": 0
+            },
+            "DIVISION PERFORMANCE / IV": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": false,
+              "italic": false,
+              "color": "#000000",
+              "background": null,
+              "align": "center",
+              "rotation": 0
+            },
+            "DIVISION PERFORMANCE / I-IV / TOTAL": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": true,
+              "italic": false,
+              "color": "#000000",
+              "background": null,
+              "align": "center",
+              "rotation": 0
+            },
+            "DIVISION PERFORMANCE / I-IV / %": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": true,
+              "italic": false,
+              "color": "#000000",
+              "background": "#daeef3",
+              "align": "center",
+              "rotation": 0
+            },
+            "DIVISION PERFORMANCE / DIV - 0 / TOTAL": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": true,
+              "italic": false,
+              "color": "#000000",
+              "background": "#fcd5b4",
+              "align": "center",
+              "rotation": 0
+            },
+            "DIVISION PERFORMANCE / DIV - 0 / %": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": true,
+              "italic": false,
+              "color": "#000000",
+              "background": "#fcd5b4",
+              "align": "center",
+              "rotation": 0
+            },
+            "GPA PERFORMANCE / GPA": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": true,
+              "italic": false,
+              "color": "#000000",
+              "background": "#ccffff",
+              "align": "center",
+              "rotation": 0
+            },
+            "GPA PERFORMANCE / COMPETENCY LEVEL": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": true,
+              "italic": false,
+              "color": "#000000",
+              "background": "#ffff00",
+              "align": "left",
+              "rotation": 0
+            },
+            "RANK": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": true,
+              "italic": false,
+              "color": "#000000",
+              "background": null,
+              "align": "center",
+              "rotation": 0
+            }
+          },
+          "pitch": 12.24
         },
         {
           "values": {
@@ -259,7 +1547,200 @@
             "GPA PERFORMANCE / GPA": "3.16733",
             "GPA PERFORMANCE / COMPETENCY LEVEL": "Grade C (Good)",
             "RANK": "5"
-          }
+          },
+          "styles": {
+            "S/NO.": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 6.7,
+              "bold": false,
+              "italic": false,
+              "color": "#000000",
+              "background": null,
+              "align": "center",
+              "rotation": 0
+            },
+            "WARD": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": false,
+              "italic": false,
+              "color": "#000000",
+              "background": null,
+              "align": "left",
+              "rotation": 0
+            },
+            "NUMBER OF SCHOOLS": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": true,
+              "italic": false,
+              "color": "#000000",
+              "background": "#ebf1de",
+              "align": "center",
+              "rotation": 0
+            },
+            "NUMBER OF CANDIDATES / REG": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": true,
+              "italic": false,
+              "color": "#000000",
+              "background": null,
+              "align": "center",
+              "rotation": 0
+            },
+            "NUMBER OF CANDIDATES / SAT / TOTAL": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": true,
+              "italic": false,
+              "color": "#000000",
+              "background": null,
+              "align": "center",
+              "rotation": 0
+            },
+            "NUMBER OF CANDIDATES / SAT / %": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": true,
+              "italic": false,
+              "color": "#000000",
+              "background": null,
+              "align": "center",
+              "rotation": 0
+            },
+            "DIVISION PERFORMANCE / I": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": false,
+              "italic": false,
+              "color": "#000000",
+              "background": null,
+              "align": "center",
+              "rotation": 0
+            },
+            "DIVISION PERFORMANCE / II": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": false,
+              "italic": false,
+              "color": "#000000",
+              "background": null,
+              "align": "center",
+              "rotation": 0
+            },
+            "DIVISION PERFORMANCE / III": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": false,
+              "italic": false,
+              "color": "#000000",
+              "background": null,
+              "align": "center",
+              "rotation": 0
+            },
+            "DIVISION PERFORMANCE / I-III / TOTAL": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": true,
+              "italic": false,
+              "color": "#000000",
+              "background": "#65ffab",
+              "align": "center",
+              "rotation": 0
+            },
+            "DIVISION PERFORMANCE / I-III / %": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": true,
+              "italic": false,
+              "color": "#000000",
+              "background": "#65ffab",
+              "align": "center",
+              "rotation": 0
+            },
+            "DIVISION PERFORMANCE / IV": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": false,
+              "italic": false,
+              "color": "#000000",
+              "background": null,
+              "align": "center",
+              "rotation": 0
+            },
+            "DIVISION PERFORMANCE / I-IV / TOTAL": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": true,
+              "italic": false,
+              "color": "#000000",
+              "background": null,
+              "align": "center",
+              "rotation": 0
+            },
+            "DIVISION PERFORMANCE / I-IV / %": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": true,
+              "italic": false,
+              "color": "#000000",
+              "background": "#daeef3",
+              "align": "center",
+              "rotation": 0
+            },
+            "DIVISION PERFORMANCE / DIV - 0 / TOTAL": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": true,
+              "italic": false,
+              "color": "#000000",
+              "background": "#fcd5b4",
+              "align": "center",
+              "rotation": 0
+            },
+            "DIVISION PERFORMANCE / DIV - 0 / %": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": true,
+              "italic": false,
+              "color": "#000000",
+              "background": "#fcd5b4",
+              "align": "center",
+              "rotation": 0
+            },
+            "GPA PERFORMANCE / GPA": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": true,
+              "italic": false,
+              "color": "#000000",
+              "background": "#ccffff",
+              "align": "center",
+              "rotation": 0
+            },
+            "GPA PERFORMANCE / COMPETENCY LEVEL": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": true,
+              "italic": false,
+              "color": "#000000",
+              "background": "#ffff00",
+              "align": "left",
+              "rotation": 0
+            },
+            "RANK": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": true,
+              "italic": false,
+              "color": "#000000",
+              "background": null,
+              "align": "center",
+              "rotation": 0
+            }
+          },
+          "pitch": 12.239
         },
         {
           "values": {
@@ -282,7 +1763,200 @@
             "GPA PERFORMANCE / GPA": "3.24405",
             "GPA PERFORMANCE / COMPETENCY LEVEL": "Grade C (Good)",
             "RANK": "6"
-          }
+          },
+          "styles": {
+            "S/NO.": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 6.7,
+              "bold": false,
+              "italic": false,
+              "color": "#000000",
+              "background": null,
+              "align": "center",
+              "rotation": 0
+            },
+            "WARD": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": false,
+              "italic": false,
+              "color": "#000000",
+              "background": null,
+              "align": "left",
+              "rotation": 0
+            },
+            "NUMBER OF SCHOOLS": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": true,
+              "italic": false,
+              "color": "#000000",
+              "background": "#ebf1de",
+              "align": "center",
+              "rotation": 0
+            },
+            "NUMBER OF CANDIDATES / REG": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": true,
+              "italic": false,
+              "color": "#000000",
+              "background": null,
+              "align": "center",
+              "rotation": 0
+            },
+            "NUMBER OF CANDIDATES / SAT / TOTAL": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": true,
+              "italic": false,
+              "color": "#000000",
+              "background": null,
+              "align": "center",
+              "rotation": 0
+            },
+            "NUMBER OF CANDIDATES / SAT / %": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": true,
+              "italic": false,
+              "color": "#000000",
+              "background": null,
+              "align": "center",
+              "rotation": 0
+            },
+            "DIVISION PERFORMANCE / I": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": false,
+              "italic": false,
+              "color": "#000000",
+              "background": null,
+              "align": "center",
+              "rotation": 0
+            },
+            "DIVISION PERFORMANCE / II": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": false,
+              "italic": false,
+              "color": "#000000",
+              "background": null,
+              "align": "center",
+              "rotation": 0
+            },
+            "DIVISION PERFORMANCE / III": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": false,
+              "italic": false,
+              "color": "#000000",
+              "background": null,
+              "align": "center",
+              "rotation": 0
+            },
+            "DIVISION PERFORMANCE / I-III / TOTAL": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": true,
+              "italic": false,
+              "color": "#000000",
+              "background": "#65ffab",
+              "align": "center",
+              "rotation": 0
+            },
+            "DIVISION PERFORMANCE / I-III / %": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": true,
+              "italic": false,
+              "color": "#000000",
+              "background": "#65ffab",
+              "align": "center",
+              "rotation": 0
+            },
+            "DIVISION PERFORMANCE / IV": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": false,
+              "italic": false,
+              "color": "#000000",
+              "background": null,
+              "align": "center",
+              "rotation": 0
+            },
+            "DIVISION PERFORMANCE / I-IV / TOTAL": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": true,
+              "italic": false,
+              "color": "#000000",
+              "background": null,
+              "align": "center",
+              "rotation": 0
+            },
+            "DIVISION PERFORMANCE / I-IV / %": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": true,
+              "italic": false,
+              "color": "#000000",
+              "background": "#daeef3",
+              "align": "center",
+              "rotation": 0
+            },
+            "DIVISION PERFORMANCE / DIV - 0 / TOTAL": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": true,
+              "italic": false,
+              "color": "#000000",
+              "background": "#fcd5b4",
+              "align": "center",
+              "rotation": 0
+            },
+            "DIVISION PERFORMANCE / DIV - 0 / %": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": true,
+              "italic": false,
+              "color": "#000000",
+              "background": "#fcd5b4",
+              "align": "center",
+              "rotation": 0
+            },
+            "GPA PERFORMANCE / GPA": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": true,
+              "italic": false,
+              "color": "#000000",
+              "background": "#ccffff",
+              "align": "center",
+              "rotation": 0
+            },
+            "GPA PERFORMANCE / COMPETENCY LEVEL": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": true,
+              "italic": false,
+              "color": "#000000",
+              "background": "#ffff00",
+              "align": "left",
+              "rotation": 0
+            },
+            "RANK": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": true,
+              "italic": false,
+              "color": "#000000",
+              "background": null,
+              "align": "center",
+              "rotation": 0
+            }
+          },
+          "pitch": 12.261
         },
         {
           "values": {
@@ -305,7 +1979,200 @@
             "GPA PERFORMANCE / GPA": "3.31523",
             "GPA PERFORMANCE / COMPETENCY LEVEL": "Grade C (Good)",
             "RANK": "7"
-          }
+          },
+          "styles": {
+            "S/NO.": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 6.7,
+              "bold": false,
+              "italic": false,
+              "color": "#000000",
+              "background": null,
+              "align": "center",
+              "rotation": 0
+            },
+            "WARD": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": false,
+              "italic": false,
+              "color": "#000000",
+              "background": null,
+              "align": "left",
+              "rotation": 0
+            },
+            "NUMBER OF SCHOOLS": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": true,
+              "italic": false,
+              "color": "#000000",
+              "background": "#ebf1de",
+              "align": "center",
+              "rotation": 0
+            },
+            "NUMBER OF CANDIDATES / REG": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": true,
+              "italic": false,
+              "color": "#000000",
+              "background": null,
+              "align": "center",
+              "rotation": 0
+            },
+            "NUMBER OF CANDIDATES / SAT / TOTAL": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": true,
+              "italic": false,
+              "color": "#000000",
+              "background": null,
+              "align": "center",
+              "rotation": 0
+            },
+            "NUMBER OF CANDIDATES / SAT / %": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": true,
+              "italic": false,
+              "color": "#000000",
+              "background": null,
+              "align": "center",
+              "rotation": 0
+            },
+            "DIVISION PERFORMANCE / I": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": false,
+              "italic": false,
+              "color": "#000000",
+              "background": null,
+              "align": "center",
+              "rotation": 0
+            },
+            "DIVISION PERFORMANCE / II": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": false,
+              "italic": false,
+              "color": "#000000",
+              "background": null,
+              "align": "center",
+              "rotation": 0
+            },
+            "DIVISION PERFORMANCE / III": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": false,
+              "italic": false,
+              "color": "#000000",
+              "background": null,
+              "align": "center",
+              "rotation": 0
+            },
+            "DIVISION PERFORMANCE / I-III / TOTAL": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": true,
+              "italic": false,
+              "color": "#000000",
+              "background": "#65ffab",
+              "align": "center",
+              "rotation": 0
+            },
+            "DIVISION PERFORMANCE / I-III / %": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": true,
+              "italic": false,
+              "color": "#000000",
+              "background": "#65ffab",
+              "align": "center",
+              "rotation": 0
+            },
+            "DIVISION PERFORMANCE / IV": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": false,
+              "italic": false,
+              "color": "#000000",
+              "background": null,
+              "align": "center",
+              "rotation": 0
+            },
+            "DIVISION PERFORMANCE / I-IV / TOTAL": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": true,
+              "italic": false,
+              "color": "#000000",
+              "background": null,
+              "align": "center",
+              "rotation": 0
+            },
+            "DIVISION PERFORMANCE / I-IV / %": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": true,
+              "italic": false,
+              "color": "#000000",
+              "background": "#daeef3",
+              "align": "center",
+              "rotation": 0
+            },
+            "DIVISION PERFORMANCE / DIV - 0 / TOTAL": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": true,
+              "italic": false,
+              "color": "#000000",
+              "background": "#fcd5b4",
+              "align": "center",
+              "rotation": 0
+            },
+            "DIVISION PERFORMANCE / DIV - 0 / %": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": true,
+              "italic": false,
+              "color": "#000000",
+              "background": "#fcd5b4",
+              "align": "center",
+              "rotation": 0
+            },
+            "GPA PERFORMANCE / GPA": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": true,
+              "italic": false,
+              "color": "#000000",
+              "background": "#ccffff",
+              "align": "center",
+              "rotation": 0
+            },
+            "GPA PERFORMANCE / COMPETENCY LEVEL": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": true,
+              "italic": false,
+              "color": "#000000",
+              "background": "#ffff00",
+              "align": "left",
+              "rotation": 0
+            },
+            "RANK": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": true,
+              "italic": false,
+              "color": "#000000",
+              "background": null,
+              "align": "center",
+              "rotation": 0
+            }
+          },
+          "pitch": 12.24
         },
         {
           "values": {
@@ -328,7 +2195,200 @@
             "GPA PERFORMANCE / GPA": "3.35723",
             "GPA PERFORMANCE / COMPETENCY LEVEL": "Grade C (Good)",
             "RANK": "8"
-          }
+          },
+          "styles": {
+            "S/NO.": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 6.7,
+              "bold": false,
+              "italic": false,
+              "color": "#000000",
+              "background": null,
+              "align": "center",
+              "rotation": 0
+            },
+            "WARD": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": false,
+              "italic": false,
+              "color": "#000000",
+              "background": null,
+              "align": "left",
+              "rotation": 0
+            },
+            "NUMBER OF SCHOOLS": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": true,
+              "italic": false,
+              "color": "#000000",
+              "background": "#ebf1de",
+              "align": "center",
+              "rotation": 0
+            },
+            "NUMBER OF CANDIDATES / REG": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": true,
+              "italic": false,
+              "color": "#000000",
+              "background": null,
+              "align": "center",
+              "rotation": 0
+            },
+            "NUMBER OF CANDIDATES / SAT / TOTAL": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": true,
+              "italic": false,
+              "color": "#000000",
+              "background": null,
+              "align": "center",
+              "rotation": 0
+            },
+            "NUMBER OF CANDIDATES / SAT / %": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": true,
+              "italic": false,
+              "color": "#000000",
+              "background": null,
+              "align": "center",
+              "rotation": 0
+            },
+            "DIVISION PERFORMANCE / I": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": false,
+              "italic": false,
+              "color": "#000000",
+              "background": null,
+              "align": "center",
+              "rotation": 0
+            },
+            "DIVISION PERFORMANCE / II": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": false,
+              "italic": false,
+              "color": "#000000",
+              "background": null,
+              "align": "center",
+              "rotation": 0
+            },
+            "DIVISION PERFORMANCE / III": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": false,
+              "italic": false,
+              "color": "#000000",
+              "background": null,
+              "align": "center",
+              "rotation": 0
+            },
+            "DIVISION PERFORMANCE / I-III / TOTAL": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": true,
+              "italic": false,
+              "color": "#000000",
+              "background": "#65ffab",
+              "align": "center",
+              "rotation": 0
+            },
+            "DIVISION PERFORMANCE / I-III / %": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": true,
+              "italic": false,
+              "color": "#000000",
+              "background": "#65ffab",
+              "align": "center",
+              "rotation": 0
+            },
+            "DIVISION PERFORMANCE / IV": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": false,
+              "italic": false,
+              "color": "#000000",
+              "background": null,
+              "align": "center",
+              "rotation": 0
+            },
+            "DIVISION PERFORMANCE / I-IV / TOTAL": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": true,
+              "italic": false,
+              "color": "#000000",
+              "background": null,
+              "align": "center",
+              "rotation": 0
+            },
+            "DIVISION PERFORMANCE / I-IV / %": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": true,
+              "italic": false,
+              "color": "#000000",
+              "background": "#daeef3",
+              "align": "center",
+              "rotation": 0
+            },
+            "DIVISION PERFORMANCE / DIV - 0 / TOTAL": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": true,
+              "italic": false,
+              "color": "#000000",
+              "background": "#fcd5b4",
+              "align": "center",
+              "rotation": 0
+            },
+            "DIVISION PERFORMANCE / DIV - 0 / %": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": true,
+              "italic": false,
+              "color": "#000000",
+              "background": "#fcd5b4",
+              "align": "center",
+              "rotation": 0
+            },
+            "GPA PERFORMANCE / GPA": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": true,
+              "italic": false,
+              "color": "#000000",
+              "background": "#ccffff",
+              "align": "center",
+              "rotation": 0
+            },
+            "GPA PERFORMANCE / COMPETENCY LEVEL": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": true,
+              "italic": false,
+              "color": "#000000",
+              "background": "#ffff00",
+              "align": "left",
+              "rotation": 0
+            },
+            "RANK": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": true,
+              "italic": false,
+              "color": "#000000",
+              "background": null,
+              "align": "center",
+              "rotation": 0
+            }
+          },
+          "pitch": 12.24
         },
         {
           "values": {
@@ -351,7 +2411,200 @@
             "GPA PERFORMANCE / GPA": "3.58807",
             "GPA PERFORMANCE / COMPETENCY LEVEL": "Grade C (Good)",
             "RANK": "9"
-          }
+          },
+          "styles": {
+            "S/NO.": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 6.7,
+              "bold": false,
+              "italic": false,
+              "color": "#000000",
+              "background": null,
+              "align": "center",
+              "rotation": 0
+            },
+            "WARD": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": false,
+              "italic": false,
+              "color": "#000000",
+              "background": null,
+              "align": "left",
+              "rotation": 0
+            },
+            "NUMBER OF SCHOOLS": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": true,
+              "italic": false,
+              "color": "#000000",
+              "background": "#ebf1de",
+              "align": "center",
+              "rotation": 0
+            },
+            "NUMBER OF CANDIDATES / REG": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": true,
+              "italic": false,
+              "color": "#000000",
+              "background": null,
+              "align": "center",
+              "rotation": 0
+            },
+            "NUMBER OF CANDIDATES / SAT / TOTAL": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": true,
+              "italic": false,
+              "color": "#000000",
+              "background": null,
+              "align": "center",
+              "rotation": 0
+            },
+            "NUMBER OF CANDIDATES / SAT / %": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": true,
+              "italic": false,
+              "color": "#000000",
+              "background": null,
+              "align": "center",
+              "rotation": 0
+            },
+            "DIVISION PERFORMANCE / I": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": false,
+              "italic": false,
+              "color": "#000000",
+              "background": null,
+              "align": "center",
+              "rotation": 0
+            },
+            "DIVISION PERFORMANCE / II": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": false,
+              "italic": false,
+              "color": "#000000",
+              "background": null,
+              "align": "center",
+              "rotation": 0
+            },
+            "DIVISION PERFORMANCE / III": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": false,
+              "italic": false,
+              "color": "#000000",
+              "background": null,
+              "align": "center",
+              "rotation": 0
+            },
+            "DIVISION PERFORMANCE / I-III / TOTAL": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": true,
+              "italic": false,
+              "color": "#000000",
+              "background": "#65ffab",
+              "align": "center",
+              "rotation": 0
+            },
+            "DIVISION PERFORMANCE / I-III / %": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": true,
+              "italic": false,
+              "color": "#000000",
+              "background": "#65ffab",
+              "align": "center",
+              "rotation": 0
+            },
+            "DIVISION PERFORMANCE / IV": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": false,
+              "italic": false,
+              "color": "#000000",
+              "background": null,
+              "align": "center",
+              "rotation": 0
+            },
+            "DIVISION PERFORMANCE / I-IV / TOTAL": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": true,
+              "italic": false,
+              "color": "#000000",
+              "background": null,
+              "align": "center",
+              "rotation": 0
+            },
+            "DIVISION PERFORMANCE / I-IV / %": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": true,
+              "italic": false,
+              "color": "#000000",
+              "background": "#daeef3",
+              "align": "center",
+              "rotation": 0
+            },
+            "DIVISION PERFORMANCE / DIV - 0 / TOTAL": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": true,
+              "italic": false,
+              "color": "#000000",
+              "background": "#fcd5b4",
+              "align": "center",
+              "rotation": 0
+            },
+            "DIVISION PERFORMANCE / DIV - 0 / %": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": true,
+              "italic": false,
+              "color": "#000000",
+              "background": "#fcd5b4",
+              "align": "center",
+              "rotation": 0
+            },
+            "GPA PERFORMANCE / GPA": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": true,
+              "italic": false,
+              "color": "#000000",
+              "background": "#ccffff",
+              "align": "center",
+              "rotation": 0
+            },
+            "GPA PERFORMANCE / COMPETENCY LEVEL": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": true,
+              "italic": false,
+              "color": "#000000",
+              "background": "#ffff00",
+              "align": "left",
+              "rotation": 0
+            },
+            "RANK": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": true,
+              "italic": false,
+              "color": "#000000",
+              "background": null,
+              "align": "center",
+              "rotation": 0
+            }
+          },
+          "pitch": 12.242
         },
         {
           "values": {
@@ -374,7 +2627,200 @@
             "GPA PERFORMANCE / GPA": "3.61578",
             "GPA PERFORMANCE / COMPETENCY LEVEL": "Grade D (Satisfactory)",
             "RANK": "10"
-          }
+          },
+          "styles": {
+            "S/NO.": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 6.7,
+              "bold": false,
+              "italic": false,
+              "color": "#000000",
+              "background": null,
+              "align": "center",
+              "rotation": 0
+            },
+            "WARD": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": false,
+              "italic": false,
+              "color": "#000000",
+              "background": null,
+              "align": "left",
+              "rotation": 0
+            },
+            "NUMBER OF SCHOOLS": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": true,
+              "italic": false,
+              "color": "#000000",
+              "background": "#ebf1de",
+              "align": "center",
+              "rotation": 0
+            },
+            "NUMBER OF CANDIDATES / REG": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": true,
+              "italic": false,
+              "color": "#000000",
+              "background": null,
+              "align": "center",
+              "rotation": 0
+            },
+            "NUMBER OF CANDIDATES / SAT / TOTAL": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": true,
+              "italic": false,
+              "color": "#000000",
+              "background": null,
+              "align": "center",
+              "rotation": 0
+            },
+            "NUMBER OF CANDIDATES / SAT / %": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": true,
+              "italic": false,
+              "color": "#000000",
+              "background": null,
+              "align": "center",
+              "rotation": 0
+            },
+            "DIVISION PERFORMANCE / I": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": false,
+              "italic": false,
+              "color": "#000000",
+              "background": null,
+              "align": "center",
+              "rotation": 0
+            },
+            "DIVISION PERFORMANCE / II": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": false,
+              "italic": false,
+              "color": "#000000",
+              "background": null,
+              "align": "center",
+              "rotation": 0
+            },
+            "DIVISION PERFORMANCE / III": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": false,
+              "italic": false,
+              "color": "#000000",
+              "background": null,
+              "align": "center",
+              "rotation": 0
+            },
+            "DIVISION PERFORMANCE / I-III / TOTAL": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": true,
+              "italic": false,
+              "color": "#000000",
+              "background": "#65ffab",
+              "align": "center",
+              "rotation": 0
+            },
+            "DIVISION PERFORMANCE / I-III / %": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": true,
+              "italic": false,
+              "color": "#000000",
+              "background": "#65ffab",
+              "align": "center",
+              "rotation": 0
+            },
+            "DIVISION PERFORMANCE / IV": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": false,
+              "italic": false,
+              "color": "#000000",
+              "background": null,
+              "align": "center",
+              "rotation": 0
+            },
+            "DIVISION PERFORMANCE / I-IV / TOTAL": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": true,
+              "italic": false,
+              "color": "#000000",
+              "background": null,
+              "align": "center",
+              "rotation": 0
+            },
+            "DIVISION PERFORMANCE / I-IV / %": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": true,
+              "italic": false,
+              "color": "#000000",
+              "background": "#daeef3",
+              "align": "center",
+              "rotation": 0
+            },
+            "DIVISION PERFORMANCE / DIV - 0 / TOTAL": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": true,
+              "italic": false,
+              "color": "#000000",
+              "background": "#fcd5b4",
+              "align": "center",
+              "rotation": 0
+            },
+            "DIVISION PERFORMANCE / DIV - 0 / %": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": true,
+              "italic": false,
+              "color": "#000000",
+              "background": "#fcd5b4",
+              "align": "center",
+              "rotation": 0
+            },
+            "GPA PERFORMANCE / GPA": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": true,
+              "italic": false,
+              "color": "#000000",
+              "background": "#ccffff",
+              "align": "center",
+              "rotation": 0
+            },
+            "GPA PERFORMANCE / COMPETENCY LEVEL": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": true,
+              "italic": false,
+              "color": "#000000",
+              "background": "#ffc000",
+              "align": "left",
+              "rotation": 0
+            },
+            "RANK": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": true,
+              "italic": false,
+              "color": "#000000",
+              "background": null,
+              "align": "center",
+              "rotation": 0
+            }
+          },
+          "pitch": 12.212
         },
         {
           "values": {
@@ -397,7 +2843,200 @@
             "GPA PERFORMANCE / GPA": "3.76560",
             "GPA PERFORMANCE / COMPETENCY LEVEL": "Grade D (Satisfactory)",
             "RANK": "11"
-          }
+          },
+          "styles": {
+            "S/NO.": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 6.7,
+              "bold": false,
+              "italic": false,
+              "color": "#000000",
+              "background": null,
+              "align": "center",
+              "rotation": 0
+            },
+            "WARD": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": false,
+              "italic": false,
+              "color": "#000000",
+              "background": null,
+              "align": "left",
+              "rotation": 0
+            },
+            "NUMBER OF SCHOOLS": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": true,
+              "italic": false,
+              "color": "#000000",
+              "background": "#ebf1de",
+              "align": "center",
+              "rotation": 0
+            },
+            "NUMBER OF CANDIDATES / REG": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": true,
+              "italic": false,
+              "color": "#000000",
+              "background": null,
+              "align": "center",
+              "rotation": 0
+            },
+            "NUMBER OF CANDIDATES / SAT / TOTAL": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": true,
+              "italic": false,
+              "color": "#000000",
+              "background": null,
+              "align": "center",
+              "rotation": 0
+            },
+            "NUMBER OF CANDIDATES / SAT / %": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": true,
+              "italic": false,
+              "color": "#000000",
+              "background": null,
+              "align": "center",
+              "rotation": 0
+            },
+            "DIVISION PERFORMANCE / I": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": false,
+              "italic": false,
+              "color": "#000000",
+              "background": null,
+              "align": "center",
+              "rotation": 0
+            },
+            "DIVISION PERFORMANCE / II": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": false,
+              "italic": false,
+              "color": "#000000",
+              "background": null,
+              "align": "center",
+              "rotation": 0
+            },
+            "DIVISION PERFORMANCE / III": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": false,
+              "italic": false,
+              "color": "#000000",
+              "background": null,
+              "align": "center",
+              "rotation": 0
+            },
+            "DIVISION PERFORMANCE / I-III / TOTAL": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": true,
+              "italic": false,
+              "color": "#000000",
+              "background": "#65ffab",
+              "align": "center",
+              "rotation": 0
+            },
+            "DIVISION PERFORMANCE / I-III / %": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": true,
+              "italic": false,
+              "color": "#000000",
+              "background": "#65ffab",
+              "align": "center",
+              "rotation": 0
+            },
+            "DIVISION PERFORMANCE / IV": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": false,
+              "italic": false,
+              "color": "#000000",
+              "background": null,
+              "align": "center",
+              "rotation": 0
+            },
+            "DIVISION PERFORMANCE / I-IV / TOTAL": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": true,
+              "italic": false,
+              "color": "#000000",
+              "background": null,
+              "align": "center",
+              "rotation": 0
+            },
+            "DIVISION PERFORMANCE / I-IV / %": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": true,
+              "italic": false,
+              "color": "#000000",
+              "background": "#daeef3",
+              "align": "center",
+              "rotation": 0
+            },
+            "DIVISION PERFORMANCE / DIV - 0 / TOTAL": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": true,
+              "italic": false,
+              "color": "#000000",
+              "background": "#fcd5b4",
+              "align": "center",
+              "rotation": 0
+            },
+            "DIVISION PERFORMANCE / DIV - 0 / %": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": true,
+              "italic": false,
+              "color": "#000000",
+              "background": "#fcd5b4",
+              "align": "center",
+              "rotation": 0
+            },
+            "GPA PERFORMANCE / GPA": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": true,
+              "italic": false,
+              "color": "#000000",
+              "background": "#ccffff",
+              "align": "center",
+              "rotation": 0
+            },
+            "GPA PERFORMANCE / COMPETENCY LEVEL": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": true,
+              "italic": false,
+              "color": "#000000",
+              "background": "#ffc000",
+              "align": "left",
+              "rotation": 0
+            },
+            "RANK": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": true,
+              "italic": false,
+              "color": "#000000",
+              "background": null,
+              "align": "center",
+              "rotation": 0
+            }
+          },
+          "pitch": 12.24
         },
         {
           "values": {
@@ -420,7 +3059,200 @@
             "GPA PERFORMANCE / GPA": "3.84620",
             "GPA PERFORMANCE / COMPETENCY LEVEL": "Grade D (Satisfactory)",
             "RANK": "12"
-          }
+          },
+          "styles": {
+            "S/NO.": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 6.7,
+              "bold": false,
+              "italic": false,
+              "color": "#000000",
+              "background": null,
+              "align": "center",
+              "rotation": 0
+            },
+            "WARD": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": false,
+              "italic": false,
+              "color": "#000000",
+              "background": null,
+              "align": "left",
+              "rotation": 0
+            },
+            "NUMBER OF SCHOOLS": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": true,
+              "italic": false,
+              "color": "#000000",
+              "background": "#ebf1de",
+              "align": "center",
+              "rotation": 0
+            },
+            "NUMBER OF CANDIDATES / REG": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": true,
+              "italic": false,
+              "color": "#000000",
+              "background": null,
+              "align": "center",
+              "rotation": 0
+            },
+            "NUMBER OF CANDIDATES / SAT / TOTAL": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": true,
+              "italic": false,
+              "color": "#000000",
+              "background": null,
+              "align": "center",
+              "rotation": 0
+            },
+            "NUMBER OF CANDIDATES / SAT / %": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": true,
+              "italic": false,
+              "color": "#000000",
+              "background": null,
+              "align": "center",
+              "rotation": 0
+            },
+            "DIVISION PERFORMANCE / I": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": false,
+              "italic": false,
+              "color": "#000000",
+              "background": null,
+              "align": "center",
+              "rotation": 0
+            },
+            "DIVISION PERFORMANCE / II": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": false,
+              "italic": false,
+              "color": "#000000",
+              "background": null,
+              "align": "center",
+              "rotation": 0
+            },
+            "DIVISION PERFORMANCE / III": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": false,
+              "italic": false,
+              "color": "#000000",
+              "background": null,
+              "align": "center",
+              "rotation": 0
+            },
+            "DIVISION PERFORMANCE / I-III / TOTAL": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": true,
+              "italic": false,
+              "color": "#000000",
+              "background": "#65ffab",
+              "align": "center",
+              "rotation": 0
+            },
+            "DIVISION PERFORMANCE / I-III / %": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": true,
+              "italic": false,
+              "color": "#000000",
+              "background": "#65ffab",
+              "align": "center",
+              "rotation": 0
+            },
+            "DIVISION PERFORMANCE / IV": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": false,
+              "italic": false,
+              "color": "#000000",
+              "background": null,
+              "align": "center",
+              "rotation": 0
+            },
+            "DIVISION PERFORMANCE / I-IV / TOTAL": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": true,
+              "italic": false,
+              "color": "#000000",
+              "background": null,
+              "align": "center",
+              "rotation": 0
+            },
+            "DIVISION PERFORMANCE / I-IV / %": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": true,
+              "italic": false,
+              "color": "#000000",
+              "background": "#daeef3",
+              "align": "center",
+              "rotation": 0
+            },
+            "DIVISION PERFORMANCE / DIV - 0 / TOTAL": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": true,
+              "italic": false,
+              "color": "#000000",
+              "background": "#fcd5b4",
+              "align": "center",
+              "rotation": 0
+            },
+            "DIVISION PERFORMANCE / DIV - 0 / %": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": true,
+              "italic": false,
+              "color": "#000000",
+              "background": "#fcd5b4",
+              "align": "center",
+              "rotation": 0
+            },
+            "GPA PERFORMANCE / GPA": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": true,
+              "italic": false,
+              "color": "#000000",
+              "background": "#ccffff",
+              "align": "center",
+              "rotation": 0
+            },
+            "GPA PERFORMANCE / COMPETENCY LEVEL": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": true,
+              "italic": false,
+              "color": "#000000",
+              "background": "#ffc000",
+              "align": "left",
+              "rotation": 0
+            },
+            "RANK": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": true,
+              "italic": false,
+              "color": "#000000",
+              "background": null,
+              "align": "center",
+              "rotation": 0
+            }
+          },
+          "pitch": 12.24
         },
         {
           "values": {
@@ -443,7 +3275,200 @@
             "GPA PERFORMANCE / GPA": "3.90660",
             "GPA PERFORMANCE / COMPETENCY LEVEL": "Grade D (Satisfactory)",
             "RANK": "13"
-          }
+          },
+          "styles": {
+            "S/NO.": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 6.7,
+              "bold": false,
+              "italic": false,
+              "color": "#000000",
+              "background": null,
+              "align": "center",
+              "rotation": 0
+            },
+            "WARD": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": false,
+              "italic": false,
+              "color": "#000000",
+              "background": null,
+              "align": "left",
+              "rotation": 0
+            },
+            "NUMBER OF SCHOOLS": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": true,
+              "italic": false,
+              "color": "#000000",
+              "background": "#ebf1de",
+              "align": "center",
+              "rotation": 0
+            },
+            "NUMBER OF CANDIDATES / REG": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": true,
+              "italic": false,
+              "color": "#000000",
+              "background": null,
+              "align": "center",
+              "rotation": 0
+            },
+            "NUMBER OF CANDIDATES / SAT / TOTAL": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": true,
+              "italic": false,
+              "color": "#000000",
+              "background": null,
+              "align": "center",
+              "rotation": 0
+            },
+            "NUMBER OF CANDIDATES / SAT / %": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": true,
+              "italic": false,
+              "color": "#000000",
+              "background": null,
+              "align": "center",
+              "rotation": 0
+            },
+            "DIVISION PERFORMANCE / I": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": false,
+              "italic": false,
+              "color": "#000000",
+              "background": null,
+              "align": "center",
+              "rotation": 0
+            },
+            "DIVISION PERFORMANCE / II": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": false,
+              "italic": false,
+              "color": "#000000",
+              "background": null,
+              "align": "center",
+              "rotation": 0
+            },
+            "DIVISION PERFORMANCE / III": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": false,
+              "italic": false,
+              "color": "#000000",
+              "background": null,
+              "align": "center",
+              "rotation": 0
+            },
+            "DIVISION PERFORMANCE / I-III / TOTAL": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": true,
+              "italic": false,
+              "color": "#000000",
+              "background": "#65ffab",
+              "align": "center",
+              "rotation": 0
+            },
+            "DIVISION PERFORMANCE / I-III / %": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": true,
+              "italic": false,
+              "color": "#000000",
+              "background": "#65ffab",
+              "align": "center",
+              "rotation": 0
+            },
+            "DIVISION PERFORMANCE / IV": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": false,
+              "italic": false,
+              "color": "#000000",
+              "background": null,
+              "align": "center",
+              "rotation": 0
+            },
+            "DIVISION PERFORMANCE / I-IV / TOTAL": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": true,
+              "italic": false,
+              "color": "#000000",
+              "background": null,
+              "align": "center",
+              "rotation": 0
+            },
+            "DIVISION PERFORMANCE / I-IV / %": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": true,
+              "italic": false,
+              "color": "#000000",
+              "background": "#daeef3",
+              "align": "center",
+              "rotation": 0
+            },
+            "DIVISION PERFORMANCE / DIV - 0 / TOTAL": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": true,
+              "italic": false,
+              "color": "#000000",
+              "background": "#fcd5b4",
+              "align": "center",
+              "rotation": 0
+            },
+            "DIVISION PERFORMANCE / DIV - 0 / %": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": true,
+              "italic": false,
+              "color": "#000000",
+              "background": "#fcd5b4",
+              "align": "center",
+              "rotation": 0
+            },
+            "GPA PERFORMANCE / GPA": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": true,
+              "italic": false,
+              "color": "#000000",
+              "background": "#ccffff",
+              "align": "center",
+              "rotation": 0
+            },
+            "GPA PERFORMANCE / COMPETENCY LEVEL": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": true,
+              "italic": false,
+              "color": "#000000",
+              "background": "#ffc000",
+              "align": "left",
+              "rotation": 0
+            },
+            "RANK": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": true,
+              "italic": false,
+              "color": "#000000",
+              "background": null,
+              "align": "center",
+              "rotation": 0
+            }
+          },
+          "pitch": 12.24
         },
         {
           "values": {
@@ -466,7 +3491,200 @@
             "GPA PERFORMANCE / GPA": "4.01180",
             "GPA PERFORMANCE / COMPETENCY LEVEL": "Grade D (Satisfactory)",
             "RANK": "14"
-          }
+          },
+          "styles": {
+            "S/NO.": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 6.7,
+              "bold": false,
+              "italic": false,
+              "color": "#000000",
+              "background": null,
+              "align": "center",
+              "rotation": 0
+            },
+            "WARD": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": false,
+              "italic": false,
+              "color": "#000000",
+              "background": null,
+              "align": "left",
+              "rotation": 0
+            },
+            "NUMBER OF SCHOOLS": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": true,
+              "italic": false,
+              "color": "#000000",
+              "background": "#ebf1de",
+              "align": "center",
+              "rotation": 0
+            },
+            "NUMBER OF CANDIDATES / REG": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": true,
+              "italic": false,
+              "color": "#000000",
+              "background": null,
+              "align": "center",
+              "rotation": 0
+            },
+            "NUMBER OF CANDIDATES / SAT / TOTAL": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": true,
+              "italic": false,
+              "color": "#000000",
+              "background": null,
+              "align": "center",
+              "rotation": 0
+            },
+            "NUMBER OF CANDIDATES / SAT / %": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": true,
+              "italic": false,
+              "color": "#000000",
+              "background": null,
+              "align": "center",
+              "rotation": 0
+            },
+            "DIVISION PERFORMANCE / I": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": false,
+              "italic": false,
+              "color": "#000000",
+              "background": null,
+              "align": "center",
+              "rotation": 0
+            },
+            "DIVISION PERFORMANCE / II": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": false,
+              "italic": false,
+              "color": "#000000",
+              "background": null,
+              "align": "center",
+              "rotation": 0
+            },
+            "DIVISION PERFORMANCE / III": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": false,
+              "italic": false,
+              "color": "#000000",
+              "background": null,
+              "align": "center",
+              "rotation": 0
+            },
+            "DIVISION PERFORMANCE / I-III / TOTAL": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": true,
+              "italic": false,
+              "color": "#000000",
+              "background": "#65ffab",
+              "align": "center",
+              "rotation": 0
+            },
+            "DIVISION PERFORMANCE / I-III / %": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": true,
+              "italic": false,
+              "color": "#000000",
+              "background": "#65ffab",
+              "align": "center",
+              "rotation": 0
+            },
+            "DIVISION PERFORMANCE / IV": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": false,
+              "italic": false,
+              "color": "#000000",
+              "background": null,
+              "align": "center",
+              "rotation": 0
+            },
+            "DIVISION PERFORMANCE / I-IV / TOTAL": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": true,
+              "italic": false,
+              "color": "#000000",
+              "background": null,
+              "align": "center",
+              "rotation": 0
+            },
+            "DIVISION PERFORMANCE / I-IV / %": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": true,
+              "italic": false,
+              "color": "#000000",
+              "background": "#daeef3",
+              "align": "center",
+              "rotation": 0
+            },
+            "DIVISION PERFORMANCE / DIV - 0 / TOTAL": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": true,
+              "italic": false,
+              "color": "#000000",
+              "background": "#fcd5b4",
+              "align": "center",
+              "rotation": 0
+            },
+            "DIVISION PERFORMANCE / DIV - 0 / %": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": true,
+              "italic": false,
+              "color": "#000000",
+              "background": "#fcd5b4",
+              "align": "center",
+              "rotation": 0
+            },
+            "GPA PERFORMANCE / GPA": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": true,
+              "italic": false,
+              "color": "#000000",
+              "background": "#ccffff",
+              "align": "center",
+              "rotation": 0
+            },
+            "GPA PERFORMANCE / COMPETENCY LEVEL": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": true,
+              "italic": false,
+              "color": "#000000",
+              "background": "#ffc000",
+              "align": "left",
+              "rotation": 0
+            },
+            "RANK": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": true,
+              "italic": false,
+              "color": "#000000",
+              "background": null,
+              "align": "center",
+              "rotation": 0
+            }
+          },
+          "pitch": 12.24
         },
         {
           "values": {
@@ -489,7 +3707,200 @@
             "GPA PERFORMANCE / GPA": "4.02407",
             "GPA PERFORMANCE / COMPETENCY LEVEL": "Grade D (Satisfactory)",
             "RANK": "15"
-          }
+          },
+          "styles": {
+            "S/NO.": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 6.7,
+              "bold": false,
+              "italic": false,
+              "color": "#000000",
+              "background": null,
+              "align": "center",
+              "rotation": 0
+            },
+            "WARD": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": false,
+              "italic": false,
+              "color": "#000000",
+              "background": null,
+              "align": "left",
+              "rotation": 0
+            },
+            "NUMBER OF SCHOOLS": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": true,
+              "italic": false,
+              "color": "#000000",
+              "background": "#ebf1de",
+              "align": "center",
+              "rotation": 0
+            },
+            "NUMBER OF CANDIDATES / REG": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": true,
+              "italic": false,
+              "color": "#000000",
+              "background": null,
+              "align": "center",
+              "rotation": 0
+            },
+            "NUMBER OF CANDIDATES / SAT / TOTAL": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": true,
+              "italic": false,
+              "color": "#000000",
+              "background": null,
+              "align": "center",
+              "rotation": 0
+            },
+            "NUMBER OF CANDIDATES / SAT / %": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": true,
+              "italic": false,
+              "color": "#000000",
+              "background": null,
+              "align": "center",
+              "rotation": 0
+            },
+            "DIVISION PERFORMANCE / I": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": false,
+              "italic": false,
+              "color": "#000000",
+              "background": null,
+              "align": "center",
+              "rotation": 0
+            },
+            "DIVISION PERFORMANCE / II": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": false,
+              "italic": false,
+              "color": "#000000",
+              "background": null,
+              "align": "center",
+              "rotation": 0
+            },
+            "DIVISION PERFORMANCE / III": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": false,
+              "italic": false,
+              "color": "#000000",
+              "background": null,
+              "align": "center",
+              "rotation": 0
+            },
+            "DIVISION PERFORMANCE / I-III / TOTAL": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": true,
+              "italic": false,
+              "color": "#000000",
+              "background": "#65ffab",
+              "align": "center",
+              "rotation": 0
+            },
+            "DIVISION PERFORMANCE / I-III / %": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": true,
+              "italic": false,
+              "color": "#000000",
+              "background": "#65ffab",
+              "align": "center",
+              "rotation": 0
+            },
+            "DIVISION PERFORMANCE / IV": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": false,
+              "italic": false,
+              "color": "#000000",
+              "background": null,
+              "align": "center",
+              "rotation": 0
+            },
+            "DIVISION PERFORMANCE / I-IV / TOTAL": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": true,
+              "italic": false,
+              "color": "#000000",
+              "background": null,
+              "align": "center",
+              "rotation": 0
+            },
+            "DIVISION PERFORMANCE / I-IV / %": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": true,
+              "italic": false,
+              "color": "#000000",
+              "background": "#daeef3",
+              "align": "center",
+              "rotation": 0
+            },
+            "DIVISION PERFORMANCE / DIV - 0 / TOTAL": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": true,
+              "italic": false,
+              "color": "#000000",
+              "background": "#fcd5b4",
+              "align": "center",
+              "rotation": 0
+            },
+            "DIVISION PERFORMANCE / DIV - 0 / %": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": true,
+              "italic": false,
+              "color": "#000000",
+              "background": "#fcd5b4",
+              "align": "center",
+              "rotation": 0
+            },
+            "GPA PERFORMANCE / GPA": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": true,
+              "italic": false,
+              "color": "#000000",
+              "background": "#ccffff",
+              "align": "center",
+              "rotation": 0
+            },
+            "GPA PERFORMANCE / COMPETENCY LEVEL": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": true,
+              "italic": false,
+              "color": "#000000",
+              "background": "#ffc000",
+              "align": "left",
+              "rotation": 0
+            },
+            "RANK": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": true,
+              "italic": false,
+              "color": "#000000",
+              "background": null,
+              "align": "center",
+              "rotation": 0
+            }
+          },
+          "pitch": 12.24
         },
         {
           "values": {
@@ -512,7 +3923,200 @@
             "GPA PERFORMANCE / GPA": "4.06145",
             "GPA PERFORMANCE / COMPETENCY LEVEL": "Grade D (Satisfactory)",
             "RANK": "16"
-          }
+          },
+          "styles": {
+            "S/NO.": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 6.7,
+              "bold": false,
+              "italic": false,
+              "color": "#000000",
+              "background": null,
+              "align": "center",
+              "rotation": 0
+            },
+            "WARD": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": false,
+              "italic": false,
+              "color": "#000000",
+              "background": null,
+              "align": "left",
+              "rotation": 0
+            },
+            "NUMBER OF SCHOOLS": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": true,
+              "italic": false,
+              "color": "#000000",
+              "background": "#ebf1de",
+              "align": "center",
+              "rotation": 0
+            },
+            "NUMBER OF CANDIDATES / REG": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": true,
+              "italic": false,
+              "color": "#000000",
+              "background": null,
+              "align": "center",
+              "rotation": 0
+            },
+            "NUMBER OF CANDIDATES / SAT / TOTAL": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": true,
+              "italic": false,
+              "color": "#000000",
+              "background": null,
+              "align": "center",
+              "rotation": 0
+            },
+            "NUMBER OF CANDIDATES / SAT / %": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": true,
+              "italic": false,
+              "color": "#000000",
+              "background": null,
+              "align": "center",
+              "rotation": 0
+            },
+            "DIVISION PERFORMANCE / I": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": false,
+              "italic": false,
+              "color": "#000000",
+              "background": null,
+              "align": "center",
+              "rotation": 0
+            },
+            "DIVISION PERFORMANCE / II": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": false,
+              "italic": false,
+              "color": "#000000",
+              "background": null,
+              "align": "center",
+              "rotation": 0
+            },
+            "DIVISION PERFORMANCE / III": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": false,
+              "italic": false,
+              "color": "#000000",
+              "background": null,
+              "align": "center",
+              "rotation": 0
+            },
+            "DIVISION PERFORMANCE / I-III / TOTAL": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": true,
+              "italic": false,
+              "color": "#000000",
+              "background": "#65ffab",
+              "align": "center",
+              "rotation": 0
+            },
+            "DIVISION PERFORMANCE / I-III / %": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": true,
+              "italic": false,
+              "color": "#000000",
+              "background": "#65ffab",
+              "align": "center",
+              "rotation": 0
+            },
+            "DIVISION PERFORMANCE / IV": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": false,
+              "italic": false,
+              "color": "#000000",
+              "background": null,
+              "align": "center",
+              "rotation": 0
+            },
+            "DIVISION PERFORMANCE / I-IV / TOTAL": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": true,
+              "italic": false,
+              "color": "#000000",
+              "background": null,
+              "align": "center",
+              "rotation": 0
+            },
+            "DIVISION PERFORMANCE / I-IV / %": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": true,
+              "italic": false,
+              "color": "#000000",
+              "background": "#daeef3",
+              "align": "center",
+              "rotation": 0
+            },
+            "DIVISION PERFORMANCE / DIV - 0 / TOTAL": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": true,
+              "italic": false,
+              "color": "#000000",
+              "background": "#fcd5b4",
+              "align": "center",
+              "rotation": 0
+            },
+            "DIVISION PERFORMANCE / DIV - 0 / %": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": true,
+              "italic": false,
+              "color": "#000000",
+              "background": "#fcd5b4",
+              "align": "center",
+              "rotation": 0
+            },
+            "GPA PERFORMANCE / GPA": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": true,
+              "italic": false,
+              "color": "#000000",
+              "background": "#ccffff",
+              "align": "center",
+              "rotation": 0
+            },
+            "GPA PERFORMANCE / COMPETENCY LEVEL": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": true,
+              "italic": false,
+              "color": "#000000",
+              "background": "#ffc000",
+              "align": "left",
+              "rotation": 0
+            },
+            "RANK": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": true,
+              "italic": false,
+              "color": "#000000",
+              "background": null,
+              "align": "center",
+              "rotation": 0
+            }
+          },
+          "pitch": 12.24
         },
         {
           "values": {
@@ -535,7 +4139,200 @@
             "GPA PERFORMANCE / GPA": "4.08950",
             "GPA PERFORMANCE / COMPETENCY LEVEL": "Grade D (Satisfactory)",
             "RANK": "17"
-          }
+          },
+          "styles": {
+            "S/NO.": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 6.7,
+              "bold": false,
+              "italic": false,
+              "color": "#000000",
+              "background": null,
+              "align": "center",
+              "rotation": 0
+            },
+            "WARD": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": false,
+              "italic": false,
+              "color": "#000000",
+              "background": null,
+              "align": "left",
+              "rotation": 0
+            },
+            "NUMBER OF SCHOOLS": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": true,
+              "italic": false,
+              "color": "#000000",
+              "background": "#ebf1de",
+              "align": "center",
+              "rotation": 0
+            },
+            "NUMBER OF CANDIDATES / REG": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": true,
+              "italic": false,
+              "color": "#000000",
+              "background": null,
+              "align": "center",
+              "rotation": 0
+            },
+            "NUMBER OF CANDIDATES / SAT / TOTAL": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": true,
+              "italic": false,
+              "color": "#000000",
+              "background": null,
+              "align": "center",
+              "rotation": 0
+            },
+            "NUMBER OF CANDIDATES / SAT / %": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": true,
+              "italic": false,
+              "color": "#000000",
+              "background": null,
+              "align": "center",
+              "rotation": 0
+            },
+            "DIVISION PERFORMANCE / I": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": false,
+              "italic": false,
+              "color": "#000000",
+              "background": null,
+              "align": "center",
+              "rotation": 0
+            },
+            "DIVISION PERFORMANCE / II": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": false,
+              "italic": false,
+              "color": "#000000",
+              "background": null,
+              "align": "center",
+              "rotation": 0
+            },
+            "DIVISION PERFORMANCE / III": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": false,
+              "italic": false,
+              "color": "#000000",
+              "background": null,
+              "align": "center",
+              "rotation": 0
+            },
+            "DIVISION PERFORMANCE / I-III / TOTAL": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": true,
+              "italic": false,
+              "color": "#000000",
+              "background": "#65ffab",
+              "align": "center",
+              "rotation": 0
+            },
+            "DIVISION PERFORMANCE / I-III / %": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": true,
+              "italic": false,
+              "color": "#000000",
+              "background": "#65ffab",
+              "align": "center",
+              "rotation": 0
+            },
+            "DIVISION PERFORMANCE / IV": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": false,
+              "italic": false,
+              "color": "#000000",
+              "background": null,
+              "align": "center",
+              "rotation": 0
+            },
+            "DIVISION PERFORMANCE / I-IV / TOTAL": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": true,
+              "italic": false,
+              "color": "#000000",
+              "background": null,
+              "align": "center",
+              "rotation": 0
+            },
+            "DIVISION PERFORMANCE / I-IV / %": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": true,
+              "italic": false,
+              "color": "#000000",
+              "background": "#daeef3",
+              "align": "center",
+              "rotation": 0
+            },
+            "DIVISION PERFORMANCE / DIV - 0 / TOTAL": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": true,
+              "italic": false,
+              "color": "#000000",
+              "background": "#fcd5b4",
+              "align": "center",
+              "rotation": 0
+            },
+            "DIVISION PERFORMANCE / DIV - 0 / %": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": true,
+              "italic": false,
+              "color": "#000000",
+              "background": "#fcd5b4",
+              "align": "center",
+              "rotation": 0
+            },
+            "GPA PERFORMANCE / GPA": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": true,
+              "italic": false,
+              "color": "#000000",
+              "background": "#ccffff",
+              "align": "center",
+              "rotation": 0
+            },
+            "GPA PERFORMANCE / COMPETENCY LEVEL": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": true,
+              "italic": false,
+              "color": "#000000",
+              "background": "#ffc000",
+              "align": "left",
+              "rotation": 0
+            },
+            "RANK": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": true,
+              "italic": false,
+              "color": "#000000",
+              "background": null,
+              "align": "center",
+              "rotation": 0
+            }
+          },
+          "pitch": 12.27
         },
         {
           "values": {
@@ -558,7 +4355,200 @@
             "GPA PERFORMANCE / GPA": "4.24515",
             "GPA PERFORMANCE / COMPETENCY LEVEL": "Grade D (Satisfactory)",
             "RANK": "18"
-          }
+          },
+          "styles": {
+            "S/NO.": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 6.7,
+              "bold": false,
+              "italic": false,
+              "color": "#000000",
+              "background": null,
+              "align": "center",
+              "rotation": 0
+            },
+            "WARD": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": false,
+              "italic": false,
+              "color": "#000000",
+              "background": null,
+              "align": "left",
+              "rotation": 0
+            },
+            "NUMBER OF SCHOOLS": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": true,
+              "italic": false,
+              "color": "#000000",
+              "background": "#ebf1de",
+              "align": "center",
+              "rotation": 0
+            },
+            "NUMBER OF CANDIDATES / REG": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": true,
+              "italic": false,
+              "color": "#000000",
+              "background": null,
+              "align": "center",
+              "rotation": 0
+            },
+            "NUMBER OF CANDIDATES / SAT / TOTAL": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": true,
+              "italic": false,
+              "color": "#000000",
+              "background": null,
+              "align": "center",
+              "rotation": 0
+            },
+            "NUMBER OF CANDIDATES / SAT / %": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": true,
+              "italic": false,
+              "color": "#000000",
+              "background": null,
+              "align": "center",
+              "rotation": 0
+            },
+            "DIVISION PERFORMANCE / I": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": false,
+              "italic": false,
+              "color": "#000000",
+              "background": null,
+              "align": "center",
+              "rotation": 0
+            },
+            "DIVISION PERFORMANCE / II": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": false,
+              "italic": false,
+              "color": "#000000",
+              "background": null,
+              "align": "center",
+              "rotation": 0
+            },
+            "DIVISION PERFORMANCE / III": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": false,
+              "italic": false,
+              "color": "#000000",
+              "background": null,
+              "align": "center",
+              "rotation": 0
+            },
+            "DIVISION PERFORMANCE / I-III / TOTAL": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": true,
+              "italic": false,
+              "color": "#000000",
+              "background": "#65ffab",
+              "align": "center",
+              "rotation": 0
+            },
+            "DIVISION PERFORMANCE / I-III / %": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": true,
+              "italic": false,
+              "color": "#000000",
+              "background": "#65ffab",
+              "align": "center",
+              "rotation": 0
+            },
+            "DIVISION PERFORMANCE / IV": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": false,
+              "italic": false,
+              "color": "#000000",
+              "background": null,
+              "align": "center",
+              "rotation": 0
+            },
+            "DIVISION PERFORMANCE / I-IV / TOTAL": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": true,
+              "italic": false,
+              "color": "#000000",
+              "background": null,
+              "align": "center",
+              "rotation": 0
+            },
+            "DIVISION PERFORMANCE / I-IV / %": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": true,
+              "italic": false,
+              "color": "#000000",
+              "background": "#daeef3",
+              "align": "center",
+              "rotation": 0
+            },
+            "DIVISION PERFORMANCE / DIV - 0 / TOTAL": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": true,
+              "italic": false,
+              "color": "#000000",
+              "background": "#fcd5b4",
+              "align": "center",
+              "rotation": 0
+            },
+            "DIVISION PERFORMANCE / DIV - 0 / %": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": true,
+              "italic": false,
+              "color": "#000000",
+              "background": "#fcd5b4",
+              "align": "center",
+              "rotation": 0
+            },
+            "GPA PERFORMANCE / GPA": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": true,
+              "italic": false,
+              "color": "#000000",
+              "background": "#ccffff",
+              "align": "center",
+              "rotation": 0
+            },
+            "GPA PERFORMANCE / COMPETENCY LEVEL": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": true,
+              "italic": false,
+              "color": "#000000",
+              "background": "#ffc000",
+              "align": "left",
+              "rotation": 0
+            },
+            "RANK": {
+              "family": "Arial, Helvetica, sans-serif",
+              "size_pt": 7.3,
+              "bold": true,
+              "italic": false,
+              "color": "#000000",
+              "background": null,
+              "align": "center",
+              "rotation": 0
+            }
+          },
+          "pitch": 12.305
         }
       ],
       "totals": {
@@ -583,6 +4573,203 @@
           "Grade C (Good)",
           ""
         ]
+      },
+      "total_styles": {
+        "TOTAL": [
+          {
+            "family": "Arial, Helvetica, sans-serif",
+            "size_pt": 7.8,
+            "bold": true,
+            "italic": false,
+            "color": "#000000",
+            "background": null,
+            "align": "center",
+            "rotation": 0
+          },
+          {
+            "family": "Arial, Helvetica, sans-serif",
+            "size_pt": 7.0,
+            "bold": false,
+            "italic": false,
+            "color": "#000000",
+            "background": null,
+            "align": "center",
+            "rotation": 0
+          },
+          {
+            "family": "Arial, Helvetica, sans-serif",
+            "size_pt": 9.0,
+            "bold": true,
+            "italic": false,
+            "color": "#000000",
+            "background": "#ffffcc",
+            "align": "center",
+            "rotation": 0
+          },
+          {
+            "family": "Arial, Helvetica, sans-serif",
+            "size_pt": 7.8,
+            "bold": true,
+            "italic": false,
+            "color": "#000000",
+            "background": "#ebf1de",
+            "align": "center",
+            "rotation": 0
+          },
+          {
+            "family": "Arial, Helvetica, sans-serif",
+            "size_pt": 7.8,
+            "bold": true,
+            "italic": false,
+            "color": "#000000",
+            "background": "#ebf1de",
+            "align": "center",
+            "rotation": 0
+          },
+          {
+            "family": "Arial, Helvetica, sans-serif",
+            "size_pt": 7.8,
+            "bold": true,
+            "italic": false,
+            "color": "#000000",
+            "background": "#ebf1de",
+            "align": "center",
+            "rotation": 0
+          },
+          {
+            "family": "Arial, Helvetica, sans-serif",
+            "size_pt": 7.8,
+            "bold": true,
+            "italic": false,
+            "color": "#000000",
+            "background": "#ebf1de",
+            "align": "center",
+            "rotation": 0
+          },
+          {
+            "family": "Arial, Helvetica, sans-serif",
+            "size_pt": 7.8,
+            "bold": true,
+            "italic": false,
+            "color": "#000000",
+            "background": "#ebf1de",
+            "align": "center",
+            "rotation": 0
+          },
+          {
+            "family": "Arial, Helvetica, sans-serif",
+            "size_pt": 7.8,
+            "bold": true,
+            "italic": false,
+            "color": "#000000",
+            "background": "#ebf1de",
+            "align": "center",
+            "rotation": 0
+          },
+          {
+            "family": "Arial, Helvetica, sans-serif",
+            "size_pt": 7.8,
+            "bold": true,
+            "italic": false,
+            "color": "#000000",
+            "background": "#65ffab",
+            "align": "center",
+            "rotation": 0
+          },
+          {
+            "family": "Arial, Helvetica, sans-serif",
+            "size_pt": 7.8,
+            "bold": true,
+            "italic": false,
+            "color": "#000000",
+            "background": "#65ffab",
+            "align": "center",
+            "rotation": 0
+          },
+          {
+            "family": "Arial, Helvetica, sans-serif",
+            "size_pt": 7.8,
+            "bold": true,
+            "italic": false,
+            "color": "#000000",
+            "background": "#ebf1de",
+            "align": "center",
+            "rotation": 0
+          },
+          {
+            "family": "Arial, Helvetica, sans-serif",
+            "size_pt": 7.8,
+            "bold": true,
+            "italic": false,
+            "color": "#000000",
+            "background": "#ebf1de",
+            "align": "center",
+            "rotation": 0
+          },
+          {
+            "family": "Arial, Helvetica, sans-serif",
+            "size_pt": 7.8,
+            "bold": true,
+            "italic": false,
+            "color": "#000000",
+            "background": "#ebf1de",
+            "align": "center",
+            "rotation": 0
+          },
+          {
+            "family": "Arial, Helvetica, sans-serif",
+            "size_pt": 7.8,
+            "bold": true,
+            "italic": false,
+            "color": "#000000",
+            "background": "#fcd5b4",
+            "align": "center",
+            "rotation": 0
+          },
+          {
+            "family": "Arial, Helvetica, sans-serif",
+            "size_pt": 7.8,
+            "bold": true,
+            "italic": false,
+            "color": "#000000",
+            "background": "#fcd5b4",
+            "align": "center",
+            "rotation": 0
+          },
+          {
+            "family": "Arial, Helvetica, sans-serif",
+            "size_pt": 7.8,
+            "bold": true,
+            "italic": false,
+            "color": "#000000",
+            "background": "#daeef3",
+            "align": "center",
+            "rotation": 0
+          },
+          {
+            "family": "Arial, Helvetica, sans-serif",
+            "size_pt": 7.8,
+            "bold": true,
+            "italic": false,
+            "color": "#000000",
+            "background": "#ffff00",
+            "align": "left",
+            "rotation": 0
+          },
+          {
+            "family": "Arial, Helvetica, sans-serif",
+            "size_pt": 7.0,
+            "bold": false,
+            "italic": false,
+            "color": "#000000",
+            "background": "#daeef3",
+            "align": "center",
+            "rotation": 0
+          }
+        ]
+      },
+      "total_pitch": {
+        "TOTAL": 19.888
       },
       "title": ""
     }
