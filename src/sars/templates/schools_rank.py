@@ -38,27 +38,54 @@ _DIVISIONS: tuple[tuple[str, tuple[str, ...]], ...] = (
 )
 
 
-def _colgroup(level: str) -> str:
+def _colgroup(level: str, ranks: tuple[bool, bool] = (True, True)) -> str:
     """Proportional column widths so wide text columns get room and the many
     numeric columns stay narrow - preventing a long SCHOOL NAME from overhanging
     into its neighbour (which the PDF text extractor would merge into one token)
     while still fitting every column on one page."""
+    has_c, has_r = ranks
     widths: list[float] = [2.0, 5.5, 8.0, 4.0]  # S/NO, ident, school, ownership
     widths += [2.1, 2.1, 2.1, 2.1, 2.1, 2.1, 2.1]  # registered F/M/T + sat F/M/T/%
     div_span = sum(len(sub) for _, sub in _DIVISIONS)
     widths += [1.95] * div_span
-    widths += [3.6, 8.5, 2.0, 2.0]  # gpa, competency, c/rank, r/rank
+    widths += [3.6, 8.5]  # gpa, competency
+    if has_c:
+        widths.append(2.0)  # c/rank
+    if has_r:
+        widths.append(2.0)  # r/rank
     total = sum(widths)
     cols = "".join(f'<col style="width:{w / total * 100:.4f}%">' for w in widths)
     return f"<colgroup>{cols}</colgroup>"
 
 
-def _thead(level: str) -> str:
+def _rank_columns(report: SchoolsRankReport) -> tuple[bool, bool]:
+    """Which trailing rank columns this report prints: ``(council, regional)``.
+
+    The reports differ: a council top-ten prints only ``C/RANK``, a region
+    top-ten only ``R/RANK``, and a full ranking prints both. The captured column
+    headers state which are present; a report that carries a rank *value* but no
+    caption (older data) still shows the column so no value is dropped.
+    """
+    caps = {c.upper() for c in report.column_headers}
+    has_c = "C/RANK" in caps or any(r.council_rank for r in report.rows)
+    has_r = "R/RANK" in caps or any(r.regional_rank for r in report.rows)
+    if not (has_c or has_r):  # nothing said either way -> keep both
+        return True, True
+    return has_c, has_r
+
+
+def _thead(level: str, ranks: tuple[bool, bool] = (True, True)) -> str:
     """The three-row grouped header band (chrome)."""
     ident = "WARD" if level == "council" else "COUNCIL"
+    has_c, has_r = ranks
     # Row 1: identity columns (rowspan 3) + the two big group headings + GPA
     #        block + competency + rank columns.
     div_span = sum(len(sub) for _, sub in _DIVISIONS)
+    rank_th = ""
+    if has_c:
+        rank_th += '<th rowspan="3" class="nw">C/RANK</th>'
+    if has_r:
+        rank_th += '<th rowspan="3" class="nw">R/RANK</th>'
     r1 = (
         '<th rowspan="3" class="nw">S/NO.</th>'
         f'<th rowspan="3" class="text">{ident}</th>'
@@ -68,8 +95,7 @@ def _thead(level: str) -> str:
         f'<th colspan="{div_span}">DIVISION PERFORMANCE</th>'
         '<th rowspan="3">GPA</th>'
         '<th rowspan="3">COMPETENCY LEVEL</th>'
-        '<th rowspan="3" class="nw">C/RANK</th>'
-        '<th rowspan="3" class="nw">R/RANK</th>'
+        f"{rank_th}"
     )
     # Row 2: REGISTERED / SAT sub-groups + one heading per division group.
     r2 = ['<th colspan="3">REGISTERED</th>', '<th colspan="4">SAT</th>']
@@ -105,7 +131,8 @@ def _division_cells(row: SchoolRankRow) -> list[str]:
     return cells
 
 
-def _data_row(row: SchoolRankRow, level: str) -> str:
+def _data_row(row: SchoolRankRow, level: str, ranks: tuple[bool, bool] = (True, True)) -> str:
+    has_c, has_r = ranks
     ident = row.ward if level == "council" else row.council
     cells = [
         f"<td>{esc(row.sno)}</td>",
@@ -124,9 +151,11 @@ def _data_row(row: SchoolRankRow, level: str) -> str:
     cells += [
         f"<td>{esc(row.gpa)}</td>",
         competency_cell(row.competency, row.gpa),
-        f"<td>{esc(row.council_rank)}</td>",
-        f"<td>{esc(row.regional_rank)}</td>",
     ]
+    if has_c:
+        cells.append(f"<td>{esc(row.council_rank)}</td>")
+    if has_r:
+        cells.append(f"<td>{esc(row.regional_rank)}</td>")
     return "<tr>" + "".join(cells) + "</tr>"
 
 
@@ -157,21 +186,53 @@ def _summary_html(summary: PerformanceTable) -> str:
     )
 
 
+def _one_table(level: str, rows_html: list[str], ranks: tuple[bool, bool]) -> str:
+    return (
+        '<table class="tmpl">'
+        f"{_colgroup(level, ranks)}"
+        f"{_thead(level, ranks)}"
+        "<tbody>" + "".join(rows_html) + "</tbody>"
+        "</table>"
+    )
+
+
 def render_schools_rank(report: SchoolsRankReport) -> str:
-    """Render a :class:`~sars.schema.SchoolsRankReport` to a full HTML doc."""
+    """Render a :class:`~sars.schema.SchoolsRankReport` to a full HTML doc.
+
+    A plain ranking is one table. A top-ten report is a sequence of titled
+    blocks (``section_titles`` / ``section_row_counts``): the heading of each is
+    printed above its own table, so "TOP 10 BEST PRIVATE SCHOOLS" and "TEN LOOSER
+    SCHOOLS OVERALL" appear exactly as in the reference rather than being fused
+    into one continuous list.
+    """
     level = report.meta.level
+    ranks = _rank_columns(report)
     body = banner_html(report.meta)
     for summary in report.summary:
         body += _summary_html(summary)
-    body_rows = [_data_row(row, level) for row in report.rows]
+
+    titles = report.section_titles
+    counts = report.section_row_counts
+    if titles and counts and sum(counts) == len(report.rows):
+        start = 0
+        for title, n in zip(titles, counts, strict=False):
+            block = [_data_row(row, level, ranks) for row in report.rows[start : start + n]]
+            if title:
+                body += f'<div class="banner"><div class="title">{esc(title)}</div></div>'
+            body += _one_table(level, block, ranks)
+            start += n
+        # Totals belong to the whole report; print them once after the blocks.
+        if report.totals:
+            total_rows = [
+                f'<tr class="total">{"".join(f"<td>{esc(v)}</td>" for v in values)}</tr>'
+                for values in report.totals.values()
+            ]
+            body += _one_table(level, total_rows, ranks)
+        return document_html(report.meta, body, compact=True)
+
+    body_rows = [_data_row(row, level, ranks) for row in report.rows]
     for _label, values in report.totals.items():
         cells = "".join(f"<td>{esc(v)}</td>" for v in values)
         body_rows.append(f'<tr class="total">{cells}</tr>')
-    body += (
-        '<table class="tmpl">'
-        f"{_colgroup(level)}"
-        f"{_thead(level)}"
-        "<tbody>" + "".join(body_rows) + "</tbody>"
-        "</table>"
-    )
+    body += _one_table(level, body_rows, ranks)
     return document_html(report.meta, body, compact=True)

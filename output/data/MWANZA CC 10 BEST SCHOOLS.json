@@ -3956,5 +3956,17 @@
     "GPA",
     "COMPETENCY LEVEL",
     "C/RANK"
+  ],
+  "section_titles": [
+    "TOP TEN BEST SCHOOLS OVERALL COUNCILWISE",
+    "TOP TEN BEST PRIVATE SCHOOLS DISTRICTWISE",
+    "TEN LOOSER SCHOOLS  OVERALL",
+    "TEN LOOSER GORVENMENT SCHOOLS"
+  ],
+  "section_row_counts": [
+    20,
+    10,
+    10,
+    23
   ]
 }

@@ -453,7 +453,9 @@ _STUDENT_COLUMNS: dict[str, tuple[str, ...]] = {
     "division": ("DIVISION", "DIV"),
     "marks": ("MARKS", "MARK"),
     "grade": ("GRADE",),
-    "position": ("POSITION", "POS"),
+    # "POSITIO" is not a typo: the reports' own header cell clips the final N on
+    # the narrow POSITION column, and the recovery reads exactly what is drawn.
+    "position": ("POSITION", "POSITIO", "POS"),
     "competency": ("COMPETENCY LEVEL", "COMPENTENCY LEVEL", "COMPETENCY"),
     "detailed_subjects": ("DETAILED SUBJECTS", "DETAILED SUBJECT"),
 }
@@ -548,6 +550,20 @@ def _extract_schools_rank(doc: Document, meta: ReportMeta) -> SchoolsRankReport:
                 break
     headers = _group_headers(group)
     leaves = _leaf_headers(headers)
+
+    # A top-ten report is several titled blocks ("TOP 10 BEST PRIVATE SCHOOLS",
+    # "TEN LOOSER SCHOOLS OVERALL") rather than one continuous ranking. Record
+    # each block's heading and how many schools it holds, so the template can
+    # reproduce the headings; the schools themselves still accumulate into rows.
+    for title, tables in _titled_table_sections(doc, meta):
+        n = sum(_data_row_count(t) for t in tables if t in group)
+        if n:
+            # A block may precede the first heading (the report's first ranking
+            # sits under the banner, not under a section title); it is kept with
+            # an empty title so every school stays accounted for and the block
+            # counts sum to the row total.
+            report.section_titles.append(title)
+            report.section_row_counts.append(n)
 
     def col(*names: str) -> int | None:
         return _index_of(headers, *names)
