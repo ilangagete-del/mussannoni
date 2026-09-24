@@ -19,15 +19,13 @@ Expected data shape: a :class:`~sars.schema.GenericTabularReport` with
 
 from __future__ import annotations
 
-from ..schema import CellStyle, GenericTabularReport, TabularSection
+from ..schema import GenericTabularReport, TabularSection
 from .base import (
-    TemplatePool,
     banner_html,
     competency_cell,
     document_html,
     esc,
     header_cell,
-    orientation_for,
     styled_cell,
 )
 
@@ -87,12 +85,11 @@ def _is_text_col(leaf: str) -> bool:
     return any(k in up for k in ("NAME", "WARD", "COUNCIL", "SCHOOL", "SUBJECT"))
 
 
-def _section_table(section: TabularSection, pool: TemplatePool) -> str:
+def _section_table(section: TabularSection) -> str:
     """One table block: grouped header band, data rows, then any totals rows.
 
-    Each data cell carries the recovered font / colour / fill and row pitch
-    keyed the same way its value is (by header path, falling back to the bare
-    leaf), so the mobility colour bands and the rank washes reproduce faithfully.
+    Rendered from pure data; only the competency cell's colour is derived
+    deterministically (never stored in the data).
     """
     paths = section.column_headers
     leaves = [p.split(" / ")[-1] if p else "" for p in paths]
@@ -105,30 +102,19 @@ def _section_table(section: TabularSection, pool: TemplatePool) -> str:
     body_rows: list[str] = []
     for trow in section.rows:
         vals = trow.values
-
-        def style(i: int, path: str, leaf: str, _s: dict = trow.styles) -> CellStyle | None:
-            return _s.get(path, _s.get(leaf)) if _s else None
-
-        p = trow.pitch
         cells: list[str] = []
         for i, path in enumerate(paths):
             leaf = leaves[i]
             value = vals.get(path, vals.get(leaf, ""))
-            cs = style(i, path, leaf)
             if i == comp_idx:
                 gpa = vals.get(paths[gpa_idx], "") if gpa_idx is not None else ""
-                cells.append(competency_cell(value, gpa, pool=pool, style=cs, pitch=p))
+                cells.append(competency_cell(value, gpa))
             else:
-                cells.append(styled_cell(pool, value, cs, p, text=_is_text_col(leaf)))
+                cells.append(styled_cell(value, text=_is_text_col(leaf)))
         body_rows.append("<tr>" + "".join(cells) + "</tr>")
 
-    for label, values in section.totals.items():
-        styles = section.total_styles.get(label, [])
-        pitch = section.total_pitch.get(label, 0.0)
-        cells = "".join(
-            styled_cell(pool, v, styles[c] if c < len(styles) else None, pitch)
-            for c, v in enumerate(values)
-        )
+    for _label, values in section.totals.items():
+        cells = "".join(styled_cell(v) for v in values)
         body_rows.append(f'<tr class="total">{cells}</tr>')
 
     title = (
@@ -162,13 +148,22 @@ def _sections_of(report: GenericTabularReport) -> list[TabularSection]:
     ]
 
 
+#: A generic report with more than this many columns is rendered in the dense
+#: (``compact``) layout so its cells do not overflow their narrow fixed columns
+#: and overlap - which would merge two adjacent values into a single token. This
+#: is a layout decision derived from the report's own structure (its column
+#: count), not stored presentation.
+_WIDE_COLUMN_THRESHOLD = 20
+
+
 def render_generic(report: GenericTabularReport) -> str:
     """Render a :class:`~sars.schema.GenericTabularReport` to a full HTML doc.
 
     Every table block in ``sections`` is printed in order; a report whose blocks
     have different column counts (district performance) therefore keeps them all.
     """
-    pool = TemplatePool(orientation_for(report.meta))
+    sections = _sections_of(report)
+    widest = max((len(sec.column_headers) for sec in sections), default=0)
     body = banner_html(report.meta)
-    body += "".join(_section_table(sec, pool) for sec in _sections_of(report))
-    return document_html(report.meta, body, pool=pool)
+    body += "".join(_section_table(sec) for sec in sections)
+    return document_html(report.meta, body, compact=widest > _WIDE_COLUMN_THRESHOLD)

@@ -438,28 +438,54 @@ def test_every_document_round_trips_through_json():
         assert schema.to_json(restored) == text, pair.name
 
 
-def test_competency_colour_is_not_fabricated_into_data_fields():
-    """The deterministic competency colour is never written into a data field.
+def test_competency_colour_is_not_stored_as_data():
+    """DATA IS DATA, NOT STYLES: the competency colour is never stored.
 
-    The templated path now carries the *recovered* per-cell presentation (font,
-    colour and the real cell background fill) in a ``CellStyle`` carrier, so a
-    hex colour recovered from the PDF legitimately appears under ``styles`` -
-    that is the whole point of the visual-fidelity work, and the recovered fill
-    takes precedence over :func:`sars.competency.background_for`. What must never
-    happen is the *derived* competency colour being fabricated into a plain data
-    field (``competency``, ``gpa`` ...); the label and GPA stay text, and the
-    colour only ever lives in the recovered style carrier.
+    The competency band colour is a deterministic function of the label / GPA
+    (:mod:`sars.competency`) computed by the template at render time, so it must
+    never be written into the extracted data. The label and GPA stay plain text;
+    no hex colour appears in any data field.
     """
     report = _report_for("MWANZA CC SCHOOLS RANK")
 
-    # The recovered competency fill is carried in the style carrier, not lost.
-    comp_leaf = report.column_headers.index("COMPETENCY LEVEL")
-    fills = {
-        row.styles[str(comp_leaf)].background for row in report.rows if str(comp_leaf) in row.styles
-    }
-    assert any(f for f in fills), "recovered competency fill should be carried in styles"
-
-    # No hex colour is written into a data (text) field of any row.
+    # Competency is carried as a plain text label, never as a colour.
+    labels = {row.competency for row in report.rows if row.competency}
+    assert labels, "competency labels should be captured as data"
     for row in report.rows:
         for value in (row.competency, row.gpa, row.school_name, row.ownership):
             assert "#" not in value
+
+
+def test_extracted_data_carries_no_presentation_fields():
+    """The data schema and JSON carry only DATA + STRUCTURE, no presentation.
+
+    No font family / size / weight, text colour, background fill, alignment or
+    row pitch is stored anywhere - those belong to each report type's own
+    self-contained template, not to the data.
+    """
+    import json
+    from dataclasses import fields, is_dataclass
+
+    from sars import schema
+
+    # (1) No schema dataclass declares a presentation field, and CellStyle is
+    #     gone entirely.
+    assert not hasattr(schema, "CellStyle")
+    banned = {"styles", "pitch", "total_styles", "total_pitch"}
+    schema_classes = [
+        getattr(schema, name)
+        for name in dir(schema)
+        if is_dataclass(getattr(schema, name, None))
+    ]
+    for cls in schema_classes:
+        names = {f.name for f in fields(cls)}
+        assert not (names & banned), (cls.__name__, names & banned)
+
+    # (2) The serialised JSON of a report carries none of the style keys.
+    report = _report_for("MWANZA CC SCHOOLS RANK")
+    text = schema.to_json(report)
+    payload = json.loads(text)
+    for key in ("background", "size_pt", "family", "pitch", "styles", "total_styles",
+                "total_pitch"):
+        assert key not in text, key
+    assert set(payload) >= {"meta", "rows", "totals"}

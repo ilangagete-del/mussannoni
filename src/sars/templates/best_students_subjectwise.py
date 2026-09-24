@@ -29,13 +29,11 @@ from __future__ import annotations
 
 from ..schema import BestStudentsReport, BestStudentsSection, StudentRow
 from .base import (
-    TemplatePool,
     banner_html,
     cell,
     competency_cell,
     document_html,
     esc,
-    orientation_for,
 )
 
 #: Candidate columns, as ``(field, heading, left_aligned)``. A column is printed
@@ -67,7 +65,7 @@ def _present_columns(students: list[StudentRow]) -> tuple[tuple[str, str, bool],
     )
 
 
-def _section_html(section: BestStudentsSection, pool: TemplatePool) -> str:
+def _section_html(section: BestStudentsSection) -> str:
     if not section.students:
         return ""
     columns = _present_columns(section.students)
@@ -81,13 +79,11 @@ def _section_html(section: BestStudentsSection, pool: TemplatePool) -> str:
         cells: list[str] = []
         for field_name, _heading, left in columns:
             value = str(getattr(st, field_name, "") or "")
-            cs = st.styles.get(field_name) if st.styles else None
             if field_name == "competency":
-                # The recovered source fill wins; the deterministic colour from
-                # the label is only a fallback when no fill was recovered.
-                cells.append(competency_cell(value, pool=pool, style=cs, pitch=st.pitch))
+                # The competency colour is derived deterministically, never data.
+                cells.append(competency_cell(value))
             else:
-                cells.append(cell(value, text=left, pool=pool, style=cs, pitch=st.pitch))
+                cells.append(cell(value, text=left))
         rows.append("<tr>" + "".join(cells) + "</tr>")
 
     title = (
@@ -108,7 +104,6 @@ def _section_html(section: BestStudentsSection, pool: TemplatePool) -> str:
 
 def render_best_students_subjectwise(report: BestStudentsReport) -> str:
     """Render a subjectwise :class:`~sars.schema.BestStudentsReport` to HTML."""
-    pool = TemplatePool(orientation_for(report.meta))
     body = banner_html(report.meta)
-    body += "".join(_section_html(sec, pool) for sec in report.sections)
-    return document_html(report.meta, body, pool=pool)
+    body += "".join(_section_html(sec) for sec in report.sections)
+    return document_html(report.meta, body)

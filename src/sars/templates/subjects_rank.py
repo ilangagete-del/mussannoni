@@ -17,12 +17,10 @@ from __future__ import annotations
 
 from ..schema import SubjectsRankReport
 from .base import (
-    TemplatePool,
     banner_html,
     competency_cell,
     document_html,
     header_cell,
-    orientation_for,
     styled_cell,
 )
 
@@ -60,41 +58,24 @@ def _thead(labels: list[str]) -> str:
 def render_subjects_rank(report: SubjectsRankReport) -> str:
     """Render a :class:`~sars.schema.SubjectsRankReport` to a full HTML doc.
 
-    Every ``<td>`` carries the recovered font / colour / fill and row pitch keyed
-    by its physical column index (0=S/NO., 1=SUBJECT, 2-11=the grade / summary
-    columns, 12=GPA, 13=COMPETENCY, 14=RANK), so the report reproduces its own
-    styling cell-by-cell.
+    Rendered from pure data (no recovered per-cell styling); only the competency
+    band colour is derived deterministically from the data.
     """
-    pool = TemplatePool(orientation_for(report.meta))
     body_rows: list[str] = []
     for row in report.rows:
-        st = row.styles
-
-        def s(col: int, _st: dict = st) -> object:
-            return _st.get(str(col))
-
-        p = row.pitch
         cells = [
-            styled_cell(pool, row.sno, s(0), p),
-            styled_cell(pool, row.subject_name, s(1), p, text=True),
+            styled_cell(row.sno),
+            styled_cell(row.subject_name, text=True),
         ]
+        cells += [styled_cell(row.grades.get(g, "")) for g in _GRADE_COLS]
         cells += [
-            styled_cell(pool, row.grades.get(g, ""), s(2 + i), p)
-            for i, g in enumerate(_GRADE_COLS)
-        ]
-        cells += [
-            styled_cell(pool, row.gpa, s(12), p),
-            competency_cell(row.competency, row.gpa, pool=pool, style=s(13), pitch=p),
-            styled_cell(pool, row.rank, s(14), p),
+            styled_cell(row.gpa),
+            competency_cell(row.competency, row.gpa),
+            styled_cell(row.rank),
         ]
         body_rows.append("<tr>" + "".join(cells) + "</tr>")
-    for label, values in report.totals.items():
-        styles = report.total_styles.get(label, [])
-        pitch = report.total_pitch.get(label, 0.0)
-        cells = "".join(
-            styled_cell(pool, v, styles[c] if c < len(styles) else None, pitch)
-            for c, v in enumerate(values)
-        )
+    for _label, values in report.totals.items():
+        cells = "".join(styled_cell(v) for v in values)
         body_rows.append(f'<tr class="total">{cells}</tr>')
     table = (
         '<table class="tmpl">'
@@ -102,4 +83,4 @@ def render_subjects_rank(report: SubjectsRankReport) -> str:
         "<tbody>" + "".join(body_rows) + "</tbody>"
         "</table>"
     )
-    return document_html(report.meta, banner_html(report.meta) + table, compact=True, pool=pool)
+    return document_html(report.meta, banner_html(report.meta) + table, compact=True)
