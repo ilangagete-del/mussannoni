@@ -1,15 +1,12 @@
-"""Lossless pixel-by-pixel comparison of generated and reference PDFs.
+"""Lossless pixel-by-pixel *metrics* for generated vs reference PDFs.
 
-Unlike ``compare.py`` this tool does not create a lossy JPEG or resize either
-page.  It rasterises both pages with the same matrix, requires identical page
-pixel dimensions, reports exact and thresholded mismatch counts, and writes a
-PNG heatmap plus a PNG overlay for inspection.
-
-Diagnostics are written to ``output/compare/pixel/`` as
-``<name> - page N - diff.png`` (heatmap) and ``<name> - page N - overlay.png``
-(50/50 blend). The ``<name> - page N`` stem matches the side-by-side stems that
-``compare.py`` writes under ``output/compare/conversion/`` and
-``output/compare/template/``; only the subfolder disambiguates the kind.
+This is the NUMBERS tool: it rasterises both pages with the same matrix,
+requires identical page pixel dimensions, and reports exact / thresholded
+mismatch counts plus MAE / RMSE / PSNR. It does **not** write any image files -
+the single visual comparison per report (reference | template | diff) is written
+by ``tools/compare.py`` as ``output/compare/<name>.jpg`` and overwritten in
+place. Keeping the images in one place avoids the old pile-up of per-kind and
+per-page files.
 
 Usage::
 
@@ -17,11 +14,10 @@ Usage::
     python tools/pixel_diff.py "MWANZA CC SCHOOLS RANK" --template --zoom 4
     python tools/pixel_diff.py --all --template   # every report, page 1
 
-In ``--all`` batch mode the tool iterates every discovered report, prints one
+In ``--all`` batch mode the tool iterates every discovered report and prints one
 result line per report (exact% / visible% match, or ``DIMENSION MISMATCH: ...``
-when the generated page size differs from the reference), and writes the diff +
-overlay PNGs for every report whose dimensions match. Reports that still
-mismatch are listed explicitly, never silently skipped.
+when the generated page size differs from the reference). Reports that mismatch
+are listed explicitly, never silently skipped.
 """
 
 from __future__ import annotations
@@ -32,10 +28,9 @@ import sys
 from pathlib import Path
 
 import pymupdf
-from PIL import Image, ImageChops, ImageEnhance
+from PIL import Image, ImageChops
 
 ROOT = Path(__file__).resolve().parents[1]
-OUT = ROOT / "output" / "compare" / "pixel"
 
 
 def raster(pdf: Path, page_index: int, zoom: float) -> Image.Image:
@@ -87,23 +82,6 @@ def metrics(reference: Image.Image, generated: Image.Image) -> dict[str, float |
     }
 
 
-def save_diagnostics(reference: Image.Image, generated: Image.Image, stem: str) -> tuple[Path, Path]:
-    OUT.mkdir(parents=True, exist_ok=True)
-    raw = ImageChops.difference(reference, generated)
-    amplified = ImageEnhance.Contrast(raw).enhance(4.0)
-    heatmap = Image.new("RGB", raw.size, "white")
-    mask = amplified.convert("L")
-    red = Image.new("RGB", raw.size, "#ff0000")
-    heatmap.paste(red, mask=mask)
-    heatmap_path = OUT / f"{stem} - diff.png"
-    heatmap.save(heatmap_path, "PNG", optimize=True)
-
-    overlay = Image.blend(reference, generated, 0.5)
-    overlay_path = OUT / f"{stem} - overlay.png"
-    overlay.save(overlay_path, "PNG", optimize=True)
-    return heatmap_path, overlay_path
-
-
 def _discover():
     sys.path.insert(0, str(ROOT / "src"))
     from sars import sources
@@ -131,18 +109,17 @@ def select_pair(name: str, templated: bool) -> tuple[str, Path, Path]:
 
 
 def compare_one(name: str, reference_pdf: Path, generated_pdf: Path, page: int, zoom: float):
-    """Run a single-page comparison; returns (metrics, heatmap, overlay) or None on mismatch.
+    """Run a single-page metric comparison.
 
-    Raises DimensionMismatch (via return None + message) for callers to report.
+    Returns ``(metrics, ref_size, None)`` when sizes match, or
+    ``(None, ref_size, gen_size)`` on a dimension mismatch. Writes no images.
     """
     reference = raster(reference_pdf, page - 1, zoom)
     generated = raster(generated_pdf, page - 1, zoom)
     if reference.size != generated.size:
         return None, reference.size, generated.size
     result = metrics(reference, generated)
-    stem = f"{name} - page {page}"
-    heatmap, overlay = save_diagnostics(reference, generated, stem)
-    return result, (reference.width, reference.height), (heatmap, overlay)
+    return result, (reference.width, reference.height), None
 
 
 def run_all(templated: bool, page: int, zoom: float) -> int:
@@ -159,15 +136,14 @@ def run_all(templated: bool, page: int, zoom: float) -> int:
             failures += 1
             continue
         try:
-            result, ref_size, extra = compare_one(pair.name, pair.pdf, generated_pdf, page, zoom)
+            result, ref_size, gen_size = compare_one(pair.name, pair.pdf, generated_pdf, page, zoom)
         except ValueError as error:
             print(f"{pair.name}: {error}")
             mismatched.append(pair.name)
             failures += 1
             continue
         if result is None:
-            _ref, _gen = ref_size, extra
-            print(f"{pair.name}: DIMENSION MISMATCH: reference={_ref} generated={_gen}")
+            print(f"{pair.name}: DIMENSION MISMATCH: reference={ref_size} generated={gen_size}")
             mismatched.append(pair.name)
             continue
         if result["exact_mismatch"]:
@@ -182,7 +158,7 @@ def run_all(templated: bool, page: int, zoom: float) -> int:
     if mismatched:
         print(f"DIMENSION MISMATCH / missing ({len(mismatched)}): " + "; ".join(mismatched))
     else:
-        print("all reports matched dimensions; diff+overlay written for every report")
+        print("all reports matched dimensions")
     return 1 if failures else 0
 
 
@@ -212,8 +188,6 @@ def main() -> int:
             )
             return 2
         result = metrics(reference, generated)
-        stem = f"{name} - page {args.page}"
-        heatmap, overlay = save_diagnostics(reference, generated, stem)
     except (FileNotFoundError, ValueError) as error:
         print(error, file=sys.stderr)
         return 2
@@ -233,8 +207,6 @@ def main() -> int:
         f"MAE={result['mae']:.6f} RMSE={result['rmse']:.6f} "
         f"PSNR={result['psnr']:.3f}dB max_delta={result['max_delta']}"
     )
-    print(f"heatmap: {heatmap.relative_to(ROOT)}")
-    print(f"overlay: {overlay.relative_to(ROOT)}")
     return 0 if result["exact_mismatch"] == 0 else 1
 
 

@@ -1,36 +1,40 @@
-"""Render reference and generated PDFs side by side for visual inspection.
+"""One comparison image per report, overwritten in place each run.
+
+For every report this writes exactly ONE file, ``output/compare/<name>.jpg``,
+and overwrites it on each run - no per-page, per-kind, or diagnostic variants
+piling up. The single panel places three views of page 1 side by side, each
+labelled:
+
+    REFERENCE            |  TEMPLATE (from data)  |  DIFF
+    the original PDF        the data-driven          red = pixels that differ
+                            template output          (only when page sizes match)
+
+When the template page size matches the reference (the fixed-layout goal), the
+DIFF panel is a lossless red-on-white heatmap and the label carries the exact /
+visible pixel-match percentages. When sizes differ, the DIFF panel says so
+instead of drawing a meaningless overlay.
 
 Usage::
 
-    python tools/compare.py                      # page 1 of every document
-    python tools/compare.py "10 BEST SCHOOLS"    # page 1 of one document
-    python tools/compare.py "10 BEST SCHOOLS" 3  # page 3 of one document
-    python tools/compare.py --template           # compare the templated output
+    python tools/compare.py                       # every report, one image each
+    python tools/compare.py "SCHOOLS RANK"        # just the matching report(s)
+    python tools/compare.py --conversion          # right panel = conversion PDF
+    python tools/compare.py --page 3              # compare page 3 instead of 1
 
-Images land in per-kind subfolders of ``output/compare/`` so names never
-collide and every report has a predictable set of artefacts. The reference is
-always on the left and the generated output on the right, each labelled.
-
-By default the right-hand side is the **conversion** output (``output/pdf/``),
-which redraws a specific reference PDF; those side-by-sides are written to
-``output/compare/conversion/<name> - page N.jpg``. With ``--template`` it is the
-**templated** output (``output/template_pdf/``), rebuilt from data alone by
-``sars template``, written to ``output/compare/template/<name> - page N.jpg``.
-The ``<name> - page N`` stem is identical across both kinds; only the subfolder
-disambiguates. A template reflows, so expect its page breaks to differ from the
-reference - what matters there is that no value is missing.
-
-The companion ``tools/pixel_diff.py`` writes lossless pixel diagnostics to a
-third subfolder, ``output/compare/pixel/``.
+By default the middle/right panels use the **template** output
+(``output/template_pdf/``), rebuilt from data by ``sars template``. Pass
+``--conversion`` to compare the **conversion** output (``output/pdf/``) instead;
+the single per-report file name is unchanged, so it still overwrites in place.
 """
 
 from __future__ import annotations
 
+import argparse
 import sys
 from pathlib import Path
 
 import pymupdf
-from PIL import Image, ImageDraw
+from PIL import Image, ImageChops, ImageDraw, ImageEnhance
 
 ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / "output" / "compare"
@@ -43,7 +47,7 @@ GAP = 14
 def page_image(pdf: Path, index: int, zoom: float = ZOOM) -> Image.Image:
     doc = pymupdf.open(pdf)
     page = doc[min(index, doc.page_count - 1)]
-    pix = page.get_pixmap(matrix=pymupdf.Matrix(zoom, zoom))
+    pix = page.get_pixmap(matrix=pymupdf.Matrix(zoom, zoom), alpha=False, colorspace=pymupdf.csRGB)
     img = Image.frombytes("RGB", (pix.width, pix.height), pix.samples)
     doc.close()
     return img
@@ -58,23 +62,70 @@ def _labelled(img: Image.Image, label: str) -> Image.Image:
     return canvas
 
 
-def side_by_side(
-    reference: Path,
-    generated: Path,
-    index: int,
-    stem: str,
-    subdir: str,
-    right_label: str = "GENERATED A4",
-) -> Path:
-    left = _labelled(page_image(reference, index), f"REFERENCE  -  {reference.name}")
-    right = _labelled(page_image(generated, index), f"{right_label}  -  {generated.name}")
-    height = max(left.height, right.height)
-    canvas = Image.new("RGB", (left.width + right.width + GAP, height), "#9aa5b1")
-    canvas.paste(left, (0, 0))
-    canvas.paste(right, (left.width + GAP, 0))
-    out_dir = OUT / subdir
-    out_dir.mkdir(parents=True, exist_ok=True)
-    target = out_dir / f"{stem} - page {index + 1}.jpg"
+def _pixel_stats(reference: Image.Image, generated: Image.Image) -> tuple[float, float]:
+    """Return (exact%, visible%) pixel-match percentages for equal-size images."""
+    ref = reference.load()
+    gen = generated.load()
+    exact_diff = 0
+    visible_diff = 0
+    for y in range(reference.height):
+        for x in range(reference.width):
+            delta = max(abs(a - b) for a, b in zip(ref[x, y], gen[x, y], strict=True))
+            if delta:
+                exact_diff += 1
+            if delta > 8:
+                visible_diff += 1
+    total = reference.width * reference.height
+    return 100 * (total - exact_diff) / total, 100 * (total - visible_diff) / total
+
+
+def _diff_panel(reference: Image.Image, generated: Image.Image) -> tuple[Image.Image, str]:
+    """Build the DIFF panel and its label.
+
+    Equal sizes -> lossless red-on-white heatmap + pixel-match label.
+    Different sizes -> a plain notice panel (no misleading overlay).
+    """
+    if reference.size == generated.size:
+        exact_pct, visible_pct = _pixel_stats(reference, generated)
+        raw = ImageChops.difference(reference, generated)
+        mask = ImageEnhance.Contrast(raw).enhance(4.0).convert("L")
+        heatmap = Image.new("RGB", raw.size, "#ffffff")
+        heatmap.paste(Image.new("RGB", raw.size, "#ff0000"), mask=mask)
+        return heatmap, f"DIFF  -  exact {exact_pct:.1f}% / visible {visible_pct:.1f}%"
+
+    panel = Image.new("RGB", reference.size, "#ffffff")
+    draw = ImageDraw.Draw(panel)
+    draw.text(
+        (10, 10),
+        "PAGE SIZE DIFFERS\n"
+        f"reference {reference.width}x{reference.height}\n"
+        f"generated {generated.width}x{generated.height}\n"
+        "(no pixel diff possible)",
+        fill="#b91c1c",
+    )
+    return panel, "DIFF  -  size mismatch"
+
+
+def compare_one(reference: Path, generated: Path, index: int, right_label: str) -> Path:
+    """Write the single ``output/compare/<name>.jpg`` panel for one report."""
+    ref_img = page_image(reference, index)
+    gen_img = page_image(generated, index)
+    diff_img, diff_label = _diff_panel(ref_img, gen_img)
+
+    left = _labelled(ref_img, f"REFERENCE  -  {reference.name}")
+    middle = _labelled(gen_img, right_label)
+    right = _labelled(diff_img, diff_label)
+
+    height = max(left.height, middle.height, right.height)
+    width = left.width + middle.width + right.width + 2 * GAP
+    canvas = Image.new("RGB", (width, height), "#9aa5b1")
+    x = 0
+    for panel in (left, middle, right):
+        canvas.paste(panel, (x, 0))
+        x += panel.width + GAP
+
+    OUT.mkdir(parents=True, exist_ok=True)
+    target = OUT / f"{reference.stem}.jpg"  # ONE file per report, overwritten in place.
     canvas.save(target, "JPEG", quality=82, optimize=True)
     return target
 
@@ -87,35 +138,41 @@ def _pairs():
 
 
 def main() -> int:
-    args = [a for a in sys.argv[1:] if not a.startswith("--")]
-    templated = "--template" in sys.argv
-    needle = args[0] if args else None
-    page = int(args[1]) - 1 if len(args) > 1 else 0
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("name", nargs="?", help="report name (substring); omit for all")
+    parser.add_argument(
+        "--conversion",
+        action="store_true",
+        help="compare the conversion output (output/pdf) instead of the template output",
+    )
+    parser.add_argument("--page", type=int, default=1, help="1-based page to compare (default 1)")
+    args = parser.parse_args()
 
-    if templated:
-        source_dir = ROOT / "output" / "template_pdf"
-        subdir, right_label, rebuild = "template", "FROM DATA (template)", "sars template"
-    else:
+    if args.conversion:
         source_dir = ROOT / "output" / "pdf"
-        subdir, right_label, rebuild = "conversion", "GENERATED A4", "sars all"
+        right_label, rebuild = "CONVERSION", "sars all"
+    else:
+        source_dir = ROOT / "output" / "template_pdf"
+        right_label, rebuild = "TEMPLATE (from data)", "sars template"
 
     pairs = _pairs()
-    if needle:
-        pairs = [p for p in pairs if needle.lower() in p.name.lower()]
+    if args.name:
+        pairs = [p for p in pairs if args.name.lower() in p.name.lower()]
         if not pairs:
-            print(f"no document matches {needle!r}", file=sys.stderr)
+            print(f"no document matches {args.name!r}", file=sys.stderr)
             return 1
 
-    for pair in pairs:
+    index = args.page - 1
+    exit_code = 0
+    for pair in sorted(pairs, key=lambda p: p.name.casefold()):
         generated = source_dir / f"{pair.name}.pdf"
         if not generated.exists():
             print(f"skip {pair.name}: no PDF (run `{rebuild}`)", file=sys.stderr)
+            exit_code = 1
             continue
-        target = side_by_side(
-            pair.pdf, generated, page, pair.name, subdir, right_label=right_label
-        )
+        target = compare_one(pair.pdf, generated, index, right_label)
         print(target.relative_to(OUT))
-    return 0
+    return exit_code
 
 
 if __name__ == "__main__":
