@@ -36,7 +36,10 @@ ROOT = Path(__file__).resolve().parents[1]
 def raster(pdf: Path, page_index: int, zoom: float) -> Image.Image:
     with pymupdf.open(pdf) as document:
         if page_index < 0 or page_index >= document.page_count:
-            raise ValueError(f"{pdf.name} has {document.page_count} pages; page {page_index + 1} is invalid")
+            raise ValueError(
+                f"{pdf.name} has {document.page_count} pages; "
+                f"page {page_index + 1} is invalid"
+            )
         pixmap = document[page_index].get_pixmap(
             matrix=pymupdf.Matrix(zoom, zoom), alpha=False, colorspace=pymupdf.csRGB
         )
@@ -57,7 +60,10 @@ def metrics(reference: Image.Image, generated: Image.Image) -> dict[str, float |
     max_delta = 0
     for y in range(reference.height):
         for x in range(reference.width):
-            deltas = tuple(abs(a - b) for a, b in zip(ref_pixels[x, y], out_pixels[x, y], strict=True))
+            deltas = tuple(
+                abs(a - b)
+                for a, b in zip(ref_pixels[x, y], out_pixels[x, y], strict=True)
+            )
             delta = max(deltas)
             if delta:
                 exact_mismatch += 1

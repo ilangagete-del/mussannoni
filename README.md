@@ -101,15 +101,25 @@ longer fit, which silently lost ~17% of the data on the densest report. The
 rule width is deducted from each line box because a CSS border sits outside it,
 which keeps the row pitch identical to the PDF.
 
-## Page orientation
+## Page size and orientation
 
-Source page boxes are US-Letter (`792×612 pt` landscape, `612×792 pt` portrait);
-output is normalised to A4 in the matching orientation.
+Source page boxes are US-Letter (`792×612 pt` landscape, `612×792 pt` portrait).
+
+| Path | Page box |
+|---|---|
+| conversion (`sars all`) | normalised to **A4** in the matching orientation |
+| templated (`sars template`) | the reference's **own US-Letter box**, verbatim |
+
+The templated path deliberately does *not* resize: a page scaled from Letter to A4
+can never be pixel-identical to the reference, and the gate hard-fails on a page
+size difference for that reason. Each report's layout spec carries the page box it
+recovered, and the document declares it (`@page{size:792pt 612pt}`), so portrait
+reports stay `612×792` and landscape ones `792×612`.
 
 | Orientation | Documents |
 |---|---|
-| **A4 portrait** | `MWANZA CC SCHOOLS RANK SUBJECTWISE`, `Mwanza School Rank-EDK`, `Mwanza School Rank-English Language`, `Mwanza f2 Mock Mobility 2026` |
-| **A4 landscape** | all 15 others |
+| **portrait** | `MWANZA CC SCHOOLS RANK SUBJECTWISE`, `Mwanza School Rank-EDK`, `Mwanza School Rank-English Language`, `Mwanza f2 Mock Mobility 2026` |
+| **landscape** | all 15 others |
 
 ## Layout
 
@@ -125,12 +135,28 @@ src/sars/             conversion package
   render.py           WeasyPrint -> A4 PDF
   verify.py           fidelity check against reference PDFs
   cli.py              command line entry point
-tests/                unit tests + end-to-end fidelity test
+  fonts.py            the reference faces: families, advances, baseline offsets
+  binding.py          which data field a recovered column carries
+  layout.py           fixed-layout drawing mechanism (boxes and baselines)
+  layout_spec.py      render a report from its recovered spec + data
+  printing.py         print HTML with WeasyPrint or Chromium
+  templates/layouts/  ONE recovered layout spec per report (.json.gz)
+tests/                unit tests, end-to-end fidelity test, the gate (`-m slow`)
 tools/probe.py        read-only PDF diagnostic
-tools/compare.py      side-by-side reference/output page images
+tools/compare.py      one REFERENCE | TEMPLATE | DIFF image per report
+tools/fidelity_gate.py   THE acceptance gate: per-page pixel identity, all reports
+tools/fidelity_report.py honest per-report table -> docs/FIDELITY_REPORT.md
+tools/build_fonts.py     derive the reference faces from the reference PDFs
+tools/build_layout_specs.py  recover each report's chrome into its layout spec
+tools/drift.py           glyph- and rectangle-level differences vs the reference
+tools/replay.py          oracle replay: the ceiling this toolchain can reach
+tools/engine_bakeoff.py  WeasyPrint vs Chromium, per report, measured
+assets/fonts/         derived font assets + manifest (build output, not committed)
+assets/engine_choice.json  the measured print engine per report
 output/html/          generated self-contained clean HTML (styles inlined per file)
 output/pdf/           generated A4 PDFs
-output/compare/       visual comparison images (conversion/ template/ pixel/)
+output/compare/       one visual comparison image per report
+output/fidelity/      gate results as JSON (baseline and current)
 ```
 
 ## Setup
@@ -138,10 +164,20 @@ output/compare/       visual comparison images (conversion/ template/ pixel/)
 ```bash
 python -m venv .venv && . .venv/bin/activate
 pip install -e .
+python tools/build_fonts.py          # REQUIRED: derive + install the reference faces
 ```
 
 Requires Python ≥ 3.11. WeasyPrint needs the system Pango / Cairo / HarfBuzz
 libraries, which are present in this environment.
+
+`tools/build_fonts.py` is not optional. The reference documents are rendered in
+Arial / Times New Roman / Arial Narrow / Calibri; the region files embed those
+faces and the council files rely on the reader substituting URW Nimbus with the
+PDF's own `/Widths`. The tool reproduces both cases out of the committed
+`sars.zip` and installs the result where fontconfig (and therefore WeasyPrint)
+finds it. Without it every report prints in whatever the system happens to have —
+which is how an earlier round of this work ended up 38–90% wrong while reporting
+success. See `docs/FIDELITY_NOTES.md`.
 
 ## Usage
 
@@ -172,12 +208,29 @@ Inspect or eyeball a document:
 ```bash
 python tools/probe.py "10 BEST SCHOOLS"      # grid, fonts, fill colours
 python tools/compare.py "10 BEST SCHOOLS" 1  # reference | output, page 1
-pytest -q                                    # unit + fidelity tests
+pytest -q -m "not slow"                      # unit + conversion fidelity tests
+pytest -q -m slow                            # THE gate: per-page pixel identity
 ```
 
-## Result
+## The only acceptance criterion: `tools/fidelity_gate.py`
 
-All 19 documents reproduce their reference PDF exactly:
+Text similarity, page size and page count are **diagnostics**. The one criterion
+that decides whether a report is reproduced is per-page pixel identity against
+its reference PDF, measured by `tools/fidelity_gate.py`, which rasterises every
+page of every report and exits non-zero unless all of them are a 100% visible
+match. `pytest -m slow` runs it, so the suite cannot be green while any report is
+imperfect.
+
+Current honest state — **PASS 0/19, worst page 90.93% visible** (from 38.86% at
+the start of this work; every report improved by 9.8 to 56.2 points). The full
+per-report table is `docs/FIDELITY_REPORT.md`; what the remaining error is made
+of, and the ceiling this toolchain can reach, is documented with measurements in
+`docs/FIDELITY_NOTES.md`. Nothing here should be described as finished until the
+gate exits 0.
+
+## Result of the conversion path
+
+All 19 documents reproduce their reference PDF's *content* exactly:
 
 ```
 summary  19/19 documents pass; mean text similarity 100.00%
@@ -210,7 +263,7 @@ handed only **data**, so a report can be regenerated — or generated for the
 first time, from a database — without any source PDF.
 
 ```
-data (JSON / dataclass)  ->  template  ->  HTML  ->  [WeasyPrint]  ->  PDF
+data (JSON / dataclass)  ->  template  ->  HTML  ->  [WeasyPrint | Chromium]  ->  PDF
 ```
 
 ## What is data and what is chrome
@@ -221,18 +274,40 @@ rank and competency label. Chrome is only the fixed furniture: the ministry
 masthead, the column headings, and the `TOTAL` / `% PASS` row *labels* — the
 numbers on those rows are still data.
 
-Each template is **fully self-contained**: it owns its own structure and its own
-complete inline `<style>` and reproduces its report type's reference PDF
-faithfully (fonts, sizes, row heights, the per-column fill washes, rotated rank
-labels). There is no shared `DOC_CSS` / `TEMPLATE_CSS` constant funnelling every
-report through one look and no cross-report CSS harmonisation — a template's
-output is a standalone document with no external stylesheet link. Report types
-may duplicate small bits of CSS/structure rather than share a common blob; the
-only rendering *mechanics* reused (a per-document style accumulator, the
-rotate(-90°) span, the word-boundary wrap safeguards) live in
-`sars.templates.styling` and emit into each report's own inline style. The one
-data-derived colour, the competency band, is computed deterministically from the
-label / GPA (`sars.competency`) and is **never stored** in the data.
+Each report's chrome is **recovered from its own reference PDF** into its own
+layout spec (`src/sars/templates/layouts/<report>.json.gz`, built by
+`tools/build_layout_specs.py`): its page box, every rectangle it paints in the
+order it paints them, every fixed caption at the exact origin the reference draws
+it, and per band the column boxes, row pitch, fills, fonts, sizes, alignment and
+baseline offsets. A report's renderer (`src/sars/templates/<report family>.py`)
+then supplies nothing but the data.
+
+So each report remains **fully self-contained and independent**: its own spec, its
+own page geometry, its own palette, its own fonts, and its own inline `<style>`
+listing exactly the faces, sizes and colours *that* document uses. No report
+shares a stylesheet, a structure or a look with another; what is shared is
+mechanism only — `sars.layout` (place a box, put a baseline at a y),
+`sars.layout_spec` (walk a spec, ask for data), `sars.fonts` (the reference faces
+and their advances). The one data-derived colour, the competency band, is
+computed deterministically from the label / GPA (`sars.competency`) and is
+**never stored** in the data; for the rows the reference itself drew, the
+recovered wash wins, because a few documents tint a band differently and the
+reference is the authority on its own page.
+
+Which column carries which data field is **also recovered** rather than
+hand-written: `tools/build_layout_specs.py` flattens the extracted data, matches
+it against the text the reference actually printed in each column, and stores the
+winning field path in the spec (`sars.binding`).
+
+## Two print engines, and the reference picks
+
+`sars.printing` can print any report's HTML with **WeasyPrint** or **Chromium**
+(headless print-to-PDF). `tools/engine_bakeoff.py` renders every report with both,
+gates both against the reference and records the winner in
+`assets/engine_choice.json`, which the pipeline then honours. Measured here,
+WeasyPrint wins all 19 by 3–20 points; Chromium quantises text positions on its
+own grid. The choice is a measurement, so it can be re-run whenever either
+engine changes.
 
 ## Template-maker API
 
@@ -322,24 +397,31 @@ a band differently; those variants are recorded in
 `sars.competency.KNOWN_VARIANTS`, and the *conversion* path always prefers the
 colour it actually recovered from the PDF, so no report regresses.
 
-## Elastic structure
+## Fixed structure, elastic row count
 
-Templated tables lay out in normal flow rather than at absolute coordinates, so
-a long value wraps inside its ruled cell and the row grows to fit. Wrapping is
-at word boundaries only (`word-break:keep-all`): breaking mid-word would split
-one value into two tokens and register as a fidelity loss.
+Templated tables are drawn at the coordinates the reference used — a cell box, a
+baseline, a run placed with the reference font's own advance widths — rather than
+reflowed by the CSS table algorithm, which rounds column widths and resolves row
+heights from content and so cannot land on the reference's lattice.
+
+What stays elastic is the row *count*: a band repeats at its recovered row pitch,
+so data longer or shorter than the reference still paints correctly (with the
+competency wash then derived from the value rather than replayed). For the rows
+the reference itself had, its own row edges are used verbatim, because real row
+heights vary by hundredths of a point.
 
 ## Measuring the templated path
 
-A template *reflows* — it is handed data and chooses its own page breaks — so it
-cannot be expected to reproduce the reference's rows-per-page split, and for
-fresh data there is no reference split to reproduce. The meaningful test is that
-no value is lost:
+Pixels decide (`tools/fidelity_gate.py`, above). These are the diagnostics that
+say *what* is wrong when they do not agree:
 
 ```bash
+python tools/drift.py "<name>"            # per-glyph and per-rectangle differences
+python tools/replay.py --only "<name>"    # the ceiling: replay the reference's own runs
+python tools/pixel_diff.py "<name>" --template   # MAE / RMSE / PSNR for one page
 python tools/template_audit.py            # per-document content completeness
 python tools/template_missing.py "<name>" # which tokens differ, and why
-python tools/compare.py --template        # reference | templated output, side by side
+python tools/compare.py                   # reference | template | diff, one image each
 ```
 
 ## Every document has output
@@ -363,24 +445,28 @@ pixel-match percentages (or a "size mismatch" notice when page sizes differ).
 `tools/pixel_diff.py` prints the detailed numeric metrics (MAE/RMSE/PSNR, exact
 and visible match) and writes no image files.
 
-`template_audit.py` reports `lost_kinds` — values present in the reference and
-absent from the templated output. Current state across the 19 documents:
-
-```
-no value lost 6/19; mean document similarity 97.39%
-```
-
 The conversion path is unaffected and still reports `19/19 documents pass; mean
 text similarity 100.00%`.
 
-Known remaining gaps in the templated path, all in *chrome* rather than figures:
-the top-ten reports do not yet carry their per-block headings (`OVERALL` /
-`PRIVATE` / `GOVERNMENT`) into the data, and a few generic-family reports
-(district performance, wards rank, mock mobility) reproduce their own structure,
-fonts, heights and competency band faithfully but do not repaint every bespoke
-per-cell tint that the reference draws on specific fail / positive-mobility
-cells — those tints are highly per-cell and not derivable from pure data, so
-they are left as the report type's neutral rules rather than stored in the data.
+### Known remaining gaps in the templated path
+
+Measured, per report, in `docs/FIDELITY_REPORT.md`. In summary:
+
+- **Nothing is at 100% yet**, so the gate fails and the work is IN PROGRESS by
+  the definition in `docs/FIDELITY_SPEC.md` §10. The worst page across all 19 is
+  90.93% visible; nine reports are at or above 98%.
+- Geometry and colour are already exact where the rebuild landed: e.g.
+  `MWANZA CC SCHOOLS RANK` reproduces 762/762 of the reference's rectangles
+  identically, `MWANZA CC Wards Rank` 337/337.
+- The bulk of the residual is sub-pixel glyph-edge antialiasing: the oracle replay
+  in `tools/replay.py`, which places the reference's own glyphs at the
+  reference's own origins, itself tops out at 99.95% visible on a page — that is
+  this toolchain's ceiling, and it is documented with measurements in
+  `docs/FIDELITY_NOTES.md` §4.
+- `S1051-MKOLANI SECONDARY SCHOOL` (90.93%) and `MWANZA CC 10 BEST STUDENTS`
+  (93.83%) still have bands whose recovered data binding is partly wrong — a
+  handful of values land in the wrong row group and a few are missing. These two
+  need the one-report-at-a-time treatment `docs/FIDELITY_SPEC.md` §8 prescribes.
 
 ## Note on duplicate input
 

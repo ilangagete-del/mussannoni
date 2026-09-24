@@ -1,0 +1,287 @@
+{
+ "MWANZA CC 10 BEST SCHOOLS": {
+  "engine": "weasyprint",
+  "measured": {
+   "chromium": {
+    "pages": 3,
+    "worst_exact_pct": 75.762,
+    "worst_visible_pct": 89.9145
+   },
+   "weasyprint": {
+    "pages": 3,
+    "worst_exact_pct": 81.0044,
+    "worst_visible_pct": 98.2174
+   }
+  }
+ },
+ "MWANZA CC 10 BEST STUDENTS": {
+  "engine": "weasyprint",
+  "measured": {
+   "chromium": {
+    "pages": 5,
+    "worst_exact_pct": 81.2059,
+    "worst_visible_pct": 84.7578
+   },
+   "weasyprint": {
+    "pages": 5,
+    "worst_exact_pct": 90.2064,
+    "worst_visible_pct": 94.182
+   }
+  }
+ },
+ "MWANZA CC 10 BEST STUDENTS SUBJECTWISE": {
+  "engine": "weasyprint",
+  "measured": {
+   "chromium": {
+    "pages": 30,
+    "worst_exact_pct": 90.9506,
+    "worst_visible_pct": 94.7019
+   },
+   "weasyprint": {
+    "pages": 30,
+    "worst_exact_pct": 93.223,
+    "worst_visible_pct": 97.4
+   }
+  }
+ },
+ "MWANZA CC SCHOOLS RANK": {
+  "engine": "weasyprint",
+  "measured": {
+   "chromium": {
+    "pages": 1,
+    "worst_exact_pct": 53.8414,
+    "worst_visible_pct": 78.0404
+   },
+   "weasyprint": {
+    "pages": 1,
+    "worst_exact_pct": 62.4145,
+    "worst_visible_pct": 91.7999
+   }
+  }
+ },
+ "MWANZA CC SCHOOLS RANK SUBJECTWISE": {
+  "engine": "weasyprint",
+  "measured": {
+   "chromium": {
+    "pages": 24,
+    "worst_exact_pct": 64.1372,
+    "worst_visible_pct": 83.5548
+   },
+   "weasyprint": {
+    "pages": 24,
+    "worst_exact_pct": 71.4033,
+    "worst_visible_pct": 94.1408
+   }
+  }
+ },
+ "MWANZA CC SUBJECTS RANK": {
+  "engine": "weasyprint",
+  "measured": {
+   "chromium": {
+    "pages": 2,
+    "worst_exact_pct": 69.9266,
+    "worst_visible_pct": 89.8397
+   },
+   "weasyprint": {
+    "pages": 2,
+    "worst_exact_pct": 75.5721,
+    "worst_visible_pct": 97.5835
+   }
+  }
+ },
+ "MWANZA CC Wards Rank": {
+  "engine": "weasyprint",
+  "measured": {
+   "chromium": {
+    "pages": 1,
+    "worst_exact_pct": 72.1092,
+    "worst_visible_pct": 89.6603
+   },
+   "weasyprint": {
+    "pages": 1,
+    "worst_exact_pct": 78.2696,
+    "worst_visible_pct": 97.9987
+   }
+  }
+ },
+ "Mwanza Best Students-Overall": {
+  "engine": "weasyprint",
+  "measured": {
+   "chromium": {
+    "pages": 9,
+    "worst_exact_pct": 90.2453,
+    "worst_visible_pct": 92.7675
+   },
+   "weasyprint": {
+    "pages": 9,
+    "worst_exact_pct": 97.2393,
+    "worst_visible_pct": 97.4681
+   }
+  }
+ },
+ "Mwanza Best students-Subjectwise": {
+  "engine": "weasyprint",
+  "measured": {
+   "chromium": {
+    "pages": 23,
+    "worst_exact_pct": 90.3855,
+    "worst_visible_pct": 93.9528
+   },
+   "weasyprint": {
+    "pages": 23,
+    "worst_exact_pct": 95.3449,
+    "worst_visible_pct": 97.0253
+   }
+  }
+ },
+ "Mwanza Overall Subjects Performance": {
+  "engine": "weasyprint",
+  "measured": {
+   "chromium": {
+    "pages": 2,
+    "worst_exact_pct": 75.1853,
+    "worst_visible_pct": 89.6524
+   },
+   "weasyprint": {
+    "pages": 2,
+    "worst_exact_pct": 92.5183,
+    "worst_visible_pct": 96.172
+   }
+  }
+ },
+ "Mwanza School Rank-EDK": {
+  "engine": "weasyprint",
+  "measured": {
+   "chromium": {
+    "pages": 1,
+    "worst_exact_pct": 88.405,
+    "worst_visible_pct": 92.1705
+   },
+   "weasyprint": {
+    "pages": 1,
+    "worst_exact_pct": 97.7097,
+    "worst_visible_pct": 97.932
+   }
+  }
+ },
+ "Mwanza School Rank-English Language": {
+  "engine": "weasyprint",
+  "measured": {
+   "chromium": {
+    "pages": 6,
+    "worst_exact_pct": 75.7698,
+    "worst_visible_pct": 79.9179
+   },
+   "weasyprint": {
+    "pages": 6,
+    "worst_exact_pct": 92.2824,
+    "worst_visible_pct": 92.9426
+   }
+  }
+ },
+ "Mwanza Schools Rank For Governments": {
+  "engine": "weasyprint",
+  "measured": {
+   "chromium": {
+    "pages": 4,
+    "worst_exact_pct": 59.4066,
+    "worst_visible_pct": 73.0217
+   },
+   "weasyprint": {
+    "pages": 4,
+    "worst_exact_pct": 90.9032,
+    "worst_visible_pct": 93.0822
+   }
+  }
+ },
+ "Mwanza Schools Rank For Governments (1)": {
+  "engine": "weasyprint",
+  "measured": {
+   "chromium": {
+    "pages": 4,
+    "worst_exact_pct": 59.4066,
+    "worst_visible_pct": 73.0217
+   },
+   "weasyprint": {
+    "pages": 4,
+    "worst_exact_pct": 90.9032,
+    "worst_visible_pct": 93.0822
+   }
+  }
+ },
+ "Mwanza Top 10 Schools": {
+  "engine": "weasyprint",
+  "measured": {
+   "chromium": {
+    "pages": 6,
+    "worst_exact_pct": 90.2569,
+    "worst_visible_pct": 95.0328
+   },
+   "weasyprint": {
+    "pages": 6,
+    "worst_exact_pct": 97.1889,
+    "worst_visible_pct": 98.1215
+   }
+  }
+ },
+ "Mwanza f2 District Performance": {
+  "engine": "weasyprint",
+  "measured": {
+   "chromium": {
+    "pages": 5,
+    "worst_exact_pct": 89.0996,
+    "worst_visible_pct": 95.5385
+   },
+   "weasyprint": {
+    "pages": 5,
+    "worst_exact_pct": 98.35,
+    "worst_visible_pct": 98.5572
+   }
+  }
+ },
+ "Mwanza f2 Mock Mobility 2026": {
+  "engine": "weasyprint",
+  "measured": {
+   "chromium": {
+    "pages": 6,
+    "worst_exact_pct": 67.787,
+    "worst_visible_pct": 81.1358
+   },
+   "weasyprint": {
+    "pages": 6,
+    "worst_exact_pct": 85.0011,
+    "worst_visible_pct": 91.2799
+   }
+  }
+ },
+ "Mwanza schools rank Overall": {
+  "engine": "weasyprint",
+  "measured": {
+   "chromium": {
+    "pages": 6,
+    "worst_exact_pct": 60.1878,
+    "worst_visible_pct": 74.2449
+   },
+   "weasyprint": {
+    "pages": 6,
+    "worst_exact_pct": 90.0035,
+    "worst_visible_pct": 90.811
+   }
+  }
+ },
+ "S1051-MKOLANI SECONDARY SCHOOL": {
+  "engine": "weasyprint",
+  "measured": {
+   "chromium": {
+    "pages": 13,
+    "worst_exact_pct": 59.0929,
+    "worst_visible_pct": 77.9279
+   },
+   "weasyprint": {
+    "pages": 13,
+    "worst_exact_pct": 69.21,
+    "worst_visible_pct": 91.5699
+   }
+  }
+ }
+}

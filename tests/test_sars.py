@@ -539,21 +539,44 @@ def test_template_output_is_self_contained():
         assert page_rule in html
 
 
-def test_schools_rank_paints_its_own_fill_washes_and_competency_band():
-    """The report type's fixed fill washes and the DERIVED competency-band colour
-    appear in the output, painted by the template (not read from data)."""
+def test_schools_rank_paints_every_wash_its_reference_paints():
+    """Every fill colour the reference PDF paints must appear in the output.
+
+    Stronger than checking a hand-typed palette: the expected colours are read
+    out of the reference document itself, so a wash cannot drift (the previous
+    hand-typed list had ``#daeef4`` where the reference actually paints
+    ``#daeef3``, and four more like it).
+    """
+    import pymupdf
+
     from sars import template_maker
 
+    pair = next(p for p in sources.discover() if p.name == "MWANZA CC SCHOOLS RANK")
+    with pymupdf.open(pair.pdf) as document:
+        expected = set()
+        for drawing in document[0].get_drawings():
+            if drawing["type"] not in ("f", "fs") or drawing.get("fill") is None:
+                continue
+            expected.add(
+                "#" + "".join(f"{round(max(0.0, min(1.0, c)) * 255):02x}" for c in drawing["fill"])
+            )
+
     html = template_maker.render_html("schools_rank", _report_for("MWANZA CC SCHOOLS RANK"))
-    # This report type's own recovered division / candidate / zero / I-III /
-    # GPA / rank fill washes, painted by the fixed-layout template (keyed to the
-    # column group, not read from the data).
-    for wash in ("#daeef4", "#ffffcc", "#fceada", "#da9694", "#fabe90",
-                 "#d3fce6", "#65ffac", "#d2fce6", "#ebf1df", "#fde9d9"):
-        assert wash in html, wash
-    # The competency band colour is computed deterministically (Grade C -> yellow
-    # is present in this council report), never stored in the data.
-    assert "#ffff00" in html or "#00b050" in html or "#00b151" in html
+    missing = sorted(wash for wash in expected if wash not in html)
+    assert not missing, f"washes the reference paints but the template does not: {missing}"
+
+
+def test_competency_band_colour_is_derived_from_the_value():
+    """The competency wash is computed from the label, never replayed from the PDF."""
+    from sars import template_maker
+
+    report = _report_for("MWANZA CC SCHOOLS RANK")
+    for row in report.rows:
+        row.competency = "Grade A (Excellent)"
+    html = template_maker.render_html("schools_rank", report)
+    # Excellent -> #00b050; the reference's own band for these rows is yellow, so
+    # this colour can only come from the deterministic competency mapping.
+    assert "#00b050" in html
 
 
 def test_no_shared_css_constant_across_report_types():

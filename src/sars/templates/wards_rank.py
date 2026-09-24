@@ -1,39 +1,33 @@
-"""Fixed-layout wards-rank pivot report (landscape Letter, single page).
+"""Wards-rank pivot report — its own recovered fixed layout, filled from data.
 
-Emits its OWN landscape ``792pt 612pt`` page box and the reference single-page
-layout: a small SUMMARY PERFORMANCE block followed by the ranked wards table.
+This renderer owns the council wards report and nothing else. Its page box, its
+column lattice, its row pitch, its fills, its fonts and its baselines come from
+``layouts/MWANZA CC Wards Rank.json``, recovered from that report's reference PDF
+by ``tools/build_layout_specs.py``; this module supplies only the *data*.
+
+The report's shape: a two-row SUMMARY PERFORMANCE block (council totals and
+``% PASS``), then the ranked wards table with a ``TOTAL`` row — one spec band
+each, fed from the data's sections in order.
 """
 
 from __future__ import annotations
 
+from ..layout_spec import binding_provider, has_spec, render_html
 from ..schema import GenericTabularReport
-from .base import banner_html
-from .generic_fixed import (
-    LANDSCAPE,
-    _base_sheet,
-    _document,
-    _flatten_section,
-    _page_section,
-    _sections_of,
-    _table_html,
-)
 
-_BODY_PT = 6.0
-_ROW_PT = 8.5
-_BANNER_PT = 7.5
+REPORT_NAME = "MWANZA CC Wards Rank"
 
 
-def render_wards_rank(report: GenericTabularReport) -> str:
-    """Render the wards-rank pivot to a standalone single-page landscape doc."""
-    sections = _sections_of(report)
-    sheet = _base_sheet(_BODY_PT, _ROW_PT, _BANNER_PT)
-    banner = banner_html(report.meta)
-
-    blocks = [banner]
-    for s in sections:
-        rs = _flatten_section(s)
-        body = "".join(rs.body_rows) + "".join(rs.total_rows)
-        blocks.append(_table_html(rs, body, repeat_head=True))
-
-    body = _page_section("".join(blocks))
-    return _document(report.meta.title or report.meta.name, LANDSCAPE, sheet, body)
+def render_wards_rank(report: GenericTabularReport, engine: str | None = None) -> str:
+    """Render the wards-rank report from its recovered layout plus this data."""
+    name = report.meta.name or REPORT_NAME
+    if not has_spec(name):  # pragma: no cover - the spec ships with the repo
+        raise RuntimeError(
+            f"{name!r} has no recovered layout spec; run tools/build_layout_specs.py"
+        )
+    return render_html(
+        name,
+        binding_provider(name, report),
+        title=report.meta.title or name,
+        engine=engine,
+    )
