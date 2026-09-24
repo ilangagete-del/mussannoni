@@ -82,9 +82,30 @@ gap between `exact` and `visible` is the same thing: a sub-pixel edge that lands
 on a different side of a pixel boundary.
 
 **So 100% exact is not reachable through an HTML engine while any glyph position
-differs by a fraction of a point, and 100% *visible* is only reachable if every
-glyph position is bit-identical.** That is the honest limit this work runs into,
-and it is why the gate still fails (see `docs/FIDELITY_REPORT.md`).
+differs by a fraction of a point, and 100% *visible* needs glyph positions to be
+right to the last hundredth of a point.** That is the honest limit this work runs
+into, and it is why the gate still fails (see `docs/FIDELITY_REPORT.md`).
+
+### The ceiling per report, and what is still winnable
+
+The replay was measured for all 19 (`output/fidelity/ceiling.txt`) and its numbers
+are a column in `docs/FIDELITY_REPORT.md`, so "how much is left" is explicit
+rather than a guess:
+
+* one report, `Mwanza School Rank-EDK`, replays at **100.0000% visible** — proof
+  that the spec's target is physically reachable at least there, and that its
+  remaining 0.83 pt is our renderer's, not the toolchain's;
+* the other ceilings sit between **99.54% and 99.98%** visible;
+* our renderers are now **0.09 to 2.87 pt** below their own ceiling; four reports
+  are within 0.2 pt of it (`Mwanza Top 10 Schools` +0.09, `MWANZA CC SUBJECTS
+  RANK` +0.16, `MWANZA CC SCHOOLS RANK` +0.17, `MWANZA CC 10 BEST SCHOOLS` +0.19).
+
+On the page in the review (`MWANZA CC SCHOOLS RANK`, 8431 glyphs at 4 pt) the
+breakdown is: 762/762 rectangles identical, no missing text, 0.51% of pixels
+visibly different, of which 79% lie within one pixel of reference ink (glyph and
+rule edges) and no 8x8 block is wholly wrong — i.e. no wrong fill and nothing
+missing, only sub-pixel edges. The replay of that same page scores 99.66% against
+our 99.49%.
 
 ## 5. WeasyPrint vs Chromium — measured, not assumed
 
@@ -226,6 +247,9 @@ uv run python tools/fidelity_gate.py --json output/fidelity/current.json
 uv run python tools/fidelity_report.py output/fidelity/current.json \
     --baseline output/fidelity/baseline.json
 uv run python tools/slot_audit.py            # every printed value, checked
+uv run python tools/replay.py | grep ceiling > output/fidelity/ceiling.txt
+uv run python tools/fidelity_report.py output/fidelity/current.json \
+    --baseline output/fidelity/baseline.json --ceiling output/fidelity/ceiling.txt
 ```
 
 Diagnostics: `tools/slot_audit.py` (is every value the reference prints actually
