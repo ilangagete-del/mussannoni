@@ -47,6 +47,7 @@ import hashlib
 import io
 import json
 import shutil
+import statistics
 import subprocess
 import sys
 from dataclasses import dataclass, field
@@ -121,6 +122,13 @@ class FontUse:
     widths: dict[int, float]            # PDF advance widths, per 1000 units
     widths_key: str                     # "code" (WinAnsi codepoint) or "gid"
     observed: dict[int, int] = field(default_factory=dict)  # unicode -> glyph id
+    #: Advances measured from the reference's own glyph positions, per 1000 em
+    #: units: ``unicode -> [observation, ...]``. These are the ground truth for
+    #: how wide the reference actually stepped, which a ``/Widths`` array does not
+    #: always tell you - a document can carry several font objects for the same
+    #: face with different width arrays, and text inside a run then walks out of
+    #: position by up to a point by the end of a long cell.
+    measured: dict[int, list[float]] = field(default_factory=dict)
 
 
 def _obj_value(doc: pymupdf.Document, xref: int, key: str) -> str:
@@ -257,8 +265,10 @@ def collect_uses(pdf: Path) -> dict[str, FontUse]:
                 # face. For the embedded fonts the PDF's /W array was verified
                 # to agree with the font's own hmtx on every reference document
                 # (see docs/FIDELITY_NOTES.md), so the file is used untouched.
-                if buffer is not None:
+                if buffer is not None and subtype == "Type0":
                     widths, key = {}, "gid"
+                elif buffer is not None:
+                    widths, key = {}, "code"
                 elif subtype == "Type0":
                     widths, key = _cid_widths(doc, xref), "gid"
                 else:
@@ -275,11 +285,21 @@ def collect_uses(pdf: Path) -> dict[str, FontUse]:
             for span in doc[pno].get_texttrace():
                 if span["type"] not in (0, 2):
                     continue
-                use = uses.get(span["font"])
+                use = uses.get(span["font"]) or uses.get(strip_subset_tag(span["font"]))
                 if use is None:
                     continue
+                size = span["size"]
+                horizontal = abs(span["dir"][1]) < 0.5
+                previous: tuple | None = None
                 for char in span["chars"]:
                     use.observed[char[0]] = char[1]
+                    if horizontal and previous is not None and size > 0:
+                        step = (char[2][0] - previous[2][0]) / size
+                        # Only consecutive glyphs of one run: a repositioning
+                        # between cells is not an advance.
+                        if 0.05 <= step <= 2.0:
+                            use.measured.setdefault(previous[0], []).append(step * 1000)
+                    previous = char
     return uses
 
 
@@ -300,18 +320,37 @@ def _font_from(use: FontUse) -> tuple[TTFont, bytes, str]:
 
 
 def _apply_widths(font: TTFont, use: FontUse) -> int:
-    """Force the font's advances to the PDF's declared widths. Returns #changed."""
+    """Set the font's advances to the ones the reference actually stepped.
+
+    Measured advances (from consecutive glyph origins in the reference) win over
+    the ``/Widths`` array, because they are what MuPDF will draw: a document can
+    declare several width arrays for one face, and a run then drifts inside a
+    cell even though it starts in exactly the right place. ``/Widths`` fills in
+    any character never seen twice in a row.
+    """
     upem = font["head"].unitsPerEm
     order = font.getGlyphOrder()
     cmap = font.getBestCmap() or {}
     hmtx = font["hmtx"]
+
+    targets: dict[int, float] = dict(use.widths)
+    for code, samples in use.measured.items():
+        if not samples:
+            continue
+        targets[code] = statistics.median(samples)
+
     changed = 0
-    for key, width in use.widths.items():
+    for key, width in targets.items():
         target = round(width * upem / 1000)
-        if use.widths_key == "gid":
+        glyph = None
+        if use.widths_key == "gid" and key in use.observed:
+            gid = use.observed[key]
+            glyph = order[gid] if gid < len(order) else None
+        if glyph is None:
+            # WinAnsi code == unicode over the ranges these reports use.
+            glyph = cmap.get(key)
+        if glyph is None and use.widths_key == "gid":
             glyph = order[key] if key < len(order) else None
-        else:
-            glyph = cmap.get(key)  # WinAnsi code == unicode for the ranges used
         if glyph is None or glyph not in hmtx.metrics:
             continue
         advance, lsb = hmtx[glyph]
@@ -405,8 +444,20 @@ def build(install: bool = True) -> dict:
         for pdf_name, use in sorted(uses.items()):
             font, raw, provenance = _font_from(use)
             psname = _real_psname(font, use.psname) if use.embedded else use.psname
+            # The key includes the advances measured from this document, because
+            # two documents can name the same face and step it differently; a
+            # shared asset would then be wrong for one of them.
+            measured_signature = json.dumps(
+                sorted(
+                    (code, round(statistics.median(samples), 1))
+                    for code, samples in use.measured.items()
+                    if samples
+                )
+            )
             key = hashlib.sha1(
-                raw + json.dumps(sorted(use.widths.items())).encode()
+                raw
+                + json.dumps(sorted(use.widths.items())).encode()
+                + measured_signature.encode()
             ).hexdigest()[:10]
             group = groups.setdefault(
                 key,
@@ -417,11 +468,14 @@ def build(install: bool = True) -> dict:
                     "widths": use.widths,
                     "widths_key": use.widths_key,
                     "observed": {},
+                    "measured": {},
                     "bold": _is_bold(psname, font),
                     "reports": [],
                 },
             )
             group["observed"].update(use.observed)
+            for code, samples in use.measured.items():
+                group["measured"].setdefault(code, []).extend(samples)
             group["reports"].append(pair.name)
             role = ROLES.get(psname, psname.lower())
             per_report[pair.name][role] = key
@@ -446,6 +500,7 @@ def build(install: bool = True) -> dict:
             widths=group["widths"],
             widths_key=group["widths_key"],
             observed=group["observed"],
+            measured=group["measured"],
         )
         overrides = _apply_widths(font, use)
         cmap_adds = _ensure_cmap(font, use)

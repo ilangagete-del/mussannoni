@@ -40,7 +40,7 @@ sys.path.insert(0, str(ROOT / "src"))
 
 from sars import binding, fonts, sources  # noqa: E402
 from sars.classify import classify  # noqa: E402
-from sars.extract import extract_document  # noqa: E402
+from sars.extract import extract_document, run_starts, split_span_at_runs  # noqa: E402
 from sars.extract_data import extract_report  # noqa: E402
 
 LAYOUTS = ROOT / "src" / "sars" / "templates" / "layouts"
@@ -83,6 +83,11 @@ def _role(font_name: str, report: str) -> str:
         return ROLE_BY_PSNAME.get(bare, bare.lower())
 
 
+def _hex_int(value: int) -> str:
+    """An integer colour as written in extracted text spans."""
+    return f"#{value & 0xFFFFFF:06x}"
+
+
 def _hex(color) -> str:
     if color is None:
         return "#ffffff"
@@ -107,40 +112,95 @@ def _fills(page: pymupdf.Page) -> list[list]:
     return out
 
 
-def _chars(page: pymupdf.Page, report: str) -> list[dict]:
-    """Every glyph the page draws, with its exact origin, font role and size."""
+def _runs(page: pymupdf.Page, report: str) -> list[dict]:
+    """The page's text as *runs*, each with the x it starts at.
+
+    Read from the **clipped** extraction (``rawdict``), because that is what the
+    reference actually shows: these documents clip a value to its cell, so a
+    school name wider than its column is visibly cut off there, and reproducing
+    the raw operator text would paint glyphs the reference hides.
+
+    Each run is cut at real run boundaries (:func:`sars.extract.run_starts`) so
+    two values that overlap in x are not welded into one
+    (``SENGEREMA DCMILLENIUM GIRLS``), and at gaps wider than a space. A run
+    belongs to the column it *starts* in, whatever it overhangs.
+    """
+    starts = run_starts(page)
     out: list[dict] = []
-    for span in page.get_texttrace():
-        if span["type"] != 0 or not span["chars"]:
+    for block in page.get_text("rawdict").get("blocks", []):
+        if block.get("type") != 0:
             continue
-        dx, dy = span["dir"]
-        rotation = 0
-        if abs(dy) > 0.5:
-            rotation = -90 if dy < 0 else 90
-        elif dx < 0:
-            rotation = 180
-        for ucs, _gid, origin, _bbox in span["chars"]:  # noqa: B007 - bbox used below
-            char = chr(ucs)
-            # Spaces are kept: a recovered sample such as "Grade C (Good)" must
-            # keep them or it will not match the data value it came from (and
-            # the column would silently lose its binding). They are dropped
-            # again when the chrome glyphs are emitted, where there is nothing
-            # to draw.
-            out.append(
-                {
-                    "char": char,
-                    "blank": not char.strip(),
-                    "x": round(origin[0], 4),
-                    "y": round(origin[1], 4),
-                    "x0": round(_bbox[0], 4),
-                    "x1": round(_bbox[2], 4),
-                    "role": _role(span["font"], report),
-                    "size": round(span["size"], 4),
-                    "color": _hex(span["color"]),
-                    "rot": rotation,
+        for line in block.get("lines", []):
+            dx, dy = line.get("dir", (1, 0))
+            rotation = 0
+            if abs(dy) > 0.5:
+                rotation = -90 if dy < 0 else 90
+            elif dx < 0:
+                rotation = 180
+            for span in line.get("spans", []):
+                chars = [c for c in span.get("chars", []) if c.get("c")]
+                if not chars:
+                    continue
+                size = round(float(span.get("size", 7.0)), 4)
+                color = _hex_int(int(span.get("color", 0)))
+                role = _role(span.get("font", ""), report)
+                cuts = {
+                    round(x, 2)
+                    for _piece, x, _x1 in (
+                        [(p[0], p[1], p[2]) for p in split_span_at_runs(span, starts)]
+                    )
                 }
-            )
-    return out
+                current: list[dict] = []
+                for char in chars:
+                    x0 = char["bbox"][0]
+                    gap_break = (
+                        current
+                        and rotation == 0
+                        and x0 - current[-1]["bbox"][2] > size * 0.45
+                    )
+                    cut_break = current and round(x0, 2) in cuts
+                    if gap_break or cut_break:
+                        out.append(_run_record(current, role, size, color, rotation))
+                        current = []
+                    current.append(char)
+                if current:
+                    out.append(_run_record(current, role, size, color, rotation))
+    return [run for run in out if run["text"].strip()]
+
+
+def _run_record(chars: list[dict], role: str, size: float, color: str, rotation: int) -> dict:
+    ink = [c for c in chars if c["c"].strip()] or chars
+    return {
+        "text": "".join(c["c"] for c in chars).strip(),
+        "x": round(ink[0]["origin"][0], 4),
+        "y": round(ink[0]["origin"][1], 4),
+        "x0": round(min(c["bbox"][0] for c in ink), 4),
+        "x1": round(max(c["bbox"][2] for c in ink), 4),
+        "role": role,
+        "size": size,
+        "color": color,
+        "rot": rotation,
+        "chars": [
+            {
+                "char": c["c"],
+                "x": round(c["origin"][0], 4),
+                "y": round(c["origin"][1], 4),
+                "x0": round(c["bbox"][0], 4),
+                "x1": round(c["bbox"][2], 4),
+                "blank": not c["c"].strip(),
+                "role": role,
+                "size": size,
+                "color": color,
+                "rot": rotation,
+            }
+            for c in chars
+        ],
+    }
+
+
+def _chars_of(runs: list[dict]) -> list[dict]:
+    """Every glyph of every run, for chrome emission and cell sampling."""
+    return [char for run in runs for char in run["chars"]]
 
 
 def _merge_runs(chars: list[dict], report: str) -> list[dict]:
@@ -206,7 +266,7 @@ def _assign_fills(fills: list[list], bands: list[dict]) -> dict[int, tuple[int, 
     return owners
 
 
-def _bands_for_table(table, chars: list[dict], report_name: str) -> list[dict]:
+def _bands_for_table(table, chars: list[dict], runs: list[dict], report_name: str) -> list[dict]:
     """Describe a table's data band(s): pitch, column boxes and slot styling."""
     kinds = table.row_kinds or []
     if not kinds:
@@ -242,14 +302,21 @@ def _bands_for_table(table, chars: list[dict], report_name: str) -> list[dict]:
                 x1 = edges[min(cell.col + cell.colspan, len(edges) - 1)]
             else:
                 x0, x1 = edges[col], edges[col + 1]
-            inside = [
-                ch
-                for ch in chars
-                if row_top - 0.6 <= ch["y"] <= row_bottom + 0.6
-                and x0 - 0.3 <= ch["x"] < x1 + 0.3
-                and ch["rot"] == 0
-            ]
-            inside.sort(key=lambda ch: ch["x"])
+            # Runs that START in this cell (a run that overhangs into the next
+            # column still belongs here), in x order.
+            owned = sorted(
+                (
+                    run
+                    for run in runs
+                    if run["rot"] == 0
+                    and row_top - 0.6 <= run["y"] <= row_bottom + 0.6
+                    and x0 - 0.3 <= run["x"] < x1 + 0.3
+                ),
+                key=lambda run: run["x"],
+            )
+            inside: list[dict] = []
+            for run in owned:
+                inside.extend(run["chars"])
             # Trim leading/trailing blanks: they carry no ink, so they must not
             # move the alignment bounds, but inner spaces stay in the sample.
             while inside and inside[0].get("blank"):
@@ -277,6 +344,17 @@ def _bands_for_table(table, chars: list[dict], report_name: str) -> list[dict]:
                 sample = "".join(ch["char"] for ch in inside)
                 role = ink[0]["role"]
                 size = ink[0]["size"]
+                # The cell's text as the reference draws it: one piece per run,
+                # each with the x it starts at. A cell like a subject breakdown
+                # is drawn as several runs with wide gaps between them; drawing
+                # it as one string spaces those pieces by our own space advance
+                # instead, which walked up to 1.2pt out of position by the end of
+                # the cell.
+                pieces = [
+                    [run["text"], run["x"]]
+                    for run in owned
+                    if run["text"].strip()
+                ]
                 entry.update(
                     {
                         "role": role,
@@ -286,6 +364,7 @@ def _bands_for_table(table, chars: list[dict], report_name: str) -> list[dict]:
                         "align": align,
                         "pad": round(pad, 4),
                         "sample": sample,
+                        "pieces": pieces,
                     }
                 )
                 # How far the reference's own x sits from where this alignment
@@ -359,7 +438,48 @@ def _bands_for_table(table, chars: list[dict], report_name: str) -> list[dict]:
 
 
 def _normalise(text: str) -> str:
-    return " ".join(str(text).split()).casefold()
+    return " ".join(str(text).split())
+
+
+def _match_score(wanted: dict[int, str], flat: dict[str, str]) -> float:
+    """How much of a printed row this data row explains, from 0 to 1."""
+    if not wanted:
+        return 0.0
+    values = {_normalise(value) for value in flat.values()}
+    hits = sum(1 for text in wanted.values() if text in values)
+    return hits / len(wanted)
+
+
+def _align_rows(
+    printed: list[dict[int, str]], rows: list[dict[str, str]], offset: int
+) -> list[int | None]:
+    """Map each printed row to the data row it shows, or ``None`` if none does.
+
+    Reports repeat their column headings part-way down a page, and those rows sit
+    inside the drawn data band. Walking the band and the data in lockstep makes
+    every row after such a heading read the wrong data row — which is how one
+    report ended up with 336 of its 730 printed values blank. So the walk is
+    greedy: a band row that no nearby data row explains is left unmapped (it is
+    furniture, and the builder moves it into the chrome), and the data cursor does
+    not advance.
+    """
+    mapping: list[int | None] = []
+    cursor = offset
+    for wanted in printed:
+        best_index, best_score = None, 0.0
+        for look_ahead in range(3):
+            index = cursor + look_ahead
+            if index >= len(rows):
+                break
+            score = _match_score(wanted, rows[index])
+            if score > best_score:
+                best_index, best_score = index, score
+        if best_index is not None and best_score >= 0.5:
+            mapping.append(best_index)
+            cursor = best_index + 1
+        else:
+            mapping.append(None)
+    return mapping
 
 
 def _bind_bands(spec: dict, data) -> None:
@@ -381,8 +501,13 @@ def _bind_bands(spec: dict, data) -> None:
             ]
             if not any(printed):
                 band["bindings"] = {}
+                band["column_bindings"] = {}
                 continue
-            best = None
+
+            # Score every (group, offset) the band could be reading from, and keep
+            # the per-column votes each one produced, so a column the winning
+            # group cannot supply can still be bound to the group that can.
+            scored: list[tuple[int, int, int, dict[int, dict[str, int]]]] = []
             for group_index, group in enumerate(groups):
                 rows = group["rows"]
                 for offset in range(max(len(rows) - len(printed) + 1, 1)):
@@ -400,19 +525,49 @@ def _bind_bands(spec: dict, data) -> None:
                                 votes.setdefault(col, {}).setdefault(key, 0)
                                 votes[col][key] += 1
                                 score += 1
-                    if best is None or score > best[0]:
-                        best = (score, group_index, offset, votes)
-            if best is None or best[0] == 0:
+                    if score:
+                        scored.append((score, group_index, offset, votes))
+            if not scored:
                 band["bindings"] = {}
+                band["column_bindings"] = {}
                 continue
-            _score, group_index, offset, votes = best
+
+            scored.sort(key=lambda item: -item[0])
+            _score, group_index, offset, votes = scored[0]
             band["group"] = groups[group_index]["name"]
             band["group_index"] = group_index
             band["group_offset"] = offset
+            band["row_data_index"] = _align_rows(printed, groups[group_index]["rows"], offset)
             band["bindings"] = {
                 str(col): max(candidates.items(), key=lambda item: item[1])[0]
                 for col, candidates in votes.items()
             }
+
+            # Columns the primary group cannot supply: bind them individually to
+            # the best-scoring group that can. This is what fills a TOTAL row
+            # whose label and summary figures live in a different part of the
+            # data from its per-division counts - the case that silently left
+            # 'TOTAL', '2.98', '48.99', '97.02' and '387' blank.
+            printed_columns = {col for wanted in printed for col in wanted}
+            column_bindings: dict[str, dict] = {}
+            for col in sorted(printed_columns - set(votes)):
+                candidate = None
+                for _score, other_index, other_offset, other_votes in scored:
+                    if col not in other_votes:
+                        continue
+                    path, hits = max(other_votes[col].items(), key=lambda item: item[1])
+                    if candidate is None or hits > candidate["hits"]:
+                        candidate = {
+                            "group": groups[other_index]["name"],
+                            "group_index": other_index,
+                            "offset": other_offset,
+                            "path": path,
+                            "hits": hits,
+                        }
+                if candidate is not None:
+                    candidate.pop("hits")
+                    column_bindings[str(col)] = candidate
+            band["column_bindings"] = column_bindings
 
 
 def build_spec(pair) -> dict:
@@ -433,14 +588,15 @@ def build_spec(pair) -> dict:
     with pymupdf.open(pair.pdf) as pdf:
         for index, page in enumerate(document.pages):
             pdf_page = pdf[index]
-            chars = _chars(pdf_page, pair.name)
+            runs = _runs(pdf_page, pair.name)
+            chars = _chars_of(runs)
             fills = _fills(pdf_page)
 
             bands: list[dict] = []
             for block in page.blocks:
                 if block.table is None:
                     continue
-                for band in _bands_for_table(block.table, chars, pair.name):
+                for band in _bands_for_table(block.table, chars, runs, pair.name):
                     bands.append(band)
 
             def in_band(x: float, y: float, bands: list[dict] = bands) -> bool:
@@ -450,6 +606,11 @@ def build_spec(pair) -> dict:
                         return True
                 return False
 
+            chrome_candidates = [
+                ch
+                for ch in chars
+                if not ch.get("blank")
+            ]
             chrome = _merge_runs(
                 [
                     ch
@@ -524,9 +685,55 @@ def build_spec(pair) -> dict:
                         for ch in chrome
                     ],
                     "bands": bands,
+                    # kept for the binding pass, which needs the page's glyphs to
+                    # move an unexplained row's text into the chrome
+                    "_glyphs": chrome_candidates,
                 }
             )
     return spec
+
+
+def _chrome_unexplained_rows(spec: dict) -> int:
+    """Move rows the data cannot explain out of the bands and into the chrome.
+
+    A repeated column heading drawn inside a data band is furniture: it must be
+    painted exactly where the reference paints it, and it must not consume a data
+    row. The binding pass marks such rows (``row_data_index`` is ``None``); this
+    copies their glyphs into the page's chrome and clears their slots.
+    """
+    moved = 0
+    for page in spec["pages"]:
+        glyphs = page.get("_glyphs") or []
+        for band in page["bands"]:
+            mapping = band.get("row_data_index") or []
+            for row, data_index in enumerate(mapping):
+                if data_index is not None:
+                    continue
+                if row >= len(band["row_tops"]):
+                    continue
+                top, bottom = band["row_tops"][row], band["row_bottoms"][row]
+                x0, _y0, x1, _y1 = band["rect"]
+                for glyph in glyphs:
+                    if (
+                        glyph["rot"] == 0
+                        and top - 0.4 <= glyph["y"] <= bottom + 0.4
+                        and x0 - 0.5 <= glyph["x"] <= x1 + 0.5
+                        and not glyph.get("blank")
+                    ):
+                        page["chrome"].append(
+                            [
+                                glyph["x"], glyph["y"], glyph["char"], glyph["role"],
+                                glyph["size"], glyph["color"], glyph["rot"],
+                            ]
+                        )
+                        moved += 1
+                if row < len(band["per_row_cells"]):
+                    for cell in band["per_row_cells"][row]:
+                        cell.pop("role", None)
+                        cell.pop("sample", None)
+    for page in spec["pages"]:
+        page.pop("_glyphs", None)
+    return moved
 
 
 def main() -> int:
@@ -543,6 +750,7 @@ def main() -> int:
         _bind_bands(
             spec, extract_report(extract_document(pair.pdf, pair.html), pair.name)
         )
+        moved = _chrome_unexplained_rows(spec)
         # Gzipped: these specs are large (a page's every rectangle and every
         # chrome glyph) and highly repetitive, so they are stored compressed.
         out = LAYOUTS / f"{pair.name}.json.gz"
@@ -552,13 +760,15 @@ def main() -> int:
         if stale.exists():
             stale.unlink()
         bands = sum(len(p["bands"]) for p in spec["pages"])
+        unexplained = moved
         chrome = sum(len(p["chrome"]) for p in spec["pages"])
         fills = sum(
             sum(1 for entry in p["sequence"] if entry["t"] == "s") for p in spec["pages"]
         )
         print(
             f"{pair.name}: {spec['page_count']} page(s), {bands} band(s), "
-            f"{chrome} chrome glyphs, {fills} static fills -> "
+            f"{chrome} chrome glyphs ({unexplained} from unexplained rows), "
+            f"{fills} static fills -> "
             f"{out.relative_to(ROOT)} ({out.stat().st_size / 1024:.0f} KiB)"
         )
     return 0

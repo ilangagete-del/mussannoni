@@ -94,11 +94,29 @@ def _row_fills(band: dict, row: int) -> list:
     return band.get("row_fills") or []
 
 
+def _data_index(band: dict, row: int) -> int | None:
+    """Which data row a band row shows, honouring the recovered row alignment."""
+    mapping = band.get("row_data_index")
+    if mapping is None:
+        return band.get("group_offset", 0) + row
+    if row < len(mapping):
+        return mapping[row]
+    last = next((value for value in reversed(mapping) if value is not None), None)
+    if last is None:
+        return None
+    return last + 1 + (row - len(mapping))
+
+
 def _row_cells(band: dict, row: int) -> list:
     per_row = band.get("per_row_cells") or []
     if row < len(per_row):
         return per_row[row]
     return band["cells"]
+
+
+def _same_value(text: str, sample: str) -> bool:
+    """Is this the value the reference printed here, ignoring whitespace runs?"""
+    return " ".join(str(text).split()) == " ".join(str(sample).split())
 
 
 def _value_at(supplied, column: int) -> str:
@@ -232,18 +250,26 @@ def render_html(
                     bottoms = band.get("row_bottoms") or []
                     if row < len(bottoms):
                         height = float(bottoms[row]) - top
-                    # When the value is the very string the reference printed in
-                    # this cell, start it exactly where the reference started it.
+                    # When the value is the string the reference printed in this
+                    # cell, start it exactly where the reference started it — and
+                    # print it with the reference's own spacing. Comparing
+                    # whitespace-insensitively matters: a value the extractor
+                    # rebuilt with single spaces ("ENG 65 B") is the same value
+                    # the reference padded differently, and falling back to
+                    # computed alignment for it cost ~0.4pt on every such cell.
                     sample = str(cell.get("sample") or "").strip()
-                    if sample and text == sample and cell.get("x_at") is not None:
-                        canvas.text(
-                            float(cell["x_at"]),
-                            top + cell["dy"],
-                            text,
-                            role=cell["role"],
-                            size=cell["size"],
-                            color=cell.get("color", "#000000"),
-                        )
+                    pieces = cell.get("pieces") or []
+                    if sample and _same_value(text, sample) and pieces:
+                        # Draw each of the reference's own runs at its own x.
+                        for piece_text, piece_x in pieces:
+                            canvas.text(
+                                float(piece_x),
+                                top + cell["dy"],
+                                str(piece_text),
+                                role=cell["role"],
+                                size=cell["size"],
+                                color=cell.get("color", "#000000"),
+                            )
                         continue
                     canvas.cell_text(
                         Box(cell["x"], top, cell["w"], height),
@@ -355,22 +381,53 @@ def binding_provider(report: str, data: Any) -> ValueProvider:
     groups = binding.row_groups(data)
     by_name = {group["name"]: group["rows"] for group in groups}
 
+    def rows_of(name: str, index: int | None) -> list | None:
+        rows = by_name.get(name)
+        if rows is not None:
+            return rows
+        if index is not None and index < len(groups):
+            return groups[index]["rows"]
+        return None
+
     def provider(page_index: int, band_index: int, kind: str, row_index: int):
         band = spec["pages"][page_index]["bands"][band_index]
         bindings = band.get("bindings") or {}
-        if not bindings:
+        extra = band.get("column_bindings") or {}
+        if not bindings and not extra:
             return None
-        rows = by_name.get(band.get("group", ""))
-        if rows is None:
-            index = band.get("group_index")
-            if index is None or index >= len(groups):
+
+        values: dict[int, str] = {}
+        rows = rows_of(band.get("group", ""), band.get("group_index"))
+        if rows is not None:
+            position = _data_index(band, row_index)
+            if position is None:
+                # A row the data does not explain: a repeated column heading,
+                # drawn as chrome. Nothing is filled into it.
                 return None
-            rows = groups[index]["rows"]
-        position = band.get("group_offset", 0) + row_index
-        if position >= len(rows):
-            return None
-        flat = rows[position]
-        return {int(col): flat.get(path, "") for col, path in bindings.items()}
+            if position < len(rows):
+                flat = rows[position]
+                values.update({int(col): flat.get(path, "") for col, path in bindings.items()})
+            elif not extra:
+                return None
+
+        # Columns bound to a different part of the data than the band's primary
+        # group - a TOTAL row whose label and summary figures come from the
+        # summary block while its counts come from the ranked rows.
+        for col, entry in extra.items():
+            other = rows_of(entry.get("group", ""), entry.get("group_index"))
+            if other is None:
+                continue
+            position = entry.get("offset", 0) + row_index
+            if position >= len(other):
+                continue
+            values[int(col)] = other[position].get(entry.get("path", ""), "")
+
+        # Rows whose values all came back empty carry no data (an unexplained
+        # row that the spec kept as chrome); returning None stops the band.
+        if not any(str(value).strip() for value in values.values()):
+            return {} if row_index + 1 < band["reference_rows"] else None
+
+        return values or None
 
     return provider
 

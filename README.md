@@ -221,12 +221,12 @@ page of every report and exits non-zero unless all of them are a 100% visible
 match. `pytest -m slow` runs it, so the suite cannot be green while any report is
 imperfect.
 
-Current honest state — **PASS 0/19, worst page 90.93% visible** (from 38.86% at
-the start of this work; every report improved by 9.8 to 56.2 points). The full
-per-report table is `docs/FIDELITY_REPORT.md`; what the remaining error is made
-of, and the ceiling this toolchain can reach, is documented with measurements in
-`docs/FIDELITY_NOTES.md`. Nothing here should be described as finished until the
-gate exits 0.
+Current honest state — **PASS 0/19, worst page 96.997% visible** (from 38.86% at
+the start of this work; every report improved by 10.3 to 59.1 points, and all 19
+are now above 97%). The full per-report table is `docs/FIDELITY_REPORT.md`; what
+the remaining error is made of, and the ceiling this toolchain can reach, is
+documented with measurements in `docs/FIDELITY_NOTES.md`. Nothing here should be
+described as finished until the gate exits 0.
 
 ## Result of the conversion path
 
@@ -448,25 +448,42 @@ and visible match) and writes no image files.
 The conversion path is unaffected and still reports `19/19 documents pass; mean
 text similarity 100.00%`.
 
+### Is every value actually there? `tools/slot_audit.py`
+
+A pixel percentage does not tell you that a `TOTAL` row lost its school count. The
+slot audit does: for every report it asks the renderer's own data provider for each
+band row and compares the result with the text the reference printed in that cell,
+reporting every value that is missing, different or unbound — and whether the
+printed text exists anywhere in the extracted data, which separates a data gap from
+a mapping error.
+
+```bash
+uv run python tools/slot_audit.py                    # all reports
+uv run python tools/slot_audit.py --only "SCHOOLS RANK" --list 20
+```
+
+Current state: **79 190 of 79 408 printed values reproduced exactly, 16 of 19
+reports with zero disagreements** (it started at 862 disagreements, 514 of them
+blank cells).
+
 ### Known remaining gaps in the templated path
 
 Measured, per report, in `docs/FIDELITY_REPORT.md`. In summary:
 
 - **Nothing is at 100% yet**, so the gate fails and the work is IN PROGRESS by
   the definition in `docs/FIDELITY_SPEC.md` §10. The worst page across all 19 is
-  90.93% visible; nine reports are at or above 98%.
-- Geometry and colour are already exact where the rebuild landed: e.g.
-  `MWANZA CC SCHOOLS RANK` reproduces 762/762 of the reference's rectangles
-  identically, `MWANZA CC Wards Rank` 337/337.
-- The bulk of the residual is sub-pixel glyph-edge antialiasing: the oracle replay
-  in `tools/replay.py`, which places the reference's own glyphs at the
-  reference's own origins, itself tops out at 99.95% visible on a page — that is
-  this toolchain's ceiling, and it is documented with measurements in
-  `docs/FIDELITY_NOTES.md` §4.
-- `S1051-MKOLANI SECONDARY SCHOOL` (90.93%) and `MWANZA CC 10 BEST STUDENTS`
-  (93.83%) still have bands whose recovered data binding is partly wrong — a
-  handful of values land in the wrong row group and a few are missing. These two
-  need the one-report-at-a-time treatment `docs/FIDELITY_SPEC.md` §8 prescribes.
+  96.997% visible; every report is at or above 97%, eleven at or above 98.8%.
+- Geometry and colour are exact: `MWANZA CC SCHOOLS RANK` reproduces 762/762 of
+  the reference's rectangles identically, `MWANZA CC Wards Rank` 337/337, the
+  school slip 2671/2671 on page 1 — none missing, none shifted.
+- 218 values in three reports are still wrong, all of them understood and listed
+  in `docs/FIDELITY_NOTES.md` §7: a rowspan status column in
+  `Mwanza f2 Mock Mobility 2026` (168), an ambiguous column binding in
+  `Mwanza Top 10 Schools` (15), and a handful at page boundaries.
+- The rest is sub-pixel glyph-edge antialiasing. `tools/replay.py`, which places
+  the reference's *own* glyphs at the reference's *own* origins, itself reaches
+  only 99.95% visible — that is this toolchain's ceiling, and several reports are
+  now within a few hundredths of a point of it (`Mwanza Top 10 Schools` 99.81%).
 
 ## Note on duplicate input
 
