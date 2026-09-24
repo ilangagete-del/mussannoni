@@ -1,0 +1,28 @@
+{
+  "id": "FEAT-006",
+  "type": "feat",
+  "description": "Rebuild the school_result_slip renderer (src/sars/templates/school_result_slip.py) as a fixed-layout, exact-page-size, correct-page-count report. Reference: S1051-MKOLANI SECONDARY SCHOOL (792x612 landscape, 13 pages). It currently reflows to A4 and produces the wrong page count (~21 pages). Replace the A4 path with the slip's own Letter @page and 13-page pagination, preserving the recovered pale panel wash (#92cddc) as fixed chrome. Independent of the other rebuild features.",
+  "status": "pending",
+  "steps": [
+    "Read reference geometry for S1051-MKOLANI SECONDARY SCHOOL via extract_document(pair.pdf, pair.html): 13 pages, each page width/height, the identity/division-summary/candidate-list/performance table geometries, per-cell spans and Style, and the page background/panel colour.",
+    "Rewrite school_result_slip.py to emit @page{size:792pt 612pt;margin:0} and position its blocks (identity, division summary, candidate list, performance tables) at recovered coordinates with recovered column widths and per-row heights (schools_rank.py pattern), replacing styling.document()/fit_scale() A4.",
+    "Paginate to 13 pages, breaking the candidate list where the reference breaks; ensure no candidate rows are dropped.",
+    "Preserve the recovered panel wash (#92cddc) behind content as fixed chrome, real fonts, and per-cell washes keyed to recovered fills.",
+    "Regenerate with `uv run sars data` then `uv run sars template --only \"S1051-MKOLANI SECONDARY SCHOOL\"`.",
+    "Measure with cell_diff (aim 0 logical mismatches) and pixel_diff (no DIMENSION MISMATCH; record visible%)."
+  ],
+  "acceptance_criteria": [
+    "S1051-MKOLANI SECONDARY SCHOOL renders at 792x612 landscape with 13 pages; pixel_diff runs without DIMENSION MISMATCH.",
+    "No candidate rows are lost relative to the reference.",
+    "cell_diff logical mismatch count and pixel_diff visible% recorded honestly.",
+    "`uv run pytest -q` stays green."
+  ],
+  "verification": [
+    "uv run python tools/measure_all.py",
+    "uv run python tools/cell_diff.py \"S1051-MKOLANI SECONDARY SCHOOL\" --template -v",
+    "uv run python tools/pixel_diff.py \"S1051-MKOLANI SECONDARY SCHOOL\" --template",
+    "uv run pytest -q"
+  ],
+  "blocked_reason": null,
+  "findings": ""
+}

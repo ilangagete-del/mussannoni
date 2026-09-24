@@ -1,0 +1,29 @@
+{
+  "id": "FEAT-003",
+  "type": "feat",
+  "description": "Rebuild the subjects_rank family (src/sars/templates/subjects_rank.py) as fixed-layout, exact-page-size, correct-page-count reports, matching the schools_rank.py pattern. Reports: MWANZA CC SUBJECTS RANK (792x612, 2 pages) and Mwanza Overall Subjects Performance (792x612, 2 pages). Currently subjects_rank.py uses styling.document(orientation) + fit_scale, which forces A4 and the wrong page box, and reflows to a differing page count. Replace the A4 path with the report's own Letter @page and reference page count. Independent of FEAT-002/004/005/006 and could be parallelized.",
+  "status": "pending",
+  "steps": [
+    "Read reference geometry for MWANZA CC SUBJECTS RANK and Mwanza Overall Subjects Performance via extract_document(pair.pdf, pair.html): page count, each page width/height, table col_edges/row_edges, per-cell spans and Style. Use recovered values.",
+    "Rewrite subjects_rank.py to emit @page{size:792pt 612pt;margin:0} (its recovered Letter box) instead of A4, and to position its table(s) at recovered coordinates with recovered column widths and per-row heights, mirroring schools_rank.py's Sheet + position:absolute + colgroup approach. Stop calling styling.document()/fit_scale() for this family (or keep only the Sheet mechanism, not the A4 @page).",
+    "Paginate so the output has the reference page count (2 pages each), breaking rows where the reference breaks as closely as recovered geometry allows.",
+    "Preserve the GRADE PERFORMANCE grouped header, the per-column fill washes keyed to recovered fills, GPA tint, the rotated/plain rank column, real fonts, and the deterministic competency band (sars.competency).",
+    "Regenerate with `uv run sars data` then `uv run sars template` for these two reports.",
+    "Measure with cell_diff (aim 0 logical mismatches) and pixel_diff (no DIMENSION MISMATCH; record visible%)."
+  ],
+  "acceptance_criteria": [
+    "MWANZA CC SUBJECTS RANK renders at 792x612 with 2 pages; pixel_diff runs without DIMENSION MISMATCH.",
+    "Mwanza Overall Subjects Performance renders at 792x612 with 2 pages; pixel_diff runs without DIMENSION MISMATCH.",
+    "cell_diff logical mismatch count recorded (aim 0) and pixel_diff visible% recorded honestly for both.",
+    "`uv run pytest -q` stays green."
+  ],
+  "verification": [
+    "uv run python tools/cell_diff.py \"MWANZA CC SUBJECTS RANK\" --template -v",
+    "uv run python tools/pixel_diff.py \"MWANZA CC SUBJECTS RANK\" --template",
+    "uv run python tools/cell_diff.py \"Mwanza Overall Subjects Performance\" --template -v",
+    "uv run python tools/pixel_diff.py \"Mwanza Overall Subjects Performance\" --template",
+    "uv run pytest -q"
+  ],
+  "blocked_reason": null,
+  "findings": ""
+}

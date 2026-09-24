@@ -1,0 +1,32 @@
+{
+  "id": "FEAT-004",
+  "type": "feat",
+  "description": "Rebuild the best_students family (src/sars/templates/best_students.py and src/sars/templates/best_students_subjectwise.py) as fixed-layout, exact-page-size, correct-page-count reports. Overall variant reports: MWANZA CC 10 BEST STUDENTS (792x612, 5 pages) and Mwanza Best Students-Overall (792x612, 9 pages). Subjectwise variant reports: MWANZA CC 10 BEST STUDENTS SUBJECTWISE (792x612, 30 pages) and Mwanza Best students-Subjectwise (792x612, 23 pages). These are the densest, highest-page-count reports and currently reflow to A4 with wrong page counts. Replace the A4 path with each report's own Letter @page and reference page count.",
+  "status": "pending",
+  "steps": [
+    "Read reference geometry for all four reports via extract_document(pair.pdf, pair.html): page count, each page width/height, per-section table col_edges/row_edges, per-cell spans and Style, and how sections (overall/female/male, or per-subject) map onto pages.",
+    "Rewrite best_students.py (overall) and best_students_subjectwise.py (subjectwise) to emit @page{size:792pt 612pt;margin:0} and position their tables at recovered coordinates with recovered column widths and per-row heights (schools_rank.py pattern), instead of styling.document()/fit_scale() A4.",
+    "Paginate to the reference page count: overall 5p and 9p; subjectwise 30p and 23p. Break rows/sections where the reference breaks as closely as recovered geometry allows. Confirm no data rows are dropped (WeasyPrint drops rows that do not fit when an explicit tr height is set; use the line-height-as-row-pitch technique documented in README so no row is lost).",
+    "render_best_students dispatches to render_best_students_subjectwise when meta.variant == 'subjectwise'; preserve that dispatch and the present-column detection (a column prints only when some candidate fills it) unless recovered geometry says otherwise.",
+    "Preserve real fonts, per-cell washes keyed to recovered fills, and the deterministic competency band on the subjectwise variant.",
+    "Regenerate with `uv run sars data` then `uv run sars template` for these four reports.",
+    "Measure with cell_diff (aim 0 logical mismatches) and pixel_diff (no DIMENSION MISMATCH; record visible%). Given the page counts, verify page count equality explicitly with tools/measure_all.py."
+  ],
+  "acceptance_criteria": [
+    "MWANZA CC 10 BEST STUDENTS (5p) and Mwanza Best Students-Overall (9p) render at 792x612 with the reference page count; pixel_diff runs without DIMENSION MISMATCH.",
+    "MWANZA CC 10 BEST STUDENTS SUBJECTWISE (30p) and Mwanza Best students-Subjectwise (23p) render at 792x612 with the reference page count; pixel_diff runs without DIMENSION MISMATCH.",
+    "No candidate rows are lost relative to the reference (verify via tools/template_audit.py or token comparison).",
+    "cell_diff logical mismatch count and pixel_diff visible% recorded honestly per report.",
+    "`uv run pytest -q` stays green."
+  ],
+  "verification": [
+    "uv run python tools/measure_all.py",
+    "uv run python tools/pixel_diff.py \"MWANZA CC 10 BEST STUDENTS SUBJECTWISE\" --template",
+    "uv run python tools/pixel_diff.py \"MWANZA CC 10 BEST STUDENTS\" --template",
+    "uv run python tools/pixel_diff.py \"Mwanza Best Students-Overall\" --template",
+    "uv run python tools/pixel_diff.py \"Mwanza Best students-Subjectwise\" --template",
+    "uv run pytest -q"
+  ],
+  "blocked_reason": null,
+  "findings": ""
+}
