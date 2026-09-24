@@ -65,7 +65,11 @@ is *stated*, not guessed:
    cell geometry, so **positions are preserved**; and CSS carrying **all original
    styles** (fonts, sizes, weights, text colours, cell shading, alignment,
    rotated rank labels, background washes). No `transform: matrix()`, no opaque
-   per-run positional classes — the data is real table markup.
+   per-run positional classes — the data is real table markup. Each generated
+   file is **self-contained**: its complete stylesheet (the shared structural
+   rules plus that document's own pooled per-cell classes) is inlined into its
+   own `<head>`, so there is no shared `styles.css` and no external stylesheet
+   link.
 5. **Print to A4** — each document declares `@page { size: A4 landscape }` or
    `A4 portrait` to match its source, and is rendered with **WeasyPrint**.
 6. **Verify against the reference PDF** — the generated PDF is compared with the
@@ -124,7 +128,7 @@ src/sars/             conversion package
 tests/                unit tests + end-to-end fidelity test
 tools/probe.py        read-only PDF diagnostic
 tools/compare.py      side-by-side reference/output page images
-output/html/          generated clean HTML + styles.css
+output/html/          generated self-contained clean HTML (styles inlined per file)
 output/pdf/           generated A4 PDFs
 output/compare/       visual comparison images
 ```
@@ -151,9 +155,10 @@ sars data               # extract each report's DATA to JSON in output/data
 sars template           # data -> template -> HTML + PDF (output/template_{html,pdf})
 ```
 
-`sars.zip` is the single source of truth in the repository. `data/` and
-`output/` are build artefacts and are not committed; every command extracts the
-archive automatically if needed.
+`sars.zip` is the single source of truth in the repository. `data/` is a
+git-ignored build artefact rebuilt from the archive on demand, while `output/`
+is intentionally committed so the results are reviewable on GitHub without
+running anything. Every command extracts the archive automatically if needed.
 
 `sars list` prints the document inventory. Target a single document with
 `--only`:
@@ -190,9 +195,10 @@ Fidelity is measured on content per page rather than on reading order, because a
 cell means the same thing wherever the PDF's text operators happen to emit it,
 whereas a missing or duplicated value is a real defect.
 
-The clean output is also far smaller than the fixed-layout source: **18.1 MiB of
-pdf2html dumps become 4.6 MiB of HTML + one 1 KB stylesheet (26 %)**, while
-gaining semantic tables, real headers, and restylable CSS.
+The clean output is also far smaller than the fixed-layout source: 18.1 MiB of
+pdf2html dumps become roughly 4.6 MiB of self-contained HTML (about 26 %), while
+gaining semantic tables, real headers, and restylable CSS. Each file now inlines
+its own styles, so there is no longer a shared `output/html/styles.css`.
 
 ---
 
@@ -353,17 +359,20 @@ it can be reviewed on GitHub without running anything:
 absent from the templated output. Current state across the 19 documents:
 
 ```
-no value lost 6/19; mean document similarity 97.26%
+no value lost 6/19; mean document similarity 97.39%
 ```
 
 The conversion path is unaffected and still reports `19/19 documents pass; mean
 text similarity 100.00%`.
 
-Known remaining gaps in the templated path, all in *chrome* rather than figures
-except where noted: the top-ten reports do not yet carry their per-block
-headings (`OVERALL` / `PRIVATE` / `GOVERNMENT`) into the data, the school result
-slip loses some summary-block captions and seven summary figures, and three
-documents differ only in an apostrophe glyph (`'` vs `’`).
+Known remaining gaps in the templated path, all in *chrome* rather than figures:
+the top-ten reports do not yet carry their per-block headings (`OVERALL` /
+`PRIVATE` / `GOVERNMENT`) into the data, and a few generic-family reports
+(district performance, wards rank, mock mobility) reproduce their own structure,
+fonts, heights and competency band faithfully but do not repaint every bespoke
+per-cell tint that the reference draws on specific fail / positive-mobility
+cells — those tints are highly per-cell and not derivable from pure data, so
+they are left as the report type's neutral rules rather than stored in the data.
 
 ## Note on duplicate input
 

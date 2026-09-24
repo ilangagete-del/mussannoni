@@ -328,7 +328,14 @@ th.vcell,td.vcell{overflow:visible}
 """
 
 
-def render_document(doc: Document, css_href: str = "styles.css") -> str:
+def render_document(doc: Document) -> str:
+    """Render one document as a fully self-contained HTML file.
+
+    The complete stylesheet (the shared structural :data:`DOC_CSS` plus this
+    document's own pooled per-cell style classes) is inlined into the file's
+    own ``<head>``; the file links no external stylesheet, so every
+    ``output/html/<name>.html`` is standalone and reviewable on its own.
+    """
     scale = scale_for(doc)
     pool = StylePool(scale=scale)
     pages = [render_page(p, pool, scale, doc) for p in doc.pages]
@@ -346,8 +353,8 @@ def render_document(doc: Document, css_href: str = "styles.css") -> str:
 <head>
 <meta charset="utf-8">
 <title>{title}</title>
-<link rel="stylesheet" href="{css_href}">
 <style>
+{DOC_CSS}
 {page_css}
 {pool.css()}
 </style>
@@ -361,9 +368,6 @@ def render_document(doc: Document, css_href: str = "styles.css") -> str:
 
 def write_document(doc: Document, out_dir: Path) -> Path:
     out_dir.mkdir(parents=True, exist_ok=True)
-    css_path = out_dir / "styles.css"
-    if not css_path.exists() or css_path.read_text(encoding="utf-8") != DOC_CSS:
-        css_path.write_text(DOC_CSS, encoding="utf-8")
     target = out_dir / f"{doc.name}.html"
     target.write_text(render_document(doc), encoding="utf-8")
     return target

@@ -286,6 +286,20 @@ def test_rendered_html_preserves_original_styles(edk_doc):
     assert re.search(r"font-size:\d+\.\d+pt", html)
 
 
+def test_conversion_html_is_self_contained(edk_doc):
+    """The conversion path emits a standalone document: its complete CSS (the
+    shared structural DOC_CSS plus its own pooled per-cell classes) is inlined
+    into its own <head> and no external stylesheet is linked."""
+    html = render_document(edk_doc)
+    # No external stylesheet is ever linked.
+    assert 'rel="stylesheet"' not in html
+    assert "<link" not in html
+    # The shared structural rules are inlined, not fetched from styles.css.
+    assert "<style" in html and "</style>" in html
+    assert ".page{position:relative" in html
+    assert "@page{size:A4" in html
+
+
 def test_generated_pdf_matches_reference(edk_pair):
     """The printed A4 PDF must carry exactly the reference content."""
     generated = sources.OUT_PDF / f"{edk_pair.name}.pdf"
