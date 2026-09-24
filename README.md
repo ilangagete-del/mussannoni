@@ -221,12 +221,34 @@ page of every report and exits non-zero unless all of them are a 100% visible
 match. `pytest -m slow` runs it, so the suite cannot be green while any report is
 imperfect.
 
-Current honest state — **PASS 0/19, worst page 96.997% visible** (from 38.86% at
-the start of this work; every report improved by 10.3 to 59.1 points, and all 19
-are now above 97%). The full per-report table is `docs/FIDELITY_REPORT.md`; what
-the remaining error is made of, and the ceiling this toolchain can reach, is
-documented with measurements in `docs/FIDELITY_NOTES.md`. Nothing here should be
-described as finished until the gate exits 0.
+Current honest state — **PASS 0/19, worst page 98.923% visible** (from 38.86% at
+the start of this work; every report is now above 98.9%). The full per-report
+table is `docs/FIDELITY_REPORT.md`; what the remaining error is made of, and the
+ceiling this toolchain can reach, is documented with measurements in
+`docs/FIDELITY_NOTES.md`. Nothing here should be described as finished until the
+gate exits 0.
+
+### FEAT-002: the empty second table, and a glyph-exact fast path
+
+`MWANZA CC 10 BEST STUDENTS` (and every best-students report) stacks two logical
+tables on each page — an overall list and a female (or male) list — separated
+only by a caption. The producing application welds the two into one lattice
+`Table`, and spec recovery used to bind the whole page to a single student
+section, so the **second table drew its caption over an empty body**. The fix
+splits a merged table into one data band per contiguous run of data rows and
+binds each band to the next section in document order, generalising to any
+multi-section report (no report is special-cased, no shared stylesheet is
+introduced; only the data-binding/looping is generalised). See
+[`docs/DATA_STRUCTURE.md`](docs/DATA_STRUCTURE.md).
+
+While filling the second table, the renderer's exact-match path was upgraded to
+replay a cell's value **glyph by glyph at the reference's own x** (rather than
+advancing a whole run by the font's widths), which removes the ~0.13pt device-
+grid drift that a long `DETAILED SUBJECTS` breakdown accumulated. This helped
+every report. Before/after worst-page-visible for the target report:
+`MWANZA CC 10 BEST STUDENTS` **98.535% → 99.812%**; the worst page across all 19
+reports rose **96.997% → 98.923%**, with **no report dropping** (deltas +0.09 to
++2.42 points). The guardrail — no report's pixel-match may ever drop — held.
 
 ## Result of the conversion path
 

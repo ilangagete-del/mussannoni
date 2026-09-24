@@ -213,6 +213,56 @@ Two more fidelity rules came out of this:
   breakdown is drawn as several runs with wide gaps; re-emitting it as one string
   spaces those pieces by our own space advance instead of the reference's gaps.
 
+## 6d. One band per logical table, and a glyph-exact fast path (FEAT-002)
+
+The best-students reports stack two logical tables on a page — an overall list
+and a female (or male) continuation list — separated only by a caption row. The
+producing application welds them into a single lattice `Table` that shares the
+column edges, so `tools/build_layout_specs.py` recovered **one data band per
+page** and bound it to a single student section. The second table therefore drew
+its caption over an **empty body**: `output/compare/MWANZA CC 10 BEST STUDENTS.jpg`
+showed the `TOP TEN BEST FEMALE STUDENTS ...` caption with nothing under it and a
+large red diff. `slot_audit` reported zero disagreements for it *only* because it
+audits the bands the spec defines, and the missing table had no band.
+
+The defect was recovered, not guessed: for `MWANZA CC 10 BEST STUDENTS` the
+extractor yields one table block of 23 lattice rows per page
+(`header, 10x data, banner, 10x data`) while `binding.row_groups` yields nine
+student sections; the recovered spec bound its five page-bands to sections
+`students0, 2, 4, 6` and left the odd sections and every second table unfed.
+
+Two coordinated changes fixed it, without special-casing any report and without a
+shared stylesheet (each report keeps its own self-contained spec):
+
+1. **Band recovery** (`_bands_for_table`) now splits a table's data rows into
+   contiguous runs — a run breaks wherever the row indices are not consecutive,
+   i.e. wherever a non-data row (a repeated column header or a section caption)
+   sits between two blocks of data — and emits **one data band per run**. Each
+   logical table gets its own band.
+2. **Binding** (`_bind_bands`) walks the section groups (`students{n}` /
+   `section{n}`) in document order, binding one band per group and never reusing
+   a group an earlier band took. These sections often overlap in content (the
+   same top candidate leads the overall and the female list), so a purely greedy
+   per-band score bound two bands to the same section; lockstep order fixes it.
+   Column votes are now counted through `_align_rows`, not a naive lockstep, so a
+   band whose recovered rows include a repeated header inside the merged table
+   still binds every column to the right field.
+
+Filling the second table as **data** (rather than the verbatim reference glyphs
+the old single-band spec left as chrome) exposed the intra-run drift measured in
+§6a: a 130-char `DETAILED SUBJECTS` breakdown, placed at the reference's own
+start x but advanced by the font's own widths, ends ~0.13pt off — a visible
+half-pixel on every glyph edge at the gate's raster, which alone would have
+**dropped** the page. So the renderer's exact-match fast path now stores, and
+replays, **every ink glyph of a matching cell at the reference's own x** (the
+same fidelity the chrome path gives, but chosen by the data). This removed the
+drift for every report.
+
+Before/after worst-page-visible: `MWANZA CC 10 BEST STUDENTS` **98.535% →
+99.812%**, `MWANZA CC 10 BEST STUDENTS SUBJECTWISE` **98.889% → 99.821%**, and
+the worst page across all 19 reports **96.997% → 98.923%** — **no report dropped**
+(deltas +0.09 to +2.42 points). The guardrail held.
+
 ## 7. Where the remaining error is
 
 Per report numbers live in `docs/FIDELITY_REPORT.md`. The shape of the residual:

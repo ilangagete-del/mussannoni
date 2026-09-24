@@ -196,10 +196,25 @@ def render_html(
         supplied_rows: dict[int, list] = {}
         for band_index, band in enumerate(bands):
             count = _row_count(band, rows_per_band.get((page_index, band_index)))
+            mapping = band.get("row_data_index")
             rows: list = []
             for row in range(count):
                 supplied = values(page_index, band_index, band["kind"], row)
                 if supplied is None:
+                    # A ``None`` from a row the reference recovered as an
+                    # unexplained/chrome row (a repeated column header drawn
+                    # inside the band) is a gap to SKIP, not the end of the band:
+                    # the rows after it are real data. Preserve the row position
+                    # with an empty placeholder so fills and baselines still land
+                    # by absolute row index. A ``None`` past the reference rows
+                    # (data ran out) genuinely ends the band.
+                    if (
+                        mapping is not None
+                        and row < len(mapping)
+                        and mapping[row] is None
+                    ):
+                        rows.append(None)
+                        continue
                     break
                 rows.append(supplied)
             supplied_rows[band_index] = rows
@@ -232,6 +247,8 @@ def render_html(
         # 2. the values, band by band
         for band_index, band in enumerate(bands):
             for row, supplied in enumerate(supplied_rows.get(band_index, [])):
+                if supplied is None:
+                    continue
                 top = _row_top(band, row)
                 for cell in _row_cells(band, row):
                     if "role" not in cell:
@@ -259,8 +276,28 @@ def render_html(
                     # computed alignment for it cost ~0.4pt on every such cell.
                     sample = str(cell.get("sample") or "").strip()
                     pieces = cell.get("pieces") or []
+                    glyphs = cell.get("glyphs") or []
+                    if sample and _same_value(text, sample) and glyphs:
+                        # The value the reference printed here: replay its glyphs
+                        # at the exact x the reference drew each one, so a long
+                        # cell does not drift by the accumulated difference
+                        # between the font's advances and the reference's own
+                        # device grid. Pixel-identical to the reference, and still
+                        # chosen by the data.
+                        baseline = top + cell["dy"]
+                        for glyph_char, glyph_x in glyphs:
+                            canvas.text(
+                                float(glyph_x),
+                                baseline,
+                                str(glyph_char),
+                                role=cell["role"],
+                                size=cell["size"],
+                                color=cell.get("color", "#000000"),
+                            )
+                        continue
                     if sample and _same_value(text, sample) and pieces:
-                        # Draw each of the reference's own runs at its own x.
+                        # Older specs without per-glyph positions: draw each of
+                        # the reference's own runs at its own x.
                         for piece_text, piece_x in pieces:
                             canvas.text(
                                 float(piece_x),

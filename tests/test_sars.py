@@ -422,6 +422,67 @@ def test_best_students_splits_titled_sections():
     assert report.sections[0].students[0].school_name
 
 
+def test_best_students_second_section_renders_its_own_rows():
+    """FEAT-002 regression: every logical section/table on a page is fed data.
+
+    The producing application welds the two logical tables that share a page's
+    column lattice (the overall list and the female list, separated by the
+    'TOP TEN BEST FEMALE STUDENTS OVERALL COUNCILWISE' caption) into one PDF
+    table, and spec recovery used to bind that page to a single student group -
+    so the second table drew its caption over an empty body. With band recovery
+    splitting the merged table into one band per logical section and the binding
+    walking the sections in document order, the second (female) section must now
+    render its own candidate rows.
+
+    This asserts on data that ONLY appears in the second section, so it fails on
+    the pre-fix behaviour where that section had no band and was fed nothing.
+    """
+    import gzip
+    import json
+
+    from sars.layout_spec import LAYOUTS, binding_provider
+
+    report = _report_for("MWANZA CC 10 BEST STUDENTS")
+    overall = report.sections[0]
+    female = report.sections[1]
+
+    # The first page must carry TWO data bands: one per logical section/table.
+    # On the pre-fix code page 0 held a single band (the merged lattice table),
+    # so indexing band 1 would not exist - the defect this test guards against.
+    with gzip.open(LAYOUTS / "MWANZA CC 10 BEST STUDENTS.json.gz", "rt") as handle:
+        spec = json.load(handle)
+    first_page_bands = spec["pages"][0]["bands"]
+    assert len(first_page_bands) >= 2, "the second table on page 1 has no band"
+
+    # The second band must bind to the SECOND section's group, not re-bind the
+    # first section, and yield that section's own rows (not None / not empty).
+    second_band = first_page_bands[1]
+    assert second_band.get("group") == "students1", second_band.get("group")
+
+    provider = binding_provider("MWANZA CC 10 BEST STUDENTS", report)
+    yielded = [
+        provider(0, 1, "data", row) for row in range(second_band["reference_rows"])
+    ]
+    rows_with_data = [
+        value
+        for value in yielded
+        if value and any(str(v).strip() for v in value.values())
+    ]
+    # All ten female candidates are produced, and their values are the female
+    # section's, keyed by a candidate who ranks in the female-only list.
+    assert len(rows_with_data) == len(female.students)
+    overall_names = {student.name for student in overall.students}
+    female_only = {s.name for s in female.students if s.name not in overall_names}
+    assert female_only, "fixture should have a female-only candidate to key on"
+    produced_names = {
+        str(value.get(2, "")).strip() for value in rows_with_data
+    }
+    assert female_only & produced_names, (
+        "the second section's own candidates are not rendered; "
+        f"expected one of {sorted(female_only)}, got {sorted(produced_names)}"
+    )
+
+
 def test_subjects_rank_extracts_grade_breakdown():
     from sars import schema
 
