@@ -119,35 +119,95 @@ def _rotation_of(direction) -> int:
     return 0 if dx >= 0 else 180
 
 
+def run_starts(page: pymupdf.Page) -> list[tuple[float, float]]:
+    """(y, x) where each text-showing operation on the page begins.
+
+    The page's real run boundaries, read from the drawing operators rather than
+    from reconstructed lines. Text extraction merges runs that overlap in x - a
+    school name overhanging its column and the next column's own value become one
+    span reading ``STAR REACHERS GIRLS APRIVATE`` - which silently welds two
+    values together and empties a column. These boundaries let such a span be cut
+    back apart.
+    """
+    starts: list[tuple[float, float]] = []
+    for span in page.get_texttrace():
+        if span["type"] != 0 or not span["chars"]:
+            continue
+        if abs(span["dir"][1]) > 0.5:
+            continue
+        previous: tuple | None = None
+        size = span["size"]
+        for _ucs, _gid, origin, bbox in span["chars"]:
+            if previous is None or origin[0] - previous[2] > size * 0.45:
+                starts.append((round(origin[1], 2), round(origin[0], 4)))
+            previous = bbox
+    return starts
+
+
+def split_span_at_runs(
+    sp: dict, starts: list[tuple[float, float]]
+) -> list[tuple[str, float, float]]:
+    """Cut one extracted span into (text, x0, x1) pieces at real run starts."""
+    chars = [c for c in sp.get("chars", []) if c.get("c")]
+    origin = sp.get("origin")
+    if len(chars) < 2 or origin is None:
+        return []
+    cuts = sorted(
+        x
+        for y, x in starts
+        if abs(y - origin[1]) < 0.6 and sp["bbox"][0] + 0.2 < x < sp["bbox"][2] - 0.2
+    )
+    if not cuts:
+        return []
+    pieces: list[list[dict]] = [[]]
+    index = 0
+    for char in chars:
+        while index < len(cuts) and char["bbox"][0] >= cuts[index] - 0.05:
+            index += 1
+            pieces.append([])
+        pieces[-1].append(char)
+    out: list[tuple[str, float, float]] = []
+    for piece in pieces:
+        text = "".join(c["c"] for c in piece)
+        if not text.strip():
+            continue
+        out.append((text, min(c["bbox"][0] for c in piece), max(c["bbox"][2] for c in piece)))
+    return out if len(out) > 1 else []
+
+
 def harvest_spans(page: pymupdf.Page) -> list[Span]:
     spans: list[Span] = []
-    data = page.get_text("dict")
+    data = page.get_text("rawdict")
+    starts = run_starts(page)
     for block in data.get("blocks", []):
         if block.get("type") != 0:
             continue
         for line in block.get("lines", []):
             rot = _rotation_of(line.get("dir", (1, 0)))
             for sp in line.get("spans", []):
-                text = sp.get("text", "")
+                text = "".join(c.get("c", "") for c in sp.get("chars", []))
                 if not text.strip():
                     continue
                 x0, y0, x1, y1 = sp["bbox"]
                 flags = int(sp.get("flags", 0))
-                spans.append(
-                    Span(
-                        text=text,
-                        x0=float(x0),
-                        x1=float(x1),
-                        top=float(y0),
-                        bottom=float(y1),
-                        family=css_family(sp.get("font", "")),
-                        size=float(sp.get("size", 7.0)),
-                        bold=bool(flags & 16),
-                        italic=bool(flags & 2),
-                        color=int_to_hex(int(sp.get("color", 0))),
-                        rotation=rot,
-                    )
-                )
+                common = {
+                    "top": float(y0),
+                    "bottom": float(y1),
+                    "family": css_family(sp.get("font", "")),
+                    "size": float(sp.get("size", 7.0)),
+                    "bold": bool(flags & 16),
+                    "italic": bool(flags & 2),
+                    "color": int_to_hex(int(sp.get("color", 0))),
+                    "rotation": rot,
+                }
+                pieces = split_span_at_runs(sp, starts) if rot == 0 else []
+                if pieces:
+                    for piece_text, piece_x0, piece_x1 in pieces:
+                        spans.append(
+                            Span(text=piece_text, x0=float(piece_x0), x1=float(piece_x1), **common)
+                        )
+                    continue
+                spans.append(Span(text=text, x0=float(x0), x1=float(x1), **common))
     return spans
 
 
@@ -414,10 +474,25 @@ def _dominant_style(bbox, lines: list[list[Span]], background: str | None) -> St
 
 
 def _spans_in(bbox, spans: list[Span]) -> list[Span]:
+    """Spans belonging to a cell box.
+
+    A span belongs to the cell it **starts** in. Matching on the span's centre
+    instead loses values whenever text overhangs its cell: a school name wider
+    than its column has its centre in the *next* column, so the name was stolen
+    by the neighbouring cell and interleaved with that cell's own text there
+    (``STAR REACHERS GIRLS APRIVATE``, with the ownership column left empty).
+
+    A span narrower than the box may still match on its centre, so a centred
+    value whose start rounds a hair outside the box is not dropped.
+    """
     x0, y0, x1, y1 = bbox
     inside = []
     for s in spans:
-        if x0 - 0.6 <= s.cx <= x1 + 0.6 and y0 - 0.6 <= s.cy <= y1 + 0.6:
+        if not (y0 - 0.6 <= s.cy <= y1 + 0.6):
+            continue
+        starts_inside = x0 - 0.6 <= s.x0 <= x1 + 0.6
+        fits = (s.x1 - s.x0) <= (x1 - x0) + 1.2
+        if starts_inside or (fits and x0 - 0.6 <= s.cx <= x1 + 0.6):
             inside.append(s)
     return inside
 
