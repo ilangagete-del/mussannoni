@@ -1,0 +1,37 @@
+{
+  "id": "FEAT-002",
+  "type": "refactor",
+  "description": "DATA IS DATA, NOT STYLES. Reverse the prior task's decision to bake recovered presentation into the data layer: remove the per-cell CellStyle, per-row pitch, and total_styles/total_pitch carriers from sars.schema and stop sars.extract_data from populating them, so output/data/*.json holds ONLY report DATA - figures, names, ranks, counts, GPA, competency labels, and the structural grouping (column-header paths, colspans, section titles, which rows are totals). Presentation (fonts, sizes, colours, fills, row pitch) leaves the data entirely and becomes the responsibility of each report type's OWN self-contained template in FEAT-003. Deterministic, data-derived colour (the competency band) is NOT stored - it is computed by the template from the competency label / GPA via sars.competency. Keep the JSON round-trip lossless for the remaining (pure-data) fields, and keep the conversion path (`sars all`) untouched at 19/19 100%. Depends on FEAT-001; blocks FEAT-003.",
+  "status": "pending",
+  "steps": [
+    "PRINCIPLE (user steering, authoritative): the extracted data must be DATA ONLY. Structure/grouping IS data (column-header label paths, colspan/rowspan grouping, section titles, totals-row identity, which report_type). Fonts, font sizes, text colours, background fill colours, and row pitch are NOT data - they are the report type's presentation and must not live in the schema or JSON.",
+    "In src/sars/schema.py: remove the CellStyle dataclass and every carrier the prior task added - the per-row `styles: dict[str, CellStyle]` and `pitch: float` fields on StudentRow, DivisionSummaryRow, PerformanceRow, SchoolRankRow, SubjectRankRow, TabularRow; and the `total_styles: dict[str, list[CellStyle]]` and `total_pitch: dict[str, float]` fields on SchoolsRankReport, SubjectsRankReport, TabularSection, GenericTabularReport. Also revert the `_coerce`/`_build`/`nested`/`SCHEMA_BY_TYPE` machinery that reconstructs CellStyle nesting on from_dict/from_json, so deserialisation no longer references CellStyle. Preserve all pure-DATA fields and the grouping fields (column_headers, colspan/span markers, section titles, totals maps).",
+    "In src/sars/extract_data.py: remove the style/geometry population helpers the prior task added (`_cell_style`, `_row_styles`, `_row_pitch`, `_group_cols`, `_group_data_rows_ctx`, `_total_rows_full`, `_group_total_styles`, and any pitch capture from model.Table.row_heights()) and stop threading styles/pitch onto the rows/totals/sections. The extractor still recovers the DATA and the STRUCTURE (grouped headers, colspans, totals) exactly as before - only the presentation capture is removed. Preserve every previously captured value (no data regression in template_audit).",
+    "Verify output/data/*.json now contains NO font/size/colour/background/pitch fields: after `sars data`, grep the JSON for `\"background\"`, `\"size_pt\"`, `\"family\"`, `\"pitch\"`, `\"total_styles\"`, `\"total_pitch\"`, `\"styles\"` and confirm none remain (competency values remain as plain text labels, not hex). Confirm `schema.from_dict(schema.to_dict(extracted))` still round-trips losslessly for the remaining data fields on MWANZA CC SCHOOLS RANK and at least one of each other family.",
+    "The templates currently CONSUME the removed carriers (base.styled_cell/competency_cell/TemplatePool, schools_rank._st/_data_row/_total_row/_summary_html, generic._section_table, subjects_rank, best_students, school_result_slip all read row.styles/row.pitch/report.total_styles). Do the MINIMUM here to keep the templated path importable and running after the schema change: make the templates render with pure data again (they may temporarily look like the pre-fidelity plain output). Full self-contained faithful styling is FEAT-003's job. It is acceptable for the templated compare images to look plain/unstyled at the end of THIS feature; what matters is (a) data JSON is pure data, (b) `sars template` runs without error, (c) no DATA/token regression.",
+    "Update tests in tests/test_sars.py that assert the styles-in-data design (search for CellStyle, `.styles`, `.pitch`, total_styles, total_pitch, and the renamed `test_competency_colour_is_not_fabricated_into_data_fields`). Restore/assert the DATA-IS-DATA invariant: the data schema/JSON carries NO font/size/colour/background/pitch fields, and the competency colour is NEVER stored (computed deterministically) - this realigns with the original `test_competency_colour_is_not_stored_as_data` intent. Keep the competency band-colour mapping tests (they test sars.competency, which stays).",
+    "Do NOT touch the conversion path (extract.py/classify.py/html_out.py/render.py) in this feature; `sars all` must still report 19/19 100%. The conversion path recovers presentation directly from model.Style at render time and never used the schema carriers, so it is unaffected.",
+    "Run `ruff check src tools` and `black --check src tools` and fix findings. Regenerate output/data via `sars data` so the pure-data JSON is current (FEAT-004 handles the other artefacts)."
+  ],
+  "acceptance_criteria": [
+    "sars.schema.py no longer defines CellStyle nor any styles/pitch/total_styles/total_pitch carrier; the schema dataclasses carry only DATA and STRUCTURE (grouping) fields.",
+    "sars.extract_data.py no longer captures or threads per-cell styles or per-row pitch; it still captures every DATA value and the structural grouping (grouped headers, colspans, totals) with no token/value regression.",
+    "output/data/*.json contains no `background`/`size_pt`/`family`/`pitch`/`styles`/`total_styles`/`total_pitch` keys; competency remains a text label; `schema.from_dict(schema.to_dict(extracted))` round-trips losslessly for the remaining fields.",
+    "The competency colour is not stored anywhere in the data (it is derived from the label/GPA by sars.competency).",
+    "`sars template` runs to completion for all 19 documents without error after the schema change (styling may be plain pending FEAT-003).",
+    "`python tools/template_audit.py` token completeness is no worse than the FEAT-001 baseline (data/values are unchanged).",
+    "`sars all` still reports `19/19 documents pass; mean text similarity 100.00%`.",
+    "`pytest -q` passes with the DATA-IS-DATA invariant tests; `ruff check src tools` and `black --check src tools` clean."
+  ],
+  "verification": [
+    ". .venv/bin/activate && sars data && python -c \"import glob,json; bad=[f for f in glob.glob('output/data/*.json') for k in ('background','size_pt','family','pitch','styles','total_styles','total_pitch') if k in open(f,encoding='utf-8').read()]; print('files with style keys:', len(set(bad))); assert not bad, sorted(set(bad))[:3]; print('DATA-IS-DATA OK')\"",
+    ". .venv/bin/activate && python -c \"import json; from sars import schema; d=json.load(open('output/data/MWANZA CC SCHOOLS RANK.json')); assert schema.to_dict(schema.from_dict(d))==d; print('round-trip OK')\"",
+    ". .venv/bin/activate && sars template 2>&1 | tail -3",
+    ". .venv/bin/activate && python tools/template_audit.py 2>&1 | tail -5",
+    ". .venv/bin/activate && sars all 2>&1 | tail -2",
+    ". .venv/bin/activate && pytest -q 2>&1 | tail -5",
+    ". .venv/bin/activate && ruff check src tools && black --check src tools"
+  ],
+  "blocked_reason": null,
+  "findings": ""
+}

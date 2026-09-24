@@ -1,0 +1,7 @@
+{
+  "task_id": "task-self-contained-reports",
+  "task_description": "Rework the SARS report rendering so each report is a FULLY SELF-CONTAINED HTML+CSS document - its own structure and its own complete styling per report type - that faithfully reproduces its reference PDF cell-by-cell (identical per-cell fill colours, font names/styles/sizes, true row heights, alignment, rotation, and exact structure), matching the reference fidelity bar. Dismantle the forced shared-CSS + reusable/generic-template coupling on BOTH paths (no shared styles.css, no shared DOC_CSS/TEMPLATE_CSS funnel, no font-size clamp, no cross-report harmonization). Honour the user's live steering that DATA IS DATA, NOT STYLES: strip the recovered per-cell CellStyle/pitch/total_styles/total_pitch out of the data schema+JSON (reversing the prior task) so extracted data carries only figures+structure, and let each report type's template own all presentation (competency colour computed deterministically, never stored). Then regenerate all 19 HTML outputs and all side-by-side comparison images so the fix is verifiable, keeping the conversion path at 19/19 100%. The cited defect to fix first is MWANZA CC SCHOOLS RANK (output/compare/TEMPLATE MWANZA CC SCHOOLS RANK - page 1.jpg).",
+  "status": "in_progress",
+  "feature_order": ["FEAT-001", "FEAT-002", "FEAT-003", "FEAT-004"],
+  "blocked_reason": null
+}

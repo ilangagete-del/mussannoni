@@ -1,0 +1,35 @@
+{
+  "id": "FEAT-004",
+  "type": "chore",
+  "description": "Finish the self-contained pivot on the CONVERSION path too, update the README to describe the new architecture, then regenerate EVERY committed artefact and ALL side-by-side comparison images for all 19 documents so the fix is verifiable, re-audit, confirm the conversion path is still 19/19 100%, and leave the tree committed-ready. Depends on FEAT-003.",
+  "status": "pending",
+  "steps": [
+    "Make the CONVERSION path self-contained too: in src/sars/html_out.py, stop writing and linking a shared output/html/styles.css. write_document currently writes a shared styles.css and render_document links it via <link rel=stylesheet href=styles.css>. Change so each output/html/<name>.html inlines its complete CSS (the DOC_CSS it needs plus its pooled per-document style classes) into its own <head> and links no external stylesheet, and write_document no longer creates output/html/styles.css. Keep the emitted geometry/style byte-faithful so `sars verify` still reports 19/19 100% text similarity and identical glyphs (this is a plumbing move of the same CSS from an external file to inline; it must not change what renders). Delete the now-orphaned output/html/styles.css from the tree.",
+    "Update README.md to describe the NEW architecture and remove the stale claims: (a) the templated path no longer shares a single CSS or reusable/generic templates across report types - each report is self-contained (own structure + own inline styling) and reproduces its type faithfully; (b) DATA IS DATA - the extracted data JSON carries only figures/structure, never fonts/sizes/colours/fills/pitch, and the competency colour is computed deterministically (never stored); (c) output/html/ no longer has a shared styles.css (each HTML inlines its styles). Fix the Layout section, the 'What is data and what is chrome', the 'Competency colours are deterministic' section, and the size/stylesheet claims accordingly. Do not invent numbers - use the actual audit/verify numbers from this run.",
+    "Regenerate ALL committed artefacts from a clean run: `sars data` (output/data/*.json - pure data), `sars all` (output/html/*.html now self-contained + output/pdf/*.pdf + verify), `sars template` (output/template_html/*.html self-contained + output/template_pdf/*.pdf).",
+    "Regenerate ALL side-by-side comparison images for page 1 of every document, BOTH sets: `python tools/compare.py` (reference vs conversion -> output/compare/<name> - page 1.jpg) and `python tools/compare.py --template` (reference vs templated -> output/compare/TEMPLATE <name> - page 1.jpg). Confirm all 19 of each are written.",
+    "Re-audit and record numbers in findings: `python tools/template_audit.py` (full per-document table + summary; state the delta vs the FEAT-001 baseline), and `sars all` summary (must be `19/19 documents pass; mean text similarity 100.00%`).",
+    "Visually re-review the regenerated comparison images for ALL 19 documents (read each output/compare/'TEMPLATE <name> - page 1.jpg'). For each, note whether per-cell colours, row heights, fonts and structure now match the reference; explicitly confirm the cited MWANZA CC SCHOOLS RANK now matches. List any residual gaps per document. For families that reflow to a different page count, confirm no cells/values are dropped even though page 1 differs.",
+    "Run the full suite `pytest -q` and `ruff check src tools` + `black --check src tools`; fix any findings.",
+    "Stage and commit locally the source changes and the regenerated artefacts (git add the specific changed files under src/sars, tests, README.md, output/data, output/html, output/pdf, output/template_html, output/template_pdf, output/compare, and the removal of output/html/styles.css; then `git commit` with a clear message). Do NOT push, do NOT create a PR, do NOT `git add -A`/`.`. Report the commit hash and a summary with before/after numbers and the per-report fidelity status (especially MWANZA CC SCHOOLS RANK)."
+  ],
+  "acceptance_criteria": [
+    "output/html/*.html are self-contained (inline <style>, no <link rel=stylesheet>); output/html/styles.css no longer exists in the tree; `sars all` still reports `19/19 documents pass; mean text similarity 100.00%`.",
+    "README.md describes the self-contained-per-report architecture and the DATA-IS-DATA principle, with no remaining claim of a shared styles.css or reusable/generic cross-report templates; any quoted numbers match this run.",
+    "output/data/*.json, output/html/*, output/pdf/*, output/template_html/*, output/template_pdf/* and BOTH output/compare/*.jpg sets (19 conversion + 19 TEMPLATE) are regenerated and reflect FEAT-002+FEAT-003.",
+    "`python tools/template_audit.py` summary is recorded with the delta vs FEAT-001 baseline and is no worse on token completeness and mean document similarity.",
+    "A visual review note for all 19 TEMPLATE comparison images is recorded, confirming MWANZA CC SCHOOLS RANK matches cell-by-cell and listing any residual gaps.",
+    "`pytest -q` passes; `ruff check src tools` and `black --check src tools` clean.",
+    "The source changes and regenerated artefacts are committed locally (commit hash reported); nothing pushed."
+  ],
+  "verification": [
+    ". .venv/bin/activate && sars data && sars all 2>&1 | tail -2 && sars template 2>&1 | tail -2",
+    ". .venv/bin/activate && python tools/compare.py 2>&1 | tail -3 && python tools/compare.py --template 2>&1 | tail -3",
+    "cd /projects/sandbox/mussannoni && test ! -e 'output/html/styles.css' && echo 'styles.css removed' && grep -L 'rel=\"stylesheet\"' output/html/*.html | wc -l",
+    ". .venv/bin/activate && python tools/template_audit.py 2>&1 | tail -25",
+    ". .venv/bin/activate && pytest -q 2>&1 | tail -5 && ruff check src tools && black --check src tools",
+    "cd /projects/sandbox/mussannoni && git log --oneline -1 && git status --short | head"
+  ],
+  "blocked_reason": null,
+  "findings": ""
+}
