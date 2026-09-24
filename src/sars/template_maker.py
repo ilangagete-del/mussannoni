@@ -35,8 +35,7 @@ import tempfile
 from pathlib import Path
 from typing import Any
 
-from weasyprint import HTML
-
+from . import printing
 from .templates import RENDERERS, TYPE_BY_SCHEMA, renderer_for
 
 
@@ -55,7 +54,7 @@ def _report_type_of(data: Any) -> str:
     return TYPE_BY_SCHEMA.get(type(data), "generic")
 
 
-def render_html(report_type: str, data: Any) -> str:
+def render_html(report_type: str, data: Any, engine: str | None = None) -> str:
     """Render report *data* to a full, styled HTML document string.
 
     ``report_type`` selects the template (see :data:`sars.templates.RENDERERS`);
@@ -68,27 +67,37 @@ def render_html(report_type: str, data: Any) -> str:
     header-driven families (``subject_school_rank`` / ``wards_rank`` /
     ``district_performance`` / ``mock_mobility`` / ``generic``).
     """
-    return renderer_for(report_type)(data)
+    renderer = renderer_for(report_type)
+    if engine is None:
+        return renderer(data)
+    try:
+        return renderer(data, engine=engine)
+    except TypeError:
+        # A renderer that does not take an engine prints the same HTML either
+        # way; the engine only affects the baseline calibration.
+        return renderer(data)
 
 
-def render_pdf(report_type: str, data: Any, out_path: str | Path | None = None) -> Path | bytes:
+def render_pdf(
+    report_type: str,
+    data: Any,
+    out_path: str | Path | None = None,
+    engine: str | None = None,
+) -> Path | bytes:
     """Render report *data* to a PDF (HTML then WeasyPrint).
 
     Returns the :class:`~pathlib.Path` written when ``out_path`` is given, or the
     PDF ``bytes`` otherwise. ``report_type`` and ``data`` are as for
     :func:`render_html`.
     """
-    html_text = render_html(report_type, data)
-    # A base_url lets WeasyPrint resolve any relative asset; the templates are
+    name = getattr(getattr(data, "meta", None), "name", "") or ""
+    engine = engine or printing.engine_for(name)
+    html_text = render_html(report_type, data, engine=engine)
+    # A base_url lets the engine resolve any relative asset; the templates are
     # self-contained so a temp dir is enough.
-    base = tempfile.gettempdir()
-    document = HTML(string=html_text, base_url=base)
-    if out_path is None:
-        return document.write_pdf()
-    target = Path(out_path)
-    target.parent.mkdir(parents=True, exist_ok=True)
-    document.write_pdf(str(target))
-    return target
+    return printing.print_pdf(
+        html_text, out_path, engine=engine, base_url=tempfile.gettempdir()
+    )
 
 
 def make(data: Any) -> str:

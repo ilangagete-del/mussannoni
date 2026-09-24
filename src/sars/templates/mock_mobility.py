@@ -1,30 +1,28 @@
-"""Fixed-layout mock-mobility report (portrait Letter, 6 pages).
+"""Mock-mobility report — recovered fixed layout, filled from data.
 
-Emits its OWN portrait ``612pt 792pt`` page box and paginates the single ranked
-section across the reference's 6 pages.  The reference draws the banner on page
-one only; continuation pages carry the ranked table starting near the top.
+The mobility sheet compares each school's movement between assessments, and it
+is drawn nothing like the other reports: its own portrait page box, its own
+bespoke per-cell tints, its own fonts (it is the one document that uses Arial
+Italic). All of that is recovered into ``layouts/Mwanza f2 Mock Mobility
+2026.json``; this module supplies the data only.
 """
 
 from __future__ import annotations
 
+from ..layout_spec import binding_provider, has_spec, render_html
 from ..schema import GenericTabularReport
-from .generic_fixed import PORTRAIT, render_paginated_single_section
-
-_BODY_PT = 6.4
-_ROW_PT = 10.8
-_BANNER_PT = 7.5
-
-# Exact recovered per-page data-row split from the reference (6 pages).
-_PAGE_SPLIT: tuple[int, ...] = (53, 61, 61, 61, 61, 54)
 
 
-def render_mock_mobility(report: GenericTabularReport) -> str:
-    """Render mock mobility as a paginated single-section portrait doc."""
-    return render_paginated_single_section(
-        report,
-        PORTRAIT,
-        page_row_counts=_PAGE_SPLIT,
-        body_pt=_BODY_PT,
-        row_pt=_ROW_PT,
-        banner_pt=_BANNER_PT,
+def render_mock_mobility(report: GenericTabularReport, engine: str | None = None) -> str:
+    """Render the mock-mobility report from its own recovered layout."""
+    name = report.meta.name
+    if not has_spec(name):  # pragma: no cover - the spec ships with the repo
+        raise RuntimeError(
+            f"{name!r} has no recovered layout spec; run tools/build_layout_specs.py"
+        )
+    return render_html(
+        name,
+        binding_provider(name, report),
+        title=report.meta.title or name,
+        engine=engine,
     )

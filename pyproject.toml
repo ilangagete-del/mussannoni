@@ -13,6 +13,7 @@ dependencies = [
     "pymupdf>=1.24",
     "weasyprint>=62",
     "pillow>=10",
+    "numpy>=1.26",
 ]
 
 [project.optional-dependencies]
@@ -23,6 +24,11 @@ sars = "sars.cli:main"
 
 [tool.setuptools.packages.find]
 where = ["src"]
+
+[tool.pytest.ini_options]
+markers = [
+    "slow: rasterises every page of every report through the fidelity gate",
+]
 
 [tool.ruff]
 line-length = 100

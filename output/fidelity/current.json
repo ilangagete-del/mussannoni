@@ -1,0 +1,1710 @@
+{
+  "zoom": 2.0,
+  "visible_tolerance": 8,
+  "target_pct": 100.0,
+  "passed": 0,
+  "total": 19,
+  "worst_page_visible_pct": 90.93302304086617,
+  "reports": [
+    {
+      "name": "Mwanza Best Students-Overall",
+      "ok": false,
+      "hard_fail": null,
+      "page_count": 9,
+      "worst_visible_pct": 97.05696672608437,
+      "worst_exact_pct": 96.74729319337162,
+      "pages": [
+        {
+          "page": 1,
+          "size_pt": [
+            792.0,
+            612.0
+          ],
+          "visible_pct": 97.05696672608437,
+          "exact_pct": 96.75116153363702,
+          "max_delta": 255
+        },
+        {
+          "page": 2,
+          "size_pt": [
+            792.0,
+            612.0
+          ],
+          "visible_pct": 97.10405732158183,
+          "exact_pct": 96.79799423978345,
+          "max_delta": 255
+        },
+        {
+          "page": 3,
+          "size_pt": [
+            792.0,
+            612.0
+          ],
+          "visible_pct": 97.55428055060408,
+          "exact_pct": 97.253065788605,
+          "max_delta": 255
+        },
+        {
+          "page": 4,
+          "size_pt": [
+            792.0,
+            612.0
+          ],
+          "visible_pct": 97.8142330164389,
+          "exact_pct": 97.5971933386149,
+          "max_delta": 255
+        },
+        {
+          "page": 5,
+          "size_pt": [
+            792.0,
+            612.0
+          ],
+          "visible_pct": 98.01445830857595,
+          "exact_pct": 97.81464563940054,
+          "max_delta": 255
+        },
+        {
+          "page": 6,
+          "size_pt": [
+            792.0,
+            612.0
+          ],
+          "visible_pct": 97.21840545982703,
+          "exact_pct": 96.92982727602826,
+          "max_delta": 255
+        },
+        {
+          "page": 7,
+          "size_pt": [
+            792.0,
+            612.0
+          ],
+          "visible_pct": 97.93605994586387,
+          "exact_pct": 97.7221665181224,
+          "max_delta": 255
+        },
+        {
+          "page": 8,
+          "size_pt": [
+            792.0,
+            612.0
+          ],
+          "visible_pct": 97.06532234105764,
+          "exact_pct": 96.74729319337162,
+          "max_delta": 255
+        },
+        {
+          "page": 9,
+          "size_pt": [
+            792.0,
+            612.0
+          ],
+          "visible_pct": 97.11602338746947,
+          "exact_pct": 96.79696268237934,
+          "max_delta": 255
+        }
+      ]
+    },
+    {
+      "name": "Mwanza Best students-Subjectwise",
+      "ok": false,
+      "hard_fail": null,
+      "page_count": 23,
+      "worst_visible_pct": 98.72365402389912,
+      "worst_exact_pct": 95.78670693866772,
+      "pages": [
+        {
+          "page": 1,
+          "size_pt": [
+            792.0,
+            612.0
+          ],
+          "visible_pct": 98.9115522050571,
+          "exact_pct": 96.02731770317554,
+          "max_delta": 255
+        },
+        {
+          "page": 2,
+          "size_pt": [
+            792.0,
+            612.0
+          ],
+          "visible_pct": 99.01383112167426,
+          "exact_pct": 96.15007303426421,
+          "max_delta": 255
+        },
+        {
+          "page": 3,
+          "size_pt": [
+            792.0,
+            612.0
+          ],
+          "visible_pct": 98.97220778041857,
+          "exact_pct": 96.11649584076055,
+          "max_delta": 255
+        },
+        {
+          "page": 4,
+          "size_pt": [
+            792.0,
+            612.0
+          ],
+          "visible_pct": 99.0354938271605,
+          "exact_pct": 96.15992440747343,
+          "max_delta": 255
+        },
+        {
+          "page": 5,
+          "size_pt": [
+            792.0,
+            612.0
+          ],
+          "visible_pct": 99.0694836436258,
+          "exact_pct": 96.15058881296626,
+          "max_delta": 255
+        },
+        {
+          "page": 6,
+          "size_pt": [
+            792.0,
+            612.0
+          ],
+          "visible_pct": 99.05215347923681,
+          "exact_pct": 96.19375949032812,
+          "max_delta": 255
+        },
+        {
+          "page": 7,
+          "size_pt": [
+            792.0,
+            612.0
+          ],
+          "visible_pct": 99.08707169736581,
+          "exact_pct": 96.21965158117119,
+          "max_delta": 242
+        },
+        {
+          "page": 8,
+          "size_pt": [
+            792.0,
+            612.0
+          ],
+          "visible_pct": 99.02115517924341,
+          "exact_pct": 96.14249108734403,
+          "max_delta": 255
+        },
+        {
+          "page": 9,
+          "size_pt": [
+            792.0,
+            612.0
+          ],
+          "visible_pct": 98.9269224103783,
+          "exact_pct": 96.0481551627385,
+          "max_delta": 255
+        },
+        {
+          "page": 10,
+          "size_pt": [
+            792.0,
+            612.0
+          ],
+          "visible_pct": 98.86559632270416,
+          "exact_pct": 96.00188981316433,
+          "max_delta": 255
+        },
+        {
+          "page": 11,
+          "size_pt": [
+            792.0,
+            612.0
+          ],
+          "visible_pct": 99.25779444774543,
+          "exact_pct": 96.83007567505116,
+          "max_delta": 193
+        },
+        {
+          "page": 12,
+          "size_pt": [
+            792.0,
+            612.0
+          ],
+          "visible_pct": 98.98479278074866,
+          "exact_pct": 96.09256370898528,
+          "max_delta": 255
+        },
+        {
+          "page": 13,
+          "size_pt": [
+            792.0,
+            612.0
+          ],
+          "visible_pct": 98.94198314847824,
+          "exact_pct": 96.06692950749323,
+          "max_delta": 255
+        },
+        {
+          "page": 14,
+          "size_pt": [
+            792.0,
+            612.0
+          ],
+          "visible_pct": 98.74903033604014,
+          "exact_pct": 95.78670693866772,
+          "max_delta": 255
+        },
+        {
+          "page": 15,
+          "size_pt": [
+            792.0,
+            612.0
+          ],
+          "visible_pct": 99.05081245461147,
+          "exact_pct": 96.10236350432429,
+          "max_delta": 255
+        },
+        {
+          "page": 16,
+          "size_pt": [
+            792.0,
+            612.0
+          ],
+          "visible_pct": 98.72365402389912,
+          "exact_pct": 96.10416872978148,
+          "max_delta": 255
+        },
+        {
+          "page": 17,
+          "size_pt": [
+            792.0,
+            612.0
+          ],
+          "visible_pct": 98.74335677031756,
+          "exact_pct": 95.84184368191721,
+          "max_delta": 255
+        },
+        {
+          "page": 18,
+          "size_pt": [
+            792.0,
+            612.0
+          ],
+          "visible_pct": 99.05896175810392,
+          "exact_pct": 96.18648701062916,
+          "max_delta": 252
+        },
+        {
+          "page": 19,
+          "size_pt": [
+            792.0,
+            612.0
+          ],
+          "visible_pct": 99.03987794612794,
+          "exact_pct": 98.336768419489,
+          "max_delta": 252
+        },
+        {
+          "page": 20,
+          "size_pt": [
+            792.0,
+            612.0
+          ],
+          "visible_pct": 98.83459802271076,
+          "exact_pct": 95.84746566976959,
+          "max_delta": 191
+        },
+        {
+          "page": 21,
+          "size_pt": [
+            792.0,
+            612.0
+          ],
+          "visible_pct": 98.86425529807883,
+          "exact_pct": 97.05180893906385,
+          "max_delta": 255
+        },
+        {
+          "page": 22,
+          "size_pt": [
+            792.0,
+            612.0
+          ],
+          "visible_pct": 99.12910766158315,
+          "exact_pct": 97.85095646002509,
+          "max_delta": 200
+        },
+        {
+          "page": 23,
+          "size_pt": [
+            792.0,
+            612.0
+          ],
+          "visible_pct": 99.05504183996831,
+          "exact_pct": 98.9017524097181,
+          "max_delta": 193
+        }
+      ]
+    },
+    {
+      "name": "MWANZA CC 10 BEST SCHOOLS",
+      "ok": false,
+      "hard_fail": null,
+      "page_count": 3,
+      "worst_visible_pct": 99.4301161121014,
+      "worst_exact_pct": 81.42794365220836,
+      "pages": [
+        {
+          "page": 1,
+          "size_pt": [
+            792.0,
+            612.0
+          ],
+          "visible_pct": 99.68393081138179,
+          "exact_pct": 83.09803508945666,
+          "max_delta": 131
+        },
+        {
+          "page": 2,
+          "size_pt": [
+            792.0,
+            612.0
+          ],
+          "visible_pct": 99.5415758896151,
+          "exact_pct": 81.42794365220836,
+          "max_delta": 179
+        },
+        {
+          "page": 3,
+          "size_pt": [
+            792.0,
+            612.0
+          ],
+          "visible_pct": 99.4301161121014,
+          "exact_pct": 81.78831823133294,
+          "max_delta": 255
+        }
+      ]
+    },
+    {
+      "name": "MWANZA CC 10 BEST STUDENTS",
+      "ok": false,
+      "hard_fail": null,
+      "page_count": 5,
+      "worst_visible_pct": 93.82690260447613,
+      "worst_exact_pct": 89.8311134217997,
+      "pages": [
+        {
+          "page": 1,
+          "size_pt": [
+            792.0,
+            612.0
+          ],
+          "visible_pct": 94.12976785832178,
+          "exact_pct": 89.8311134217997,
+          "max_delta": 255
+        },
+        {
+          "page": 2,
+          "size_pt": [
+            792.0,
+            612.0
+          ],
+          "visible_pct": 93.95383574305143,
+          "exact_pct": 91.906400607381,
+          "max_delta": 255
+        },
+        {
+          "page": 3,
+          "size_pt": [
+            792.0,
+            612.0
+          ],
+          "visible_pct": 94.20202845447943,
+          "exact_pct": 91.94487769855417,
+          "max_delta": 255
+        },
+        {
+          "page": 4,
+          "size_pt": [
+            792.0,
+            612.0
+          ],
+          "visible_pct": 93.82690260447613,
+          "exact_pct": 91.44720282894302,
+          "max_delta": 255
+        },
+        {
+          "page": 5,
+          "size_pt": [
+            792.0,
+            612.0
+          ],
+          "visible_pct": 96.85385307321582,
+          "exact_pct": 95.75663704033802,
+          "max_delta": 255
+        }
+      ]
+    },
+    {
+      "name": "MWANZA CC 10 BEST STUDENTS SUBJECTWISE",
+      "ok": false,
+      "hard_fail": null,
+      "page_count": 30,
+      "worst_visible_pct": 98.29942604146035,
+      "worst_exact_pct": 93.2470126097577,
+      "pages": [
+        {
+          "page": 1,
+          "size_pt": [
+            792.0,
+            612.0
+          ],
+          "visible_pct": 98.89736829075065,
+          "exact_pct": 93.71322497854361,
+          "max_delta": 255
+        },
+        {
+          "page": 2,
+          "size_pt": [
+            792.0,
+            612.0
+          ],
+          "visible_pct": 98.95173136594705,
+          "exact_pct": 93.69109807222553,
+          "max_delta": 255
+        },
+        {
+          "page": 3,
+          "size_pt": [
+            792.0,
+            612.0
+          ],
+          "visible_pct": 98.84346941638609,
+          "exact_pct": 93.6035704264871,
+          "max_delta": 255
+        },
+        {
+          "page": 4,
+          "size_pt": [
+            792.0,
+            612.0
+          ],
+          "visible_pct": 98.97525087476068,
+          "exact_pct": 94.97492283950618,
+          "max_delta": 255
+        },
+        {
+          "page": 5,
+          "size_pt": [
+            792.0,
+            612.0
+          ],
+          "visible_pct": 98.92186777909816,
+          "exact_pct": 93.64880421865716,
+          "max_delta": 255
+        },
+        {
+          "page": 6,
+          "size_pt": [
+            792.0,
+            612.0
+          ],
+          "visible_pct": 98.45771852512048,
+          "exact_pct": 93.2470126097577,
+          "max_delta": 255
+        },
+        {
+          "page": 7,
+          "size_pt": [
+            792.0,
+            612.0
+          ],
+          "visible_pct": 98.71204900310292,
+          "exact_pct": 93.63534239453357,
+          "max_delta": 255
+        },
+        {
+          "page": 8,
+          "size_pt": [
+            792.0,
+            612.0
+          ],
+          "visible_pct": 99.03404964679474,
+          "exact_pct": 93.64638005875752,
+          "max_delta": 255
+        },
+        {
+          "page": 9,
+          "size_pt": [
+            792.0,
+            612.0
+          ],
+          "visible_pct": 99.03590645012214,
+          "exact_pct": 93.92041328315838,
+          "max_delta": 255
+        },
+        {
+          "page": 10,
+          "size_pt": [
+            792.0,
+            612.0
+          ],
+          "visible_pct": 98.81798994850466,
+          "exact_pct": 93.57979302832244,
+          "max_delta": 255
+        },
+        {
+          "page": 11,
+          "size_pt": [
+            792.0,
+            612.0
+          ],
+          "visible_pct": 98.97911921502607,
+          "exact_pct": 93.66303971083383,
+          "max_delta": 255
+        },
+        {
+          "page": 12,
+          "size_pt": [
+            792.0,
+            612.0
+          ],
+          "visible_pct": 98.69647248630092,
+          "exact_pct": 93.49964101802337,
+          "max_delta": 255
+        },
+        {
+          "page": 13,
+          "size_pt": [
+            792.0,
+            612.0
+          ],
+          "visible_pct": 98.64762824321647,
+          "exact_pct": 94.44300026407869,
+          "max_delta": 255
+        },
+        {
+          "page": 14,
+          "size_pt": [
+            792.0,
+            612.0
+          ],
+          "visible_pct": 98.29942604146035,
+          "exact_pct": 93.9952527728263,
+          "max_delta": 255
+        },
+        {
+          "page": 15,
+          "size_pt": [
+            792.0,
+            612.0
+          ],
+          "visible_pct": 98.71689732290223,
+          "exact_pct": 94.5438350003301,
+          "max_delta": 255
+        },
+        {
+          "page": 16,
+          "size_pt": [
+            792.0,
+            612.0
+          ],
+          "visible_pct": 99.05220505710702,
+          "exact_pct": 94.77825642041329,
+          "max_delta": 255
+        },
+        {
+          "page": 17,
+          "size_pt": [
+            792.0,
+            612.0
+          ],
+          "visible_pct": 98.83279279725357,
+          "exact_pct": 94.63744883475276,
+          "max_delta": 255
+        },
+        {
+          "page": 18,
+          "size_pt": [
+            792.0,
+            612.0
+          ],
+          "visible_pct": 99.20265770449593,
+          "exact_pct": 95.12073347857661,
+          "max_delta": 255
+        },
+        {
+          "page": 19,
+          "size_pt": [
+            792.0,
+            612.0
+          ],
+          "visible_pct": 99.05550604080015,
+          "exact_pct": 95.97924712814418,
+          "max_delta": 255
+        },
+        {
+          "page": 20,
+          "size_pt": [
+            792.0,
+            612.0
+          ],
+          "visible_pct": 99.08191391034528,
+          "exact_pct": 94.96403990889284,
+          "max_delta": 255
+        },
+        {
+          "page": 21,
+          "size_pt": [
+            792.0,
+            612.0
+          ],
+          "visible_pct": 100.0,
+          "exact_pct": 100.0,
+          "max_delta": 0
+        },
+        {
+          "page": 22,
+          "size_pt": [
+            792.0,
+            612.0
+          ],
+          "visible_pct": 100.0,
+          "exact_pct": 100.0,
+          "max_delta": 0
+        },
+        {
+          "page": 23,
+          "size_pt": [
+            792.0,
+            612.0
+          ],
+          "visible_pct": 100.0,
+          "exact_pct": 100.0,
+          "max_delta": 0
+        },
+        {
+          "page": 24,
+          "size_pt": [
+            792.0,
+            612.0
+          ],
+          "visible_pct": 100.0,
+          "exact_pct": 100.0,
+          "max_delta": 0
+        },
+        {
+          "page": 25,
+          "size_pt": [
+            792.0,
+            612.0
+          ],
+          "visible_pct": 100.0,
+          "exact_pct": 100.0,
+          "max_delta": 0
+        },
+        {
+          "page": 26,
+          "size_pt": [
+            792.0,
+            612.0
+          ],
+          "visible_pct": 100.0,
+          "exact_pct": 100.0,
+          "max_delta": 0
+        },
+        {
+          "page": 27,
+          "size_pt": [
+            792.0,
+            612.0
+          ],
+          "visible_pct": 100.0,
+          "exact_pct": 100.0,
+          "max_delta": 0
+        },
+        {
+          "page": 28,
+          "size_pt": [
+            792.0,
+            612.0
+          ],
+          "visible_pct": 100.0,
+          "exact_pct": 100.0,
+          "max_delta": 0
+        },
+        {
+          "page": 29,
+          "size_pt": [
+            792.0,
+            612.0
+          ],
+          "visible_pct": 100.0,
+          "exact_pct": 100.0,
+          "max_delta": 0
+        },
+        {
+          "page": 30,
+          "size_pt": [
+            792.0,
+            612.0
+          ],
+          "visible_pct": 100.0,
+          "exact_pct": 100.0,
+          "max_delta": 0
+        }
+      ]
+    },
+    {
+      "name": "MWANZA CC SCHOOLS RANK",
+      "ok": false,
+      "hard_fail": null,
+      "page_count": 1,
+      "worst_visible_pct": 96.25322877467485,
+      "worst_exact_pct": 64.38537746748531,
+      "pages": [
+        {
+          "page": 1,
+          "size_pt": [
+            792.0,
+            612.0
+          ],
+          "visible_pct": 96.25322877467485,
+          "exact_pct": 64.38537746748531,
+          "max_delta": 255
+        }
+      ]
+    },
+    {
+      "name": "MWANZA CC SCHOOLS RANK SUBJECTWISE",
+      "ok": false,
+      "hard_fail": null,
+      "page_count": 24,
+      "worst_visible_pct": 97.23614824717765,
+      "worst_exact_pct": 73.27012981118374,
+      "pages": [
+        {
+          "page": 1,
+          "size_pt": [
+            612.0,
+            792.0
+          ],
+          "visible_pct": 97.6930765993266,
+          "exact_pct": 73.27012981118374,
+          "max_delta": 255
+        },
+        {
+          "page": 2,
+          "size_pt": [
+            612.0,
+            792.0
+          ],
+          "visible_pct": 99.39813783257411,
+          "exact_pct": 96.0056549976893,
+          "max_delta": 255
+        },
+        {
+          "page": 3,
+          "size_pt": [
+            612.0,
+            792.0
+          ],
+          "visible_pct": 97.5137919224929,
+          "exact_pct": 79.05097750379613,
+          "max_delta": 255
+        },
+        {
+          "page": 4,
+          "size_pt": [
+            612.0,
+            792.0
+          ],
+          "visible_pct": 99.32706352743118,
+          "exact_pct": 96.21815582293523,
+          "max_delta": 255
+        },
+        {
+          "page": 5,
+          "size_pt": [
+            612.0,
+            792.0
+          ],
+          "visible_pct": 97.69477866904337,
+          "exact_pct": 79.91464894038424,
+          "max_delta": 255
+        },
+        {
+          "page": 6,
+          "size_pt": [
+            612.0,
+            792.0
+          ],
+          "visible_pct": 99.43212764903942,
+          "exact_pct": 96.50890027728263,
+          "max_delta": 255
+        },
+        {
+          "page": 7,
+          "size_pt": [
+            612.0,
+            792.0
+          ],
+          "visible_pct": 97.64196292995312,
+          "exact_pct": 79.49841552782729,
+          "max_delta": 255
+        },
+        {
+          "page": 8,
+          "size_pt": [
+            612.0,
+            792.0
+          ],
+          "visible_pct": 99.23112868884928,
+          "exact_pct": 95.28459637221893,
+          "max_delta": 255
+        },
+        {
+          "page": 9,
+          "size_pt": [
+            612.0,
+            792.0
+          ],
+          "visible_pct": 97.31537185581303,
+          "exact_pct": 76.06477355251864,
+          "max_delta": 255
+        },
+        {
+          "page": 10,
+          "size_pt": [
+            612.0,
+            792.0
+          ],
+          "visible_pct": 99.3505830362448,
+          "exact_pct": 95.36046741929096,
+          "max_delta": 255
+        },
+        {
+          "page": 11,
+          "size_pt": [
+            612.0,
+            792.0
+          ],
+          "visible_pct": 97.5118319634251,
+          "exact_pct": 78.61143089390639,
+          "max_delta": 255
+        },
+        {
+          "page": 12,
+          "size_pt": [
+            612.0,
+            792.0
+          ],
+          "visible_pct": 99.4000462137717,
+          "exact_pct": 96.76488124711165,
+          "max_delta": 255
+        },
+        {
+          "page": 13,
+          "size_pt": [
+            612.0,
+            792.0
+          ],
+          "visible_pct": 97.57300331748861,
+          "exact_pct": 76.78474904271472,
+          "max_delta": 255
+        },
+        {
+          "page": 14,
+          "size_pt": [
+            612.0,
+            792.0
+          ],
+          "visible_pct": 99.40731869347066,
+          "exact_pct": 96.40424877863603,
+          "max_delta": 255
+        },
+        {
+          "page": 15,
+          "size_pt": [
+            612.0,
+            792.0
+          ],
+          "visible_pct": 97.52720216874629,
+          "exact_pct": 80.15252607777117,
+          "max_delta": 255
+        },
+        {
+          "page": 16,
+          "size_pt": [
+            612.0,
+            792.0
+          ],
+          "visible_pct": 99.47818668713276,
+          "exact_pct": 96.83229352347,
+          "max_delta": 255
+        },
+        {
+          "page": 17,
+          "size_pt": [
+            612.0,
+            792.0
+          ],
+          "visible_pct": 97.54076714861029,
+          "exact_pct": 80.54395053475936,
+          "max_delta": 255
+        },
+        {
+          "page": 18,
+          "size_pt": [
+            612.0,
+            792.0
+          ],
+          "visible_pct": 99.45575031359346,
+          "exact_pct": 96.50136990823265,
+          "max_delta": 255
+        },
+        {
+          "page": 19,
+          "size_pt": [
+            612.0,
+            792.0
+          ],
+          "visible_pct": 97.23614824717765,
+          "exact_pct": 79.64051256024295,
+          "max_delta": 255
+        },
+        {
+          "page": 20,
+          "size_pt": [
+            612.0,
+            792.0
+          ],
+          "visible_pct": 99.5415758896151,
+          "exact_pct": 96.87525788935103,
+          "max_delta": 255
+        },
+        {
+          "page": 21,
+          "size_pt": [
+            612.0,
+            792.0
+          ],
+          "visible_pct": 98.20560589555687,
+          "exact_pct": 84.15357620320856,
+          "max_delta": 255
+        },
+        {
+          "page": 22,
+          "size_pt": [
+            612.0,
+            792.0
+          ],
+          "visible_pct": 97.96829611474219,
+          "exact_pct": 84.32378317488612,
+          "max_delta": 255
+        },
+        {
+          "page": 23,
+          "size_pt": [
+            612.0,
+            792.0
+          ],
+          "visible_pct": 98.63968525120485,
+          "exact_pct": 87.46905327787681,
+          "max_delta": 255
+        },
+        {
+          "page": 24,
+          "size_pt": [
+            612.0,
+            792.0
+          ],
+          "visible_pct": 100.0,
+          "exact_pct": 100.0,
+          "max_delta": 0
+        }
+      ]
+    },
+    {
+      "name": "MWANZA CC SUBJECTS RANK",
+      "ok": false,
+      "hard_fail": null,
+      "page_count": 2,
+      "worst_visible_pct": 98.86734997029114,
+      "worst_exact_pct": 76.51236631016043,
+      "pages": [
+        {
+          "page": 1,
+          "size_pt": [
+            792.0,
+            612.0
+          ],
+          "visible_pct": 98.86734997029114,
+          "exact_pct": 76.51236631016043,
+          "max_delta": 255
+        },
+        {
+          "page": 2,
+          "size_pt": [
+            792.0,
+            612.0
+          ],
+          "visible_pct": 99.72147950089126,
+          "exact_pct": 94.60969994058229,
+          "max_delta": 252
+        }
+      ]
+    },
+    {
+      "name": "MWANZA CC Wards Rank",
+      "ok": false,
+      "hard_fail": null,
+      "page_count": 1,
+      "worst_visible_pct": 99.16655319535222,
+      "worst_exact_pct": 79.09095035320526,
+      "pages": [
+        {
+          "page": 1,
+          "size_pt": [
+            792.0,
+            612.0
+          ],
+          "visible_pct": 99.16655319535222,
+          "exact_pct": 79.09095035320526,
+          "max_delta": 255
+        }
+      ]
+    },
+    {
+      "name": "Mwanza f2 District Performance",
+      "ok": false,
+      "hard_fail": null,
+      "page_count": 5,
+      "worst_visible_pct": 99.13813378886908,
+      "worst_exact_pct": 98.8949957087212,
+      "pages": [
+        {
+          "page": 1,
+          "size_pt": [
+            792.0,
+            612.0
+          ],
+          "visible_pct": 99.7557787845778,
+          "exact_pct": 99.68269294249687,
+          "max_delta": 191
+        },
+        {
+          "page": 2,
+          "size_pt": [
+            792.0,
+            612.0
+          ],
+          "visible_pct": 99.34733363042187,
+          "exact_pct": 99.19553995840761,
+          "max_delta": 207
+        },
+        {
+          "page": 3,
+          "size_pt": [
+            792.0,
+            612.0
+          ],
+          "visible_pct": 99.59717683369644,
+          "exact_pct": 98.8949957087212,
+          "max_delta": 193
+        },
+        {
+          "page": 4,
+          "size_pt": [
+            792.0,
+            612.0
+          ],
+          "visible_pct": 99.13813378886908,
+          "exact_pct": 98.93517486961115,
+          "max_delta": 193
+        },
+        {
+          "page": 5,
+          "size_pt": [
+            792.0,
+            612.0
+          ],
+          "visible_pct": 99.13813378886908,
+          "exact_pct": 98.93517486961115,
+          "max_delta": 193
+        }
+      ]
+    },
+    {
+      "name": "Mwanza f2 Mock Mobility 2026",
+      "ok": false,
+      "hard_fail": null,
+      "page_count": 6,
+      "worst_visible_pct": 93.99659379745164,
+      "worst_exact_pct": 87.39560639070443,
+      "pages": [
+        {
+          "page": 1,
+          "size_pt": [
+            612.0,
+            792.0
+          ],
+          "visible_pct": 95.46336527035056,
+          "exact_pct": 90.4379270647653,
+          "max_delta": 255
+        },
+        {
+          "page": 2,
+          "size_pt": [
+            612.0,
+            792.0
+          ],
+          "visible_pct": 94.08623613586849,
+          "exact_pct": 87.66298606984881,
+          "max_delta": 255
+        },
+        {
+          "page": 3,
+          "size_pt": [
+            612.0,
+            792.0
+          ],
+          "visible_pct": 94.18774138443256,
+          "exact_pct": 87.83773189410444,
+          "max_delta": 255
+        },
+        {
+          "page": 4,
+          "size_pt": [
+            612.0,
+            792.0
+          ],
+          "visible_pct": 94.13446144451046,
+          "exact_pct": 87.39560639070443,
+          "max_delta": 255
+        },
+        {
+          "page": 5,
+          "size_pt": [
+            612.0,
+            792.0
+          ],
+          "visible_pct": 93.99659379745164,
+          "exact_pct": 89.06961774608834,
+          "max_delta": 255
+        },
+        {
+          "page": 6,
+          "size_pt": [
+            612.0,
+            792.0
+          ],
+          "visible_pct": 94.68005215554236,
+          "exact_pct": 92.53890002970886,
+          "max_delta": 255
+        }
+      ]
+    },
+    {
+      "name": "Mwanza Overall Subjects Performance",
+      "ok": false,
+      "hard_fail": null,
+      "page_count": 2,
+      "worst_visible_pct": 97.78694832310029,
+      "worst_exact_pct": 93.75907770515613,
+      "pages": [
+        {
+          "page": 1,
+          "size_pt": [
+            792.0,
+            612.0
+          ],
+          "visible_pct": 97.78694832310029,
+          "exact_pct": 93.75907770515613,
+          "max_delta": 255
+        },
+        {
+          "page": 2,
+          "size_pt": [
+            792.0,
+            612.0
+          ],
+          "visible_pct": 98.69693668713276,
+          "exact_pct": 97.48857034396251,
+          "max_delta": 255
+        }
+      ]
+    },
+    {
+      "name": "Mwanza School Rank-EDK",
+      "ok": false,
+      "hard_fail": null,
+      "page_count": 1,
+      "worst_visible_pct": 98.889167409388,
+      "worst_exact_pct": 98.68626006800027,
+      "pages": [
+        {
+          "page": 1,
+          "size_pt": [
+            612.0,
+            792.0
+          ],
+          "visible_pct": 98.889167409388,
+          "exact_pct": 98.68626006800027,
+          "max_delta": 246
+        }
+      ]
+    },
+    {
+      "name": "Mwanza School Rank-English Language",
+      "ok": false,
+      "hard_fail": null,
+      "page_count": 6,
+      "worst_visible_pct": 96.99997317950749,
+      "worst_exact_pct": 96.45964341123654,
+      "pages": [
+        {
+          "page": 1,
+          "size_pt": [
+            612.0,
+            792.0
+          ],
+          "visible_pct": 96.99997317950749,
+          "exact_pct": 96.47191894434542,
+          "max_delta": 255
+        },
+        {
+          "page": 2,
+          "size_pt": [
+            612.0,
+            792.0
+          ],
+          "visible_pct": 97.09291650161748,
+          "exact_pct": 96.55650665148214,
+          "max_delta": 255
+        },
+        {
+          "page": 3,
+          "size_pt": [
+            612.0,
+            792.0
+          ],
+          "visible_pct": 97.01224871261635,
+          "exact_pct": 96.45964341123654,
+          "max_delta": 255
+        },
+        {
+          "page": 4,
+          "size_pt": [
+            612.0,
+            792.0
+          ],
+          "visible_pct": 97.21747705816334,
+          "exact_pct": 96.67487786360336,
+          "max_delta": 193
+        },
+        {
+          "page": 5,
+          "size_pt": [
+            612.0,
+            792.0
+          ],
+          "visible_pct": 97.29907324882815,
+          "exact_pct": 96.77318528421469,
+          "max_delta": 241
+        },
+        {
+          "page": 6,
+          "size_pt": [
+            612.0,
+            792.0
+          ],
+          "visible_pct": 97.73232735855285,
+          "exact_pct": 97.3024258103915,
+          "max_delta": 255
+        }
+      ]
+    },
+    {
+      "name": "Mwanza Schools Rank For Governments",
+      "ok": false,
+      "hard_fail": null,
+      "page_count": 4,
+      "worst_visible_pct": 95.05290857925662,
+      "worst_exact_pct": 92.74361259655377,
+      "pages": [
+        {
+          "page": 1,
+          "size_pt": [
+            792.0,
+            612.0
+          ],
+          "visible_pct": 96.5154506667987,
+          "exact_pct": 94.59644442793953,
+          "max_delta": 236
+        },
+        {
+          "page": 2,
+          "size_pt": [
+            792.0,
+            612.0
+          ],
+          "visible_pct": 95.14497507757312,
+          "exact_pct": 92.84599466891133,
+          "max_delta": 255
+        },
+        {
+          "page": 3,
+          "size_pt": [
+            792.0,
+            612.0
+          ],
+          "visible_pct": 95.05290857925662,
+          "exact_pct": 92.74361259655377,
+          "max_delta": 239
+        },
+        {
+          "page": 4,
+          "size_pt": [
+            792.0,
+            612.0
+          ],
+          "visible_pct": 95.57693974054268,
+          "exact_pct": 93.51573331352743,
+          "max_delta": 255
+        }
+      ]
+    },
+    {
+      "name": "Mwanza Schools Rank For Governments (1)",
+      "ok": false,
+      "hard_fail": null,
+      "page_count": 4,
+      "worst_visible_pct": 95.05290857925662,
+      "worst_exact_pct": 92.74361259655377,
+      "pages": [
+        {
+          "page": 1,
+          "size_pt": [
+            792.0,
+            612.0
+          ],
+          "visible_pct": 96.5154506667987,
+          "exact_pct": 94.59644442793953,
+          "max_delta": 236
+        },
+        {
+          "page": 2,
+          "size_pt": [
+            792.0,
+            612.0
+          ],
+          "visible_pct": 95.14497507757312,
+          "exact_pct": 92.84599466891133,
+          "max_delta": 255
+        },
+        {
+          "page": 3,
+          "size_pt": [
+            792.0,
+            612.0
+          ],
+          "visible_pct": 95.05290857925662,
+          "exact_pct": 92.74361259655377,
+          "max_delta": 239
+        },
+        {
+          "page": 4,
+          "size_pt": [
+            792.0,
+            612.0
+          ],
+          "visible_pct": 95.57693974054268,
+          "exact_pct": 93.51573331352743,
+          "max_delta": 255
+        }
+      ]
+    },
+    {
+      "name": "Mwanza schools rank Overall",
+      "ok": false,
+      "hard_fail": null,
+      "page_count": 6,
+      "worst_visible_pct": 95.22177452630883,
+      "worst_exact_pct": 94.44222659602562,
+      "pages": [
+        {
+          "page": 1,
+          "size_pt": [
+            792.0,
+            612.0
+          ],
+          "visible_pct": 96.75394673862812,
+          "exact_pct": 96.1809681785172,
+          "max_delta": 255
+        },
+        {
+          "page": 2,
+          "size_pt": [
+            792.0,
+            612.0
+          ],
+          "visible_pct": 96.4145643526771,
+          "exact_pct": 95.80197398824849,
+          "max_delta": 255
+        },
+        {
+          "page": 3,
+          "size_pt": [
+            792.0,
+            612.0
+          ],
+          "visible_pct": 95.25885901498647,
+          "exact_pct": 94.49065821614842,
+          "max_delta": 255
+        },
+        {
+          "page": 4,
+          "size_pt": [
+            792.0,
+            612.0
+          ],
+          "visible_pct": 95.22177452630883,
+          "exact_pct": 94.44222659602562,
+          "max_delta": 255
+        },
+        {
+          "page": 5,
+          "size_pt": [
+            792.0,
+            612.0
+          ],
+          "visible_pct": 95.26200526506899,
+          "exact_pct": 94.51608610615963,
+          "max_delta": 255
+        },
+        {
+          "page": 6,
+          "size_pt": [
+            792.0,
+            612.0
+          ],
+          "visible_pct": 98.4267718029973,
+          "exact_pct": 98.16857298474946,
+          "max_delta": 255
+        }
+      ]
+    },
+    {
+      "name": "Mwanza Top 10 Schools",
+      "ok": false,
+      "hard_fail": null,
+      "page_count": 6,
+      "worst_visible_pct": 98.58016438898792,
+      "worst_exact_pct": 97.62973897471447,
+      "pages": [
+        {
+          "page": 1,
+          "size_pt": [
+            792.0,
+            612.0
+          ],
+          "visible_pct": 99.62275945731828,
+          "exact_pct": 98.19291773948636,
+          "max_delta": 129
+        },
+        {
+          "page": 2,
+          "size_pt": [
+            792.0,
+            612.0
+          ],
+          "visible_pct": 98.58016438898792,
+          "exact_pct": 97.62973897471447,
+          "max_delta": 255
+        },
+        {
+          "page": 3,
+          "size_pt": [
+            792.0,
+            612.0
+          ],
+          "visible_pct": 99.6045008912656,
+          "exact_pct": 98.16150681653133,
+          "max_delta": 129
+        },
+        {
+          "page": 4,
+          "size_pt": [
+            792.0,
+            612.0
+          ],
+          "visible_pct": 99.47230680992936,
+          "exact_pct": 99.36095018815607,
+          "max_delta": 183
+        },
+        {
+          "page": 5,
+          "size_pt": [
+            792.0,
+            612.0
+          ],
+          "visible_pct": 99.40865971809599,
+          "exact_pct": 99.25800075922625,
+          "max_delta": 183
+        },
+        {
+          "page": 6,
+          "size_pt": [
+            792.0,
+            612.0
+          ],
+          "visible_pct": 99.64132749059219,
+          "exact_pct": 99.52398783587509,
+          "max_delta": 129
+        }
+      ]
+    },
+    {
+      "name": "S1051-MKOLANI SECONDARY SCHOOL",
+      "ok": false,
+      "hard_fail": null,
+      "page_count": 13,
+      "worst_visible_pct": 90.93302304086617,
+      "worst_exact_pct": 68.12312256552453,
+      "pages": [
+        {
+          "page": 1,
+          "size_pt": [
+            792.0,
+            612.0
+          ],
+          "visible_pct": 94.18959818775996,
+          "exact_pct": 68.12312256552453,
+          "max_delta": 255
+        },
+        {
+          "page": 2,
+          "size_pt": [
+            792.0,
+            612.0
+          ],
+          "visible_pct": 90.95772884069453,
+          "exact_pct": 84.40037631214102,
+          "max_delta": 255
+        },
+        {
+          "page": 3,
+          "size_pt": [
+            792.0,
+            612.0
+          ],
+          "visible_pct": 91.07042648709316,
+          "exact_pct": 84.60127211659075,
+          "max_delta": 255
+        },
+        {
+          "page": 4,
+          "size_pt": [
+            792.0,
+            612.0
+          ],
+          "visible_pct": 91.13474409123918,
+          "exact_pct": 84.64795008912655,
+          "max_delta": 255
+        },
+        {
+          "page": 5,
+          "size_pt": [
+            792.0,
+            612.0
+          ],
+          "visible_pct": 90.93302304086617,
+          "exact_pct": 84.44318594441144,
+          "max_delta": 255
+        },
+        {
+          "page": 6,
+          "size_pt": [
+            792.0,
+            612.0
+          ],
+          "visible_pct": 90.93642718029973,
+          "exact_pct": 84.4535015184525,
+          "max_delta": 255
+        },
+        {
+          "page": 7,
+          "size_pt": [
+            792.0,
+            612.0
+          ],
+          "visible_pct": 91.10735624216017,
+          "exact_pct": 84.54809533240906,
+          "max_delta": 255
+        },
+        {
+          "page": 8,
+          "size_pt": [
+            792.0,
+            612.0
+          ],
+          "visible_pct": 91.22160122466495,
+          "exact_pct": 84.69978584868291,
+          "max_delta": 255
+        },
+        {
+          "page": 9,
+          "size_pt": [
+            792.0,
+            612.0
+          ],
+          "visible_pct": 91.29700807090514,
+          "exact_pct": 84.71453711956163,
+          "max_delta": 255
+        },
+        {
+          "page": 10,
+          "size_pt": [
+            792.0,
+            612.0
+          ],
+          "visible_pct": 91.32073389119958,
+          "exact_pct": 84.76430976430976,
+          "max_delta": 255
+        },
+        {
+          "page": 11,
+          "size_pt": [
+            792.0,
+            612.0
+          ],
+          "visible_pct": 96.89037020532119,
+          "exact_pct": 93.1917211328976,
+          "max_delta": 255
+        },
+        {
+          "page": 12,
+          "size_pt": [
+            792.0,
+            612.0
+          ],
+          "visible_pct": 98.94399468541626,
+          "exact_pct": 83.1264544959398,
+          "max_delta": 255
+        },
+        {
+          "page": 13,
+          "size_pt": [
+            792.0,
+            612.0
+          ],
+          "visible_pct": 99.46328068264343,
+          "exact_pct": 88.80388855879052,
+          "max_delta": 193
+        }
+      ]
+    }
+  ]
+}
