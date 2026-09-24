@@ -1,0 +1,35 @@
+{
+  "id": "FEAT-002",
+  "type": "feat",
+  "description": "Make the templated path render each report as a faithful cell-by-cell replica of its reference: emit the recovered per-cell background fill colours (the DIVISION PERFORMANCE / SUMMARY / GPA-band washes that are currently white), the recovered per-cell fonts (family, size, weight, italic) and text colour, the recovered alignment and rotation (rotated C/RANK / R/RANK labels), and the recovered per-row pitch (so row heights match the reference instead of the current too-narrow uniform rows). Mirror the conversion path's proven mechanics (src/sars/html_out.py: StylePool of pooled CSS classes + per-cell line-height + per-cell background-color) rather than inventing a parallel system. Apply across ALL report families/templates, not just schools_rank. Depends on FEAT-001 (which carries the data); blocks FEAT-003.",
+  "status": "in_progress",
+  "steps": [
+    "Study how the FAITHFUL conversion emitter does it: src/sars/html_out.py render_document builds a StylePool(scale), _cell_html sets `style=\"line-height:<pitch-BORDER_PT>pt\"` for single-line cells and emits pooled classes carrying font-family/size/weight/color/background; DOC_CSS holds the shared table CSS (border-collapse, 0.4pt borders, overflow:visible, white-space rules, rotated .rot). The templated path must produce equivalent per-cell styling from the FEAT-001 carriers.",
+    "In src/sars/templates/base.py: replace the hardcoded uniform table styling with recovered-style emission. Introduce (or reuse html_out.StylePool) a style-pooling mechanism so the templated document emits st1..stN classes for the distinct recovered CellStyles and references them on each <td>/<th>, plus per-cell background-color and per-cell line-height taken from the recovered pitch. Keep the shared DOC_CSS import for table chrome (borders/collapse/overflow/.rot) and trim TEMPLATE_CSS so it no longer forces Arial 4.9pt / line-height:1.04 over the recovered fonts and heights. Preserve the elastic-wrap and single-token-nowrap safeguards that protect text-token fidelity (word-break:keep-all on multi-word wraps; nowrap on single-token captions).",
+    "Update base.competency_cell and base.cell/header_cell (and any per-family cell builders) to accept and apply a recovered CellStyle: emit the pooled style class + background-color + line-height. competency_cell must prefer the recovered background fill and fall back to sars.competency.background_for only when none was recovered.",
+    "Update src/sars/templates/schools_rank.py FIRST (the report in the user's screenshot: output/compare/TEMPLATE MWANZA CC SCHOOLS RANK - page 1.jpg). Emit every data <td> (_data_row, _division_cells), every total <td>, the SUMMARY PERFORMANCE block (_summary_html), the GPA-PERFORMANCE band and the rotated C/RANK / R/RANK header cells with their recovered fills/fonts/alignment/rotation and recovered row pitch. The three-row grouped header band (_thead) should carry the recovered header-cell styling where available. After editing, run `sars data && sars template` and `python tools/compare.py \"MWANZA CC SCHOOLS RANK\" 1 --template` and read output/compare/TEMPLATE MWANZA CC SCHOOLS RANK - page 1.jpg to confirm the DIVISION PERFORMANCE / SUMMARY / GPA washes now appear, row heights match, and fonts match the reference (left).",
+    "Apply the same recovered-style + row-pitch emission to the remaining templates: src/sars/templates/generic.py (subject_school_rank, wards_rank, district_performance, mock_mobility - these carry per-cell fills too, e.g. the mobility colour bands and the rank washes), subjects_rank.py, best_students.py, best_students_subjectwise.py, and school_result_slip.py (which also has a page background/panel wash - reproduce the recovered page background where the schema/meta carries it). Each family reproduces ITS OWN recovered styling; do not share a single hardcoded look across families.",
+    "For rotated rank labels (C/RANK, R/RANK) that the reference draws vertically: reuse the DOC_CSS `.rot` rotate(-90deg) span mechanism from html_out so they render rotated and are not clipped, matching the reference right edge. Confirm they are present and not merged/overlapping in the templated output.",
+    "Where a report reflows onto a different page count than the reference, that is acceptable per the README (a template chooses its own page breaks); the goal is per-cell visual identity of colour/font/height/structure and no lost text tokens, NOT identical pagination. Do not clip content to force pagination.",
+    "Run `ruff check` and `black --check` on all changed files and fix findings. Do NOT modify the conversion path (extract.py/html_out.py behaviour for `sars all`); if you reuse html_out.StylePool, do so without changing its conversion-path output.",
+    "Re-run `python tools/template_audit.py` and `sars all` to confirm no regression, and spot-check 3-4 additional TEMPLATE comparison images (e.g. Mwanza f2 Mock Mobility 2026, MWANZA CC SUBJECTS RANK, Mwanza schools rank Overall, S1051-MKOLANI SECONDARY SCHOOL) for restored colours/fonts/heights."
+  ],
+  "acceptance_criteria": [
+    "output/compare/TEMPLATE MWANZA CC SCHOOLS RANK - page 1.jpg shows the DIVISION PERFORMANCE / SUMMARY / GPA-PERFORMANCE background colour washes present on the templated (right) side, matching the reference (left) cell-by-cell, not just the COMPETENCY LEVEL column.",
+    "Templated row heights/pitch and fonts (family/size/weight) visibly match the reference for MWANZA CC SCHOOLS RANK rather than the previous narrow/dense uniform Arial look; the rotated C/RANK and R/RANK columns render rotated and distinct.",
+    "The recovered per-cell fill colours, fonts and row pitch are emitted across ALL report family templates (schools_rank/top_schools, generic-family, subjects_rank, best_students, best_students_subjectwise, school_result_slip), each reproducing its own recovered styling.",
+    "competency_cell prefers a recovered background fill and only falls back to sars.competency.background_for when none was recovered.",
+    "`python tools/template_audit.py` token completeness is no worse than baseline (>= no value lost 5/19; mean document similarity >= 97.27%).",
+    "`sars all` still reports `19/19 documents pass; mean text similarity 100.00%`.",
+    "`pytest -q` passes; `ruff check` and `black --check` clean on changed files."
+  ],
+  "verification": [
+    ". .venv/bin/activate && sars data && sars template && python tools/compare.py \"MWANZA CC SCHOOLS RANK\" 1 --template",
+    ". .venv/bin/activate && python tools/template_audit.py 2>&1 | tail -3",
+    ". .venv/bin/activate && sars all 2>&1 | tail -2",
+    ". .venv/bin/activate && pytest -q 2>&1 | tail -5",
+    ". .venv/bin/activate && ruff check src/sars && black --check src/sars"
+  ],
+  "blocked_reason": null,
+  "findings": ""
+}

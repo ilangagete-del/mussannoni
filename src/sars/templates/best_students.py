@@ -17,7 +17,7 @@ Expected data shape: a :class:`~sars.schema.BestStudentsReport` with
 from __future__ import annotations
 
 from ..schema import BestStudentsReport, BestStudentsSection, StudentRow
-from .base import banner_html, cell, document_html, esc
+from .base import TemplatePool, banner_html, cell, document_html, esc, orientation_for
 from .best_students_subjectwise import render_best_students_subjectwise
 
 #: Candidate columns as ``(field, heading, left_aligned)``. A column is printed
@@ -46,7 +46,7 @@ def _present_columns(students: list[StudentRow]) -> tuple[tuple[str, str, bool],
     )
 
 
-def _section_html(section: BestStudentsSection) -> str:
+def _section_html(section: BestStudentsSection, pool: TemplatePool) -> str:
     if not section.students:
         return ""
     columns = _present_columns(section.students)
@@ -56,8 +56,16 @@ def _section_html(section: BestStudentsSection) -> str:
     )
     rows: list[str] = []
     for st in section.students:
+        # StudentRow styles are keyed by field name (see extract_data), so each
+        # cell recovers the font / colour / fill and row pitch of its own column.
         cells = [
-            cell(str(getattr(st, field_name, "") or ""), text=left)
+            cell(
+                str(getattr(st, field_name, "") or ""),
+                text=left,
+                pool=pool,
+                style=st.styles.get(field_name) if st.styles else None,
+                pitch=st.pitch,
+            )
             for field_name, _heading, left in columns
         ]
         rows.append("<tr>" + "".join(cells) + "</tr>")
@@ -86,6 +94,7 @@ def render_best_students(report: BestStudentsReport) -> str:
     """
     if (report.meta.variant or "").lower() == "subjectwise":
         return render_best_students_subjectwise(report)
+    pool = TemplatePool(orientation_for(report.meta))
     body = banner_html(report.meta)
-    body += "".join(_section_html(sec) for sec in report.sections)
-    return document_html(report.meta, body)
+    body += "".join(_section_html(sec, pool) for sec in report.sections)
+    return document_html(report.meta, body, pool=pool)
