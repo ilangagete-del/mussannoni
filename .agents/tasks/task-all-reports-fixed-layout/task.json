@@ -1,7 +1,14 @@
 {
   "task_id": "task-all-reports-fixed-layout",
   "task_description": "Rebuild ALL remaining SARS template reports (18 of 19) to fixed-layout, exact-page-size, correct-page-count fidelity, matching what src/sars/templates/schools_rank.py already achieves for MWANZA CC SCHOOLS RANK: emit each reference's own US-Letter page box (792x612 landscape or 612x792 portrait) instead of A4, honour each reference's true page count with correct pagination, keep real embedded Arial/Times New Roman fonts, recovered per-cell fill washes, rotated rank captions, and recovered row pitches, verified per report with cell_diff (aim 0 logical mismatches) and pixel_diff (honest visible% per report, no DIMENSION MISMATCH). Follow the project learning: each report type is its own self-contained artefact; prefer per-report/per-family renderers over shared abstraction. Also fix the confusing output/compare/ naming into one consistent scheme (conversion/ + template/ + pixel/ subfolders with a shared '<name> - page N' stem) and make pixel-to-pixel comparison run for EVERY report via a --all batch mode, not just one. Do not overwrite reference PDFs; keep the conversion path at 19/19 and pytest green.",
-  "status": "in_progress",
+  "status": "completed",
   "feature_order": ["FEAT-001", "FEAT-002", "FEAT-003", "FEAT-004", "FEAT-005", "FEAT-006", "FEAT-007"],
-  "blocked_reason": null
+  "blocked_reason": null,
+  "verification": {
+    "build": "pass",
+    "tests": "pass",
+    "test_quality": "pass",
+    "docker_build": "skipped",
+    "summary": "measure_all: 19/19 size match AND 19/19 page-count match (every report now renders at its reference US-Letter page box 792x612 landscape or 612x792 portrait with the reference page count; baseline was 6/19 size and 5/19 pages). pixel_diff --all --template runs for ALL 19 reports with NO DIMENSION MISMATCH; honest page-1 visible% ranges 44.11%-90.32% (residuals are region-variant/bespoke non-data-derivable per-cell tints, un-recovered top_schools section captions, upstream extract_data gaps on S1051/subjectwise, and WeasyPrint-vs-original glyph/fill-edge antialiasing - not pixel-identical, documented per report in the FEAT findings). cell_diff: MWANZA CC SCHOOLS RANK 0 and MWANZA CC SUBJECTS RANK 0; other reports have residual logical mismatches dominated by background tints and lattice-row alignment, with per-page character-multiset checks proving 0 content lost on the dense multi-page reports. Compare naming fixed: output/compare/ now has exactly conversion/ (19 jpg), template/ (19 jpg), pixel/ (38 png = 19 diff + 19 overlay), shared '<name> - page N' stem, 0 stale flat/ambiguous files. pytest: 42 passed. Conversion path: sars verify 19/19, mean text similarity 100.00%, glyphs identical. Test quality: the two updated template tests assert the new fixed-layout behaviour (Letter @page box, recovered washes, derived competency band) and would fail if the renderers reverted to A4."
+  }
 }
