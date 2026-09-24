@@ -1,53 +1,77 @@
-"""Generic tabular template.
+"""Generic tabular template - SELF-CONTAINED and FAITHFUL.
 
 Serves every report captured header-driven into a
 :class:`~sars.schema.GenericTabularReport`: the single-subject school ranks
-(EDK / English / council subjectwise), the wards pivot, district performance
-and mock mobility. It reconstructs the grouped column-header band from the
-``column_headers`` label paths (``"DIVISION PERFORMANCE / I / F"``), emits one
-data row per :class:`~sars.schema.TabularRow` in header order, then any
-``totals`` rows.
+(EDK / English / council subjectwise), the wards pivot, district performance and
+mock mobility. It reconstructs the grouped column-header band from the
+``column_headers`` label paths, emits one data row per
+:class:`~sars.schema.TabularRow` in header order, then any ``totals`` rows.
 
-Expected data shape: a :class:`~sars.schema.GenericTabularReport` with
+This template OWNS its own structure and its own complete inline styling: its
+``@page`` orientation, its table rules, its fonts and row heights (authored at
+the reference's true recovered point sizes and scaled to A4), and the
+deterministic competency-band wash. It shares no cross-report CSS constant; its
+``<style>`` is inlined into its own ``<head>``.
 
-* ``meta``            - :class:`~sars.schema.ReportMeta`;
-* ``column_headers``  - flattened ``"A / B / C"`` label paths, one per column;
-* ``rows``            - ``TabularRow`` objects whose ``values`` map a column
-  header path (or a bare leaf label) to its printed value;
-* ``totals``          - ``{row_label: [cell, ...]}`` for any summary rows.
+DATA IS DATA: nothing here reads presentation from the data; the only
+data-derived colour is the competency band (:mod:`sars.competency`).
 """
 
 from __future__ import annotations
 
-from ..schema import CellStyle, GenericTabularReport, TabularSection
-from .base import (
-    TemplatePool,
-    banner_html,
-    competency_cell,
-    document_html,
-    esc,
-    header_cell,
-    orientation_for,
-    styled_cell,
-)
+from ..schema import GenericTabularReport, TabularSection
+from .base import banner_html, competency_background, orientation_for
+from .styling import Sheet, document, esc, fit_scale
 
 _COMPETENCY_KEYS = ("COMPETENCY LEVEL", "COMPENTENCY LEVEL", "COMPETENCY")
 
+#: A generic report wider than this many columns prints denser (smaller font) so
+#: its narrow fixed columns do not overlap and merge two adjacent values into one
+#: token. This is a structure-derived layout decision (column count), not stored
+#: presentation.
+_WIDE_COLUMN_THRESHOLD = 20
+
+# True recovered point sizes (pre-scale). Portrait single-subject / pivot reports
+# print ~6-7pt; the wide landscape district report ~5.2pt. Multiplied by the
+# fit-to-A4 scale so they print at the reference size.
+_PT_NORMAL = 6.7
+_PT_DENSE = 5.2
+_PT_BANNER = 7.5
+
+
+def _style(orientation: str, dense: bool) -> Sheet:
+    """Build THIS report's own complete inline stylesheet."""
+    s = fit_scale(orientation)
+    body_pt = _PT_DENSE if dense else _PT_NORMAL
+    row_pt = body_pt * 1.35
+    px = lambda pt: f"{pt * s:.2f}pt"  # noqa: E731
+    sheet = Sheet()
+    sheet.extend(f"""
+body{{margin:0;color:#000;font-family:Arial, Helvetica, sans-serif}}
+.report{{padding:{px(4)} {px(6)}}}
+.banner{{text-align:center;font-weight:700;font-size:{px(_PT_BANNER)};
+        line-height:1.4}}
+.banner .title{{margin-top:{px(6)};font-size:{px(_PT_BANNER)}}}
+table.gt{{border-collapse:collapse;table-layout:fixed;width:100%;
+        border-spacing:0;margin-top:{px(6)}}}
+table.gt th,table.gt td{{border:0.4pt solid #000;padding:0 0.8pt;
+        text-align:center;vertical-align:middle;overflow:visible;
+        font-size:{px(body_pt)};line-height:{px(row_pt)};
+        white-space:normal;overflow-wrap:normal;word-break:keep-all}}
+table.gt th{{font-weight:700}}
+table.gt td.text,table.gt th.text{{text-align:left}}
+table.gt th.nw,table.gt td.nw{{white-space:nowrap}}
+table.gt tr.total th,table.gt tr.total td{{font-weight:700}}
+""")
+    return sheet
+
 
 def _header_matrix(paths: list[str]) -> list[list[tuple[str, int]]]:
-    """Turn per-column label paths into header rows of ``(text, colspan)``.
-
-    Each path is split on ``" / "``; segment ``r`` of column ``c`` sits in
-    header row ``r``. Consecutive columns sharing the same segment prefix are
-    merged into one spanning cell. Missing trailing segments repeat the last
-    present one downward so a rowspan-style label still lands in every row.
-    """
+    """Turn per-column label paths into header rows of ``(text, colspan)``."""
     if not paths:
         return []
     split = [p.split(" / ") if p else [""] for p in paths]
     depth = max(len(s) for s in split)
-    # Pad each column's path to full depth by repeating its final segment, so a
-    # column with fewer levels (an identity column) fills the band vertically.
     padded = [s + [s[-1]] * (depth - len(s)) for s in split]
 
     matrix: list[list[tuple[str, int]]] = []
@@ -56,15 +80,11 @@ def _header_matrix(paths: list[str]) -> list[list[tuple[str, int]]]:
         c = 0
         n = len(padded)
         while c < n:
-            # Merge while the label path *up to this row* is identical, so a
-            # group heading spans exactly its own sub-columns and no further.
             prefix = padded[c][: r + 1]
             span = 1
             while c + span < n and padded[c + span][: r + 1] == prefix:
                 span += 1
             text = padded[c][r]
-            # Only show a segment once vertically: blank it if the row above
-            # already carried the same text for this same column group.
             if r > 0 and padded[c][r] == padded[c][r - 1]:
                 text = ""
             row.append((text, span))
@@ -77,7 +97,10 @@ def _thead(paths: list[str]) -> str:
     rows = _header_matrix(paths)
     out: list[str] = []
     for row in rows:
-        cells = "".join(header_cell(text, colspan=span) for text, span in row)
+        cells = "".join(
+            f'<th colspan="{span}">{esc(text)}</th>' if span > 1 else f"<th>{esc(text)}</th>"
+            for text, span in row
+        )
         out.append(f"<tr>{cells}</tr>")
     return "<thead>" + "".join(out) + "</thead>"
 
@@ -87,13 +110,14 @@ def _is_text_col(leaf: str) -> bool:
     return any(k in up for k in ("NAME", "WARD", "COUNCIL", "SCHOOL", "SUBJECT"))
 
 
-def _section_table(section: TabularSection, pool: TemplatePool) -> str:
-    """One table block: grouped header band, data rows, then any totals rows.
+def _td(value: str, *, text: bool = False, style: str = "") -> str:
+    cls = ' class="text"' if text else ""
+    st = f' style="{style}"' if style else ""
+    return f"<td{cls}{st}>{esc(value)}</td>"
 
-    Each data cell carries the recovered font / colour / fill and row pitch
-    keyed the same way its value is (by header path, falling back to the bare
-    leaf), so the mobility colour bands and the rank washes reproduce faithfully.
-    """
+
+def _section_table(section: TabularSection) -> str:
+    """One table block: grouped header band, data rows, then any totals rows."""
     paths = section.column_headers
     leaves = [p.split(" / ")[-1] if p else "" for p in paths]
     comp_idx = next(
@@ -105,30 +129,20 @@ def _section_table(section: TabularSection, pool: TemplatePool) -> str:
     body_rows: list[str] = []
     for trow in section.rows:
         vals = trow.values
-
-        def style(i: int, path: str, leaf: str, _s: dict = trow.styles) -> CellStyle | None:
-            return _s.get(path, _s.get(leaf)) if _s else None
-
-        p = trow.pitch
         cells: list[str] = []
         for i, path in enumerate(paths):
             leaf = leaves[i]
             value = vals.get(path, vals.get(leaf, ""))
-            cs = style(i, path, leaf)
             if i == comp_idx:
                 gpa = vals.get(paths[gpa_idx], "") if gpa_idx is not None else ""
-                cells.append(competency_cell(value, gpa, pool=pool, style=cs, pitch=p))
+                bg = competency_background(value, gpa)
+                cells.append(_td(value, text=True, style=f"background-color:{bg}" if bg else ""))
             else:
-                cells.append(styled_cell(pool, value, cs, p, text=_is_text_col(leaf)))
+                cells.append(_td(value, text=_is_text_col(leaf)))
         body_rows.append("<tr>" + "".join(cells) + "</tr>")
 
-    for label, values in section.totals.items():
-        styles = section.total_styles.get(label, [])
-        pitch = section.total_pitch.get(label, 0.0)
-        cells = "".join(
-            styled_cell(pool, v, styles[c] if c < len(styles) else None, pitch)
-            for c, v in enumerate(values)
-        )
+    for _label, values in section.totals.items():
+        cells = "".join(f"<td>{esc(v)}</td>" for v in values)
         body_rows.append(f'<tr class="total">{cells}</tr>')
 
     title = (
@@ -137,7 +151,7 @@ def _section_table(section: TabularSection, pool: TemplatePool) -> str:
         else ""
     )
     return (
-        title + '<table class="tmpl">'
+        title + '<table class="gt">'
         f"{_thead(paths)}"
         "<tbody>" + "".join(body_rows) + "</tbody>"
         "</table>"
@@ -145,12 +159,6 @@ def _section_table(section: TabularSection, pool: TemplatePool) -> str:
 
 
 def _sections_of(report: GenericTabularReport) -> list[TabularSection]:
-    """Every table block of the report.
-
-    Falls back to the mirrored top-level fields so a report constructed by hand
-    (or deserialised from an older JSON payload) without ``sections`` still
-    renders.
-    """
     if report.sections:
         return list(report.sections)
     return [
@@ -163,12 +171,18 @@ def _sections_of(report: GenericTabularReport) -> list[TabularSection]:
 
 
 def render_generic(report: GenericTabularReport) -> str:
-    """Render a :class:`~sars.schema.GenericTabularReport` to a full HTML doc.
-
-    Every table block in ``sections`` is printed in order; a report whose blocks
-    have different column counts (district performance) therefore keeps them all.
-    """
-    pool = TemplatePool(orientation_for(report.meta))
-    body = banner_html(report.meta)
-    body += "".join(_section_table(sec, pool) for sec in _sections_of(report))
-    return document_html(report.meta, body, pool=pool)
+    """Render a :class:`~sars.schema.GenericTabularReport` to a standalone doc."""
+    sections = _sections_of(report)
+    widest = max((len(sec.column_headers) for sec in sections), default=0)
+    orientation = orientation_for(report.meta)
+    sheet = _style(orientation, dense=widest > _WIDE_COLUMN_THRESHOLD)
+    body = '<section class="report">'
+    body += banner_html(report.meta)
+    body += "".join(_section_table(sec) for sec in sections)
+    body += "</section>"
+    return document(
+        title=report.meta.title or report.meta.name,
+        orientation=orientation,
+        sheet=sheet,
+        body=body,
+    )

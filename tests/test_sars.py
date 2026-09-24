@@ -286,6 +286,20 @@ def test_rendered_html_preserves_original_styles(edk_doc):
     assert re.search(r"font-size:\d+\.\d+pt", html)
 
 
+def test_conversion_html_is_self_contained(edk_doc):
+    """The conversion path emits a standalone document: its complete CSS (the
+    shared structural DOC_CSS plus its own pooled per-cell classes) is inlined
+    into its own <head> and no external stylesheet is linked."""
+    html = render_document(edk_doc)
+    # No external stylesheet is ever linked.
+    assert 'rel="stylesheet"' not in html
+    assert "<link" not in html
+    # The shared structural rules are inlined, not fetched from styles.css.
+    assert "<style" in html and "</style>" in html
+    assert ".page{position:relative" in html
+    assert "@page{size:A4" in html
+
+
 def test_generated_pdf_matches_reference(edk_pair):
     """The printed A4 PDF must carry exactly the reference content."""
     generated = sources.OUT_PDF / f"{edk_pair.name}.pdf"
@@ -438,28 +452,127 @@ def test_every_document_round_trips_through_json():
         assert schema.to_json(restored) == text, pair.name
 
 
-def test_competency_colour_is_not_fabricated_into_data_fields():
-    """The deterministic competency colour is never written into a data field.
+def test_competency_colour_is_not_stored_as_data():
+    """DATA IS DATA, NOT STYLES: the competency colour is never stored.
 
-    The templated path now carries the *recovered* per-cell presentation (font,
-    colour and the real cell background fill) in a ``CellStyle`` carrier, so a
-    hex colour recovered from the PDF legitimately appears under ``styles`` -
-    that is the whole point of the visual-fidelity work, and the recovered fill
-    takes precedence over :func:`sars.competency.background_for`. What must never
-    happen is the *derived* competency colour being fabricated into a plain data
-    field (``competency``, ``gpa`` ...); the label and GPA stay text, and the
-    colour only ever lives in the recovered style carrier.
+    The competency band colour is a deterministic function of the label / GPA
+    (:mod:`sars.competency`) computed by the template at render time, so it must
+    never be written into the extracted data. The label and GPA stay plain text;
+    no hex colour appears in any data field.
     """
     report = _report_for("MWANZA CC SCHOOLS RANK")
 
-    # The recovered competency fill is carried in the style carrier, not lost.
-    comp_leaf = report.column_headers.index("COMPETENCY LEVEL")
-    fills = {
-        row.styles[str(comp_leaf)].background for row in report.rows if str(comp_leaf) in row.styles
-    }
-    assert any(f for f in fills), "recovered competency fill should be carried in styles"
-
-    # No hex colour is written into a data (text) field of any row.
+    # Competency is carried as a plain text label, never as a colour.
+    labels = {row.competency for row in report.rows if row.competency}
+    assert labels, "competency labels should be captured as data"
     for row in report.rows:
         for value in (row.competency, row.gpa, row.school_name, row.ownership):
             assert "#" not in value
+
+
+def test_extracted_data_carries_no_presentation_fields():
+    """The data schema and JSON carry only DATA + STRUCTURE, no presentation.
+
+    No font family / size / weight, text colour, background fill, alignment or
+    row pitch is stored anywhere - those belong to each report type's own
+    self-contained template, not to the data.
+    """
+    import json
+    from dataclasses import fields, is_dataclass
+
+    from sars import schema
+
+    # (1) No schema dataclass declares a presentation field, and CellStyle is
+    #     gone entirely.
+    assert not hasattr(schema, "CellStyle")
+    banned = {"styles", "pitch", "total_styles", "total_pitch"}
+    schema_classes = [
+        getattr(schema, name) for name in dir(schema) if is_dataclass(getattr(schema, name, None))
+    ]
+    for cls in schema_classes:
+        names = {f.name for f in fields(cls)}
+        assert not (names & banned), (cls.__name__, names & banned)
+
+    # (2) The serialised JSON of a report carries none of the style keys.
+    report = _report_for("MWANZA CC SCHOOLS RANK")
+    text = schema.to_json(report)
+    payload = json.loads(text)
+    for key in (
+        "background",
+        "size_pt",
+        "family",
+        "pitch",
+        "styles",
+        "total_styles",
+        "total_pitch",
+    ):
+        assert key not in text, key
+    assert set(payload) >= {"meta", "rows", "totals"}
+
+
+# ---------------------------------------------------------------------------
+# templates (FEAT-003): SELF-CONTAINED, FAITHFUL, no shared CSS constant
+# ---------------------------------------------------------------------------
+
+
+def test_template_output_is_self_contained():
+    """Each templated report is a standalone document styled by its OWN inline
+    <style>: no external stylesheet link, no dependency on a shared cross-report
+    CSS blob. Checked for schools_rank and one other family."""
+    from sars import template_maker
+
+    for name, rtype in (
+        ("MWANZA CC SCHOOLS RANK", "schools_rank"),
+        ("MWANZA CC SUBJECTS RANK", "subjects_rank"),
+    ):
+        html = template_maker.render_html(rtype, _report_for(name))
+        assert "<!DOCTYPE html>" in html
+        assert "<style" in html and "</style>" in html
+        # No external stylesheet is ever linked.
+        assert 'rel="stylesheet"' not in html
+        assert "<link" not in html
+        # A4 page geometry is declared in the document's own inline style.
+        assert "@page{size:A4" in html
+
+
+def test_schools_rank_paints_its_own_fill_washes_and_competency_band():
+    """The report type's fixed fill washes and the DERIVED competency-band colour
+    appear in the output, painted by the template (not read from data)."""
+    from sars import template_maker
+
+    html = template_maker.render_html("schools_rank", _report_for("MWANZA CC SCHOOLS RANK"))
+    # This report type's own division / summary / GPA / rank washes.
+    for wash in ("#fabf8f", "#dce6f1", "#ebf1de", "#65ffab", "#d2fce6", "#daeef3"):
+        assert wash in html, wash
+    # The competency band colour is computed deterministically (Grade C -> yellow
+    # is present in this council report), never stored in the data.
+    assert "#ffff00" in html or "#00b050" in html
+
+
+def test_no_shared_css_constant_across_report_types():
+    """Two different report types must NOT share one identical monolithic style
+    block: each owns its own inline styling. There is also no shared
+    DOC_CSS / TEMPLATE_CSS constant funneling every report through one look."""
+    import re
+
+    from sars import template_maker
+    from sars.templates import base
+
+    # The dismantled shared-funnel constants are gone from the template base.
+    assert not hasattr(base, "TEMPLATE_CSS")
+    assert not hasattr(base, "DOC_CSS")
+    assert not hasattr(base, "document_html")
+
+    def style_block(html: str) -> str:
+        m = re.search(r"<style>(.*?)</style>", html, re.DOTALL)
+        return m.group(1) if m else ""
+
+    sr = style_block(
+        template_maker.render_html("schools_rank", _report_for("MWANZA CC SCHOOLS RANK"))
+    )
+    sj = style_block(
+        template_maker.render_html("subjects_rank", _report_for("MWANZA CC SUBJECTS RANK"))
+    )
+    assert sr and sj
+    # The two report types emit different, independent style blocks.
+    assert sr != sj

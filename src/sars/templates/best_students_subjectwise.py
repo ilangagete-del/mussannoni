@@ -1,47 +1,22 @@
-"""Subjectwise best-students template (council and region level).
+"""Subjectwise best-students template - SELF-CONTAINED and FAITHFUL.
 
-Serves the ``best_students`` family when ``meta.variant == "subjectwise"``. This
-is a genuinely different structure from the overall best-students list, which is
-why it is its own template rather than a variant flag: where the overall list
-ranks candidates on their aggregate and division and prints a DETAILED SUBJECTS
-column, a subjectwise list ranks candidates *within one subject* and prints that
-subject's ``MARKS`` / ``GRADE`` / ``COMPETENCY LEVEL`` instead.
+Serves the ``best_students`` family when ``meta.variant == "subjectwise"``: a
+list of titled sections (one per subject), each ranking candidates within one
+subject with that subject's ``MARKS`` / ``GRADE`` / ``COMPETENCY LEVEL``. This
+template OWNS its structure and its complete inline styling, authored at the
+reference's true point sizes; it shares no cross-report CSS constant.
 
-A report is a list of titled sections, one per subject; each section prints the
-same candidate columns. The column headings and the section chrome are static;
-the candidate rows are data.
-
-Expected data shape: a :class:`~sars.schema.BestStudentsReport` with
-
-* ``meta``     - :class:`~sars.schema.ReportMeta` (``variant='subjectwise'``);
-* ``sections`` - :class:`~sars.schema.BestStudentsSection`, each with a ``title``
-  naming the subject and a ``students`` list of
-  :class:`~sars.schema.StudentRow` using the subjectwise fields: ``sno``,
-  ``council`` (region level) or ``id_no`` (council level), ``school_name``,
-  ``category``, ``name``, ``sex``, ``marks``, ``grade``, ``position``,
-  ``competency``.
-
-The competency cell's background is derived deterministically from the label via
-:mod:`sars.competency`; it is never stored in the data.
+DATA IS DATA: the candidate rows are data; the competency band colour is derived
+deterministically (:mod:`sars.competency`), never stored.
 """
 
 from __future__ import annotations
 
 from ..schema import BestStudentsReport, BestStudentsSection, StudentRow
-from .base import (
-    TemplatePool,
-    banner_html,
-    cell,
-    competency_cell,
-    document_html,
-    esc,
-    orientation_for,
-)
+from .base import banner_html, competency_background, orientation_for
+from .styling import Sheet, document, esc, fit_scale
 
-#: Candidate columns, as ``(field, heading, left_aligned)``. A column is printed
-#: only when at least one candidate in the section carries a value for it, so
-#: the same template serves the council layout (which identifies a candidate by
-#: ``ID NO.``) and the region layout (which adds a ``COUNCIL`` column).
+#: Candidate columns, as ``(field, heading, left_aligned)``.
 _COLUMNS: tuple[tuple[str, str, bool], ...] = (
     ("sno", "S/NO.", False),
     ("council", "COUNCIL", True),
@@ -57,9 +32,33 @@ _COLUMNS: tuple[tuple[str, str, bool], ...] = (
     ("competency", "COMPETENCY LEVEL", True),
 )
 
+_PT_DATA = 8.0
+_PT_ROW = 11.5
+_PT_BANNER = 8.5
+
+
+def _style(orientation: str) -> Sheet:
+    s = fit_scale(orientation)
+    px = lambda pt: f"{pt * s:.2f}pt"  # noqa: E731
+    sheet = Sheet()
+    sheet.extend(f"""
+body{{margin:0;color:#000;font-family:Arial, Helvetica, sans-serif}}
+.report{{padding:{px(4)} {px(6)}}}
+.banner{{text-align:center;font-weight:700;font-size:{px(_PT_BANNER)};line-height:1.4}}
+.banner .title{{margin-top:{px(6)};font-size:{px(_PT_BANNER)}}}
+table.bw{{border-collapse:collapse;table-layout:fixed;width:100%;
+        border-spacing:0;margin-top:{px(6)}}}
+table.bw th,table.bw td{{border:0.4pt solid #000;padding:0 1pt;
+        text-align:center;vertical-align:middle;overflow:visible;
+        font-size:{px(_PT_DATA)};line-height:{px(_PT_ROW)};
+        white-space:normal;overflow-wrap:normal;word-break:keep-all}}
+table.bw th{{font-weight:700}}
+table.bw td.text,table.bw th.text{{text-align:left}}
+""")
+    return sheet
+
 
 def _present_columns(students: list[StudentRow]) -> tuple[tuple[str, str, bool], ...]:
-    """The subset of :data:`_COLUMNS` any candidate in the section fills."""
     return tuple(
         col
         for col in _COLUMNS
@@ -67,7 +66,7 @@ def _present_columns(students: list[StudentRow]) -> tuple[tuple[str, str, bool],
     )
 
 
-def _section_html(section: BestStudentsSection, pool: TemplatePool) -> str:
+def _section_html(section: BestStudentsSection) -> str:
     if not section.students:
         return ""
     columns = _present_columns(section.students)
@@ -75,21 +74,19 @@ def _section_html(section: BestStudentsSection, pool: TemplatePool) -> str:
         f'<th class="text">{esc(heading)}</th>' if left else f"<th>{esc(heading)}</th>"
         for _field, heading, left in columns
     )
-
     rows: list[str] = []
     for st in section.students:
         cells: list[str] = []
         for field_name, _heading, left in columns:
             value = str(getattr(st, field_name, "") or "")
-            cs = st.styles.get(field_name) if st.styles else None
             if field_name == "competency":
-                # The recovered source fill wins; the deterministic colour from
-                # the label is only a fallback when no fill was recovered.
-                cells.append(competency_cell(value, pool=pool, style=cs, pitch=st.pitch))
+                bg = competency_background(value)
+                stx = f' style="background-color:{bg}"' if bg else ""
+                cells.append(f'<td class="text"{stx}>{esc(value)}</td>')
             else:
-                cells.append(cell(value, text=left, pool=pool, style=cs, pitch=st.pitch))
+                cls = ' class="text"' if left else ""
+                cells.append(f"<td{cls}>{esc(value)}</td>")
         rows.append("<tr>" + "".join(cells) + "</tr>")
-
     title = (
         f'<div class="banner"><div class="title">{esc(section.title)}</div></div>'
         if section.title
@@ -97,7 +94,7 @@ def _section_html(section: BestStudentsSection, pool: TemplatePool) -> str:
     )
     return (
         title
-        + '<table class="tmpl">'
+        + '<table class="bw">'
         + f"<thead><tr>{head}</tr></thead>"
         + "<tbody>"
         + "".join(rows)
@@ -107,8 +104,15 @@ def _section_html(section: BestStudentsSection, pool: TemplatePool) -> str:
 
 
 def render_best_students_subjectwise(report: BestStudentsReport) -> str:
-    """Render a subjectwise :class:`~sars.schema.BestStudentsReport` to HTML."""
-    pool = TemplatePool(orientation_for(report.meta))
-    body = banner_html(report.meta)
-    body += "".join(_section_html(sec, pool) for sec in report.sections)
-    return document_html(report.meta, body, pool=pool)
+    """Render a subjectwise :class:`~sars.schema.BestStudentsReport` to a doc."""
+    orientation = orientation_for(report.meta)
+    sheet = _style(orientation)
+    body = '<section class="report">' + banner_html(report.meta)
+    body += "".join(_section_html(sec) for sec in report.sections)
+    body += "</section>"
+    return document(
+        title=report.meta.title or report.meta.name,
+        orientation=orientation,
+        sheet=sheet,
+        body=body,
+    )

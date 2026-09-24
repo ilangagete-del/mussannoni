@@ -1,43 +1,57 @@
-"""Single-school result-slip template.
+"""Single-school result-slip template - SELF-CONTAINED and FAITHFUL.
 
 Serves the ``school_result_slip`` report type. The slip prints the school
-identity, a division-performance summary, the full candidate list (name / sex /
-aggregate / division / position / detailed subject results) and a set of
-school- and subject-level performance summary tables. All fixed headings are
-chrome; the school identity, the counts and every candidate row are data.
+identity, a division-performance summary, the full candidate list and a set of
+school- and subject-level performance tables. This template OWNS its structure
+and its complete inline styling, including the slip's recovered pale panel wash
+(``#92cddc``) that the report type paints behind its content as fixed chrome.
+It shares no cross-report CSS constant.
 
-Expected data shape: a :class:`~sars.schema.SchoolResultSlip` with
-
-* ``meta``             - :class:`~sars.schema.ReportMeta`;
-* ``centre_no`` / ``school_name`` - the school identity line;
-* ``division_summary`` - :class:`~sars.schema.DivisionSummaryRow` (a sex row and
-  its ``{division_label: count}`` map);
-* ``students``         - :class:`~sars.schema.StudentRow` (cno, name, sex,
-  aggregate, division, position, detailed_subjects);
-* ``performance``      - :class:`~sars.schema.PerformanceTable` blocks captured
-  header-driven (registration counts, per-subject grade breakdown, ranking).
+DATA IS DATA: all headings / the panel wash are chrome; the school identity, the
+counts and every candidate row are data.
 """
 
 from __future__ import annotations
 
-from ..schema import CellStyle, PerformanceTable, SchoolResultSlip
-from .base import (
-    TemplatePool,
-    banner_html,
-    document_html,
-    esc,
-    orientation_for,
-    styled_cell,
-)
+from ..schema import PerformanceTable, SchoolResultSlip
+from .base import banner_html, orientation_for
+from .styling import Sheet, document, esc, fit_scale
 
 #: Candidate-list column headings (chrome).
 _STUDENT_HEADERS = ("CNO", "CANDIDATE FULL NAME", "SEX", "AGGT", "DIV", "POS", "DETAILED SUBJECTS")
 
+#: The slip's recovered panel wash (fixed chrome for this report type).
+_PANEL_BG = "#92cddc"
 
-def _division_summary_html(slip: SchoolResultSlip, pool: TemplatePool) -> str:
+_PT_DATA = 6.7
+_PT_ROW = 9.4
+_PT_BANNER = 8.0
+
+
+def _style(orientation: str) -> Sheet:
+    s = fit_scale(orientation)
+    px = lambda pt: f"{pt * s:.2f}pt"  # noqa: E731
+    sheet = Sheet()
+    sheet.extend(f"""
+body{{margin:0;color:#000;font-family:Arial, Helvetica, sans-serif}}
+.report{{padding:{px(6)} {px(8)};background-color:{_PANEL_BG}}}
+.banner{{text-align:center;font-weight:700;font-size:{px(_PT_BANNER)};line-height:1.4}}
+.banner .title{{margin-top:{px(6)};font-size:{px(_PT_BANNER)}}}
+table.rs{{border-collapse:collapse;table-layout:fixed;width:100%;
+        border-spacing:0;margin-top:{px(6)};background-color:#fff}}
+table.rs th,table.rs td{{border:0.4pt solid #000;padding:0 1pt;
+        text-align:center;vertical-align:middle;overflow:visible;
+        font-size:{px(_PT_DATA)};line-height:{px(_PT_ROW)};
+        white-space:normal;overflow-wrap:normal;word-break:keep-all}}
+table.rs th{{font-weight:700}}
+table.rs td.text,table.rs th.text{{text-align:left}}
+""")
+    return sheet
+
+
+def _division_summary_html(slip: SchoolResultSlip) -> str:
     if not slip.division_summary:
         return ""
-    # Union of division labels across rows, in first-seen order.
     labels: list[str] = []
     for drow in slip.division_summary:
         for label in drow.divisions:
@@ -46,50 +60,18 @@ def _division_summary_html(slip: SchoolResultSlip, pool: TemplatePool) -> str:
     head = "<th>SEX</th>" + "".join(f"<th>{esc(lbl)}</th>" for lbl in labels)
     rows: list[str] = []
     for drow in slip.division_summary:
-        # DivisionSummaryRow styles are keyed by "sex" or division label.
-        st = drow.styles
-        cells = styled_cell(pool, drow.sex, st.get("sex") if st else None, drow.pitch)
-        cells += "".join(
-            styled_cell(
-                pool,
-                drow.divisions.get(lbl, ""),
-                st.get(lbl) if st else None,
-                drow.pitch,
-            )
-            for lbl in labels
-        )
+        cells = f"<td>{esc(drow.sex)}</td>"
+        cells += "".join(f"<td>{esc(drow.divisions.get(lbl, ''))}</td>" for lbl in labels)
         rows.append(f"<tr>{cells}</tr>")
     return (
-        '<table class="tmpl">'
+        '<table class="rs">'
         f"<thead><tr>{head}</tr></thead>"
         "<tbody>" + "".join(rows) + "</tbody>"
         "</table>"
     )
 
 
-def _student_style(st_styles: dict, keys: list[str], nth: int) -> CellStyle | None:
-    """Pick the recovered style for the ``nth`` emitted student cell.
-
-    Candidate-row styles are keyed by physical column index (``extract_data``'s
-    ``_row_styles``); the CNO and NAME sit at columns 0 and 1, and the remaining
-    emitted cells (SEX / AGGT / DIV / POS / DETAILED) map onto the row's further
-    occupied columns in order. This keeps every cell's recovered pitch / font
-    without needing to re-derive the exact source column of each field.
-    """
-    if not st_styles:
-        return None
-    if nth == 0:
-        return st_styles.get("0")
-    if nth == 1:
-        return st_styles.get("1")
-    trailing = [k for k in keys if k not in ("0", "1")]
-    idx = nth - 2
-    if 0 <= idx < len(trailing):
-        return st_styles.get(trailing[idx])
-    return None
-
-
-def _students_html(slip: SchoolResultSlip, pool: TemplatePool) -> str:
+def _students_html(slip: SchoolResultSlip) -> str:
     head = "".join(
         (
             f'<th class="text">{esc(h)}</th>'
@@ -100,8 +82,6 @@ def _students_html(slip: SchoolResultSlip, pool: TemplatePool) -> str:
     )
     rows: list[str] = []
     for st in slip.students:
-        keys = sorted((st.styles or {}), key=lambda x: int(x) if x.isdigit() else 0)
-        p = st.pitch
         fields = [
             (st.cno, False),
             (st.name, True),
@@ -112,36 +92,31 @@ def _students_html(slip: SchoolResultSlip, pool: TemplatePool) -> str:
             (st.detailed_subjects, True),
         ]
         cells = "".join(
-            styled_cell(pool, value, _student_style(st.styles, keys, i), p, text=left)
-            for i, (value, left) in enumerate(fields)
+            f'<td class="text">{esc(value)}</td>' if left else f"<td>{esc(value)}</td>"
+            for value, left in fields
         )
         rows.append(f"<tr>{cells}</tr>")
     return (
-        '<table class="tmpl">'
+        '<table class="rs">'
         f"<thead><tr>{head}</tr></thead>"
         "<tbody>" + "".join(rows) + "</tbody>"
         "</table>"
     )
 
 
-def _performance_html(table: PerformanceTable, pool: TemplatePool) -> str:
+def _performance_html(table: PerformanceTable) -> str:
     headers = table.column_headers
     leaves = [h.split(" / ")[-1] if h else "" for h in headers]
     head = "".join(f"<th>{esc(leaf)}</th>" for leaf in leaves)
     rows: list[str] = []
     for prow in table.rows:
         cells = "".join(
-            styled_cell(
-                pool,
-                prow.values.get(headers[i], prow.values.get(leaves[i], "")),
-                (prow.styles.get(headers[i], prow.styles.get(leaves[i])) if prow.styles else None),
-                prow.pitch,
-            )
+            f"<td>{esc(prow.values.get(headers[i], prow.values.get(leaves[i], '')))}</td>"
             for i in range(len(headers))
         )
         rows.append(f"<tr>{cells}</tr>")
     return (
-        '<table class="tmpl">'
+        '<table class="rs">'
         f"<thead><tr>{head}</tr></thead>"
         "<tbody>" + "".join(rows) + "</tbody>"
         "</table>"
@@ -149,13 +124,21 @@ def _performance_html(table: PerformanceTable, pool: TemplatePool) -> str:
 
 
 def render_school_result_slip(slip: SchoolResultSlip) -> str:
-    """Render a :class:`~sars.schema.SchoolResultSlip` to a full HTML doc."""
-    pool = TemplatePool(orientation_for(slip.meta))
+    """Render a :class:`~sars.schema.SchoolResultSlip` to a standalone doc."""
     identity = ""
     if slip.centre_no or slip.school_name:
         identity = f"{slip.centre_no} - {slip.school_name}".strip(" -")
-    body = banner_html(slip.meta, extra_lines=(identity,) if identity else ())
-    body += _division_summary_html(slip, pool)
-    body += _students_html(slip, pool)
-    body += "".join(_performance_html(p, pool) for p in slip.performance)
-    return document_html(slip.meta, body, pool=pool)
+    orientation = orientation_for(slip.meta)
+    sheet = _style(orientation)
+    body = '<section class="report">'
+    body += banner_html(slip.meta, extra_lines=(identity,) if identity else ())
+    body += _division_summary_html(slip)
+    body += _students_html(slip)
+    body += "".join(_performance_html(p) for p in slip.performance)
+    body += "</section>"
+    return document(
+        title=slip.meta.title or slip.meta.name,
+        orientation=orientation,
+        sheet=sheet,
+        body=body,
+    )

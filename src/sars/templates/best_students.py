@@ -1,28 +1,24 @@
-"""Top-ten best-students template (overall and subjectwise variants).
+"""Top-ten best-students template - SELF-CONTAINED and FAITHFUL.
 
 Serves the ``best_students`` report type at council and region level. A report
-is a list of titled sections (overall / female / male, or one per subject); each
-section prints the same candidate columns. The fixed column headings are chrome;
-the candidate rows are data.
+is a list of titled sections (overall / female / male); each section prints the
+same candidate columns. This template OWNS its structure and its complete inline
+styling, authored at the reference's true point sizes; it shares no cross-report
+CSS constant.
 
-Expected data shape: a :class:`~sars.schema.BestStudentsReport` with
-
-* ``meta``     - :class:`~sars.schema.ReportMeta`;
-* ``sections`` - :class:`~sars.schema.BestStudentsSection`, each with a
-  ``title`` (the heading naming the block) and ``students`` list of
-  :class:`~sars.schema.StudentRow` (cno, school_name, name, sex, aggregate,
-  division, position, detailed_subjects / parsed subjects).
+DATA IS DATA: the candidate rows are data; the competency band colour (on the
+subjectwise variant) is derived deterministically (:mod:`sars.competency`).
 """
 
 from __future__ import annotations
 
 from ..schema import BestStudentsReport, BestStudentsSection, StudentRow
-from .base import TemplatePool, banner_html, cell, document_html, esc, orientation_for
+from .base import banner_html, orientation_for
 from .best_students_subjectwise import render_best_students_subjectwise
+from .styling import Sheet, document, esc, fit_scale
 
 #: Candidate columns as ``(field, heading, left_aligned)``. A column is printed
-#: only when some candidate in the section fills it, so one template serves both
-#: the council layout and the region layout (which adds ``S/NO.`` + ``COUNCIL``).
+#: only when some candidate in the section fills it.
 _COLUMNS: tuple[tuple[str, str, bool], ...] = (
     ("sno", "S/NO.", False),
     ("council", "COUNCIL", True),
@@ -36,9 +32,33 @@ _COLUMNS: tuple[tuple[str, str, bool], ...] = (
     ("detailed_subjects", "DETAILED SUBJECTS", True),
 )
 
+_PT_DATA = 6.4
+_PT_ROW = 9.0
+_PT_BANNER = 8.0
+
+
+def _style(orientation: str) -> Sheet:
+    s = fit_scale(orientation)
+    px = lambda pt: f"{pt * s:.2f}pt"  # noqa: E731
+    sheet = Sheet()
+    sheet.extend(f"""
+body{{margin:0;color:#000;font-family:Arial, Helvetica, sans-serif}}
+.report{{padding:{px(4)} {px(6)}}}
+.banner{{text-align:center;font-weight:700;font-size:{px(_PT_BANNER)};line-height:1.4}}
+.banner .title{{margin-top:{px(6)};font-size:{px(_PT_BANNER)}}}
+table.bs{{border-collapse:collapse;table-layout:fixed;width:100%;
+        border-spacing:0;margin-top:{px(6)}}}
+table.bs th,table.bs td{{border:0.4pt solid #000;padding:0 1pt;
+        text-align:center;vertical-align:middle;overflow:visible;
+        font-size:{px(_PT_DATA)};line-height:{px(_PT_ROW)};
+        white-space:normal;overflow-wrap:normal;word-break:keep-all}}
+table.bs th{{font-weight:700}}
+table.bs td.text,table.bs th.text{{text-align:left}}
+""")
+    return sheet
+
 
 def _present_columns(students: list[StudentRow]) -> tuple[tuple[str, str, bool], ...]:
-    """The subset of :data:`_COLUMNS` any candidate in the section fills."""
     return tuple(
         col
         for col in _COLUMNS
@@ -46,7 +66,7 @@ def _present_columns(students: list[StudentRow]) -> tuple[tuple[str, str, bool],
     )
 
 
-def _section_html(section: BestStudentsSection, pool: TemplatePool) -> str:
+def _section_html(section: BestStudentsSection) -> str:
     if not section.students:
         return ""
     columns = _present_columns(section.students)
@@ -56,18 +76,11 @@ def _section_html(section: BestStudentsSection, pool: TemplatePool) -> str:
     )
     rows: list[str] = []
     for st in section.students:
-        # StudentRow styles are keyed by field name (see extract_data), so each
-        # cell recovers the font / colour / fill and row pitch of its own column.
-        cells = [
-            cell(
-                str(getattr(st, field_name, "") or ""),
-                text=left,
-                pool=pool,
-                style=st.styles.get(field_name) if st.styles else None,
-                pitch=st.pitch,
-            )
-            for field_name, _heading, left in columns
-        ]
+        cells = []
+        for field_name, _heading, left in columns:
+            value = str(getattr(st, field_name, "") or "")
+            cls = ' class="text"' if left else ""
+            cells.append(f"<td{cls}>{esc(value)}</td>")
         rows.append("<tr>" + "".join(cells) + "</tr>")
     title = (
         f'<div class="banner"><div class="title">{esc(section.title)}</div></div>'
@@ -76,7 +89,7 @@ def _section_html(section: BestStudentsSection, pool: TemplatePool) -> str:
     )
     return (
         title
-        + '<table class="tmpl">'
+        + '<table class="bs">'
         + f"<thead><tr>{head}</tr></thead>"
         + "<tbody>"
         + "".join(rows)
@@ -86,15 +99,20 @@ def _section_html(section: BestStudentsSection, pool: TemplatePool) -> str:
 
 
 def render_best_students(report: BestStudentsReport) -> str:
-    """Render a :class:`~sars.schema.BestStudentsReport` to a full HTML doc.
+    """Render a :class:`~sars.schema.BestStudentsReport` to a standalone doc.
 
-    Dispatches to the subjectwise template when the report is a subjectwise list,
-    because that layout prints a subject's mark/grade/competency per candidate
-    instead of an aggregate, division and detailed-subjects breakdown.
+    Dispatches to the subjectwise template for a subjectwise list.
     """
     if (report.meta.variant or "").lower() == "subjectwise":
         return render_best_students_subjectwise(report)
-    pool = TemplatePool(orientation_for(report.meta))
-    body = banner_html(report.meta)
-    body += "".join(_section_html(sec, pool) for sec in report.sections)
-    return document_html(report.meta, body, pool=pool)
+    orientation = orientation_for(report.meta)
+    sheet = _style(orientation)
+    body = '<section class="report">' + banner_html(report.meta)
+    body += "".join(_section_html(sec) for sec in report.sections)
+    body += "</section>"
+    return document(
+        title=report.meta.title or report.meta.name,
+        orientation=orientation,
+        sheet=sheet,
+        body=body,
+    )

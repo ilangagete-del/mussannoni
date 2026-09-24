@@ -3,8 +3,49 @@
 <head>
 <meta charset="utf-8">
 <title>Mwanza Top 10 Schools</title>
-<link rel="stylesheet" href="styles.css">
 <style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{-weasy-hyphens:none}
+body{background:#fff}
+/* No overflow:hidden - clipping would silently drop report data. Any overflow
+   must surface as an extra page so verification catches it. */
+.page{position:relative;margin:0 auto;page-break-after:always;break-after:page}
+.page:last-of-type{page-break-after:auto;break-after:auto}
+/* Whole blocks are placed at their measured coordinates; the data inside each
+   block is laid out by the normal CSS table algorithm. */
+.panel{position:absolute;z-index:0}
+.tw{position:absolute;z-index:1;overflow:visible}
+p.tl{position:absolute;z-index:1}
+table{border-collapse:collapse;table-layout:fixed;width:100%;
+      border-spacing:0}
+/* The PDF already states where every line breaks; those breaks are emitted as
+   <br>, so automatic re-wrapping must be off or tokens would split. */
+/* Vertical padding is zero on purpose: row heights are taken verbatim from the
+   PDF, and on a 59-row page even 0.4pt of padding per cell would accumulate
+   into tens of points of overflow. */
+/* overflow is visible on purpose: several reports set labels slightly wider
+   than their ruled cell (OWNERSHIP, the rotated rank columns) and the original
+   PDF simply lets them overhang. Clipping here would truncate real values. */
+th,td{border:0.4pt solid #000;padding:0 0.8pt;line-height:1.02;
+      overflow:visible;white-space:nowrap;overflow-wrap:normal;word-break:normal;
+      vertical-align:middle}
+/* Elastic cells: only where the extractor found content wider than its column
+   (a long SCHOOL NAME, a long COMPETENCY LEVEL label). These wrap inside the
+   ruled box at word boundaries instead of overhanging it, and the row grows to
+   fit. Applied per cell so untouched cells keep their exact single-line
+   geometry and the 100% text guarantee. */
+th.wrap,td.wrap{white-space:normal;overflow-wrap:break-word}
+th{font-weight:700}
+tr.banner th,tr.banner td{border:0;vertical-align:top}
+div.ln{white-space:nowrap}
+tr.total th,tr.total td{font-weight:700}
+p.tl{white-space:nowrap}
+/* Vertical rank labels. WeasyPrint does not implement writing-mode, so a real
+   rotate() transform is used; the cell must not clip the overflow it creates. */
+.rot{display:inline-block;transform:rotate(-90deg);transform-origin:50% 50%;
+     white-space:nowrap;line-height:1}
+th.vcell,td.vcell{overflow:visible}
+
 @page{size:A4 landscape;margin:8.00pt}
 /* A4 landscape: 841.9x595.3pt; source 792x612pt; scale 0.9465 */
 .st1{font-family:Arial, Helvetica, sans-serif;font-size:6.15pt;font-weight:700;color:#000000;text-align:center}

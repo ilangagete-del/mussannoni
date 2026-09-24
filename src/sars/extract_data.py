@@ -22,7 +22,6 @@ from .reports import DEFAULT_COUNCIL, DEFAULT_REGION, ReportSpec, spec_for
 from .schema import (
     BestStudentsReport,
     BestStudentsSection,
-    CellStyle,
     DivisionSummaryRow,
     GenderCounts,
     GenericTabularReport,
@@ -95,21 +94,9 @@ def _total_rows(table: Table) -> dict[str, list[str]]:
     can later be placed back on the correct summary line. When a total row has
     no obvious label cell, a positional ``total_<row>`` key is used.
     """
-    return {label: values for label, values, _s, _p in _total_rows_full(table)}
-
-
-def _total_rows_full(table: Table):
-    """Yield ``(label, values, styles, pitch)`` for every ``total`` row.
-
-    ``styles`` is a per-column list of :class:`CellStyle` aligned with
-    ``values`` (blanks default), and ``pitch`` is the row's recovered height in
-    points, so the total rows carry the same recovered presentation as the data
-    rows. Used by :func:`_total_rows` (values only) and
-    :func:`_group_total_styles` (styles + pitch).
-    """
     rows = _rows_map(table)
     n_cols = table.n_cols
-    out: list[tuple[str, list[str], list[CellStyle], float]] = []
+    out: dict[str, list[str]] = {}
     for r, kind in enumerate(table.row_kinds):
         if kind != "total":
             continue
@@ -121,9 +108,7 @@ def _total_rows_full(table: Table):
                 label = text
                 break
         key = label or f"total_{r}"
-        values = _ordered_values(row, n_cols)
-        styles = [_cell_style(row.get(c)) for c in range(n_cols)]
-        out.append((key, values, styles, _row_pitch(table, r)))
+        out[key] = _ordered_values(row, n_cols)
     return out
 
 
@@ -218,62 +203,6 @@ def _cell(row: dict[int, Cell], col: int) -> str:
     return cell.text.strip() if cell is not None else ""
 
 
-def _cell_style(cell: Cell | None) -> CellStyle:
-    """Snapshot the recovered presentation of *cell* as a :class:`CellStyle`.
-
-    Mirrors the meaningful subset of :class:`sars.model.Style` the conversion
-    path already recovered for this cell (font family / size / weight / slant,
-    text colour, cell *background* fill, alignment, rotation), so the style can
-    travel with the value into the data schema. A missing cell yields a default
-    :class:`CellStyle`, which renders exactly as the old hardcoded path did.
-
-    The recovered ``background`` fill is captured verbatim; for competency cells
-    this means the source colour takes precedence over the deterministic
-    :func:`sars.competency.background_for` fallback, matching the conversion
-    path's rule that the recovered colour always wins.
-    """
-    if cell is None:
-        return CellStyle()
-    st = cell.style
-    return CellStyle(
-        family=st.family,
-        size_pt=st.size_pt,
-        bold=st.bold,
-        italic=st.italic,
-        color=st.color,
-        background=st.background,
-        align=st.align,
-        rotation=st.rotation,
-    )
-
-
-def _row_styles(row: dict[int, Cell], n_cols: int) -> dict[str, CellStyle]:
-    """Recovered style for every occupied cell of a row, keyed by column index.
-
-    Only columns that actually carry a cell are recorded (blanks default when
-    looked up), keeping the JSON lean while every emitted ``<td>`` can still
-    resolve the exact style recovered for its column.
-    """
-    out: dict[str, CellStyle] = {}
-    for c in range(n_cols):
-        cell = row.get(c)
-        if cell is not None:
-            out[str(c)] = _cell_style(cell)
-    return out
-
-
-def _row_pitch(table: Table, row_index: int) -> float:
-    """Recovered pitch (true row height in points) of a lattice row.
-
-    Returns ``0.0`` when the row index is out of range, so fresh data with no
-    geometry simply carries the default and renders as before.
-    """
-    heights = table.row_heights()
-    if 0 <= row_index < len(heights):
-        return round(heights[row_index], 3)
-    return 0.0
-
-
 def _parse_subjects(text: str) -> list[SubjectResult]:
     """Parse a ``DETAILED SUBJECTS`` string into structured subject results."""
     out: list[SubjectResult] = []
@@ -300,9 +229,7 @@ def _candidate_col(row: dict[int, Cell]) -> int | None:
 _SEX_TOKENS = {"F", "M"}
 
 
-def _student_from_row(
-    row: dict[int, Cell], base: int, table: Table | None = None, row_index: int = -1
-) -> StudentRow:
+def _student_from_row(row: dict[int, Cell], base: int) -> StudentRow:
     """Build a :class:`StudentRow` from a candidate row whose id is at ``base``.
 
     The slip's candidate columns run ``CNO, NAME, SEX, AGGT, DIV, POS, DETAILED
@@ -327,17 +254,12 @@ def _student_from_row(
         if "'" in text or " - " in text:
             detailed = text
             break
-    n_cols = table.n_cols if table is not None else (max(row) + 1 if row else 0)
-    styles = _row_styles(row, n_cols)
-    pitch = _row_pitch(table, row_index) if table is not None else 0.0
     if sex_col is None:
         return StudentRow(
             cno=_cell(row, base),
             name=name,
             detailed_subjects=detailed,
             subjects=_parse_subjects(detailed),
-            styles=styles,
-            pitch=pitch,
         )
     return StudentRow(
         cno=_cell(row, base),
@@ -348,8 +270,6 @@ def _student_from_row(
         position=_cell(row, sex_col + 3),
         detailed_subjects=detailed,
         subjects=_parse_subjects(detailed),
-        styles=styles,
-        pitch=pitch,
     )
 
 
@@ -376,27 +296,17 @@ def _extract_school_slip(doc: Document, meta: ReportMeta) -> SchoolResultSlip:
                 break
 
         if is_candidate:
-            for r, row in _iter_data_rows(table):
+            for _r, row in _iter_data_rows(table):
                 base = _candidate_col(row)
                 if base is None:
                     continue
-                slip.students.append(_student_from_row(row, base, table, r))
+                slip.students.append(_student_from_row(row, base))
         elif "SEX" in upper and any(h in ("I", "II", "III", "IV", "0") for h in upper):
             div_labels = [h for h in headers[1:] if h]
-            for r, row in _iter_data_rows(table):
+            for _r, row in _iter_data_rows(table):
                 sex = _cell(row, 0)
                 divisions = {label: _cell(row, i + 1) for i, label in enumerate(div_labels)}
-                styles: dict[str, CellStyle] = {}
-                if 0 in row:
-                    styles["sex"] = _cell_style(row.get(0))
-                for i, label in enumerate(div_labels):
-                    if (i + 1) in row:
-                        styles[label] = _cell_style(row.get(i + 1))
-                slip.division_summary.append(
-                    DivisionSummaryRow(
-                        sex=sex, divisions=divisions, styles=styles, pitch=_row_pitch(table, r)
-                    )
-                )
+                slip.division_summary.append(DivisionSummaryRow(sex=sex, divisions=divisions))
         else:
             # School / subject performance summaries below the candidate list.
             perf = _performance_table(table)
@@ -453,18 +363,16 @@ def _full_capture(table: Table) -> PerformanceTable | None:
             continue
         row = rows_map.get(r, {})
         values: dict[str, str] = {}
-        styles: dict[str, CellStyle] = {}
         for c, cell in row.items():
             text = cell.text.strip()
             if text:
                 # Encode span so the template can re-merge cells: ``col`` -> text
                 # and ``col.span`` -> colspan when the cell spans >1 column.
                 values[str(c)] = text
-                styles[str(c)] = _cell_style(cell)
                 if cell.colspan > 1:
                     values[f"{c}.span"] = str(cell.colspan)
         if values:
-            body.append(PerformanceRow(values=values, styles=styles, pitch=_row_pitch(table, r)))
+            body.append(PerformanceRow(values=values))
     if not body:
         return None
     return PerformanceTable(column_headers=headers, rows=body)
@@ -475,17 +383,15 @@ def _performance_table(table: Table) -> PerformanceTable | None:
     headers = _column_headers(table)
     rows: list[PerformanceRow] = []
     n_cols = table.n_cols
-    for r, row in _iter_data_rows(table):
+    for _r, row in _iter_data_rows(table):
         values: dict[str, str] = {}
-        styles: dict[str, CellStyle] = {}
         for col in range(n_cols):
             key = headers[col] if col < len(headers) and headers[col] else f"col_{col}"
             text = _cell(row, col)
             if text:
                 values[key] = text
-                styles[key] = _cell_style(row.get(col))
         if values:
-            rows.append(PerformanceRow(values=values, styles=styles, pitch=_row_pitch(table, r)))
+            rows.append(PerformanceRow(values=values))
     if not rows:
         return None
     return PerformanceTable(column_headers=headers, rows=rows)
@@ -522,7 +428,7 @@ def _extract_best_students(doc: Document, meta: ReportMeta) -> BestStudentsRepor
                     continue
                 if kind != "data":
                     continue
-                student = _student_row(row, idx, table, r)
+                student = _student_row(row, idx)
                 # ``None`` is a repeated in-table header row, or a row with no
                 # identifying value at all.
                 if student is not None:
@@ -574,9 +480,7 @@ def _student_columns(headers: list[str]) -> dict[str, int]:
     return found
 
 
-def _student_row(
-    row: dict[int, Cell], idx: dict[str, int], table: Table | None = None, row_index: int = -1
-) -> StudentRow | None:
+def _student_row(row: dict[int, Cell], idx: dict[str, int]) -> StudentRow | None:
     """Build a :class:`StudentRow` from one data row, or ``None`` to skip it.
 
     A row is skipped when it is a repeated header band rendered as data, or when
@@ -612,11 +516,6 @@ def _student_row(
         grade=values.get("grade", ""),
         competency=values.get("competency", ""),
     )
-    # Carry the recovered presentation keyed by the StudentRow field name, so
-    # each field's cell keeps its own font / colour / background (the competency
-    # cell's recovered fill thus takes precedence over the derived colour).
-    student.styles = {name: _cell_style(row.get(col)) for name, col in idx.items() if col in row}
-    student.pitch = _row_pitch(table, row_index) if table is not None else 0.0
     return student
 
 
@@ -666,8 +565,7 @@ def _extract_schools_rank(doc: Document, meta: ReportMeta) -> SchoolsRankReport:
     # Group the F/M/T (and %) columns under their parent header segment.
     groups = _fmt_groups(headers)
 
-    n_cols = _group_cols(group)
-    for table, r, row in _group_data_rows_ctx(group):
+    for row in _group_data_rows(group):
         rank_row = SchoolRankRow(
             sno=_cell(row, i_sno) if i_sno is not None else "",
             ward=_cell(row, i_ward) if i_ward is not None else "",
@@ -689,12 +587,9 @@ def _extract_schools_rank(doc: Document, meta: ReportMeta) -> SchoolsRankReport:
             if pct is not None:
                 rank_row.sat_pct = _cell(row, pct)
         rank_row.division = _division_map(row, headers, leaves)
-        rank_row.styles = _row_styles(row, n_cols)
-        rank_row.pitch = _row_pitch(table, r)
         report.rows.append(rank_row)
 
     report.totals = _group_totals(group)
-    report.total_styles, report.total_pitch = _group_total_styles(group, n_cols)
     report.column_headers = leaves
     return report
 
@@ -765,8 +660,7 @@ def _extract_subjects_rank(doc: Document, meta: ReportMeta) -> SubjectsRankRepor
         for label in ("A", "B", "C", "D", "F", "TOTAL", "A-C", "%A-C", "A-D", "%A-D")
     }
 
-    n_cols = _group_cols(group)
-    for table, r, row in _group_data_rows_ctx(group):
+    for row in _group_data_rows(group):
         grades = {label: _cell(row, idx) for label, idx in grade_cols.items() if idx is not None}
         report.rows.append(
             SubjectRankRow(
@@ -776,12 +670,9 @@ def _extract_subjects_rank(doc: Document, meta: ReportMeta) -> SubjectsRankRepor
                 gpa=_cell(row, i_gpa) if i_gpa is not None else "",
                 competency=_cell(row, i_comp) if i_comp is not None else "",
                 rank=_cell(row, i_rank) if i_rank is not None else "",
-                styles=_row_styles(row, n_cols),
-                pitch=_row_pitch(table, r),
             )
         )
     report.totals = _group_totals(group)
-    report.total_styles, report.total_pitch = _group_total_styles(group, n_cols)
     report.column_headers = headers
     return report
 
@@ -798,30 +689,22 @@ def _extract_generic(doc: Document, meta: ReportMeta) -> GenericTabularReport:
     for block, title in _generic_blocks(doc, meta):
         headers = _group_headers(block)
         n_cols = block[0].n_cols
-        group_cols = _group_cols(block)
         block_totals = _group_totals(block)
-        total_styles, total_pitch = _group_total_styles(block, group_cols)
         section = TabularSection(
             column_headers=headers,
             totals=block_totals,
-            total_styles=total_styles,
-            total_pitch=total_pitch,
             title=title,
         )
         group = block
-        for table, r, row in _group_data_rows_ctx(group):
+        for row in _group_data_rows(group):
             values: dict[str, str] = {}
-            styles: dict[str, CellStyle] = {}
             for col in range(n_cols):
                 key = headers[col] if col < len(headers) and headers[col] else f"col_{col}"
                 text = _cell(row, col)
                 if text:
                     values[key] = text
-                    styles[key] = _cell_style(row.get(col))
             if values:
-                section.rows.append(
-                    TabularRow(values=values, styles=styles, pitch=_row_pitch(table, r))
-                )
+                section.rows.append(TabularRow(values=values))
         if section.rows or section.totals:
             report.sections.append(section)
 
@@ -830,8 +713,6 @@ def _extract_generic(doc: Document, meta: ReportMeta) -> GenericTabularReport:
         report.column_headers = main.column_headers
         report.rows = main.rows
         report.totals = main.totals
-        report.total_styles = main.total_styles
-        report.total_pitch = main.total_pitch
     return report
 
 
@@ -903,28 +784,11 @@ def _group_headers(group: list[Table]) -> list[str]:
     return best
 
 
-def _group_cols(group: list[Table]) -> int:
-    """The physical column count of a table *group* (its widest table)."""
-    return max((t.n_cols for t in group), default=0)
-
-
 def _group_data_rows(group: list[Table]):
     """Yield ``{col: cell}`` for every data row across a table *group*."""
     for table in group:
         for _, row in _iter_data_rows(table):
             yield row
-
-
-def _group_data_rows_ctx(group: list[Table]):
-    """Yield ``(table, row_index, {col: cell})`` for every data row of a group.
-
-    Same walk as :func:`_group_data_rows`, but also hands back the owning table
-    and lattice row index so the caller can recover the row's geometry
-    (:func:`_row_pitch`) alongside its cell styles.
-    """
-    for table in group:
-        for r, row in _iter_data_rows(table):
-            yield table, r, row
 
 
 def _group_totals(group: list[Table]) -> dict[str, list[str]]:
@@ -949,40 +813,6 @@ def _group_totals(group: list[Table]) -> dict[str, list[str]]:
                 n += 1
             merged[f"{label} ({n})"] = values
     return merged
-
-
-def _group_total_styles(
-    group: list[Table], n_cols: int
-) -> tuple[dict[str, list[CellStyle]], dict[str, float]]:
-    """Recovered style + pitch for each merged total row of a table *group*.
-
-    Mirrors :func:`_group_totals`' label keying and ordinal disambiguation so
-    the returned dicts are keyed by exactly the same labels, letting the
-    template look up the recovered presentation of every total cell. Each style
-    list is padded / trimmed to ``n_cols`` so it aligns with the table's columns
-    even when a continuation total row has a different width.
-    """
-    styles: dict[str, list[CellStyle]] = {}
-    pitch: dict[str, float] = {}
-    values_by_label: dict[str, list[str]] = {}
-    for table in group:
-        for label, values, row_styles, row_pitch in _total_rows_full(table):
-            padded = (row_styles + [CellStyle()] * n_cols)[:n_cols]
-            if label not in values_by_label:
-                values_by_label[label] = values
-                styles[label] = padded
-                pitch[label] = row_pitch
-                continue
-            if any(existing == values for existing in values_by_label.values()):
-                continue  # an identical row repeated as chrome, not new data
-            n = 2
-            while f"{label} ({n})" in values_by_label:
-                n += 1
-            key = f"{label} ({n})"
-            values_by_label[key] = values
-            styles[key] = padded
-            pitch[key] = row_pitch
-    return styles, pitch
 
 
 #: Report-level chrome lines that are never a *section* title. Matched after
