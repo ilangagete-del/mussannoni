@@ -63,10 +63,10 @@ def _style(orientation: str) -> Sheet:
     sheet = Sheet()
     sheet.extend(f"""
 html,body{{margin:0;padding:0;width:792pt;height:612pt;background:#fff}}
-body{{color:#000;font-family:"Liberation Sans",Arial,Helvetica,sans-serif}}
+body{{color:#000;font-family:Arial,"Liberation Sans",Helvetica,sans-serif}}
 .report{{position:relative;width:792pt;height:612pt;overflow:hidden}}
 .banner{{position:absolute;left:-6.90pt;top:17.72pt;width:792pt;text-align:center;
-        font-family:"Liberation Sans",Arial,Helvetica,sans-serif;font-weight:700;font-size:6pt;
+        font-family:Arial,"Liberation Sans",Helvetica,sans-serif;font-weight:700;font-size:6pt;
         line-height:7.44pt}}
 .banner .title{{margin-top:7.46pt}}
 table.sr{{position:absolute;border-collapse:collapse;table-layout:fixed;
@@ -74,7 +74,7 @@ table.sr{{position:absolute;border-collapse:collapse;table-layout:fixed;
 table.sr col{{box-sizing:border-box}}
 table.sr th,table.sr td{{box-sizing:border-box;border:0.18pt solid #000;padding:0 0.55pt;
         text-align:center;vertical-align:middle;overflow:hidden;white-space:nowrap;
-        font-family:"Liberation Sans",Arial,Helvetica,sans-serif;color:#000;line-height:1}}
+        font-family:Arial,"Liberation Sans",Helvetica,sans-serif;color:#000;line-height:1}}
 table.sr th{{font-size:4.2pt;font-weight:700}}
 table.sr td{{font-size:4.2pt;font-weight:700}}
 table.sr .text{{text-align:left}}
@@ -83,7 +83,7 @@ table.sr .sno{{font-size:4pt;font-weight:400}}
 table.sr .division-detail{{font-size:4.2pt;font-weight:400}}
 table.sr .rank-value{{font-size:4pt;font-weight:700}}
 table.sr .competency{{font-size:4pt;font-weight:700;text-align:left}}
-table.sr .times{{font-family:"Liberation Serif","Times New Roman",Times,serif}}
+table.sr .times{{font-family:"Times New Roman","Liberation Serif",Times,serif}}
 .rot{{display:inline-block;transform:rotate(-90deg);transform-origin:50% 50%;
       white-space:nowrap;line-height:1}}
 .summary{{left:{_SUMMARY_X}pt;top:{_SUMMARY_Y}pt;width:{sum(_SUMMARY_COLS):.3f}pt}}
@@ -92,11 +92,11 @@ table.sr .times{{font-family:"Liberation Serif","Times New Roman",Times,serif}}
 .summary tr:nth-child(3){{height:6.450pt}}
 .summary tr:nth-child(4){{height:9.549pt}}
 .summary tr:nth-child(5){{height:8.738pt}}
-.summary .leaf{{font-family:"Liberation Serif","Times New Roman",Times,serif;font-size:4.8pt}}
+.summary .leaf{{font-family:"Times New Roman","Liberation Serif",Times,serif;font-size:4.8pt}}
 .summary .value{{font-size:4.8pt}}
 .summary .summary-vertical{{font-size:3.6pt;overflow:visible}}
 .summary .schools-label{{font-size:3.6pt;white-space:normal;overflow:visible;line-height:3.6pt}}
-.summary .summary-competency{{font-family:"Liberation Sans Narrow","Arial Narrow","Liberation Sans",Arial,sans-serif;
+.summary .summary-competency{{font-family:"Arial Narrow","Nimbus Sans Narrow",Arial,sans-serif;
         font-size:3.6pt;text-align:left}}
 .main{{left:{_MAIN_X}pt;top:{_MAIN_Y}pt;width:{sum(_MAIN_COLS):.3f}pt}}
 .main thead tr:nth-child(1){{height:9.256pt}}
@@ -105,8 +105,8 @@ table.sr .times{{font-family:"Liberation Serif","Times New Roman",Times,serif}}
 .main tbody tr.data{{height:6.602pt}}
 .main tbody tr.total{{height:9.037pt}}
 .main thead .group{{font-size:4.8pt}}
-.main thead .division-name{{font-family:"Liberation Serif","Times New Roman",Times,serif;font-size:5.4pt}}
-.main thead .leaf{{font-family:"Liberation Serif","Times New Roman",Times,serif;font-size:4.8pt}}
+.main thead .division-name{{font-family:"Times New Roman","Liberation Serif",Times,serif;font-size:5.4pt}}
+.main thead .leaf{{font-family:"Times New Roman","Liberation Serif",Times,serif;font-size:4.8pt}}
 .main thead .rank-head{{font-size:4.2pt;overflow:visible}}
 .bg-registered{{background:{_REGISTERED_BG}}}
 .bg-sat{{background:{_SAT_BG}}}
