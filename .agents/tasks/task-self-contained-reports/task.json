@@ -1,7 +1,20 @@
 {
   "task_id": "task-self-contained-reports",
   "task_description": "Rework the SARS report rendering so each report is a FULLY SELF-CONTAINED HTML+CSS document - its own structure and its own complete styling per report type - that faithfully reproduces its reference PDF cell-by-cell (identical per-cell fill colours, font names/styles/sizes, true row heights, alignment, rotation, and exact structure), matching the reference fidelity bar. Dismantle the forced shared-CSS + reusable/generic-template coupling on BOTH paths (no shared styles.css, no shared DOC_CSS/TEMPLATE_CSS funnel, no font-size clamp, no cross-report harmonization). Honour the user's live steering that DATA IS DATA, NOT STYLES: strip the recovered per-cell CellStyle/pitch/total_styles/total_pitch out of the data schema+JSON (reversing the prior task) so extracted data carries only figures+structure, and let each report type's template own all presentation (competency colour computed deterministically, never stored). Then regenerate all 19 HTML outputs and all side-by-side comparison images so the fix is verifiable, keeping the conversion path at 19/19 100%. The cited defect to fix first is MWANZA CC SCHOOLS RANK (output/compare/TEMPLATE MWANZA CC SCHOOLS RANK - page 1.jpg).",
-  "status": "in_progress",
+  "status": "completed",
   "feature_order": ["FEAT-001", "FEAT-002", "FEAT-003", "FEAT-004"],
-  "blocked_reason": null
+  "blocked_reason": null,
+  "review": {
+    "verdict": "APPROVED",
+    "iterations": 1,
+    "artifact": ".agents/tasks/task-self-contained-reports/2026-09-24-071444-review.md",
+    "residual_gaps_no_data_lost": "generic-family sign-conditional per-cell tints (mock_mobility IMEPANDA green/UMESHUKA red) not repainted (not derivable from pure data); two top_schools reports are pre-existing similarity outliers from section-heading extraction gaps predating this task."
+  },
+  "verification": {
+    "build": "pass",
+    "tests": "pass",
+    "test_quality": "pass",
+    "docker_build": "skipped",
+    "summary": "pytest 42 passed; ruff + black clean; `sars all` 19/19 documents pass, mean text similarity 100.00% (conversion path unchanged). DATA-IS-DATA invariant holds: 0 output/data/*.json files carry any style/pitch key and CellStyle is removed from the schema. Self-containment holds: output/html/styles.css removed and 0 of the 38 output HTML files (19 conversion + 19 templated) link an external stylesheet - each inlines its own <style>. template_audit no value lost 6/19; mean document similarity 97.39% (above the FEAT-002 baseline 97.27% and more docs lose no value than the FEAT-001 baseline 4/19). Cited defect MWANZA CC SCHOOLS RANK now matches the reference cell-by-cell (division/summary/GPA/competency fill washes restored, true fonts and row heights, aligned grouped-header + summary structure, rotated C/RANK & R/RANK) - visually confirmed. Test quality verified: new tests render real reports and assert self-containment, presence of recovered fill washes + computed competency band, removal of shared DOC_CSS/TEMPLATE_CSS/document_html, and distinct per-type style blocks; they would fail if the changes were reverted. Residual gaps (no figures lost, all per-cell chrome tints): the generic family (wards_rank/district_performance/mock_mobility) and some best_students header washes do not repaint bespoke per-cell tints (e.g. mock_mobility green IMEPANDA / red UMESHUKA) because those are not derivable from pure data and are not stored (DATA IS DATA); the two top_schools reports remain the pre-existing lower-similarity outliers due to section-heading/title extraction gaps that predate this task (confirmed via git stash in FEAT-003), not a regression."
+  }
 }
