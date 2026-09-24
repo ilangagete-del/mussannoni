@@ -1,0 +1,29 @@
+{
+  "id": "FEAT-004",
+  "type": "chore",
+  "description": "Make the Jinja2-vs-keep-our-own-layout decision on EVIDENCE, and speed up the templated path. The user's rule: if Jinja2 (or any templating system) can do the row looping WITHOUT ever making the PDF comparison worse, adopt it; if it makes the match worse in any way, do not use it - keep the project's own fixed-layout approach. Separately, speed matters for a real installable package: render_pdf is ~3.4s/report (WeasyPrint) while render_html is ~26ms; the HTML is ~243 KiB of absolutely-positioned runs. These two concerns are combined because the templating decision and the HTML-generation speed are both about how the HTML is produced.",
+  "status": "pending",
+  "steps": [
+    "Jinja2 evaluation (evidence-based, reversible): prototype rendering the row-looping of ONE report (e.g. the best-students band or MWANZA CC SCHOOLS RANK) via a Jinja2 template that emits the SAME absolutely-positioned HTML the current mechanism emits - same per-run x/baseline/font/advance placement, same derived competency wash, same inline style. The only thing Jinja2 does is the loop over rows; every coordinate must still come from the recovered spec + sars.fonts. Render both ways and gate both: `python tools/fidelity_gate.py`. Record the exact per-page visible% for the Jinja2 output vs the current output.",
+    "Decide from the measurement: if the Jinja2 output's visible% is identical (bit-for-bit HTML or same pixels) on every affected page AND no report drops below baseline, Jinja2 MAY be adopted for the looping only. If it differs in any downward direction, DO NOT adopt it - document the measured regression and keep the current layout mechanism. Record the decision, with numbers, in docs/TEMPLATING_DECISION.md. Do not add jinja2 as a dependency unless it is actually adopted.",
+    "Speed work (independent of the Jinja2 outcome): profile the templated path (`python -m cProfile` or timing around template_maker.render_html and render_pdf for a representative report and for all 19). Attribute time between HTML assembly (sars.layout_spec/layout string building, sars.fonts advance/width lookups, baseline calibration) and WeasyPrint printing.",
+    "Reduce HTML-generation cost without changing output pixels: cache repeated per-(engine,family,size) baseline/advance lookups (sars.fonts already uses lru_cache in places - extend where hot), avoid recomputing spec-derived constants per row, and shrink the emitted HTML where it does not change rendering (e.g. de-duplicate identical inline style fragments into pooled classes WITHIN a single self-contained document only - never a shared external stylesheet). Any HTML change must be proven pixel-neutral by the gate.",
+    "For WeasyPrint printing cost, measure whether reusing a FontConfiguration / warm font cache across reports in a batch run (sars.cli template loops all 19) reduces per-report time, and whether font assets are being re-parsed per call. Apply only changes that keep output pixel-identical.",
+    "Re-run the GUARDRAIL after every speed change: `python -m sars.cli template && python tools/compare.py && python tools/fidelity_gate.py --json output/fidelity/current.json` and confirm no report's worst-page-visible dropped versus baseline. Record before/after timings (per-report and full-batch) in docs/TEMPLATING_DECISION.md or a docs/PERFORMANCE.md.",
+    "Add a fast test that asserts the templating/speed changes did not alter the emitted HTML for a representative report (compare rendered HTML to a stored expectation for one report, or assert key positioned runs are unchanged), so future changes cannot silently drift the output."
+  ],
+  "acceptance_criteria": [
+    "A written, measured decision exists in docs/TEMPLATING_DECISION.md: whether Jinja2 (or another templating system) is adopted for the row looping, with the per-page visible% evidence that it does not make any report worse; if it would regress, it is rejected with the numbers shown and the project's own layout approach kept.",
+    "jinja2 appears as a dependency ONLY if it was actually adopted after passing the no-regression test; otherwise it is not added.",
+    "The templated path is measurably faster than the baseline (render_html ~26ms / render_pdf ~3.4s / ~243 KiB HTML captured in FEAT-001), with before/after timings recorded, and the fidelity gate shows NO report below its baseline worst-page-visible.",
+    "A fast test guards that the speed changes did not alter a representative report's emitted HTML / positioned output; `pytest -q -m \"not slow\"` passes."
+  ],
+  "verification": [
+    "`. .venv/bin/activate && python tools/fidelity_gate.py --json output/fidelity/current.json` -> no report below its baseline worst-page-visible after all templating/speed changes.",
+    "`python tools/fidelity_report.py output/fidelity/current.json --baseline output/fidelity/baseline.json` -> all change columns >= 0.",
+    "`pytest -q -m \"not slow\"` -> exit 0.",
+    "docs/TEMPLATING_DECISION.md contains the measured Jinja2 decision and the before/after speed numbers."
+  ],
+  "blocked_reason": null,
+  "findings": ""
+}

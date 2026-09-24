@@ -1,0 +1,29 @@
+{
+  "id": "FEAT-003",
+  "type": "feat",
+  "description": "Make the templated path correct for LESS data and MORE data than the 19 fixed examples - the flexibility work. Today a band repeats at its recovered row pitch (layout_spec._row_top extrapolates by pitch beyond the reference's rows) and derives the competency wash for new rows, but the extremes are unproven: the longest possible student name, the longest council name, and a 'detailed results' string longer than the space allotted (overflow past the cell/page). Build experimental data beyond the current examples, run it through the templated path, find where it breaks (overhang past the cell rule, text spilling off the page, missing pagination when rows exceed a page, empty/short sections), and make each case render correctly. The guardrail still holds: the fidelity % on the ORIGINAL 19 must never drop - the elastic behaviour must not change how the reference rows render.",
+  "status": "pending",
+  "steps": [
+    "Read src/sars/layout_spec.py (_row_top, _row_fills, _derived_fills, _row_cells, render_html row loop), src/sars/layout.py (Box/Canvas/cell_text/text, wrapping/clipping behaviour) and src/sars/model.py Cell.wrappable to understand exactly how a value that exceeds its cell box is currently drawn, and how many rows a page currently emits (fixed to reference_rows unless rows_per_band overrides).",
+    "Author experimental fixtures under tests/fixtures/ (new dir) or a small tools/stress_data.py that mutates an extracted schema instance to the extremes, for at least: (a) the longest plausible student name (e.g. 60+ chars) in a best-students and a school-slip row; (b) the longest council name in a schools-rank/region row; (c) a DETAILED SUBJECTS string far longer than the reference's (more subjects than any example), exceeding the column width; (d) MORE data rows than fit one page (force pagination) and FEWER rows than the reference (a short section); (e) an empty section. Keep these as reproducible data, separate from the committed 19.",
+    "Render each experimental case with template_maker.render_html/render_pdf and visually inspect (write a small comparison or dump the positioned runs). Identify concrete failures: text overhanging the next column/rule, text running off the page bottom, rows beyond the page not paginating, competency wash not derived for extra rows, or a short/empty section leaving stray chrome.",
+    "Fix the mechanism so each extreme renders correctly: long cell text must wrap or clip to its cell box the way the reference clips (model.Cell.wrappable / clipped extraction is the established pattern - see FIDELITY_NOTES §6c), extra rows must continue at the recovered pitch and, when they exceed the page, flow onto a new page with the report's own chrome repeated (or be documented as a known bound if pagination is out of scope for a given report), and derived competency fills must apply to every extra row. Do this in the shared layout_spec/layout mechanism, NOT by special-casing a report or adding a shared visual stylesheet.",
+    "Prove the guardrail is intact: regenerate the ORIGINAL 19 (`python -m sars.cli data && python tools/build_layout_specs.py && python -m sars.cli template && python tools/compare.py`) and run `python tools/fidelity_gate.py --json output/fidelity/current.json` + `python tools/fidelity_report.py ... --baseline output/fidelity/baseline.json`. Every report's worst-page-visible % must be >= its baseline (the elastic changes must be inert for reference rows).",
+    "Add fast tests (non-slow) that render the experimental extremes and assert correctness structurally: e.g. a long name does not increase the page width / does not overhang beyond its cell box x+w; extra rows produce the expected number of positioned rows / pages; a derived competency colour is emitted for a synthetic extra row; an empty section emits no orphan data rows. Assert against positioned output, not pixels.",
+    "Document the flexibility contract and the tested extremes in docs/DATA_STRUCTURE.md (or a new docs/FLEXIBILITY.md referenced from it): what happens with more/less data, how long text is handled per report, pagination behaviour, and any documented bounds."
+  ],
+  "acceptance_criteria": [
+    "Experimental data with the longest student name, longest council name, an over-long DETAILED SUBJECTS string, more rows than a page, fewer rows, and an empty section all render without text overhanging cell boundaries or running off the page, and extra rows get their derived competency wash.",
+    "The ORIGINAL 19 reports show worst-page-visible >= baseline in `python tools/fidelity_gate.py` (no regression from the elastic changes).",
+    "Fast tests exercise each extreme and assert structural correctness (cell containment, row/page counts, derived colour, no orphan chrome); `pytest -q -m \"not slow\"` passes.",
+    "The flexibility behaviour and tested extremes are documented in docs/ (DATA_STRUCTURE.md or FLEXIBILITY.md).",
+    "No shared/global stylesheet or cross-report structural merge was introduced; changes live in the shared layout mechanism only."
+  ],
+  "verification": [
+    "`. .venv/bin/activate && pytest -q -m \"not slow\"` -> exit 0 including the new flexibility tests.",
+    "`python -m sars.cli data && python tools/build_layout_specs.py && python -m sars.cli template && python tools/compare.py && python tools/fidelity_gate.py --json output/fidelity/current.json` -> no report below its baseline worst-page-visible.",
+    "`python tools/fidelity_report.py output/fidelity/current.json --baseline output/fidelity/baseline.json` -> all change columns >= 0."
+  ],
+  "blocked_reason": null,
+  "findings": ""
+}

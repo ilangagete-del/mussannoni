@@ -1,0 +1,29 @@
+{
+  "id": "FEAT-001",
+  "type": "chore",
+  "description": "Establish a green, reproducible baseline and the guardrail safety net BEFORE any risky change. The environment in this session already has .venv, an editable install, fonts built and installed, data unpacked, and output/fidelity/baseline-verify.json captured (PASS 0/19, worst page 96.9968% visible, matching docs/FIDELITY_REPORT.md). This feature makes that baseline durable and re-runnable and confirms it, so every later feature can prove it never dropped the comparison percentage. A git tag `pre-generalize-templates-baseline` already exists as the immediate revert point.",
+  "status": "completed",
+  "steps": [
+    "Activate the environment: `. .venv/bin/activate` (venv exists at /projects/sandbox/mussannoni/.venv). If missing, recreate with `uv venv --python 3.11 .venv && uv pip install -e \".[dev]\"`.",
+    "Ensure sources and fonts are present: `python -m sars.cli unpack` then `python tools/build_fonts.py` (REQUIRED - without the derived faces the gate collapses to 38-90%).",
+    "Confirm the captured baseline exists at output/fidelity/baseline-verify.json; if not, run `python -m sars.cli data && python -m sars.cli template && python tools/fidelity_gate.py --json output/fidelity/baseline-verify.json` and copy it to output/fidelity/baseline.json so tools/fidelity_report.py has a stable --baseline to diff against.",
+    "Run `pytest -q -m \"not slow\"` and confirm the fast suite is green; record the count.",
+    "Run `python tools/fidelity_gate.py --json output/fidelity/current.json` and confirm it reproduces PASS 0/19 with worst page 96.9968% visible (identical to docs/FIDELITY_REPORT.md). Record the full per-report worst-page-visible table.",
+    "Run `python tools/slot_audit.py` and record the value-completeness summary (baseline: 2394/2394 for the two council best-students reports; run full to capture all).",
+    "Create a short baseline note at .agents/tasks/task-generalize-templates-and-package/BASELINE.md capturing: the git tag name(s) for revert, the per-report worst-page-visible numbers, the fast-test count, the render timing (render_html ~26ms, render_pdf ~3.4s), and the exact commands to re-run the gate. This is the reference every later feature compares against."
+  ],
+  "acceptance_criteria": [
+    "`. .venv/bin/activate && python tools/fidelity_gate.py` runs to completion and prints PASS 0/19 with worst page 96.9968% visible, matching docs/FIDELITY_REPORT.md.",
+    "`pytest -q -m \"not slow\"` exits 0.",
+    "output/fidelity/baseline-verify.json and output/fidelity/baseline.json both exist and hold the captured baseline.",
+    "A git tag usable as a revert point exists (`git tag` lists `pre-generalize-templates-baseline`).",
+    ".agents/tasks/task-generalize-templates-and-package/BASELINE.md records the per-report worst-page-visible numbers and the re-run commands."
+  ],
+  "verification": [
+    "`. .venv/bin/activate && python tools/fidelity_gate.py --json output/fidelity/current.json` -> PASS 0/19, worst page 96.9968%.",
+    "`pytest -q -m \"not slow\"` -> exit 0.",
+    "`git tag` includes pre-generalize-templates-baseline."
+  ],
+  "blocked_reason": null,
+  "findings": "Environment verified: .venv active (Python 3.11.15), editable sars install, WeasyPrint 70.0, PyMuPDF 1.28.2, 59 font files under assets/fonts, data/sars unpacked. Fast suite `pytest -q -m \"not slow\"` = 43 passed, 2 deselected (exit 0, ~104s). Fidelity gate reproduced the captured baseline EXACTLY: PASS 0/19, worst page 96.9968% visible, every per-report worst_visible_pct identical to output/fidelity/baseline-verify.json and docs/FIDELITY_REPORT.md, ZERO regressions. slot_audit baseline: 79408 printed values, 79190 match, 178 empty, 0 unbound, 40 different. IMPORTANT: the git-tracked output/fidelity/baseline.json was a STALE pre-font-build capture (worst 38.86%, all reports collapsed) — it is NOT a valid baseline; I overwrote it with a copy of the correct baseline-verify.json (worst 96.9968%) so tools/fidelity_report.py has a valid --baseline. baseline-verify.json committed. Confirmed the empty-second-table defect at the binding boundary: MWANZA CC 10 BEST STUDENTS slot_audit shows '394 values, 0 disagree' only because the missing 2nd table (TOP TEN BEST FEMALE STUDENTS OVERALL COUNCILWISE) has no band — later features must raise the slot-audit total without any gate regression. Measured render timing on this host (scales with page count): 1-page EDK render_html ~1.2ms/render_pdf ~0.57s; 5-page 10 BEST STUDENTS render_html ~44.7ms/render_pdf ~13.35s (PDF cost dominated by WeasyPrint, confirming the speed concern). Revert tag pre-generalize-templates-baseline confirmed present (plus pre-existing pre-template-refactor). BASELINE.md written with per-report floor numbers and exact re-run commands. DEVIATION/NOTE for later features: output/template_pdf/*.pdf show as modified in git from a prior session's non-deterministic PDF regen (WeasyPrint embeds timestamps/IDs); I intentionally left them UNSTAGED to keep this commit to baseline artifacts only. The gate reads from those regenerated PDFs and passed against the reference, so they are current — regenerate deterministically or ignore the binary churn as needed."
+}
