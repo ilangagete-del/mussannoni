@@ -37,6 +37,11 @@ LAYOUTS = Path(__file__).resolve().parent / "templates" / "layouts"
 #: ``values(page, band, kind, row) -> the row's values, or None to end the band``
 ValueProvider = Callable[[int, int, str, int], "Sequence[str] | dict[int, str] | None"]
 
+#: Safety stop on continuation pages generated for one spec page, so a provider
+#: that never signals "no more rows" cannot spin forever. Far above any real
+#: report: the largest bundled example is 30 pages in total.
+MAX_CONTINUATION_PAGES = 500
+
 
 class LayoutSpecMissing(FileNotFoundError):
     """Raised when a report has no recovered layout spec yet."""
@@ -87,6 +92,82 @@ def _row_top(band: dict, row: int) -> float:
     return band["y0"] + row * band["pitch"]
 
 
+def _band_last_bottom(band: dict) -> float:
+    """The y of the bottom edge of the band's last REFERENCE row."""
+    bottoms = band.get("row_bottoms") or []
+    if bottoms:
+        return float(bottoms[-1])
+    tops = band.get("row_tops") or []
+    if tops:
+        return float(tops[-1]) + float(band["pitch"])
+    return float(band["y0"]) + band["reference_rows"] * float(band["pitch"])
+
+
+def _row_capacity(page: dict, bands: list, band_index: int) -> int:
+    """How many rows this band could carry before it would hit something.
+
+    A band may only grow into space that is genuinely empty on the reference
+    page. Everything the reference draws *below* the band's last row — a TOTAL
+    band, a footer rule, a signature line — is a barrier, because growing past it
+    would overprint it. The page bottom is the final barrier. This is what keeps
+    "more data" from silently running off the page (``.pg`` clips, so nothing
+    would warn) and what keeps it from ever needing another page.
+    """
+    band = bands[band_index]
+    pitch = float(band["pitch"])
+    if pitch <= 0:
+        return band["reference_rows"]
+    last_bottom = _band_last_bottom(band)
+    barrier = float(page["height"])
+
+    for other_index, other in enumerate(bands):
+        if other_index == band_index:
+            continue
+        top = float(other.get("y0", 0.0))
+        if (other.get("row_tops") or []):
+            top = float(other["row_tops"][0])
+        if top >= last_bottom - 0.5:
+            barrier = min(barrier, top)
+
+    for entry in page.get("sequence", ()):
+        if entry.get("t") != "s":
+            continue
+        y = float(entry["r"][1])
+        if y >= last_bottom - 0.5:
+            barrier = min(barrier, y)
+
+    for chrome in page.get("chrome", ()):
+        # (x, y, char, role, size, color, rotation) - y is a baseline, so the
+        # glyph's top is roughly one em above it.
+        top = float(chrome[1]) - float(chrome[4])
+        if top >= last_bottom - 0.5:
+            barrier = min(barrier, top)
+
+    extra = int((barrier - last_bottom) // pitch)
+    return band["reference_rows"] + max(0, extra)
+
+
+def _terminal_bands(spec: dict) -> set[tuple[int, int]]:
+    """The last band, in document order, consuming each bound row group.
+
+    Only these may grow. A table that the reference continued across pages has a
+    band per page, and every band after the first takes its offset into the data
+    from the row counts of the bands before it; growing an EARLIER band would
+    make the next one repeat rows it already drew. The band where the reference's
+    data ran out is the one place extra rows belong.
+    """
+    last: dict[str, tuple[int, int]] = {}
+    for page_index, page in enumerate(spec["pages"]):
+        for band_index, band in enumerate(page["bands"]):
+            group = band.get("group")
+            if not group or band["kind"] == "total":
+                continue
+            if not (band.get("bindings") or band.get("column_bindings")):
+                continue
+            last[str(group)] = (page_index, band_index)
+    return set(last.values())
+
+
 def _row_fills(band: dict, row: int) -> list:
     per_row = band.get("per_row_fills") or []
     if row < len(per_row):
@@ -115,8 +196,18 @@ def _row_cells(band: dict, row: int) -> list:
 
 
 def _same_value(text: str, sample: str) -> bool:
-    """Is this the value the reference printed here, ignoring whitespace runs?"""
-    return " ".join(str(text).split()) == " ".join(str(sample).split())
+    """Is this the value the reference printed here, ignoring whitespace?
+
+    Whitespace is compared as *insignificant*, not merely collapsed. The
+    extractor rebuilds a value from the reference's text runs, and where the
+    reference drew two runs in one cell — ``GPA`` and ``2.2969`` at their own x
+    positions — the rebuilt value carries a separator the reference's own sample
+    string does not (``"GPA 2.2969"`` vs ``"GPA2.2969"``). Those are the same
+    value, printed by the same cell, so matching them lets the cell replay the
+    reference's own glyph origins instead of re-deriving an alignment: exactly
+    what the reference drew, pixel for pixel.
+    """
+    return "".join(str(text).split()) == "".join(str(sample).split())
 
 
 def _value_at(supplied, column: int) -> str:
@@ -174,32 +265,73 @@ def render_html(
     rows_per_band: dict[tuple[int, int], int] | None = None,
     engine: str | None = None,
     title: str | None = None,
+    grow: bool = False,
 ) -> str:
     """Render *report* from its spec, taking each band's values from *values*.
 
     ``rows_per_band`` may override how many rows a ``(page, band)`` carries when
     the data is longer or shorter than the reference; by default every band
     carries exactly the number of rows the reference had.
+
+    ``grow`` chooses between the two jobs this renderer does:
+
+    ``grow=False`` (default) — **reproduce the reference.** The document gets
+    exactly the pages, and each band exactly the rows, that the reference had.
+    This is what the fidelity gate measures, and it must stay that way: a
+    recovered spec is not a promise that the data extracted from a document has
+    the same number of rows the document printed. ``MWANZA CC SCHOOLS RANK
+    SUBJECTWISE`` is the proof — its extracted ``section0`` carries 65 rows while
+    the reference page prints 54 — so growing by "the provider still has rows"
+    would silently turn a faithful 24-page reproduction into 30 pages.
+
+    ``grow=True`` — **render all of the supplied data.** A band that fills up
+    continues onto further instances of its own page, so no supplied row is ever
+    dropped. This is the mode for feeding the templates data of your own, where
+    the row count is whatever your data says and there is no reference to match.
     """
     spec = load(report)
     engine = engine or printing.engine_for(report)
     rows_per_band = rows_per_band or {}
     pages: list[Canvas] = []
     book = StyleBook()
+    growable = _terminal_bands(spec)
 
-    for page_index, page in enumerate(spec["pages"]):
+    def render_page(
+        page_index: int, page: dict, offsets: dict[int, int]
+    ) -> tuple[Canvas, dict[int, int]]:
+        """Draw one instance of a spec page.
+
+        ``offsets`` shifts a band's window into the data, which is how a
+        continuation page carries on from where the previous instance stopped.
+        Returns the canvas and, per band, how many rows this instance consumed
+        when there is still data left after it.
+        """
         canvas = Canvas(report, page["width"], page["height"], engine=engine, book=book)
         bands = page["bands"]
+        leftover: dict[int, int] = {}
 
         # The values first: a band's fills may depend on them (the competency
         # band's colour is DERIVED from the competency label / GPA, never stored).
         supplied_rows: dict[int, list] = {}
+        painted: dict[int, int] = {}
         for band_index, band in enumerate(bands):
             count = _row_count(band, rows_per_band.get((page_index, band_index)))
+            # Data longer than the reference extends the band where the
+            # reference's own data ran out, as far as the page's empty space
+            # allows. The provider decides when to stop, so reference-length data
+            # stops at exactly the reference row count and nothing here changes.
+            limit = count
+            if (
+                grow
+                and (page_index, band_index) in growable
+                and (page_index, band_index) not in rows_per_band
+            ):
+                limit = max(count, _row_capacity(page, bands, band_index))
+            offset = offsets.get(band_index, 0)
             mapping = band.get("row_data_index")
             rows: list = []
-            for row in range(count):
-                supplied = values(page_index, band_index, band["kind"], row)
+            for row in range(limit):
+                supplied = values(page_index, band_index, band["kind"], row + offset)
                 if supplied is None:
                     # A ``None`` from a row the reference recovered as an
                     # unexplained/chrome row (a repeated column header drawn
@@ -218,6 +350,24 @@ def render_html(
                     break
                 rows.append(supplied)
             supplied_rows[band_index] = rows
+            # What the band PAINTS: never fewer rows than the reference (shorter
+            # data still shows the reference's empty ruled rows) and never fewer
+            # than the data actually filled.
+            painted[band_index] = max(
+                _row_count(band, rows_per_band.get((page_index, band_index))), len(rows)
+            )
+            # Data still waiting after this instance filled the band: the page is
+            # full, so the remainder belongs on a continuation page. Only asked of
+            # a growable band, and only when the band actually filled up — so a
+            # reference-length document never reaches this branch.
+            if (
+                grow
+                and (page_index, band_index) in growable
+                and limit > 0
+                and len(rows) == limit
+                and values(page_index, band_index, band["kind"], limit + offset) is not None
+            ):
+                leftover[band_index] = limit
 
         # 1. the paint sequence, rectangle by rectangle, in the reference's order
         for entry in page["sequence"]:
@@ -227,7 +377,7 @@ def render_html(
                 continue
             band_index = entry["band"]
             band = bands[band_index]
-            count = _row_count(band, rows_per_band.get((page_index, band_index)))
+            count = painted[band_index]
             row = entry["row"]
             if row >= count:
                 continue
@@ -237,7 +387,7 @@ def render_html(
         # Rows the reference never had (longer data): paint the template row,
         # with the washes that are a function of the value derived.
         for band_index, band in enumerate(bands):
-            count = _row_count(band, rows_per_band.get((page_index, band_index)))
+            count = painted[band_index]
             for row in range(len(band.get("row_tops") or []), count):
                 top = _row_top(band, row)
                 derived = _derived_fills(band, row, supplied_rows.get(band_index))
@@ -318,13 +468,35 @@ def render_html(
                         pad=cell.get("pad", 0.0),
                         color=cell.get("color", "#000000"),
                         xfix=cell.get("xfix", 0.0),
+                        sample=sample,
                     )
 
         # 3. the chrome, glyph by glyph at the reference's own origins
         for x, y, char, role, size, color, rotation in page["chrome"]:
             canvas.text(x, y, char, role=role, size=size, color=color, rotation=rotation)
 
+        return canvas, leftover
+
+    for page_index, page in enumerate(spec["pages"]):
+        canvas, leftover = render_page(page_index, page, {})
         pages.append(canvas)
+
+        # Data longer than the reference: continue the full band onto further
+        # instances of this same page, so no supplied row is ever dropped. A
+        # reference-length document produces no leftover and therefore exactly
+        # the reference's own page count — the page count is data-driven only
+        # upwards, never for the documents the fidelity gate measures.
+        offsets = dict(leftover)
+        guard = 0
+        while offsets and guard < MAX_CONTINUATION_PAGES:
+            guard += 1
+            carried = {band_index: offsets[band_index] for band_index in offsets}
+            canvas, leftover = render_page(page_index, page, carried)
+            pages.append(canvas)
+            offsets = {
+                band_index: carried.get(band_index, 0) + consumed
+                for band_index, consumed in leftover.items()
+            }
 
     return document(
         title=title or report,

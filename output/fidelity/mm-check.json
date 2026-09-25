@@ -1,0 +1,80 @@
+{
+  "zoom": 2.0,
+  "visible_tolerance": 8,
+  "target_pct": 100.0,
+  "passed": 0,
+  "total": 1,
+  "worst_page_visible_pct": 98.98216230936819,
+  "reports": [
+    {
+      "name": "Mwanza f2 Mock Mobility 2026",
+      "ok": false,
+      "hard_fail": null,
+      "page_count": 6,
+      "worst_visible_pct": 98.98216230936819,
+      "worst_exact_pct": 92.87719928038555,
+      "pages": [
+        {
+          "page": 1,
+          "size_pt": [
+            612.0,
+            792.0
+          ],
+          "visible_pct": 99.78492028124381,
+          "exact_pct": 95.33968153759821,
+          "max_delta": 255
+        },
+        {
+          "page": 2,
+          "size_pt": [
+            612.0,
+            792.0
+          ],
+          "visible_pct": 99.08114024229221,
+          "exact_pct": 93.27981613520829,
+          "max_delta": 255
+        },
+        {
+          "page": 3,
+          "size_pt": [
+            612.0,
+            792.0
+          ],
+          "visible_pct": 99.07293936092955,
+          "exact_pct": 93.3263393741335,
+          "max_delta": 255
+        },
+        {
+          "page": 4,
+          "size_pt": [
+            612.0,
+            792.0
+          ],
+          "visible_pct": 99.00150401069519,
+          "exact_pct": 92.87719928038555,
+          "max_delta": 255
+        },
+        {
+          "page": 5,
+          "size_pt": [
+            612.0,
+            792.0
+          ],
+          "visible_pct": 99.01011751501947,
+          "exact_pct": 94.75339588697432,
+          "max_delta": 255
+        },
+        {
+          "page": 6,
+          "size_pt": [
+            612.0,
+            792.0
+          ],
+          "visible_pct": 98.98216230936819,
+          "exact_pct": 97.49455337690632,
+          "max_delta": 255
+        }
+      ]
+    }
+  ]
+}

@@ -29,3 +29,12 @@ __pycache__/
 /output/replay_pdf/
 /output/engine_bakeoff/
 /output/scratch/
+
+# Scratch comparison/measurement dirs written by ad-hoc diagnostic runs.
+/.tmp_all/
+/.tmp_cmp/
+/.tmp_cmp2/
+
+# Experimental renders at the data extremes (tools/stress_data.py). Fixtures are
+# reproducible from the tool, so the renders themselves are not deliverables.
+/output/stress/

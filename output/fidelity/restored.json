@@ -4,7 +4,7 @@
   "target_pct": 100.0,
   "passed": 0,
   "total": 19,
-  "worst_page_visible_pct": 98.98216230936819,
+  "worst_page_visible_pct": 98.92289933650228,
   "reports": [
     {
       "name": "Mwanza Best Students-Overall",
@@ -1141,8 +1141,8 @@
       "ok": false,
       "hard_fail": null,
       "page_count": 6,
-      "worst_visible_pct": 98.98216230936819,
-      "worst_exact_pct": 92.87719928038555,
+      "worst_visible_pct": 98.92289933650228,
+      "worst_exact_pct": 92.81035436059946,
       "pages": [
         {
           "page": 1,
@@ -1160,8 +1160,8 @@
             612.0,
             792.0
           ],
-          "visible_pct": 99.08114024229221,
-          "exact_pct": 93.27981613520829,
+          "visible_pct": 99.0210004456328,
+          "exact_pct": 93.21312594903281,
           "max_delta": 255
         },
         {
@@ -1170,8 +1170,8 @@
             612.0,
             792.0
           ],
-          "visible_pct": 99.07293936092955,
-          "exact_pct": 93.3263393741335,
+          "visible_pct": 99.0132121872318,
+          "exact_pct": 93.2720794546775,
           "max_delta": 255
         },
         {
@@ -1180,8 +1180,8 @@
             612.0,
             792.0
           ],
-          "visible_pct": 99.00150401069519,
-          "exact_pct": 92.87719928038555,
+          "visible_pct": 98.94069370172312,
+          "exact_pct": 92.81035436059946,
           "max_delta": 255
         },
         {
@@ -1190,8 +1190,8 @@
             612.0,
             792.0
           ],
-          "visible_pct": 99.01011751501947,
-          "exact_pct": 94.75339588697432,
+          "visible_pct": 98.95100927576418,
+          "exact_pct": 94.70068330362449,
           "max_delta": 255
         },
         {
@@ -1200,8 +1200,8 @@
             612.0,
             792.0
           ],
-          "visible_pct": 98.98216230936819,
-          "exact_pct": 97.49455337690632,
+          "visible_pct": 98.92289933650228,
+          "exact_pct": 97.42822423582227,
           "max_delta": 255
         }
       ]
