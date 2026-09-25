@@ -396,7 +396,7 @@ def render_html(
     growable = _terminal_bands(spec)
 
     def render_page(
-        page_index: int, page: dict, offsets: dict[int, int]
+        page_index: int, page: dict, offsets: dict[int, int], final: bool = True
     ) -> tuple[Canvas, dict[int, int]]:
         """Draw one instance of a spec page.
 
@@ -404,6 +404,11 @@ def render_html(
         continuation page carries on from where the previous instance stopped.
         Returns the canvas and, per band, how many rows this instance consumed
         when there is still data left after it.
+
+        ``final`` is False on every instance but the last. A ``total`` band is
+        drawn only on the final one: a TOTAL is a total *of the table*, so
+        repeating it under each continuation page would assert something untrue
+        seven times over and once correctly.
         """
         canvas = Canvas(report, page["width"], page["height"], engine=engine, book=book)
         bands = page["bands"]
@@ -414,6 +419,13 @@ def render_html(
         supplied_rows: dict[int, list] = {}
         painted: dict[int, int] = {}
         for band_index, band in enumerate(bands):
+            if not final and band["kind"] == "total":
+                # Held back for the last instance (see ``final`` above). Zero
+                # painted rows makes the paint sequence skip the band's own
+                # rules and washes too, so nothing of it is drawn here.
+                supplied_rows[band_index] = []
+                painted[band_index] = 0
+                continue
             count = _row_count(band, rows_per_band.get((page_index, band_index)))
             # Data longer than the reference extends the band where the
             # reference's own data ran out, as far as the page's empty space
@@ -577,25 +589,34 @@ def render_html(
         return canvas, leftover
 
     for page_index, page in enumerate(spec["pages"]):
-        canvas, leftover = render_page(page_index, page, {})
-        pages.append(canvas)
-
         # Data longer than the reference: continue the full band onto further
         # instances of this same page, so no supplied row is ever dropped. A
         # reference-length document produces no leftover and therefore exactly
         # the reference's own page count — the page count is data-driven only
         # upwards, never for the documents the fidelity gate measures.
-        offsets = dict(leftover)
+        #
+        # Rendered as a dry run first, purely to learn how many instances the
+        # data needs, because a ``total`` band has to know whether it is on the
+        # last one. The dry canvases are discarded; only the offsets matter.
+        plan: list[dict[int, int]] = [{}]
+        offsets: dict[int, int] = {}
         guard = 0
-        while offsets and guard < MAX_CONTINUATION_PAGES:
+        while guard < MAX_CONTINUATION_PAGES:
+            _, leftover = render_page(page_index, page, offsets, final=False)
+            if not leftover:
+                break
             guard += 1
-            carried = {band_index: offsets[band_index] for band_index in offsets}
-            canvas, leftover = render_page(page_index, page, carried)
-            pages.append(canvas)
             offsets = {
-                band_index: carried.get(band_index, 0) + consumed
+                band_index: offsets.get(band_index, 0) + consumed
                 for band_index, consumed in leftover.items()
             }
+            plan.append(dict(offsets))
+
+        for position, carried in enumerate(plan):
+            canvas, _ = render_page(
+                page_index, page, carried, final=position == len(plan) - 1
+            )
+            pages.append(canvas)
 
     return document(
         title=title or report,

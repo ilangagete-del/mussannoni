@@ -282,3 +282,27 @@ def test_longest_council_name_does_not_move_the_layout():
     html = template_maker.render_html("schools_rank", data)
     assert _pages(html) == _spec_pages(RANK)
     assert "scaleX" in html, "an over-long council name should be condensed"
+
+
+def test_a_total_row_is_drawn_once_not_on_every_continuation_page():
+    """A TOTAL is a total OF THE TABLE, so it belongs on the last page only.
+
+    Continuation pages repeat the page's own furniture - column headings are meant
+    to repeat - but a summary row is a claim about the whole table. Repeating it
+    under each page asserts something untrue N-1 times and correctly once.
+    """
+    data = _report(RANK)
+    template = data.rows[-1]
+    data.totals = {"TOTAL": ["ZZTOTALMARKER"] + [""] * 20}
+    for k in range(200):
+        data.rows.append(replace(template, sno=str(3000 + k), school_name=f"OVERFLOW {k}"))
+
+    html = _grown(RANK, data)
+    pages = html.split(_PAGE)[1:]
+    assert len(pages) > 1, "this fixture must overflow onto continuation pages"
+    assert html.count("ZZTOTALMARKER") == 1, "the TOTAL row was drawn more than once"
+    assert "ZZTOTALMARKER" in pages[-1], "the TOTAL row must be on the final page"
+
+    # ... and no supplied row was lost to the change
+    drawn = {int(n) for n in re.findall(r"OVERFLOW (\d+)", html)}
+    assert drawn == set(range(200))
