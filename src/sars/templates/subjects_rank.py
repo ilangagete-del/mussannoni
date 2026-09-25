@@ -7,20 +7,28 @@ distribution, GPA and competency; each keeps its own spec in
 
 from __future__ import annotations
 
-from ..layout_spec import binding_provider, has_spec, render_html
+from ..layout_spec import binding_provider, render_html, resolve
 from ..schema import SubjectsRankReport
 
 
-def render_subjects_rank(report: SubjectsRankReport, engine: str | None = None) -> str:
+def render_subjects_rank(
+    report: SubjectsRankReport,
+    engine: str | None = None,
+    *,
+    grow: bool = False,
+) -> str:
     """Render this report from its own recovered layout plus the given data."""
     name = report.meta.name
-    if not has_spec(name):  # pragma: no cover - the spec ships with the repo
-        raise RuntimeError(
-            f"{name!r} has no recovered layout spec; run tools/build_layout_specs.py"
-        )
-    return render_html(
+    layout = resolve(
         name,
-        binding_provider(name, report),
+        report_type=report.meta.report_type,
+        level=report.meta.level,
+        variant=report.meta.variant,
+    )
+    return render_html(
+        layout,
+        binding_provider(layout, report),
         title=report.meta.title or name,
         engine=engine,
+        grow=grow,
     )

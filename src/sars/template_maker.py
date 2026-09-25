@@ -54,7 +54,9 @@ def _report_type_of(data: Any) -> str:
     return TYPE_BY_SCHEMA.get(type(data), "generic")
 
 
-def render_html(report_type: str, data: Any, engine: str | None = None) -> str:
+def render_html(
+    report_type: str, data: Any, engine: str | None = None, *, grow: bool = False
+) -> str:
     """Render report *data* to a full, styled HTML document string.
 
     ``report_type`` selects the template (see :data:`sars.templates.RENDERERS`);
@@ -68,13 +70,11 @@ def render_html(report_type: str, data: Any, engine: str | None = None) -> str:
     ``district_performance`` / ``mock_mobility`` / ``generic``).
     """
     renderer = renderer_for(report_type)
-    if engine is None:
-        return renderer(data)
     try:
-        return renderer(data, engine=engine)
+        return renderer(data, engine=engine, grow=grow)
     except TypeError:
-        # A renderer that does not take an engine prints the same HTML either
-        # way; the engine only affects the baseline calibration.
+        # A renderer that takes neither an engine nor grow prints the same HTML
+        # either way; the engine only affects the baseline calibration.
         return renderer(data)
 
 
@@ -83,6 +83,8 @@ def render_pdf(
     data: Any,
     out_path: str | Path | None = None,
     engine: str | None = None,
+    *,
+    grow: bool = False,
 ) -> Path | bytes:
     """Render report *data* to a PDF (HTML then WeasyPrint).
 
@@ -92,7 +94,7 @@ def render_pdf(
     """
     name = getattr(getattr(data, "meta", None), "name", "") or ""
     engine = engine or printing.engine_for(name)
-    html_text = render_html(report_type, data, engine=engine)
+    html_text = render_html(report_type, data, engine=engine, grow=grow)
     # A base_url lets the engine resolve any relative asset; the templates are
     # self-contained so a temp dir is enough.
     return printing.print_pdf(

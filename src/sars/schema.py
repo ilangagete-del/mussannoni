@@ -398,6 +398,7 @@ def _coerce(type_hint: Any, value: Any) -> Any:
         "SchoolRankRow": SchoolRankRow,
         "SubjectRankRow": SubjectRankRow,
         "TabularRow": TabularRow,
+        "TabularSection": TabularSection,
         "PerformanceRow": PerformanceRow,
         "PerformanceTable": PerformanceTable,
     }

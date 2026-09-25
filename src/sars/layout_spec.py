@@ -73,6 +73,83 @@ def has_spec(report: str) -> bool:
     return _spec_path(report) is not None
 
 
+def available() -> list[str]:
+    """Every layout that ships with the package, by spec key (document name)."""
+    keys = set()
+    for path in LAYOUTS.glob("*.json*"):
+        keys.add(path.name.split(".json")[0])
+    return sorted(keys)
+
+
+def catalogue() -> list[dict[str, str]]:
+    """Every bundled layout with the descriptor that can select it.
+
+    This is what makes a layout addressable by *what kind of report it is*
+    (``report_type`` / ``level`` / ``variant``) instead of only by the exact name
+    of the document it was recovered from.
+    """
+    from . import reports
+
+    out: list[dict[str, str]] = []
+    for key in available():
+        spec = reports.spec_for(key)
+        out.append(
+            {
+                "layout": key,
+                "report_type": spec.report_type,
+                "level": spec.level,
+                "variant": spec.variant,
+            }
+        )
+    return out
+
+
+def resolve(
+    name: str | None = None,
+    *,
+    report_type: str | None = None,
+    level: str | None = None,
+    variant: str | None = None,
+) -> str:
+    """The layout to render with, for a document name and/or a descriptor.
+
+    A recovered layout is keyed by the name of the document it came from, because
+    it *is* that document's geometry. That is exactly right for reproducing a
+    supplied report, and useless for rendering data of your own, which has no
+    such name. So resolution has two steps:
+
+    1. ``name`` naming a bundled layout wins outright — reproduce that document.
+    2. Otherwise the best match for ``report_type`` (then ``level``, then
+       ``variant``) is used, so your own data can be printed in the shape of a
+       report of that kind.
+
+    Raises :class:`LayoutSpecMissing` listing what *is* available, rather than
+    rendering something that silently is not the report that was asked for.
+    """
+    if name and has_spec(name):
+        return name
+
+    entries = catalogue()
+    if report_type:
+        entries = [e for e in entries if e["report_type"] == report_type]
+    if level:
+        narrowed = [e for e in entries if e["level"] == level]
+        entries = narrowed or entries
+    if variant:
+        narrowed = [e for e in entries if e["variant"] == variant]
+        entries = narrowed or entries
+
+    if entries:
+        return sorted(e["layout"] for e in entries)[0]
+
+    known = sorted({f"{e['report_type']}/{e['level']}/{e['variant']}" for e in catalogue()})
+    raise LayoutSpecMissing(
+        f"no bundled layout for name={name!r} report_type={report_type!r} "
+        f"level={level!r} variant={variant!r}. Available report_type/level/variant: "
+        + ", ".join(known)
+    )
+
+
 def _row_count(band: dict, rows: int | None) -> int:
     return band["reference_rows"] if rows is None else rows
 
@@ -639,6 +716,44 @@ def binding_provider(report: str, data: Any) -> ValueProvider:
         return values or None
 
     return provider
+
+
+def data_contract(report: str) -> list[dict[str, Any]]:
+    """The field paths a layout will actually read, per band.
+
+    A layout's bindings were recovered from the reference document, so they name
+    data by the reference's own field paths — and for the header-driven reports
+    that path *is* the column's header label, with ``/`` between header levels
+    (``'DIVISION PERFORMANCE / I-III / TOTAL'``). A caller supplying their own
+    data needs those exact keys, so this returns them instead of leaving them to
+    be guessed:
+
+    >>> from sars import layout_spec
+    >>> contract = layout_spec.data_contract("MWANZA CC Wards Rank")
+    >>> contract[0]["fields"][1]
+    'NO. OF / WARDS IN / COUNCIL'
+
+    Use it with :func:`sars.binding.row_groups` to see the paths a schema
+    instance actually offers, which is how a mismatch is diagnosed.
+    """
+    spec = load(report)
+    out: list[dict[str, Any]] = []
+    for page_index, page in enumerate(spec["pages"]):
+        for band_index, band in enumerate(page["bands"]):
+            bindings = band.get("bindings") or {}
+            if not bindings:
+                continue
+            out.append(
+                {
+                    "page": page_index,
+                    "band": band_index,
+                    "kind": band["kind"],
+                    "group": band.get("group", ""),
+                    "reference_rows": band["reference_rows"],
+                    "fields": {int(col): path for col, path in bindings.items()},
+                }
+            )
+    return out
 
 
 def band_summary(report: str) -> list[dict[str, Any]]:

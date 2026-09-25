@@ -1,393 +1,372 @@
-# Data structure: what to feed each template
+# The data you feed the templates
 
-This is the authoritative specification of the **data** every template consumes.
-Supply data in this shape and the templated path reproduces the corresponding
-report's structure faithfully - the same page geometry, the same columns, the
-same rows - for *your own* students, schools, subjects and councils, not just
-the 19 bundled examples.
+This is the contract between *your data* and *a rendered report*. Everything here
+is checked by `tests/test_data_contract.py`, so the examples below run.
 
-It is grounded in [`src/sars/schema.py`](../src/sars/schema.py); every field
-below is a real dataclass field there. Worked instances live under
-[`output/data/*.json`](../output/data) (regenerate with `python -m sars.cli
-data`), and each is a lossless round-trip of the matching schema
-(`schema.to_json` / `schema.from_json`).
+There are only three things to get right:
 
-## The one rule: data is data, not styles
-
-The schema carries only the report's **data** (names, figures, ranks, counts,
-GPA, competency *labels*) and its **structure** (which rows are totals, section
-titles, column-header labels). It carries **no presentation**: no font, size,
-weight, colour, background fill, alignment or row pitch. Those belong to each
-report type's own self-contained template, recovered from its reference PDF.
-
-In particular the **competency background colour is never supplied and never
-stored**. It is a deterministic function of the competency *label* (or GPA),
-computed at render time by [`sars.competency`](../src/sars/competency.py). You
-supply the label text (`"Grade C (Good)"`); the colour is derived. See
-[the looping contract](#the-looping-contract) below.
-
-## How to call it
+1. the **shape** — which dataclass (or plain `dict`) the report type expects;
+2. the **layout** — which recovered page geometry to print it in;
+3. the **mode** — reproduce a reference document, or render all of your own data.
 
 ```python
 from sars import schema, template_maker
 
-data = schema.from_json(open("my_report.json").read())   # or build the dataclass directly
-html = template_maker.render_html(data.meta.report_type, data)     # -> HTML string
-pdf  = template_maker.render_pdf(data.meta.report_type, data, "out.pdf")  # -> writes PDF
-# or let it infer the type from the schema instance:
-html = template_maker.make(data)
+data = schema.from_dict({...})                      # 1. shape
+pdf = template_maker.render_pdf(                    # 2. layout via meta, 3. mode
+    data.meta.report_type, data, "out.pdf", grow=True
+)
 ```
 
-`report_type` selects the template; `data` must be the schema instance that
-template expects (table below). The report_type also lives inside the data at
-`meta.report_type`, so `make(data)` and `from_json(...)` need nothing else.
+---
 
-## report_type -> schema class -> template
+## 1. Shape: `report_type` → schema class
 
-`report_type` comes from [`sars.reports.CATALOGUE`](../src/sars/reports.py); the
-schema class is [`schema.SCHEMA_BY_TYPE`](../src/sars/schema.py); the template is
-[`templates.RENDERERS`](../src/sars/templates/__init__.py) /
-`templates.TEMPLATE_NAMES`.
+`report_type` picks both the schema and the renderer. These are the only valid
+values (`sars.schema.SCHEMA_BY_TYPE`, `sars.templates.RENDERERS`):
 
-| `report_type`         | schema class            | template          | example report                          |
-| --------------------- | ----------------------- | ----------------- | --------------------------------------- |
-| `school_result_slip`  | `SchoolResultSlip`      | `school_result_slip` | S1051-MKOLANI SECONDARY SCHOOL       |
-| `best_students`       | `BestStudentsReport`    | `best_students`   | MWANZA CC 10 BEST STUDENTS              |
-| `best_students` (subjectwise) | `BestStudentsReport` | `best_students_subjectwise` | MWANZA CC 10 BEST STUDENTS SUBJECTWISE |
-| `schools_rank`        | `SchoolsRankReport`     | `schools_rank`    | MWANZA CC SCHOOLS RANK                  |
-| `top_schools`         | `SchoolsRankReport`     | `top_schools`     | MWANZA CC 10 BEST SCHOOLS               |
-| `subjects_rank`       | `SubjectsRankReport`    | `subjects_rank`   | MWANZA CC SUBJECTS RANK                 |
-| `subject_school_rank` | `GenericTabularReport`  | `subject_school_rank` | MWANZA CC SCHOOLS RANK SUBJECTWISE  |
-| `wards_rank`          | `GenericTabularReport`  | `wards_rank`      | MWANZA CC Wards Rank                    |
-| `district_performance`| `GenericTabularReport`  | `district_performance` | Mwanza f2 District Performance     |
-| `mock_mobility`       | `GenericTabularReport`  | `mock_mobility`   | Mwanza f2 Mock Mobility 2026            |
-| `generic`             | `GenericTabularReport`  | (header-driven)   | any unmapped tabular report             |
+| `report_type` | schema class | one row is |
+|---|---|---|
+| `school_result_slip` | `SchoolResultSlip` | a candidate on one school's slip |
+| `best_students` | `BestStudentsReport` | a ranked candidate, in titled sections |
+| `best_students_subjectwise` | `BestStudentsReport` | a candidate ranked within one subject |
+| `schools_rank` | `SchoolsRankReport` | a school, with division counts + GPA |
+| `top_schools` | `SchoolsRankReport` | a school (top-ten cut of the same shape) |
+| `subjects_rank` | `SubjectsRankReport` | a subject, with grade counts + GPA |
+| `subject_school_rank` | `GenericTabularReport` | a school within one subject |
+| `wards_rank` | `GenericTabularReport` | a ward |
+| `district_performance` | `GenericTabularReport` | a council/district |
+| `mock_mobility` | `GenericTabularReport` | a school's FTNA→Mock GPA movement |
+| `generic` | `GenericTabularReport` | anything header-driven |
 
-`best_students` renders `best_students` or `best_students_subjectwise` depending
-on the report's `variant` (`overall` vs `subjectwise`); both consume a
-`BestStudentsReport`.
+Every class is a plain `@dataclass`, so `schema.to_dict` / `schema.from_dict`
+round-trip it, and `schema.to_json` / `from_json` do the same through JSON.
 
-## Shared value objects
-
-### `ReportMeta` (every report carries one)
-
-| field         | data / chrome | meaning                                                    |
-| ------------- | ------------- | ---------------------------------------------------------- |
-| `name`        | data          | source document name; also the layout-spec key             |
-| `report_type` | structure     | family id (table above); selects the template              |
-| `level`       | structure     | `school` \| `council` \| `region`                          |
-| `variant`     | structure     | flavour within the family (`overall` / `government` / `subjectwise` / ...) |
-| `region`      | data          | region name, e.g. `Mwanza`                                 |
-| `council`     | data          | council name, e.g. `Mwanza CC` (blank at region level)     |
-| `exam_name`   | data          | the assessment line, e.g. the July 2026 mock results text  |
-| `title`       | data          | the report's own heading                                   |
-
-### `GenderCounts`
-
-An `F` / `M` / `T` triple: `{"f": "12", "m": "9", "t": "21"}`. All strings, as
-printed.
-
-## Report schemas, field by field
-
-### `BestStudentsReport` (`best_students`)
-
-```
-BestStudentsReport
-  meta:     ReportMeta
-  sections: [ BestStudentsSection ]
-BestStudentsSection
-  title:    str                 # section heading, e.g. "TOP TEN BEST FEMALE STUDENTS OVERALL COUNCILWISE"
-  students: [ StudentRow ]       # the section's ranked candidates, in order
-```
-
-A best-students report is a **list of titled sections**, each a table of
-`StudentRow`. Supply as many sections as your report prints (the bundled example
-has 9: overall / female / male x all-schools / government / private). Each
-section is rendered as its own table under its own caption; there is no shared
-structure between sections beyond the column set.
-
-### `StudentRow` (used by `school_result_slip` and `best_students`)
-
-| field               | meaning                                                             |
-| ------------------- | ------------------------------------------------------------------- |
-| `cno`               | candidate number, e.g. `S1051-0001`                                 |
-| `name`              | full name as printed                                                |
-| `sex`               | `F` / `M`                                                           |
-| `aggregate`         | aggregate points (`AGGT`), may be `ABS`                             |
-| `division`          | division `I`..`IV` / `0` / `ABS`                                     |
-| `position`          | overall position / ranking                                          |
-| `school_name`       | owning school (present on best-students lists, blank on a slip)     |
-| `subjects`          | `[ SubjectResult ]` parsed per-subject results                      |
-| `detailed_subjects` | the raw `DETAILED SUBJECTS` text, kept verbatim                     |
-| `sno`               | serial number within a subjectwise section (`S/NO.`)                |
-| `council`           | owning council (region-level subjectwise lists name it per row)     |
-| `id_no`             | candidate id on subjectwise lists (`ID NO.`)                        |
-| `category`          | school ownership (`GOVERNMENT` / `PRIVATE`)                         |
-| `marks`             | the subject mark (subjectwise lists)                                |
-| `grade`             | the subject grade letter (subjectwise lists)                        |
-| `competency`        | competency label; **colour is derived, never supplied**             |
-
-`SubjectResult`: `{"subject": "KISW", "mark": "42", "grade": "D"}`.
-
-### `SchoolResultSlip` (`school_result_slip`)
-
-```
-SchoolResultSlip
-  meta:             ReportMeta
-  centre_no:        str
-  school_name:      str
-  division_summary: [ DivisionSummaryRow ]   # F/M/T division counts
-  students:         [ StudentRow ]           # every candidate on the slip
-  performance:      [ PerformanceTable ]     # school + per-subject summary blocks
-```
-
-`DivisionSummaryRow`: `{"sex": "F", "divisions": {"I": "3", "II": "5", ...}}`.
-`PerformanceTable`: `{"column_headers": [...], "rows": [ PerformanceRow ]}` where
-`PerformanceRow` is `{"values": {"<header>": "<value>"}}`.
-
-### `SchoolsRankReport` (`schools_rank`, `top_schools`)
-
-```
-SchoolsRankReport
-  meta:           ReportMeta
-  rows:           [ SchoolRankRow ]
-  totals:         { "<row label>": ["cell", "cell", ...] }   # DATA of TOTAL rows; label is the key (chrome)
-  summary:        [ PerformanceTable ]                        # optional summary-performance block above the table
-  column_headers: [ str ]                                     # the report's own captions, in order (chrome)
-```
-
-`SchoolRankRow` fields: `sno`, `ward`, `council`, `school_name`, `ownership`,
-`registered` (`GenderCounts`), `sat` (`GenderCounts`), `sat_pct`, `division`
-(a dict keyed by division label -> F/M/T triple, with `<label>%` keys for the
-percentage columns), `gpa`, `competency` (colour derived), `council_rank`,
-`regional_rank`.
-
-### `SubjectsRankReport` (`subjects_rank`)
-
-```
-SubjectsRankReport
-  meta:           ReportMeta
-  rows:           [ SubjectRankRow ]
-  totals:         { "<row label>": [ ... ] }
-  column_headers: [ str ]
-SubjectRankRow
-  sno, subject_name, gpa, competency, rank
-  grades: { "A": "..", "B": "..", ..., "TOTAL": "..", "A-C": "..", "%A-C": ".." }
-```
-
-### `GenericTabularReport` (`subject_school_rank`, `wards_rank`, `district_performance`, `mock_mobility`, `generic`)
-
-```
-GenericTabularReport
-  meta:           ReportMeta
-  column_headers: [ str ]              # first (main) section's headers, mirrored for convenience
-  rows:           [ TabularRow ]       # first (main) section's rows, mirrored
-  totals:         { "<label>": [...] } # first (main) section's totals, mirrored
-  sections:       [ TabularSection ]   # EVERY table block, in reading order
-TabularRow      : { "values": { "<header>": "<value>" } }
-TabularSection  : { "column_headers": [...], "rows": [ TabularRow ], "totals": {...}, "title": "..." }
-```
-
-Any report without a bespoke schema is captured header-driven and losslessly:
-each value is keyed by its column header label. A report that prints several
-different table blocks (different column counts) puts each block in its own
-`TabularSection`; the top-level `column_headers` / `rows` / `totals` mirror the
-first block, so single-block reports need not index into `sections`.
-
-## Multiple tables / sections on one page
-
-Several report families draw **more than one logical table on a page** - the
-best-students lists stack an overall table and a female table (and a male table)
-on the same page, separated only by a caption. The data model already expresses
-this: one `BestStudentsSection` (or one `TabularSection`) per logical table.
-
-The template mechanism binds **one data band per logical section, in document
-order**: the first section fills the first table, the second section fills the
-second table, and so on, however many there are. Supply more sections and more
-tables render; supply fewer and fewer render. You never special-case a report -
-the looping is generic. (This is the FEAT-002 fix: previously a page's second
-table was drawn empty because the two logical tables were welded into one and
-bound to a single section.)
-
-## The looping contract
-
-For **students, subjects and schools, rendering is just looping over rows.**
-Every row of a section repeats the *same* structure - the same columns, the same
-fonts, the same alignment, the same baseline. **The only thing that changes
-between rows is the competency background colour**, and even that is not part of
-the row's data: it is derived at render time from the row's competency label /
-GPA via [`sars.competency`](../src/sars/competency.py). Concretely:
-
-* You supply N rows; the template repeats its recovered row band N times.
-* Each row's values are placed by column, measured with the reference font's own
-  advances, on the reference's baseline.
-* The competency cell's wash is computed from `competency` (or `gpa`); supply a
-  different label and the colour follows the documented mapping. Supply no
-  competency and no wash is drawn.
-* Nothing else varies row to row. There is no per-row styling to supply.
-
-This is why the same template reproduces the report for *any* data: the
-structure is fixed and recovered from the reference; only the row values (and the
-derived competency colour) change.
-
-## A copy-pasteable example per family
-
-### Best students (`best_students`) - two sections on a page
-
-```json
-{
-  "meta": {
-    "name": "MY COUNCIL 10 BEST STUDENTS",
-    "report_type": "best_students",
-    "level": "council",
-    "variant": "overall",
-    "region": "Mwanza",
-    "council": "My CC",
-    "exam_name": "REGIONAL FORM TWO MOCK ASSESSMENT RESULTS, JULY 2026",
-    "title": "MY CC TOP TEN BEST STUDENTS OVERALL COUNCILWISE"
-  },
-  "sections": [
-    {
-      "title": "MY CC TOP TEN BEST STUDENTS OVERALL COUNCILWISE",
-      "students": [
-        {
-          "cno": "S9999-0001", "name": "AMINA JUMA HASSANI", "sex": "F",
-          "aggregate": "7", "division": "I", "position": "1",
-          "school_name": "EXAMPLE SEC",
-          "subjects": [
-            {"subject": "HTM", "mark": "97", "grade": "A"},
-            {"subject": "GEO", "mark": "91", "grade": "A"}
-          ],
-          "detailed_subjects": "HTM - 97'A' GEO - 91'A'"
-        }
-      ]
-    },
-    {
-      "title": "TOP TEN BEST FEMALE STUDENTS OVERALL COUNCILWISE",
-      "students": [
-        {
-          "cno": "S9999-0002", "name": "NEEMA PETRO MOSHA", "sex": "F",
-          "aggregate": "8", "division": "I", "position": "1",
-          "school_name": "EXAMPLE GIRLS",
-          "subjects": [{"subject": "KISW", "mark": "88", "grade": "A"}],
-          "detailed_subjects": "KISW - 88'A'"
-        }
-      ]
-    }
-  ]
-}
-```
-
-### Schools rank (`schools_rank`) / top schools (`top_schools`)
-
-```json
-{
-  "meta": {
-    "name": "MY COUNCIL SCHOOLS RANK", "report_type": "schools_rank",
-    "level": "council", "variant": "overall", "region": "Mwanza",
-    "council": "My CC", "exam_name": "...", "title": "MY CC SCHOOLS RANK"
-  },
-  "rows": [
-    {
-      "sno": "1", "ward": "MJINI", "council": "My CC",
-      "school_name": "EXAMPLE SEC", "ownership": "GOVERNMENT",
-      "registered": {"f": "40", "m": "35", "t": "75"},
-      "sat": {"f": "40", "m": "34", "t": "74"}, "sat_pct": "98.67",
-      "division": {"I": {"f": "5", "m": "4", "t": "9"}, "I-III%": "82.43"},
-      "gpa": "2.98", "competency": "Grade C (Good)",
-      "council_rank": "1", "regional_rank": "12"
-    }
-  ],
-  "totals": {"TOTAL": ["", "", "", "2.98", "48.99", "97.02", "387"]},
-  "summary": [],
-  "column_headers": []
-}
-```
-
-### Subjects rank (`subjects_rank`)
-
-```json
-{
-  "meta": {
-    "name": "MY COUNCIL SUBJECTS RANK", "report_type": "subjects_rank",
-    "level": "council", "variant": "overall", "region": "Mwanza",
-    "council": "My CC", "exam_name": "...", "title": "MY CC SUBJECTS RANK"
-  },
-  "rows": [
-    {
-      "sno": "1", "subject_name": "KISWAHILI",
-      "grades": {"A": "12", "B": "40", "C": "80", "TOTAL": "200", "A-C": "132", "%A-C": "66.00"},
-      "gpa": "3.10", "competency": "Grade C (Good)", "rank": "1"
-    }
-  ],
-  "totals": {},
-  "column_headers": []
-}
-```
-
-### School result slip (`school_result_slip`)
-
-```json
-{
-  "meta": {
-    "name": "S9999-EXAMPLE SECONDARY SCHOOL", "report_type": "school_result_slip",
-    "level": "school", "variant": "single_school", "region": "Mwanza",
-    "council": "My CC", "exam_name": "...", "title": "..."
-  },
-  "centre_no": "S9999",
-  "school_name": "EXAMPLE SECONDARY SCHOOL",
-  "division_summary": [
-    {"sex": "F", "divisions": {"I": "5", "II": "8", "III": "10", "IV": "6", "0": "1"}}
-  ],
-  "students": [
-    {
-      "cno": "S9999-0001", "name": "AMINA JUMA HASSANI", "sex": "F",
-      "aggregate": "18", "division": "II", "position": "3",
-      "subjects": [{"subject": "KISW", "mark": "72", "grade": "B"}],
-      "detailed_subjects": "KISW - 72'B'"
-    }
-  ],
-  "performance": []
-}
-```
-
-### Generic tabular (`district_performance`, `wards_rank`, `mock_mobility`, `subject_school_rank`, `generic`)
-
-```json
-{
-  "meta": {
-    "name": "MY DISTRICT PERFORMANCE", "report_type": "district_performance",
-    "level": "region", "variant": "overall", "region": "Mwanza",
-    "council": "", "exam_name": "...", "title": "DISTRICT PERFORMANCE"
-  },
-  "column_headers": ["S/NO", "DISTRICT", "GPA", "RANK"],
-  "rows": [
-    {"values": {"S/NO": "1", "DISTRICT": "ILEMELA", "GPA": "3.01", "RANK": "1"}}
-  ],
-  "totals": {},
-  "sections": [
-    {
-      "column_headers": ["S/NO", "DISTRICT", "GPA", "RANK"],
-      "rows": [
-        {"values": {"S/NO": "1", "DISTRICT": "ILEMELA", "GPA": "3.01", "RANK": "1"}}
-      ],
-      "totals": {},
-      "title": "DISTRICT PERFORMANCE"
-    }
-  ]
-}
-```
-
-## Round-trip guarantee
-
-Every schema instance serialises losslessly:
+### `ReportMeta` — required on every report
 
 ```python
-text = schema.to_json(data)
-assert schema.to_json(schema.from_json(text)) == text
+schema.ReportMeta(
+    name="MWANZA CC SCHOOLS RANK",   # selects a layout when it names a bundled one
+    report_type="schools_rank",      # required: picks schema + renderer
+    level="council",                 # school | council | region
+    variant="overall",               # overall | government | subjectwise | edk | ...
+    region="Mwanza",
+    council="Mwanza CC",
+    exam_name="REGIONAL FORM TWO MOCK ASSESSMENT RESULTS, JULY 2026",
+    title="MWANZA CC SCHOOLS RANK",  # the report's own heading
+)
 ```
 
-`from_dict` / `from_json` pick the schema class from
-`data["meta"]["report_type"]` via `schema.SCHEMA_BY_TYPE`, so a JSON file written
-by `python -m sars.cli data` reconstructs the exact instance the template
-expects.
+`region`, `council`, `exam_name` and `title` are **data** — they are printed.
+`name`, `report_type`, `level`, `variant` are **routing** — they choose the
+layout and the renderer.
+
+### What is data, and what is never data
+
+Data carries **values and structure only**. Fonts, sizes, weights, colours,
+alignment and row pitch belong to the recovered layout, never to your data.
+
+The one apparent exception proves the rule: a competency cell's **background
+colour is derived**, not supplied. You give the label (`"Grade C (Good)"`) or a
+GPA; `sars.competency` maps it to a colour. Supplying a colour is not possible —
+and this is the *only* thing that varies from one row to the next. Everything
+else about a row's structure is identical for every row.
+
+| competency label | colour |
+|---|---|
+| `Grade A (Excellent)` | `#00b050` |
+| `Grade B (Very Good)` | `#92d050` |
+| `Grade C (Good)` | `#ffff00` |
+| `Grade D (Satisfactory)` | `#ffc000` |
+| `Grade F (Fail)` / `Weak` / `Failed` | `#ff0000` |
+
+Labels are matched case- and punctuation-insensitively, so `EXCELLENT`, `A` and
+`Grade A (Excellent)` all resolve to the same band. A GPA is used when the label
+is missing or unrecognised.
+
+---
+
+## 2. The row shapes
+
+### Students — `StudentRow`
+
+Used by `best_students` (via `BestStudentsSection`) and `school_result_slip`.
+Every field is a string, printed verbatim; omit what a report does not show.
+
+```python
+schema.StudentRow(
+    cno="S5344-0004",                 # candidate number
+    name="ADETHA AMWESIGA TALEMWA",
+    sex="F",
+    aggregate="7",                    # AGGT
+    division="I",
+    position="1",
+    school_name="MUSABE GIRLS",
+    detailed_subjects="HTM - 97'A' BUSI - 80'A' GEO - 91'A'",
+    # subjectwise lists use these instead of aggregate/division:
+    sno="1", council="Mwanza CC", id_no="S5344-0004",
+    category="GOVERNMENT", marks="97", grade="A",
+    competency="Grade A (Excellent)",
+)
+```
+
+`detailed_subjects` is the raw string as printed. `subjects` is an optional
+parsed view (`list[SubjectResult]` of `subject` / `mark` / `grade`); the raw
+string is what gets printed.
+
+`best_students` groups students into **sections**, which is how one page carries
+both "TOP TEN BEST STUDENTS" and "TOP TEN BEST FEMALE STUDENTS":
+
+```python
+schema.BestStudentsReport(
+    meta=meta,
+    sections=[
+        schema.BestStudentsSection(title="MWANZA CC TOP TEN BEST STUDENTS OVERALL COUNCILWISE",
+                                   students=[...]),
+        schema.BestStudentsSection(title="TOP TEN BEST FEMALE STUDENTS OVERALL COUNCILWISE",
+                                   students=[...]),
+    ],
+)
+```
+
+> One section per table on the page. A section with an empty `students` list
+> prints its caption and an empty body — it does not collapse the page.
+
+### Schools — `SchoolRankRow`
+
+Used by `schools_rank` and `top_schools`. Note the two structured fields:
+`registered` / `sat` are `GenderCounts` (`f` / `m` / `t`), and `division` is a
+dict keyed by division label.
+
+```python
+schema.SchoolRankRow(
+    sno="1", ward="NYAMAGANA", council="Mwanza CC",
+    school_name="MUSABE GIRLS", ownership="PRIVATE",
+    registered=schema.GenderCounts(f="50", m="0", t="50"),
+    sat=schema.GenderCounts(f="49", m="0", t="49"),
+    sat_pct="98.0",
+    division={                        # label -> F/M/T triple
+        "I":  {"f": "20", "m": "0", "t": "20"},
+        "II": {"f": "15", "m": "0", "t": "15"},
+        "I-III": {"f": "45", "m": "0", "t": "45"},
+        "I-III%": "91.8",             # percentage columns use a '%' suffix key
+    },
+    gpa="2.29", competency="Grade C (Good)",
+    council_rank="1", regional_rank="3",
+)
+```
+
+`SchoolsRankReport` then holds `rows`, plus optional `totals`
+(`{row label: [values]}`), `summary` (the aggregate block printed above the
+table, as `PerformanceTable`) and `column_headers`.
+
+### Subjects — `SubjectRankRow`
+
+```python
+schema.SubjectRankRow(
+    sno="1", subject_name="BASIC MATHEMATICS",
+    grades={"A": "12", "B": "40", "C": "88", "D": "60", "F": "15",
+            "TOTAL": "215", "A-C": "140", "%A-C": "65.1"},
+    gpa="2.85", competency="Grade C (Good)", rank="1",
+)
+```
+
+### Anything else — `GenericTabularReport`
+
+Header-driven: each row is `{column header: value}`. This covers `wards_rank`,
+`district_performance`, `mock_mobility` and `subject_school_rank`, and is the
+escape hatch for a table with no bespoke schema.
+
+```python
+schema.GenericTabularReport(
+    meta=meta,
+    column_headers=["S/NO.", "WARD", "REGISTERED", "SAT", "GPA"],
+    rows=[schema.TabularRow(values={"S/NO.": "1", "WARD": "NYAMAGANA",
+                                    "REGISTERED": "520", "SAT": "498",
+                                    "GPA": "2.41"})],
+    totals={"TOTAL": ["", "", "520", "498", ""]},
+)
+```
+
+Use `sections` (`list[TabularSection]`) when one report prints several tables
+with *different* column counts; the top-level `rows` / `totals` mirror the first
+section, so single-table reports never need to touch `sections`.
+
+> **The keys are not yours to choose.** A layout's bindings were recovered from
+> the reference document, so a value is found by the reference's *own* field
+> path — and for header-driven reports that path **is** the column's header
+> label, with ` / ` between header levels. Invented keys bind to nothing and the
+> row prints empty.
+
+Ask the layout what it reads, rather than guessing:
+
+```python
+>>> from sars import layout_spec
+>>> contract = layout_spec.data_contract("MWANZA CC Wards Rank")
+>>> contract[0]["fields"][1]
+'NO. OF / WARDS IN / COUNCIL'
+>>> contract[0]["fields"][8]
+'DIVISION PERFORMANCE / I-III / TOTAL'
+```
+
+So the wards example above must use those labels verbatim:
+
+```python
+schema.TabularRow(values={
+    "NO. OF / WARDS IN / COUNCIL": "NYAMAGANA",
+    "NUMBER OF CANDIDATES / REG": "520",
+    "NUMBER OF CANDIDATES / SAT / TOTAL": "498",
+    "DIVISION PERFORMANCE / I-III / TOTAL": "301",
+})
+```
+
+`sars.binding.row_groups(data)` shows the paths your data actually offers, which
+is how you diagnose a mismatch: compare it against `data_contract(layout)`.
+
+The bespoke schemas (`SchoolRankRow`, `StudentRow`, `SubjectRankRow`) do not have
+this problem — their bindings name real field names like `school_name` and `gpa`,
+so you just fill in the dataclass.
+
+### Which of your rows fills which table: row groups
+
+A layout's band binds to a named **row group**, and the group names come from the
+*position* of your data, so order matters. `data_contract(layout)` reports the
+group each band wants, and `sars.binding.row_groups(data)` reports the groups your
+data supplies:
+
+| your data | groups it offers |
+|---|---|
+| `GenericTabularReport.sections` | `section0`, `section0_totals`, `section1`, … |
+| `BestStudentsReport.sections` | `students0`, `students1`, … |
+| `SchoolsRankReport` | `rows`, `totals`, `summary0`, … |
+| `SchoolResultSlip` | `students`, `division_summary`, `performance0`, … |
+
+So a generic report whose layout binds a band to `section1` needs a **second
+section** — the second table is filled by `sections[1]`, not by top-level `rows`.
+Supply an empty `TabularSection` to hold a position you do not use.
+
+---
+
+## 3. Layout: which geometry your data is printed in
+
+A layout is recovered *from a reference document*, so it is keyed by that
+document's name. `sars.layout_spec.resolve()` turns what you know into a layout:
+
+```python
+layout_spec.resolve("MWANZA CC SCHOOLS RANK")                  # exact document
+layout_spec.resolve(None, report_type="best_students")         # by kind
+layout_spec.resolve(None, report_type="best_students",
+                    level="region", variant="subjectwise")     # narrowed
+```
+
+1. a `meta.name` that names a bundled layout wins — you are reproducing that
+   document;
+2. otherwise the best match for `report_type` → `level` → `variant` is used, so
+   **your own data prints in the shape of a report of that kind**;
+3. if nothing matches, `LayoutSpecMissing` is raised listing what exists. A
+   layout is never silently substituted.
+
+`layout_spec.catalogue()` lists all 19 bundled layouts with their descriptors.
+
+---
+
+## 4. Mode: `grow`
+
+This is the one flag that changes structure, and the default is deliberate.
+
+| | `grow=False` (default) | `grow=True` |
+|---|---|---|
+| pages | exactly the reference's | as many as the data needs |
+| rows per band | exactly the reference's | all supplied rows |
+| surplus data | not rendered | continues onto further pages |
+| use it to | **reproduce a reference document** | **render your own data** |
+
+`grow=False` exists because a recovered layout is not a promise that your data
+has as many rows as the document printed. `MWANZA CC SCHOOLS RANK SUBJECTWISE`
+is the proof: its extracted `section0` holds 65 rows while the reference page
+prints 54. A renderer that grew whenever there were more rows would turn a
+faithful 24-page reproduction into 30 pages. So growth is something you ask for.
+
+Less data needs no flag: a short table prints its reference's empty ruled rows
+and keeps its page count, in either mode.
+
+---
+
+## 5. What happens at the extremes
+
+You do not have to pre-trim anything. Values are absorbed where they are drawn,
+and the page geometry never moves.
+
+| you supply | what happens |
+|---|---|
+| a value wider than its column | condensed horizontally (`scaleX`) about the run's start |
+| a value too wide even condensed | condensed to the `MIN_CONDENSE` floor (0.55), then cut |
+| a very long detailed-results string | condensed; a 213-character string keeps **every** character |
+| more rows than the page holds | `grow=True`: continues onto further pages. `grow=False`: not rendered |
+| fewer rows | reference's empty ruled rows remain; page count unchanged |
+| an empty section | caption prints, body is empty |
+| no rows at all | the reference shell still prints |
+
+Two consequences worth knowing:
+
+* **A cut value is never marked.** No `…` is appended, because the reference
+  faces are subsets — an ellipsis would be drawn from a *different* family, and
+  this project never allows a fallback font. A cut value is a clean prefix.
+* **A value may use the room the reference's value used, not merely its cell.**
+  Some reference cells legitimately overhang their own box (`Mwanza f2 Mock
+  Mobility 2026` draws `GPA2.2969` in a box far narrower than the string), so
+  clamping to the box would be *less* faithful than the reference.
+
+---
+
+## 6. A complete, minimal example
+
+```python
+from sars import schema, template_maker
+
+report = schema.SchoolsRankReport(
+    meta=schema.ReportMeta(
+        name="MY COUNCIL SCHOOLS RANK 2027",   # not a bundled name -> resolved by kind
+        report_type="schools_rank",
+        level="council",
+        variant="overall",
+        region="Mwanza",
+        council="My CC",
+        exam_name="REGIONAL FORM TWO MOCK ASSESSMENT RESULTS, JULY 2027",
+        title="MY COUNCIL SCHOOLS RANK",
+    ),
+    rows=[
+        schema.SchoolRankRow(
+            sno=str(i + 1),
+            ward="NYAMAGANA",
+            school_name=f"SCHOOL NUMBER {i + 1}",
+            ownership="GOVERNMENT",
+            registered=schema.GenderCounts(f="30", m="28", t="58"),
+            sat=schema.GenderCounts(f="29", m="27", t="56"),
+            sat_pct="96.6",
+            division={"I": {"f": "5", "m": "4", "t": "9"}},
+            gpa="2.90",
+            competency="Grade C (Good)",      # colour derived from this label
+            council_rank=str(i + 1),
+        )
+        for i in range(120)                    # more rows than the reference had
+    ],
+)
+
+html = template_maker.render_html("schools_rank", report, grow=True)
+template_maker.render_pdf("schools_rank", report, "my-council.pdf", grow=True)
+```
+
+---
+
+## 7. Known limitations
+
+* **A layout must already exist for the kind of report you want.** The 19
+  bundled layouts are listed by `layout_spec.catalogue()`. A genuinely new report
+  shape needs its geometry recovered from a reference PDF first
+  (`tools/build_layout_specs.py`); it cannot be invented from data.
+* **Fonts must be installed**, or the renderer will not produce the reference's
+  glyphs. There is no fallback font by design — a missing face is an error, not a
+  substitution.
+* **Header-driven reports need the reference's own header labels** as keys, as
+  described in §2. Use `layout_spec.data_contract(layout)` rather than guessing.

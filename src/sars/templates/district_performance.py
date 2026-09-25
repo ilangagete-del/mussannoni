@@ -8,20 +8,28 @@ PDF; this module supplies the data only.
 
 from __future__ import annotations
 
-from ..layout_spec import binding_provider, has_spec, render_html
+from ..layout_spec import binding_provider, render_html, resolve
 from ..schema import GenericTabularReport
 
 
-def render_district_performance(report: GenericTabularReport, engine: str | None = None) -> str:
+def render_district_performance(
+    report: GenericTabularReport,
+    engine: str | None = None,
+    *,
+    grow: bool = False,
+) -> str:
     """Render the district-performance report from its own recovered layout."""
     name = report.meta.name
-    if not has_spec(name):  # pragma: no cover - the spec ships with the repo
-        raise RuntimeError(
-            f"{name!r} has no recovered layout spec; run tools/build_layout_specs.py"
-        )
-    return render_html(
+    layout = resolve(
         name,
-        binding_provider(name, report),
+        report_type=report.meta.report_type,
+        level=report.meta.level,
+        variant=report.meta.variant,
+    )
+    return render_html(
+        layout,
+        binding_provider(layout, report),
         title=report.meta.title or name,
         engine=engine,
+        grow=grow,
     )
