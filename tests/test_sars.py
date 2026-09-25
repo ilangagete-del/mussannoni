@@ -318,7 +318,7 @@ def test_generated_pdf_matches_reference(edk_pair):
 
 
 def test_competency_canonical_colours_by_label():
-    from sars import competency
+    from sars.secondary import competency
 
     assert competency.background_for("Grade A (Excellent)") == "#00b050"
     assert competency.background_for("Grade B (Very Good)") == "#92d050"
@@ -328,7 +328,7 @@ def test_competency_canonical_colours_by_label():
 
 
 def test_competency_bands_by_gpa_use_documented_cutoffs():
-    from sars import competency
+    from sars.secondary import competency
 
     assert competency.CUTOFFS == (1.5, 2.5, 3.5, 4.5)
     assert competency.band_for_gpa(1.0).label == "Excellent"
@@ -340,7 +340,7 @@ def test_competency_bands_by_gpa_use_documented_cutoffs():
 
 
 def test_competency_resolves_synonyms_and_grade_letters():
-    from sars import competency
+    from sars.secondary import competency
 
     assert competency.band_for_label("Excellent").grade == "A"
     assert competency.band_for_label("A").grade == "A"
@@ -350,7 +350,7 @@ def test_competency_resolves_synonyms_and_grade_letters():
 
 def test_competency_ignores_ordinary_labels_containing_grade_letters():
     """A SCHOOL NAME with a stray 'A' must not be mistaken for a competency."""
-    from sars import competency
+    from sars.secondary import competency
 
     assert competency.band_for_label("ALLIANCE GIRLS") is None
     assert competency.band_for_label("NASCO") is None
@@ -371,7 +371,7 @@ def _report_for(name: str):
 
 
 def test_catalogue_covers_every_document():
-    from sars import reports
+    from sars.secondary import reports
 
     names = {p.name for p in sources.discover()}
     assert set(reports.CATALOGUE) == names
@@ -437,10 +437,7 @@ def test_best_students_second_section_renders_its_own_rows():
     This asserts on data that ONLY appears in the second section, so it fails on
     the pre-fix behaviour where that section had no band and was fed nothing.
     """
-    import gzip
-    import json
-
-    from sars.layout_spec import LAYOUTS, binding_provider
+    from sars.layout_spec import binding_provider, load
 
     report = _report_for("MWANZA CC 10 BEST STUDENTS")
     overall = report.sections[0]
@@ -449,8 +446,7 @@ def test_best_students_second_section_renders_its_own_rows():
     # The first page must carry TWO data bands: one per logical section/table.
     # On the pre-fix code page 0 held a single band (the merged lattice table),
     # so indexing band 1 would not exist - the defect this test guards against.
-    with gzip.open(LAYOUTS / "MWANZA CC 10 BEST STUDENTS.json.gz", "rt") as handle:
-        spec = json.load(handle)
+    spec = load("MWANZA CC 10 BEST STUDENTS")
     first_page_bands = spec["pages"][0]["bands"]
     assert len(first_page_bands) >= 2, "the second table on page 1 has no band"
 
@@ -517,7 +513,7 @@ def test_competency_colour_is_not_stored_as_data():
     """DATA IS DATA, NOT STYLES: the competency colour is never stored.
 
     The competency band colour is a deterministic function of the label / GPA
-    (:mod:`sars.competency`) computed by the template at render time, so it must
+    (:mod:`sars.secondary.competency`) computed by the template at render time, so it must
     never be written into the extracted data. The label and GPA stay plain text;
     no hex colour appears in any data field.
     """
@@ -647,7 +643,7 @@ def test_no_shared_css_constant_across_report_types():
     import re
 
     from sars import template_maker
-    from sars.templates import base
+    from sars.secondary.templates import base
 
     # The dismantled shared-funnel constants are gone from the template base.
     assert not hasattr(base, "TEMPLATE_CSS")

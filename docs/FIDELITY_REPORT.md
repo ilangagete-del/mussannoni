@@ -1,6 +1,6 @@
 # Fidelity report — measured, not claimed
 
-Generated 2026-09-25 03:27 UTC by `tools/fidelity_report.py` from `tools/fidelity_gate.py` output.
+Generated 2026-09-25 04:05 UTC by `tools/fidelity_report.py` from `tools/fidelity_gate.py` output.
 
 * gate: **100% visible-pixel match on every page of every report**, rasterised at 2x, visible = max RGB channel delta <= 8
 * result: **PASS 0/19**, worst page across all reports **98.9822% visible**

@@ -26,8 +26,10 @@ import json
 from functools import lru_cache
 from pathlib import Path
 
-ROOT = Path(__file__).resolve().parents[2]
-ASSETS = ROOT / "assets" / "fonts"
+#: Font assets live INSIDE the package so they ship in the wheel: installing
+#: sars-convert must be enough to render with the reference faces, because
+#: there is no fallback font to degrade to.
+ASSETS = Path(__file__).resolve().parent / "assets" / "fonts"
 MANIFEST_PATH = ASSETS / "manifest.json"
 CALIBRATION_PATH = ASSETS / "calibration.json"
 

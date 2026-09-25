@@ -173,6 +173,34 @@ def cmd_template(only: str | None, jobs: int | None = None) -> int:
     return 1 if failures else 0
 
 
+def cmd_fonts(force: bool = False) -> int:
+    """Register the bundled reference faces, and report what is resolvable.
+
+    Rendering does this automatically; this exposes it so a fresh install can be
+    checked, and so a failure is a clear message rather than a report that came
+    out in the wrong typeface.
+    """
+    from . import fontsetup
+
+    installed = fontsetup.install(force=force)
+    print(f"fonts    {installed} face(s) installed -> {fontsetup.INSTALL_DIR}")
+    absent = fontsetup.missing()
+    if absent:
+        print(
+            f"         {len(absent)} family(ies) still NOT resolvable by the renderer:\n"
+            + "\n".join(f"           - {name}" for name in absent[:10]),
+            file=sys.stderr,
+        )
+        print(
+            "         A report would be drawn in a substitute face and would NOT "
+            "match the original.\n         This project uses no fallback font.",
+            file=sys.stderr,
+        )
+        return 1
+    print(f"         all {len(fontsetup.bundled())} reference face(s) resolvable")
+    return 0
+
+
 def _worker_count(jobs: int | None, tasks: int) -> int:
     import os
 
@@ -198,7 +226,10 @@ def main(argv: list[str] | None = None) -> int:
     )
     parser.add_argument(
         "command",
-        choices=["unpack", "convert", "render", "verify", "all", "list", "data", "template"],
+        choices=[
+            "unpack", "convert", "render", "verify", "all", "list", "data", "template",
+            "fonts",
+        ],
         help="action",
     )
     parser.add_argument("--only", help="substring of a document name")
@@ -210,6 +241,9 @@ def main(argv: list[str] | None = None) -> int:
         help="parallel worker processes for `template` (default: one per CPU; 1 = sequential)",
     )
     args = parser.parse_args(argv)
+
+    if args.command == "fonts":
+        return cmd_fonts(force=args.force)
 
     if args.command == "unpack":
         print(f"unpack   -> {unpack(force=args.force)}")

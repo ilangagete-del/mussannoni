@@ -18,7 +18,6 @@ import re
 
 from .classify import classify, is_total_text
 from .model import Cell, Document, Table
-from .reports import DEFAULT_COUNCIL, DEFAULT_REGION, ReportSpec, spec_for
 from .schema import (
     BestStudentsReport,
     BestStudentsSection,
@@ -38,6 +37,7 @@ from .schema import (
     TabularRow,
     TabularSection,
 )
+from .secondary.reports import DEFAULT_COUNCIL, DEFAULT_REGION, ReportSpec, spec_for
 
 # A ``SUBJECT - 42'D'`` / ``KISW - 'X'`` chunk in the DETAILED SUBJECTS column.
 _SUBJECT_CHUNK = re.compile(

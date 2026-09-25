@@ -13,8 +13,9 @@ import re
 
 import pytest
 
-from sars import competency, layout_spec, schema, template_maker
-from sars.templates import RENDERERS
+from sars import layout_spec, schema, template_maker
+from sars.secondary import competency
+from sars.secondary.templates import RENDERERS
 
 PG = '<div class="pg"'
 

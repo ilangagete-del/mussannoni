@@ -25,8 +25,8 @@ from dataclasses import replace
 import pytest
 
 from sars import fonts, layout_spec, sources, template_maker
-from sars.competency import background_for
 from sars.layout import MIN_CONDENSE, Box, Canvas, StyleBook
+from sars.secondary.competency import background_for
 
 BEST = "MWANZA CC 10 BEST STUDENTS"
 RANK = "MWANZA CC SCHOOLS RANK"

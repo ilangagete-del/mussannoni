@@ -32,8 +32,6 @@ from typing import Any
 from . import printing
 from .layout import Box, Canvas, StyleBook, document
 
-LAYOUTS = Path(__file__).resolve().parent / "templates" / "layouts"
-
 #: ``values(page, band, kind, row) -> the row's values, or None to end the band``
 ValueProvider = Callable[[int, int, str, int], "Sequence[str] | dict[int, str] | None"]
 
@@ -47,11 +45,24 @@ class LayoutSpecMissing(FileNotFoundError):
     """Raised when a report has no recovered layout spec yet."""
 
 
+def _layout_dirs() -> list[Path]:
+    """Every education stage's layouts directory, in search order.
+
+    Looking a layout up across stages is what makes a future primary layout
+    findable by registering the stage, with no change here. Imported lazily
+    because a stage package imports this module.
+    """
+    from . import stages
+
+    return stages.layout_dirs()
+
+
 def _spec_path(report: str) -> Path | None:
     """The report's spec file: gzipped by default, plain JSON also accepted."""
-    for candidate in (LAYOUTS / f"{report}.json.gz", LAYOUTS / f"{report}.json"):
-        if candidate.exists():
-            return candidate
+    for directory in _layout_dirs():
+        for candidate in (directory / f"{report}.json.gz", directory / f"{report}.json"):
+            if candidate.exists():
+                return candidate
     return None
 
 
@@ -76,8 +87,9 @@ def has_spec(report: str) -> bool:
 def available() -> list[str]:
     """Every layout that ships with the package, by spec key (document name)."""
     keys = set()
-    for path in LAYOUTS.glob("*.json*"):
-        keys.add(path.name.split(".json")[0])
+    for directory in _layout_dirs():
+        for path in directory.glob("*.json*"):
+            keys.add(path.name.split(".json")[0])
     return sorted(keys)
 
 
@@ -88,19 +100,24 @@ def catalogue() -> list[dict[str, str]]:
     (``report_type`` / ``level`` / ``variant``) instead of only by the exact name
     of the document it was recovered from.
     """
-    from . import reports
+    from . import stages
 
     out: list[dict[str, str]] = []
-    for key in available():
-        spec = reports.spec_for(key)
-        out.append(
-            {
-                "layout": key,
-                "report_type": spec.report_type,
-                "level": spec.level,
-                "variant": spec.variant,
-            }
-        )
+    for stage in stages.implemented():
+        if not stage.layouts.is_dir():
+            continue
+        keys = {path.name.split(".json")[0] for path in stage.layouts.glob("*.json*")}
+        for key in sorted(keys):
+            spec = stage.spec_for(key)
+            out.append(
+                {
+                    "layout": key,
+                    "stage": stage.name,
+                    "report_type": getattr(spec, "report_type", ""),
+                    "level": getattr(spec, "level", ""),
+                    "variant": getattr(spec, "variant", ""),
+                }
+            )
     return out
 
 
@@ -110,6 +127,7 @@ def resolve(
     report_type: str | None = None,
     level: str | None = None,
     variant: str | None = None,
+    stage: str | None = None,
 ) -> str:
     """The layout to render with, for a document name and/or a descriptor.
 
@@ -130,6 +148,8 @@ def resolve(
         return name
 
     entries = catalogue()
+    if stage:
+        entries = [e for e in entries if e["stage"] == stage]
     if report_type:
         entries = [e for e in entries if e["report_type"] == report_type]
     if level:
@@ -310,7 +330,9 @@ def _derived_fills(band: dict, row: int, rows: list | None) -> list[tuple[float,
         return []
     if row < len(band.get("per_row_fills") or []):
         return []
-    from .competency import background_for
+    from . import stages
+
+    background_for = stages.get().background_for
 
     supplied = rows[row]
     out: list[tuple[float, float, str]] = []
