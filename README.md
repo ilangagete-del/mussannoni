@@ -7,6 +7,43 @@ original data positions and all styling, and prints through **WeasyPrint** to
 
 ---
 
+## Install it, call it, get a document
+
+```console
+$ pip install sars-convert
+```
+
+```python
+from sars import api
+
+api.render_pdf(data, report_type="schools_rank", out_path="rank.pdf")
+
+api.report_types()        # what can be rendered
+api.available_reports()   # every layout, and how to select it
+api.data_contract(layout) # the exact field paths a layout reads
+```
+
+`data` may be a `sars.schema` object, a `dict`, or a JSON string — all three
+produce identical output. Pass `grow=True` to render *all* of your rows rather
+than reproducing the reference document's row count.
+
+The reference fonts ship inside the wheel and are registered automatically; a
+face that cannot be resolved is an **error**, never a substitution, because
+substituting one costs ~12 points of fidelity.
+
+| document | what it covers |
+|---|---|
+| [`docs/DATA_STRUCTURE.md`](docs/DATA_STRUCTURE.md) | the exact data each report type expects, and what happens at the extremes |
+| [`docs/PACKAGING.md`](docs/PACKAGING.md) | the API, the font licensing position, module layout, release checklist |
+| [`docs/DECISIONS.md`](docs/DECISIONS.md) | decisions with the measurements that settled them (Jinja2, parallelism, fonts) |
+| [`docs/FIDELITY_REPORT.md`](docs/FIDELITY_REPORT.md) | the current measured match, per report |
+
+Current fidelity: **19/19 reports ≥98%** visible-pixel match, worst page
+**98.98%**. The gate is `tools/fidelity_gate.py`, and no change ships that lowers
+it.
+
+---
+
 ## The problem
 
 The repository ships 19 report documents (`data/sars/`), each as a pair:
@@ -151,7 +188,8 @@ tools/build_layout_specs.py  recover each report's chrome into its layout spec
 tools/drift.py           glyph- and rectangle-level differences vs the reference
 tools/replay.py          oracle replay: the ceiling this toolchain can reach
 tools/engine_bakeoff.py  WeasyPrint vs Chromium, per report, measured
-assets/fonts/         derived font assets + manifest (build output, not committed)
+src/sars/assets/fonts/  the reference faces + manifest (SHIPPED in the wheel;
+                      see docs/PACKAGING.md - there is no fallback font)
 assets/engine_choice.json  the measured print engine per report
 output/html/          generated self-contained clean HTML (styles inlined per file)
 output/pdf/           generated A4 PDFs
@@ -297,11 +335,11 @@ masthead, the column headings, and the `TOTAL` / `% PASS` row *labels* — the
 numbers on those rows are still data.
 
 Each report's chrome is **recovered from its own reference PDF** into its own
-layout spec (`src/sars/templates/layouts/<report>.json.gz`, built by
+layout spec (`src/sars/secondary/templates/layouts/<report>.json.gz`, built by
 `tools/build_layout_specs.py`): its page box, every rectangle it paints in the
 order it paints them, every fixed caption at the exact origin the reference draws
 it, and per band the column boxes, row pitch, fills, fonts, sizes, alignment and
-baseline offsets. A report's renderer (`src/sars/templates/<report family>.py`)
+baseline offsets. A report's renderer (`src/sars/secondary/templates/<report family>.py`)
 then supplies nothing but the data.
 
 So each report remains **fully self-contained and independent**: its own spec, its
@@ -311,7 +349,7 @@ shares a stylesheet, a structure or a look with another; what is shared is
 mechanism only — `sars.layout` (place a box, put a baseline at a y),
 `sars.layout_spec` (walk a spec, ask for data), `sars.fonts` (the reference faces
 and their advances). The one data-derived colour, the competency band, is
-computed deterministically from the label / GPA (`sars.competency`) and is
+computed deterministically from the label / GPA (`sars.secondary.competency`) and is
 **never stored** in the data; for the rows the reference itself drew, the
 recovered wash wins, because a few documents tint a band differently and the
 reference is the authority on its own page.
@@ -355,7 +393,7 @@ html2 = template_maker.make(data)      # infers the report type from the data
 ## Templates by level and purpose
 
 Templates are selected by a name that says which level it serves and what it
-does (`sars.templates.TEMPLATE_NAMES` maps each name to its renderer). Where
+does (`sars.secondary.templates.TEMPLATE_NAMES` maps each name to its renderer). Where
 private / overall / government share a structure they are *variants* of one
 template; only a genuinely different structure gets its own.
 
@@ -404,7 +442,7 @@ Dump any document's data with `sars data --only "<name>"`.
 ## Competency colours are deterministic
 
 The competency cell's background is **never stored**. It is computed from the
-competency label (or, failing that, the GPA band) by `sars.competency`:
+competency label (or, failing that, the GPA band) by `sars.secondary.competency`:
 
 | GPA band | Grade | Label | Background |
 |---|---|---|---|
@@ -416,7 +454,7 @@ competency label (or, failing that, the GPA band) by `sars.competency`:
 
 Everything else keeps the styling recovered from the source. A few reports tint
 a band differently; those variants are recorded in
-`sars.competency.KNOWN_VARIANTS`, and the *conversion* path always prefers the
+`sars.secondary.competency.KNOWN_VARIANTS`, and the *conversion* path always prefers the
 colour it actually recovered from the PDF, so no report regresses.
 
 ## Fixed structure, elastic row count
