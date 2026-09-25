@@ -17,13 +17,28 @@ dependencies = [
 ]
 
 [project.optional-dependencies]
-dev = ["pytest>=8", "ruff>=0.6", "black>=24"]
+dev = [
+    "pytest>=8",
+    "ruff>=0.6",
+    "black>=24",
+    # Dev-only: tools/templating_bakeoff.py measures a Jinja2 port of the row
+    # loop against the built-in mechanism. It is deliberately NOT a runtime
+    # dependency - see docs/DECISIONS.md for the measured reason.
+    "jinja2>=3.1",
+]
 
 [project.scripts]
 sars = "sars.cli:main"
 
 [tool.setuptools.packages.find]
 where = ["src"]
+
+[tool.setuptools.package-data]
+# Everything the renderer needs at runtime must ship in the wheel. There is no
+# fallback font and no way to re-derive a layout without the source PDFs, so both
+# are package data rather than build output. See docs/PACKAGING.md.
+"sars.assets" = ["fonts/*.ttf", "fonts/*.otf", "fonts/manifest.json", "fonts/upstream/*"]
+"sars.secondary.templates" = ["layouts/*.json.gz", "layouts/*.json"]
 
 [tool.pytest.ini_options]
 markers = [

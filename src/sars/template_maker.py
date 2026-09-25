@@ -26,7 +26,7 @@ Three functions are exposed:
 Each report type has its own expected *data shape*; the shape is the schema
 class named for that type (documented on each template module and on the schema
 dataclasses). The mapping report_type -> template is
-:data:`sars.templates.RENDERERS`.
+:data:`sars.secondary.templates.RENDERERS`.
 """
 
 from __future__ import annotations
@@ -35,8 +35,26 @@ import tempfile
 from pathlib import Path
 from typing import Any
 
-from . import printing
-from .templates import RENDERERS, TYPE_BY_SCHEMA, renderer_for
+from . import printing, stages
+from .schema import TYPE_BY_SCHEMA
+
+
+def renderer_for(report_type: str, stage: str | None = None):
+    """The renderer for a report type within an education stage.
+
+    Renderers belong to a stage — secondary's report types are not primary's — so
+    this asks :mod:`sars.stages` rather than a module-level table.
+    """
+    renderers = stages.get(stage).renderers
+    renderer = renderers.get(report_type)
+    if renderer is None:
+        renderer = renderers.get("generic")
+    if renderer is None:
+        raise KeyError(
+            f"stage {stages.get(stage).name!r} has no renderer for {report_type!r} "
+            f"and no generic fallback; available: {', '.join(sorted(renderers)) or 'none'}"
+        )
+    return renderer
 
 
 def _report_type_of(data: Any) -> str:
@@ -49,15 +67,17 @@ def _report_type_of(data: Any) -> str:
     """
     meta = getattr(data, "meta", None)
     rtype = getattr(meta, "report_type", "") if meta is not None else ""
-    if rtype and rtype in RENDERERS:
+    if rtype and rtype in stages.get().renderers:
         return rtype
     return TYPE_BY_SCHEMA.get(type(data), "generic")
 
 
-def render_html(report_type: str, data: Any, engine: str | None = None) -> str:
+def render_html(
+    report_type: str, data: Any, engine: str | None = None, *, grow: bool = False
+) -> str:
     """Render report *data* to a full, styled HTML document string.
 
-    ``report_type`` selects the template (see :data:`sars.templates.RENDERERS`);
+    ``report_type`` selects the template (see :data:`sars.secondary.templates.RENDERERS`);
     ``data`` must be the schema instance that template expects - e.g.
     :class:`~sars.schema.SchoolsRankReport` for ``schools_rank`` /
     ``top_schools``, :class:`~sars.schema.SchoolResultSlip` for
@@ -68,13 +88,11 @@ def render_html(report_type: str, data: Any, engine: str | None = None) -> str:
     ``district_performance`` / ``mock_mobility`` / ``generic``).
     """
     renderer = renderer_for(report_type)
-    if engine is None:
-        return renderer(data)
     try:
-        return renderer(data, engine=engine)
+        return renderer(data, engine=engine, grow=grow)
     except TypeError:
-        # A renderer that does not take an engine prints the same HTML either
-        # way; the engine only affects the baseline calibration.
+        # A renderer that takes neither an engine nor grow prints the same HTML
+        # either way; the engine only affects the baseline calibration.
         return renderer(data)
 
 
@@ -83,6 +101,8 @@ def render_pdf(
     data: Any,
     out_path: str | Path | None = None,
     engine: str | None = None,
+    *,
+    grow: bool = False,
 ) -> Path | bytes:
     """Render report *data* to a PDF (HTML then WeasyPrint).
 
@@ -92,7 +112,7 @@ def render_pdf(
     """
     name = getattr(getattr(data, "meta", None), "name", "") or ""
     engine = engine or printing.engine_for(name)
-    html_text = render_html(report_type, data, engine=engine)
+    html_text = render_html(report_type, data, engine=engine, grow=grow)
     # A base_url lets the engine resolve any relative asset; the templates are
     # self-contained so a temp dir is enough.
     return printing.print_pdf(

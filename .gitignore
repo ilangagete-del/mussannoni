@@ -18,10 +18,18 @@ __pycache__/
 
 # Font assets are DERIVED from the reference PDFs by tools/build_fonts.py (they
 # are the real Arial / Times / Arial Narrow / Calibri faces those documents
-# embed, plus URW Nimbus for the ones they only name). They are rebuilt on
-# demand and never committed - both because they are build output and because
-# redistributing the Monotype faces is not ours to do.
-/assets/fonts/
+# embed, plus URW Nimbus for the ones they only name).
+#
+# They ARE committed, and they ship inside the package at
+# src/sars/assets/fonts/. This is a deliberate decision, recorded in
+# docs/PACKAGING.md: the project permits no fallback font, so a renderer without
+# these faces does not degrade - it is wrong. Shipping them is what makes
+# `pip install sars-convert` sufficient to reproduce a report. The licensing
+# position and how to build a faces-free distribution instead are both written
+# down in docs/PACKAGING.md.
+#
+# The rasterised calibration cache is derived, not source.
+/src/sars/assets/fonts/calibration.json
 
 # Diagnostic output: the oracle replay, the engine bake-off renders and scratch
 # measurements are measuring instruments, not deliverables.
@@ -29,3 +37,16 @@ __pycache__/
 /output/replay_pdf/
 /output/engine_bakeoff/
 /output/scratch/
+
+# Scratch comparison/measurement dirs written by ad-hoc diagnostic runs.
+/.tmp_all/
+/.tmp_cmp/
+/.tmp_cmp2/
+
+# Experimental renders at the data extremes (tools/stress_data.py). Fixtures are
+# reproducible from the tool, so the renders themselves are not deliverables.
+/output/stress/
+
+# Build artefacts from `uv build` / `python -m build`.
+/dist/
+/build/

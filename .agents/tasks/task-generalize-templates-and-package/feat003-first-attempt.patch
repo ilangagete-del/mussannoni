@@ -1,0 +1,775 @@
+diff --git a/src/sars/binding.py b/src/sars/binding.py
+index 1f02d4f..c77e12c 100644
+--- a/src/sars/binding.py
++++ b/src/sars/binding.py
+@@ -81,6 +81,17 @@ def row_groups(data: Any) -> list[dict[str, Any]]:
+         if rows:
+             groups.append({"name": name, "rows": rows})
+ 
++    def push_section(name: str, rows: list[dict[str, str]]) -> None:
++        """Push a section group even when empty, so group *indices* stay stable.
++
++        A report with an empty/omitted section (or an empty continuation table)
++        must keep the same group ordering as when it is full, or a later band
++        bound by ``group_index`` would silently read the wrong section. The empty
++        group carries no rows, so the template draws no body for it (an empty
++        section renders no orphan rows) — see ``layout_spec._binding_rows_per_band``.
++        """
++        groups.append({"name": name, "rows": rows})
++
+     # Header-keyed generic sections
+     sections = getattr(data, "sections", None)
+     if sections and all(hasattr(section, "column_headers") for section in sections):
+@@ -94,7 +105,7 @@ def row_groups(data: Any) -> list[dict[str, Any]]:
+                     if header in values:
+                         flat[f"col:{position}"] = str(values[header])
+                 rows.append(flat)
+-            push(f"section{index}", rows)
++            push_section(f"section{index}", rows)
+             totals = list(section.totals.values())
+             total_rows = []
+             for row in totals:
+@@ -108,7 +119,7 @@ def row_groups(data: Any) -> list[dict[str, Any]]:
+     # Best-students sections (students per section)
+     if sections and all(hasattr(section, "students") for section in sections):
+         for index, section in enumerate(sections):
+-            push(f"students{index}", [flatten(student) for student in section.students])
++            push_section(f"students{index}", [flatten(student) for student in section.students])
+         return groups
+ 
+     # Schools-rank / top-schools
+diff --git a/src/sars/layout.py b/src/sars/layout.py
+index e59e91a..17c200d 100644
+--- a/src/sars/layout.py
++++ b/src/sars/layout.py
+@@ -133,6 +133,7 @@ class Canvas:
+         size: float,
+         color: str = "#000000",
+         rotation: int = 0,
++        clip: Box | None = None,
+     ) -> None:
+         """Place *content* with its baseline at *baseline* and its start at *x*.
+ 
+@@ -140,11 +141,30 @@ class Canvas:
+         ``times-bold``, ``arial-narrow-bold``, …) for THIS report; the concrete
+         family is resolved from the font manifest, so the glyphs are the ones the
+         reference renders.
++
++        When ``clip`` is given, the run is drawn inside that rectangle with the
++        overflow hidden — the way the reference clips a value to its cell box
++        (see ``docs/FIDELITY_NOTES.md`` §6c). A run that fits its clip box is
++        pixel-identical to the unclipped run; only text wider than the box is
++        cut at the box edge instead of overhanging the next column or the page.
+         """
+         if not content:
+             return
+         family = fonts.family(self.report, role)
+         offset = fonts.baseline_offset(family, size, self.engine)
++        run_class = self.book.text_class(family, size, color)
++        if clip is not None and not rotation:
++            # A clipping container at the cell box, with the run positioned
++            # RELATIVE to it, so the glyph origins are unchanged and only the
++            # part of the run past the box edge is hidden.
++            self._texts.append(
++                f'<c style="left:{clip.x:.4f}pt;top:{clip.y:.4f}pt;'
++                f'width:{clip.w:.4f}pt;height:{clip.h:.4f}pt">'
++                f'<t class="{run_class}" '
++                f'style="left:{x - clip.x:.4f}pt;top:{baseline - offset - clip.y:.4f}pt">'
++                f"{esc(content)}</t></c>"
++            )
++            return
+         if rotation:
+             placement = (
+                 f"left:{x:.4f}pt;top:{baseline:.4f}pt;transform-origin:0 0;"
+@@ -153,8 +173,7 @@ class Canvas:
+         else:
+             placement = f"left:{x:.4f}pt;top:{baseline - offset:.4f}pt"
+         self._texts.append(
+-            f'<t class="{self.book.text_class(family, size, color)}" '
+-            f'style="{placement}">{esc(content)}</t>'
++            f'<t class="{run_class}" style="{placement}">{esc(content)}</t>'
+         )
+ 
+     def measure(self, content: str, role: str, size: float) -> float:
+@@ -174,6 +193,7 @@ class Canvas:
+         color: str = "#000000",
+         rotation: int = 0,
+         xfix: float = 0.0,
++        clip: Box | None = None,
+     ) -> None:
+         """Place *content* inside *box* at *baseline*, aligned like the reference.
+ 
+@@ -183,6 +203,11 @@ class Canvas:
+         difference between that computation and where the reference actually
+         starts the run (its cell box is not the rectangle lattice to the last
+         fraction of a point).
++
++        ``clip``, when given, bounds the run to that rectangle: text wider than
++        its column is cut at the box edge (the reference clips values to their
++        cell), so a long value never overhangs the next column or runs off the
++        page. A value that fits is unaffected.
+         """
+         content = content.strip()
+         if not content:
+@@ -208,7 +233,7 @@ class Canvas:
+             x = box.right - pad - width
+         else:
+             x = box.x + (box.w - width) / 2
+-        self.text(x + xfix, baseline, content, role=role, size=size, color=color)
++        self.text(x + xfix, baseline, content, role=role, size=size, color=color, clip=clip)
+ 
+     # --------------------------------------------------------------- assembly
+     def body(self) -> str:
+@@ -229,13 +254,22 @@ def document(
+     through ``extra_css``: there is no shared stylesheet and no cross-report CSS.
+     """
+     book = pages[0].book if pages else StyleBook()
++    # The clip container rule is only needed when a value actually overflows its
++    # cell (an over-wide, elastic value); emitting it only then keeps documents
++    # that clip nothing — every reference report — byte-for-byte unchanged.
++    clip_css = (
++        "c{position:absolute;display:block;overflow:hidden}"
++        if any("<c " in page.body() for page in pages)
++        else ""
++    )
+     css = (
+         f"@page{{size:{width:g}pt {height:g}pt;margin:0}}"
+         "html,body{margin:0;padding:0;background:#fff}"
+         ".pg{position:relative;overflow:hidden;background:#fff}"
+         ".pg+.pg{page-break-before:always}"
+         "i,t{position:absolute;display:block}"
+-        f"t{{line-height:0;white-space:pre;{fonts.SHAPING_RESET}}}"
++        + clip_css
++        + f"t{{line-height:0;white-space:pre;{fonts.SHAPING_RESET}}}"
+         + book.css()
+         + extra_css
+     )
+diff --git a/src/sars/layout_spec.py b/src/sars/layout_spec.py
+index cef4ea3..1bb342d 100644
+--- a/src/sars/layout_spec.py
++++ b/src/sars/layout_spec.py
+@@ -159,6 +159,35 @@ def _derived_fills(band: dict, row: int, rows: list | None) -> list[tuple[float,
+     return out
+ 
+ 
++#: Vertical breathing room around a clipped run, so clipping never shaves a
++#: glyph's ascender/descender — only its horizontal overflow past the cell.
++_CLIP_VPAD = 4.0
++
++
++def _clip_box(cell: dict, cell_box: Box, text: str, canvas: Canvas) -> Box | None:
++    """A clip rectangle for an OVER-WIDE value, else ``None`` (no clipping).
++
++    Clipping is applied only when the measured run is wider than the cell box —
++    a value that fits is emitted byte-for-byte as before, so the reference rows
++    (which fit their columns) are wholly unaffected. Over-wide values are cut at
++    the cell's own edge the way the reference clips them, instead of overhanging
++    the next column or running off the page. The clip is horizontal only: the
++    box is grown vertically so a tall glyph is never shaved.
++    """
++    align = cell.get("align", "center")
++    if align == "center":
++        # A centred value that overflows spills equally both sides; clipping it
++        # to the narrow cell box would hide its middle. These columns are the
++        # fixed-width code/count columns whose values never overflow in practice,
++        # so leave centred cells unclipped (still inert, and no worse than today).
++        return None
++    width = canvas.measure(text.strip(), cell["role"], cell["size"])
++    pad = float(cell.get("pad", 0.0))
++    if width <= cell_box.w - pad + 0.5:
++        return None
++    return Box(cell_box.x, cell_box.y - _CLIP_VPAD, cell_box.w, cell_box.h + 2 * _CLIP_VPAD)
++
++
+ def _recolour(derived: list[tuple[float, float, str]], x: float, w: float, color: str) -> str:
+     """Use a derived wash for a fill that covers a derived cell's box."""
+     for cell_x, cell_w, colour in derived:
+@@ -167,6 +196,71 @@ def _recolour(derived: list[tuple[float, float, str]], x: float, w: float, color
+     return color
+ 
+ 
++#: When the data is longer than the reference band, how many extra rows to probe
++#: for before giving up (a hard bound so a runaway provider cannot loop forever).
++_MAX_EXTRA_ROWS = 5000
++
++
++def _collect_rows(
++    values: ValueProvider,
++    page_index: int,
++    band_index: int,
++    band: dict,
++    count: int,
++) -> list:
++    """Pull up to *count* rows from *values*, preserving mid-band chrome gaps.
++
++    A ``None`` at a row the reference recovered as a chrome gap (a repeated
++    column header drawn inside the band) is kept as a ``None`` placeholder so
++    fills and baselines still land by absolute row index; a ``None`` where the
++    data has simply run out ends the band.
++    """
++    mapping = band.get("row_data_index")
++    rows: list = []
++    for row in range(count):
++        supplied = values(page_index, band_index, band["kind"], row)
++        if supplied is None:
++            if mapping is not None and row < len(mapping) and mapping[row] is None:
++                rows.append(None)
++                continue
++            break
++        rows.append(supplied)
++    return rows
++
++
++def _has_data(rows: list) -> bool:
++    """Does *rows* carry any real (non-gap, non-empty) value?"""
++    for row in rows:
++        if row is None:
++            continue
++        if isinstance(row, dict):
++            if any(str(v).strip() for v in row.values()):
++                return True
++        elif any(str(v).strip() for v in row):
++            return True
++    return False
++
++
++def _effective_count(
++    values: ValueProvider,
++    page_index: int,
++    band_index: int,
++    band: dict,
++    override: int | None,
++) -> tuple[int, list]:
++    """The number of rows this band carries for the supplied data, and the rows.
++
++    The default is the reference row count, so the 19 reference reports are
++    **byte-for-byte inert**. Elastic sizing (more rows, or an empty section that
++    collapses to no body) is driven by an explicit ``override`` computed by the
++    data provider — which alone understands how a data group maps onto the
++    spec's pages and bands — not by blind probing here, because a band that the
++    reference *continues on the next page* must not swallow that page's rows.
++    """
++    count = band["reference_rows"] if override is None else override
++    return count, _collect_rows(values, page_index, band_index, band, count)
++
++
+ def render_html(
+     report: str,
+     values: ValueProvider,
+@@ -178,153 +272,48 @@ def render_html(
+     """Render *report* from its spec, taking each band's values from *values*.
+ 
+     ``rows_per_band`` may override how many rows a ``(page, band)`` carries when
+-    the data is longer or shorter than the reference; by default every band
+-    carries exactly the number of rows the reference had.
++    the data is longer or shorter than the reference; by default every band is
++    sized to the data it is fed — shorter data shrinks the band (no orphan rules
++    below the last row) and longer data extends it at the recovered pitch, up to
++    the page bottom, after which the overflow flows onto an appended clone page.
++    The reference 19 are inert: their data length equals ``reference_rows``.
+     """
+     spec = load(report)
+     engine = engine or printing.engine_for(report)
+-    rows_per_band = rows_per_band or {}
++    if rows_per_band is None:
++        # A provider that understands the data→page mapping can publish how many
++        # rows each (page, band) should carry when the data is longer/shorter or
++        # a section is empty. Absent that, every band keeps its reference shape.
++        rows_per_band = dict(getattr(values, "rows_per_band", {}) or {})
+     pages: list[Canvas] = []
+     book = StyleBook()
+ 
+     for page_index, page in enumerate(spec["pages"]):
+-        canvas = Canvas(report, page["width"], page["height"], engine=engine, book=book)
+         bands = page["bands"]
+ 
+         # The values first: a band's fills may depend on them (the competency
+         # band's colour is DERIVED from the competency label / GPA, never stored).
++        # Each band is sized to the data it is fed (grow / shrink); the reference
++        # 19 land exactly on ``reference_rows`` so this is inert for them.
+         supplied_rows: dict[int, list] = {}
++        counts: dict[int, int] = {}
+         for band_index, band in enumerate(bands):
+-            count = _row_count(band, rows_per_band.get((page_index, band_index)))
+-            mapping = band.get("row_data_index")
+-            rows: list = []
+-            for row in range(count):
+-                supplied = values(page_index, band_index, band["kind"], row)
+-                if supplied is None:
+-                    # A ``None`` from a row the reference recovered as an
+-                    # unexplained/chrome row (a repeated column header drawn
+-                    # inside the band) is a gap to SKIP, not the end of the band:
+-                    # the rows after it are real data. Preserve the row position
+-                    # with an empty placeholder so fills and baselines still land
+-                    # by absolute row index. A ``None`` past the reference rows
+-                    # (data ran out) genuinely ends the band.
+-                    if (
+-                        mapping is not None
+-                        and row < len(mapping)
+-                        and mapping[row] is None
+-                    ):
+-                        rows.append(None)
+-                        continue
+-                    break
+-                rows.append(supplied)
++            count, rows = _effective_count(
++                values, page_index, band_index, band, rows_per_band.get((page_index, band_index))
++            )
++            counts[band_index] = count
+             supplied_rows[band_index] = rows
+ 
+-        # 1. the paint sequence, rectangle by rectangle, in the reference's order
+-        for entry in page["sequence"]:
+-            if entry["t"] == "s":
+-                x, y, w, h, color = entry["r"]
+-                canvas.fill(Box(x, y, w, h), color)
+-                continue
+-            band_index = entry["band"]
+-            band = bands[band_index]
+-            count = _row_count(band, rows_per_band.get((page_index, band_index)))
+-            row = entry["row"]
+-            if row >= count:
+-                continue
+-            x, dy, w, h, color = entry["d"]
+-            canvas.fill(Box(x, _row_top(band, row) + dy, w, h), color)
++        # Split the page's rows into page-fulls when longer data overflows the
++        # page bottom. ``chunks`` is a list of {band_index: (start, stop)} — one
++        # entry per physical page. For the reference 19 there is exactly one
++        # chunk carrying every band's full (reference) range, so this is inert.
++        chunks = _paginate(page, bands, counts)
+ 
+-        # Rows the reference never had (longer data): paint the template row,
+-        # with the washes that are a function of the value derived.
+-        for band_index, band in enumerate(bands):
+-            count = _row_count(band, rows_per_band.get((page_index, band_index)))
+-            for row in range(len(band.get("row_tops") or []), count):
+-                top = _row_top(band, row)
+-                derived = _derived_fills(band, row, supplied_rows.get(band_index))
+-                for x, dy, w, h, color in _row_fills(band, row):
+-                    canvas.fill(Box(x, top + dy, w, h), _recolour(derived, x, w, color))
+-
+-        # 2. the values, band by band
+-        for band_index, band in enumerate(bands):
+-            for row, supplied in enumerate(supplied_rows.get(band_index, [])):
+-                if supplied is None:
+-                    continue
+-                top = _row_top(band, row)
+-                for cell in _row_cells(band, row):
+-                    if "role" not in cell:
+-                        continue
+-                    column = cell["col"]
+-                    if isinstance(supplied, dict):
+-                        text = supplied.get(column, "")
+-                    else:
+-                        text = supplied[column] if column < len(supplied) else ""
+-                    if text is None:
+-                        continue
+-                    text = str(text).strip()
+-                    if not text:
+-                        continue
+-                    height = band["pitch"]
+-                    bottoms = band.get("row_bottoms") or []
+-                    if row < len(bottoms):
+-                        height = float(bottoms[row]) - top
+-                    # When the value is the string the reference printed in this
+-                    # cell, start it exactly where the reference started it — and
+-                    # print it with the reference's own spacing. Comparing
+-                    # whitespace-insensitively matters: a value the extractor
+-                    # rebuilt with single spaces ("ENG 65 B") is the same value
+-                    # the reference padded differently, and falling back to
+-                    # computed alignment for it cost ~0.4pt on every such cell.
+-                    sample = str(cell.get("sample") or "").strip()
+-                    pieces = cell.get("pieces") or []
+-                    glyphs = cell.get("glyphs") or []
+-                    if sample and _same_value(text, sample) and glyphs:
+-                        # The value the reference printed here: replay its glyphs
+-                        # at the exact x the reference drew each one, so a long
+-                        # cell does not drift by the accumulated difference
+-                        # between the font's advances and the reference's own
+-                        # device grid. Pixel-identical to the reference, and still
+-                        # chosen by the data.
+-                        baseline = top + cell["dy"]
+-                        for glyph_char, glyph_x in glyphs:
+-                            canvas.text(
+-                                float(glyph_x),
+-                                baseline,
+-                                str(glyph_char),
+-                                role=cell["role"],
+-                                size=cell["size"],
+-                                color=cell.get("color", "#000000"),
+-                            )
+-                        continue
+-                    if sample and _same_value(text, sample) and pieces:
+-                        # Older specs without per-glyph positions: draw each of
+-                        # the reference's own runs at its own x.
+-                        for piece_text, piece_x in pieces:
+-                            canvas.text(
+-                                float(piece_x),
+-                                top + cell["dy"],
+-                                str(piece_text),
+-                                role=cell["role"],
+-                                size=cell["size"],
+-                                color=cell.get("color", "#000000"),
+-                            )
+-                        continue
+-                    canvas.cell_text(
+-                        Box(cell["x"], top, cell["w"], height),
+-                        text,
+-                        role=cell["role"],
+-                        size=cell["size"],
+-                        baseline=top + cell["dy"],
+-                        align=cell.get("align", "center"),
+-                        pad=cell.get("pad", 0.0),
+-                        color=cell.get("color", "#000000"),
+-                        xfix=cell.get("xfix", 0.0),
+-                    )
+-
+-        # 3. the chrome, glyph by glyph at the reference's own origins
+-        for x, y, char, role, size, color, rotation in page["chrome"]:
+-            canvas.text(x, y, char, role=role, size=size, color=color, rotation=rotation)
+-
+-        pages.append(canvas)
++        for chunk in chunks:
++            canvas = Canvas(report, page["width"], page["height"], engine=engine, book=book)
++            _render_page(canvas, page, bands, supplied_rows, counts, chunk)
++            pages.append(canvas)
+ 
+     return document(
+         title=title or report,
+@@ -334,6 +323,238 @@ def render_html(
+     )
+ 
+ 
++def _band_bottom(band: dict, count: int) -> float:
++    """The y of the last drawn row's bottom for *count* rows in *band*."""
++    if count <= 0:
++        return band.get("y0", 0.0)
++    bottoms = band.get("row_bottoms") or []
++    if count - 1 < len(bottoms):
++        return float(bottoms[count - 1])
++    return _row_top(band, count - 1) + band["pitch"]
++
++
++def _rows_per_page(band: dict, limit: float) -> int:
++    """How many of *band*'s rows fit from its first row top to *limit*.
++
++    Uses the recovered first-row top and the row pitch, so a grown band packs
++    onto continuation pages at exactly the pitch the reference used.
++    """
++    top0 = _row_top(band, 0)
++    pitch = band["pitch"]
++    if pitch <= 0:
++        return band["reference_rows"] or 1
++    fit = int((limit - top0) // pitch)
++    return max(1, fit)
++
++
++def _paginate(
++    page: dict, bands: list, counts: dict[int, int]
++) -> list[dict[int, tuple[int, int, int]]]:
++    """Break a page's bands into physical pages when the data overflows it.
++
++    Returns one dict per physical page mapping ``band_index -> (start, stop,
++    shift)``, where ``shift`` is the number of ROWS the chunk's rows are lifted
++    so a continuation page's rows begin at the band's own first-row top (rows are
++    re-based onto the repeated page chrome). When nothing overflows — every
++    reference report, and any data that still fits — there is a single chunk with
++    ``shift == 0`` carrying each band's whole range: the inert path. A band that
++    fits its reference shape is never split.
++    """
++    limit = float(page["height"])
++    overflow = any(
++        _band_bottom(band, counts[i]) > limit and counts[i] > band["reference_rows"]
++        for i, band in enumerate(bands)
++    )
++    if not overflow:
++        return [{i: (0, counts[i], 0) for i in range(len(bands))}]
++
++    chunks: list[dict[int, tuple[int, int, int]]] = []
++    starts = {i: 0 for i in range(len(bands))}
++    # Only GROWING bands drive pagination; fixed-shape bands (summary/totals) are
++    # placed once, on the last physical page, after the loop.
++    remaining = {
++        i: (counts[i] if counts[i] > band["reference_rows"] else 0)
++        for i, band in enumerate(bands)
++    }
++    physical = 0
++    while any(remaining[i] > 0 for i in range(len(bands))):
++        chunk: dict[int, tuple[int, int, int]] = {}
++        for i, band in enumerate(bands):
++            if remaining[i] <= 0:
++                continue
++            grows = counts[i] > band["reference_rows"]
++            if not grows:
++                # A fixed-shape band (summary / totals) is drawn once, on the
++                # last physical page — below the final rows, as the reference
++                # puts its totals after the data.
++                continue
++            start = starts[i]
++            per_page = _rows_per_page(band, limit)
++            stop = min(counts[i], start + per_page)
++            # ``shift`` re-bases this chunk so its first row lands on the band's
++            # own first-row top on the repeated page chrome.
++            chunk[i] = (start, stop, start)
++            starts[i] = stop
++            remaining[i] = counts[i] - stop
++        chunks.append(chunk)
++        physical += 1
++        if physical > _MAX_EXTRA_ROWS:  # pragma: no cover - runaway guard
++            break
++
++    # Place each fixed-shape band (totals/summary) on the last physical page.
++    for i, band in enumerate(bands):
++        if counts[i] > band["reference_rows"]:
++            continue
++        chunks[-1][i] = (0, counts[i], 0)
++    return chunks
++
++
++def _render_page(
++    canvas: Canvas,
++    page: dict,
++    bands: list,
++    supplied_rows: dict[int, list],
++    counts: dict[int, int],
++    chunk: dict[int, tuple[int, int, int]],
++) -> None:
++    """Draw one physical page: the rows named by *chunk* for each band.
++
++    Each chunk entry is ``(start, stop, shift)``. ``shift`` re-bases a
++    continuation page's rows so row ``start`` lands on the band's own first-row
++    top; on the inert single-page path ``shift`` is 0 and rows keep their
++    recovered tops exactly.
++    """
++    def y_shift(band: dict, band_index: int) -> float:
++        span = chunk.get(band_index)
++        if not span or span[2] == 0:
++            return 0.0
++        return _row_top(band, span[2]) - _row_top(band, 0)
++
++    def in_chunk(band_index: int, row: int) -> bool:
++        span = chunk.get(band_index)
++        return span is not None and span[0] <= row < span[1]
++
++    # 1. the paint sequence, rectangle by rectangle, in the reference's order.
++    #    Per-row rules/washes are drawn only for rows this chunk carries, so a
++    #    band with FEWER data rows leaves no orphan rules below its last row.
++    for entry in page["sequence"]:
++        if entry["t"] == "s":
++            x, y, w, h, color = entry["r"]
++            canvas.fill(Box(x, y, w, h), color)
++            continue
++        band_index = entry["band"]
++        band = bands[band_index]
++        row = entry["row"]
++        if not in_chunk(band_index, row):
++            continue
++        x, dy, w, h, color = entry["d"]
++        canvas.fill(Box(x, _row_top(band, row) + dy - y_shift(band, band_index), w, h), color)
++
++    # Rows the reference never had (longer data): paint the template row,
++    # with the washes that are a function of the value derived.
++    for band_index, band in enumerate(bands):
++        span = chunk.get(band_index)
++        if span is None:
++            continue
++        shift = y_shift(band, band_index)
++        start = max(span[0], len(band.get("row_tops") or []))
++        for row in range(start, span[1]):
++            top = _row_top(band, row) - shift
++            derived = _derived_fills(band, row, supplied_rows.get(band_index))
++            for x, dy, w, h, color in _row_fills(band, row):
++                canvas.fill(Box(x, top + dy, w, h), _recolour(derived, x, w, color))
++
++    # 2. the values, band by band — only the rows this chunk carries
++    for band_index, band in enumerate(bands):
++        span = chunk.get(band_index)
++        if span is None:
++            continue
++        shift = y_shift(band, band_index)
++        rows = supplied_rows.get(band_index, [])
++        for row in range(span[0], span[1]):
++            if row >= len(rows):
++                break
++            supplied = rows[row]
++            if supplied is None:
++                continue
++            top = _row_top(band, row) - shift
++            for cell in _row_cells(band, row):
++                if "role" not in cell:
++                    continue
++                column = cell["col"]
++                if isinstance(supplied, dict):
++                    text = supplied.get(column, "")
++                else:
++                    text = supplied[column] if column < len(supplied) else ""
++                if text is None:
++                    continue
++                text = str(text).strip()
++                if not text:
++                    continue
++                height = band["pitch"]
++                bottoms = band.get("row_bottoms") or []
++                if row < len(bottoms):
++                    height = float(bottoms[row]) - top
++                # When the value is the string the reference printed in this
++                # cell, start it exactly where the reference started it — and
++                # print it with the reference's own spacing. Comparing
++                # whitespace-insensitively matters: a value the extractor
++                # rebuilt with single spaces ("ENG 65 B") is the same value
++                # the reference padded differently, and falling back to
++                # computed alignment for it cost ~0.4pt on every such cell.
++                sample = str(cell.get("sample") or "").strip()
++                pieces = cell.get("pieces") or []
++                glyphs = cell.get("glyphs") or []
++                if sample and _same_value(text, sample) and glyphs:
++                    # The value the reference printed here: replay its glyphs
++                    # at the exact x the reference drew each one, so a long
++                    # cell does not drift by the accumulated difference
++                    # between the font's advances and the reference's own
++                    # device grid. Pixel-identical to the reference, and still
++                    # chosen by the data.
++                    baseline = top + cell["dy"]
++                    for glyph_char, glyph_x in glyphs:
++                        canvas.text(
++                            float(glyph_x),
++                            baseline,
++                            str(glyph_char),
++                            role=cell["role"],
++                            size=cell["size"],
++                            color=cell.get("color", "#000000"),
++                        )
++                    continue
++                if sample and _same_value(text, sample) and pieces:
++                    # Older specs without per-glyph positions: draw each of
++                    # the reference's own runs at its own x.
++                    for piece_text, piece_x in pieces:
++                        canvas.text(
++                            float(piece_x),
++                            top + cell["dy"],
++                            str(piece_text),
++                            role=cell["role"],
++                            size=cell["size"],
++                            color=cell.get("color", "#000000"),
++                        )
++                    continue
++                cell_box = Box(cell["x"], top, cell["w"], height)
++                canvas.cell_text(
++                    cell_box,
++                    text,
++                    role=cell["role"],
++                    size=cell["size"],
++                    baseline=top + cell["dy"],
++                    align=cell.get("align", "center"),
++                    pad=cell.get("pad", 0.0),
++                    color=cell.get("color", "#000000"),
++                    xfix=cell.get("xfix", 0.0),
++                    clip=_clip_box(cell, cell_box, text, canvas),
++                )
++
++    # 3. the chrome, glyph by glyph at the reference's own origins
++    for x, y, char, role, size, color, rotation in page["chrome"]:
++        canvas.text(x, y, char, role=role, size=size, color=color, rotation=rotation)
++
++
+ def section_provider(report: str, sections: list[Any]) -> ValueProvider:
+     """Feed a spec's bands from header-keyed data sections, in document order.
+ 
+@@ -426,6 +647,18 @@ def binding_provider(report: str, data: Any) -> ValueProvider:
+             return groups[index]["rows"]
+         return None
+ 
++    def group_rows_for(band: dict) -> list | None:
++        """The band's group rows, but ONLY when resolved by its group *name*.
++
++        The by-``group_index`` fallback is deliberately excluded here: it is the
++        path a report takes when its extracted data no longer matches the group
++        shape the spec was recovered against (a generic report whose sections
++        collapsed to one flat ``rows`` group), and growing/collapsing on that
++        mismatch would change how a reference report renders. Name resolution is
++        exact, so elastic sizing only fires when the data truly maps to the band.
++        """
++        return by_name.get(band.get("group", ""))
++
+     def provider(page_index: int, band_index: int, kind: str, row_index: int):
+         band = spec["pages"][page_index]["bands"][band_index]
+         bindings = band.get("bindings") or {}
+@@ -466,9 +699,78 @@ def binding_provider(report: str, data: Any) -> ValueProvider:
+ 
+         return values or None
+ 
++    provider.rows_per_band = _binding_rows_per_band(spec, group_rows_for)  # type: ignore[attr-defined]
+     return provider
+ 
+ 
++def _band_span(band: dict) -> tuple[int, int]:
++    """The band's (first data index, rows-consumed) into its group.
++
++    Reads the recovered ``row_data_index`` (which already honours the band's
++    ``group_offset`` and any chrome gaps), so the span is exactly what the
++    reference band consumed — the value that keeps the band inert on
++    reference-length data. ``start`` is the first data row the band shows and
++    ``reach`` is the count of data rows it covers (its highest index minus its
++    lowest, inclusive).
++    """
++    reference = band["reference_rows"]
++    indices = [_data_index(band, row) for row in range(reference)]
++    real = [i for i in indices if i is not None]
++    if not real:
++        return 0, 0
++    return min(real), max(real) - min(real) + 1
++
++
++def _binding_rows_per_band(spec: dict, group_rows_for) -> dict[tuple[int, int], int]:
++    """Row-count overrides that make a binding-fed report elastic.
++
++    For every data group the spec binds:
++
++    * a band whose recovered rows all sit **past** the supplied data collapses to
++      zero rows (an empty / omitted section, or a page beyond a short table, so
++      no orphan ruled body is drawn);
++    * the band that reaches **furthest** into the group (its tail) grows to
++      absorb any rows beyond what the reference reached (longer data).
++
++    Bands fed exactly their reference rows get no override, so the 19 reference
++    reports — whose data length matches what their bands were recovered to
++    consume — stay byte-for-byte inert. A band's own ``group_offset`` /
++    ``row_data_index`` is respected, so a table the reference continues across
++    pages keeps each page's slice unchanged.
++    """
++    overrides: dict[tuple[int, int], int] = {}
++    per_group: dict[int, list[tuple[tuple[int, int], dict, int, int, int]]] = {}
++    for page_index, page in enumerate(spec["pages"]):
++        for band_index, band in enumerate(page["bands"]):
++            if band["kind"] == "total":
++                continue
++            rows = group_rows_for(band)
++            if rows is None:
++                continue
++            start, reach = _band_span(band)
++            per_group.setdefault(id(rows), []).append(
++                ((page_index, band_index), band, start, reach, len(rows))
++            )
++
++    for members in per_group.values():
++        data_len = members[0][4]
++        # The tail band is the one reaching furthest into the group.
++        tail = max(range(len(members)), key=lambda i: members[i][2] + members[i][3])
++        for position, (pos, band, start, reach, _dl) in enumerate(members):
++            reference = band["reference_rows"]
++            if start >= data_len and reach > 0:
++                # This band's rows are entirely past the supplied data.
++                overrides[pos] = 0
++                continue
++            if position == tail and reach > 0:
++                covered = start + reach  # rows the reference reached in the group
++                if data_len > covered:
++                    # Longer data: the tail absorbs every remaining row, keeping
++                    # at least its reference shape (its own chrome / gaps).
++                    overrides[pos] = max(reference, reference + (data_len - covered))
++    return overrides
++
++
+ def band_summary(report: str) -> list[dict[str, Any]]:
+     """Diagnostic: the bands a report's spec defines, per page."""
+     spec = load(report)

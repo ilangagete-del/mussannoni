@@ -59,7 +59,7 @@ from fontTools.ttLib import TTFont
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
 
-ASSETS = ROOT / "assets" / "fonts"
+ASSETS = ROOT / "src" / "sars" / "assets" / "fonts"
 UPSTREAM = ASSETS / "upstream"
 INSTALL_DIR = Path.home() / ".local" / "share" / "fonts" / "sars"
 MANIFEST = ASSETS / "manifest.json"

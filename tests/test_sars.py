@@ -318,7 +318,7 @@ def test_generated_pdf_matches_reference(edk_pair):
 
 
 def test_competency_canonical_colours_by_label():
-    from sars import competency
+    from sars.secondary import competency
 
     assert competency.background_for("Grade A (Excellent)") == "#00b050"
     assert competency.background_for("Grade B (Very Good)") == "#92d050"
@@ -328,7 +328,7 @@ def test_competency_canonical_colours_by_label():
 
 
 def test_competency_bands_by_gpa_use_documented_cutoffs():
-    from sars import competency
+    from sars.secondary import competency
 
     assert competency.CUTOFFS == (1.5, 2.5, 3.5, 4.5)
     assert competency.band_for_gpa(1.0).label == "Excellent"
@@ -340,7 +340,7 @@ def test_competency_bands_by_gpa_use_documented_cutoffs():
 
 
 def test_competency_resolves_synonyms_and_grade_letters():
-    from sars import competency
+    from sars.secondary import competency
 
     assert competency.band_for_label("Excellent").grade == "A"
     assert competency.band_for_label("A").grade == "A"
@@ -350,7 +350,7 @@ def test_competency_resolves_synonyms_and_grade_letters():
 
 def test_competency_ignores_ordinary_labels_containing_grade_letters():
     """A SCHOOL NAME with a stray 'A' must not be mistaken for a competency."""
-    from sars import competency
+    from sars.secondary import competency
 
     assert competency.band_for_label("ALLIANCE GIRLS") is None
     assert competency.band_for_label("NASCO") is None
@@ -371,7 +371,7 @@ def _report_for(name: str):
 
 
 def test_catalogue_covers_every_document():
-    from sars import reports
+    from sars.secondary import reports
 
     names = {p.name for p in sources.discover()}
     assert set(reports.CATALOGUE) == names
@@ -422,6 +422,63 @@ def test_best_students_splits_titled_sections():
     assert report.sections[0].students[0].school_name
 
 
+def test_best_students_second_section_renders_its_own_rows():
+    """FEAT-002 regression: every logical section/table on a page is fed data.
+
+    The producing application welds the two logical tables that share a page's
+    column lattice (the overall list and the female list, separated by the
+    'TOP TEN BEST FEMALE STUDENTS OVERALL COUNCILWISE' caption) into one PDF
+    table, and spec recovery used to bind that page to a single student group -
+    so the second table drew its caption over an empty body. With band recovery
+    splitting the merged table into one band per logical section and the binding
+    walking the sections in document order, the second (female) section must now
+    render its own candidate rows.
+
+    This asserts on data that ONLY appears in the second section, so it fails on
+    the pre-fix behaviour where that section had no band and was fed nothing.
+    """
+    from sars.layout_spec import binding_provider, load
+
+    report = _report_for("MWANZA CC 10 BEST STUDENTS")
+    overall = report.sections[0]
+    female = report.sections[1]
+
+    # The first page must carry TWO data bands: one per logical section/table.
+    # On the pre-fix code page 0 held a single band (the merged lattice table),
+    # so indexing band 1 would not exist - the defect this test guards against.
+    spec = load("MWANZA CC 10 BEST STUDENTS")
+    first_page_bands = spec["pages"][0]["bands"]
+    assert len(first_page_bands) >= 2, "the second table on page 1 has no band"
+
+    # The second band must bind to the SECOND section's group, not re-bind the
+    # first section, and yield that section's own rows (not None / not empty).
+    second_band = first_page_bands[1]
+    assert second_band.get("group") == "students1", second_band.get("group")
+
+    provider = binding_provider("MWANZA CC 10 BEST STUDENTS", report)
+    yielded = [
+        provider(0, 1, "data", row) for row in range(second_band["reference_rows"])
+    ]
+    rows_with_data = [
+        value
+        for value in yielded
+        if value and any(str(v).strip() for v in value.values())
+    ]
+    # All ten female candidates are produced, and their values are the female
+    # section's, keyed by a candidate who ranks in the female-only list.
+    assert len(rows_with_data) == len(female.students)
+    overall_names = {student.name for student in overall.students}
+    female_only = {s.name for s in female.students if s.name not in overall_names}
+    assert female_only, "fixture should have a female-only candidate to key on"
+    produced_names = {
+        str(value.get(2, "")).strip() for value in rows_with_data
+    }
+    assert female_only & produced_names, (
+        "the second section's own candidates are not rendered; "
+        f"expected one of {sorted(female_only)}, got {sorted(produced_names)}"
+    )
+
+
 def test_subjects_rank_extracts_grade_breakdown():
     from sars import schema
 
@@ -456,7 +513,7 @@ def test_competency_colour_is_not_stored_as_data():
     """DATA IS DATA, NOT STYLES: the competency colour is never stored.
 
     The competency band colour is a deterministic function of the label / GPA
-    (:mod:`sars.competency`) computed by the template at render time, so it must
+    (:mod:`sars.secondary.competency`) computed by the template at render time, so it must
     never be written into the extracted data. The label and GPA stay plain text;
     no hex colour appears in any data field.
     """
@@ -586,7 +643,7 @@ def test_no_shared_css_constant_across_report_types():
     import re
 
     from sars import template_maker
-    from sars.templates import base
+    from sars.secondary.templates import base
 
     # The dismantled shared-funnel constants are gone from the template base.
     assert not hasattr(base, "TEMPLATE_CSS")

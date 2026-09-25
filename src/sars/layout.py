@@ -58,6 +58,35 @@ def esc(text: str) -> str:
     return html.escape(text, quote=False)
 
 
+#: Narrowest horizontal squeeze applied to a value that does not fit its cell.
+#: Below this the run stops shrinking and is truncated instead, because a run
+#: condensed past roughly half its natural width stops being readable. This is
+#: the only knob in the overflow policy; see :meth:`Canvas.cell_text`.
+MIN_CONDENSE = 0.55
+
+
+def _truncate_to_width(
+    content: str, measure, limit: float, scale: float
+) -> str:
+    """Longest prefix of *content* that fits *limit* when condensed by *scale*.
+
+    No ellipsis is appended. The reference faces are subsets — several carry a
+    19-character cmap — so a "…" would not be in the font and the renderer would
+    substitute a DIFFERENT face for that one glyph. This project never permits a
+    fallback font, so the run is cut cleanly instead of marked.
+    """
+    if limit <= 0:
+        return ""
+    low, high = 0, len(content)
+    while low < high:
+        middle = (low + high + 1) // 2
+        if measure(content[:middle]) * scale <= limit:
+            low = middle
+        else:
+            high = middle - 1
+    return content[:low]
+
+
 class StyleBook:
     """This document's own pooled styles: its fonts, sizes, colours and washes.
 
@@ -133,6 +162,7 @@ class Canvas:
         size: float,
         color: str = "#000000",
         rotation: int = 0,
+        condense: float = 1.0,
     ) -> None:
         """Place *content* with its baseline at *baseline* and its start at *x*.
 
@@ -140,18 +170,28 @@ class Canvas:
         ``times-bold``, ``arial-narrow-bold``, …) for THIS report; the concrete
         family is resolved from the font manifest, so the glyphs are the ones the
         reference renders.
+
+        ``condense`` horizontally squeezes the run about its own start, for a
+        value too wide for its cell. It is applied as ``scaleX``, which leaves
+        the baseline exactly where ``baseline`` put it — so the calibrated
+        :func:`sars.fonts.baseline_offset` still holds — and changes no glyph's
+        vertical position or the row's geometry. At the default ``1.0`` the
+        emitted markup is byte-for-byte what it has always been.
         """
         if not content:
             return
         family = fonts.family(self.report, role)
         offset = fonts.baseline_offset(family, size, self.engine)
+        squeeze = "" if condense >= 1.0 else f" scaleX({condense:.6f})"
         if rotation:
             placement = (
                 f"left:{x:.4f}pt;top:{baseline:.4f}pt;transform-origin:0 0;"
-                f"transform:rotate({rotation:g}deg) translateY({-offset:.4f}pt)"
+                f"transform:rotate({rotation:g}deg) translateY({-offset:.4f}pt){squeeze}"
             )
         else:
             placement = f"left:{x:.4f}pt;top:{baseline - offset:.4f}pt"
+            if squeeze:
+                placement += f";transform-origin:0 0;transform:{squeeze.strip()}"
         self._texts.append(
             f'<t class="{self.book.text_class(family, size, color)}" '
             f'style="{placement}">{esc(content)}</t>'
@@ -174,6 +214,7 @@ class Canvas:
         color: str = "#000000",
         rotation: int = 0,
         xfix: float = 0.0,
+        sample: str = "",
     ) -> None:
         """Place *content* inside *box* at *baseline*, aligned like the reference.
 
@@ -183,6 +224,24 @@ class Canvas:
         difference between that computation and where the reference actually
         starts the run (its cell box is not the rectangle lattice to the last
         fraction of a point).
+
+        **Overflow.** A value wider than the room available — a longer student
+        name, a longer council name, a fuller detailed-results string than the
+        reference ever carried — is absorbed where it is drawn: first by
+        condensing the run (down to :data:`MIN_CONDENSE`), then, if even that will
+        not fit, by truncating it. It never changes the row's height, the row
+        pitch or the page count, which is what stops a longer value from
+        repaginating the document.
+
+        The room available is **not** simply the cell box. ``sample`` is the value
+        the reference itself printed here, and some reference cells legitimately
+        overhang their own recovered box: ``Mwanza f2 Mock Mobility 2026`` draws
+        ``GPA 2.2969`` in a box far narrower than the string, and clamping it to
+        the box would be less faithful than letting it overhang exactly as the
+        reference does. So the budget is the wider of the cell and the
+        reference's own run: a value may take as much room as the reference's
+        value took, and no more. That makes this policy inert for every reference
+        value — the gate cannot move — while still containing genuinely new data.
         """
         content = content.strip()
         if not content:
@@ -202,13 +261,38 @@ class Canvas:
                 rotation=rotation,
             )
             return
+        # The horizontal budget, matching how each alignment derives its x: a
+        # left/right aligned run starts one pad inside its edge, a centred run is
+        # centred in the whole box (the reference pads it on neither side).
+        limit = box.w - pad if align in ("left", "right") else box.w
+        if sample:
+            # The reference's own run is proof of how much room this cell really
+            # affords, box lattice or not.
+            limit = max(limit, self.measure(sample.strip(), role, size))
+        condense = 1.0
+        if limit > 0 and width > limit:
+            condense = limit / width
+            if condense < MIN_CONDENSE:
+                # Too wide even fully condensed: keep the readable floor and cut
+                # the run to what that floor can show inside the cell.
+                condense = MIN_CONDENSE
+                content = _truncate_to_width(
+                    content, lambda s: self.measure(s, role, size), limit, condense
+                )
+                if not content:
+                    return
+                width = self.measure(content, role, size)
+        # Alignment uses the run's ON-PAGE width, which condensing changes.
+        drawn = width * condense
         if align == "left":
             x = box.x + pad
         elif align == "right":
-            x = box.right - pad - width
+            x = box.right - pad - drawn
         else:
-            x = box.x + (box.w - width) / 2
-        self.text(x + xfix, baseline, content, role=role, size=size, color=color)
+            x = box.x + (box.w - drawn) / 2
+        self.text(
+            x + xfix, baseline, content, role=role, size=size, color=color, condense=condense
+        )
 
     # --------------------------------------------------------------- assembly
     def body(self) -> str:

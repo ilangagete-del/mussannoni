@@ -352,6 +352,16 @@ class GenericTabularReport:
 # --------------------------------------------------------------------------- #
 # JSON (de)serialisation - lossless round-trip
 # --------------------------------------------------------------------------- #
+#: schema class -> the ``report_type`` to assume when only the class is known.
+#:
+#: The inverse of :data:`SCHEMA_BY_TYPE` is ambiguous — ``schools_rank`` and
+#: ``top_schools`` share :class:`SchoolsRankReport`, and four families share
+#: :class:`GenericTabularReport` — so the intended default is stated explicitly
+#: rather than derived. Used only when a caller supplies no ``report_type``; a
+#: ``meta.report_type`` always wins. This is schema knowledge, not stage
+#: knowledge, which is why it lives here.
+TYPE_BY_SCHEMA: dict[type, str] = {}
+
 #: report_type id -> schema class, for :func:`from_dict` reconstruction.
 SCHEMA_BY_TYPE: dict[str, type] = {
     "school_result_slip": SchoolResultSlip,
@@ -365,6 +375,16 @@ SCHEMA_BY_TYPE: dict[str, type] = {
     "mock_mobility": GenericTabularReport,
     "generic": GenericTabularReport,
 }
+
+TYPE_BY_SCHEMA.update(
+    {
+        SchoolResultSlip: "school_result_slip",
+        SchoolsRankReport: "schools_rank",
+        BestStudentsReport: "best_students",
+        SubjectsRankReport: "subjects_rank",
+        GenericTabularReport: "generic",
+    }
+)
 
 
 def to_dict(obj: Any) -> dict[str, Any]:
@@ -398,6 +418,7 @@ def _coerce(type_hint: Any, value: Any) -> Any:
         "SchoolRankRow": SchoolRankRow,
         "SubjectRankRow": SubjectRankRow,
         "TabularRow": TabularRow,
+        "TabularSection": TabularSection,
         "PerformanceRow": PerformanceRow,
         "PerformanceTable": PerformanceTable,
     }

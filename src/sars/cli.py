@@ -97,7 +97,34 @@ def cmd_data(only: str | None) -> int:
     return 0
 
 
-def cmd_template(only: str | None) -> int:
+def _template_one(name: str) -> tuple[str, str, str, str]:
+    """Extract one document and write its templated HTML + PDF.
+
+    Module level and named only by its document name, so it can be handed to a
+    worker process. Returns what the caller needs to print, because a worker's
+    stdout is not the user's terminal.
+    """
+    pair = next(p for p in sources.discover() if p.name == name)
+    doc = extract_document(pair.pdf, pair.html)
+    report = extract_report(doc, pair.name)
+    report_type = getattr(report.meta, "report_type", "generic")
+
+    html_text = template_maker.render_html(report_type, report)
+    html_path = OUT_TEMPLATE_HTML / f"{pair.name}.html"
+    html_path.write_text(html_text, encoding="utf-8")
+
+    pdf_path = template_maker.render_pdf(
+        report_type, report, OUT_TEMPLATE_PDF / f"{pair.name}.pdf"
+    )
+    return (
+        pair.name,
+        report_type,
+        str(html_path.relative_to(sources.ROOT)),
+        str(Path(pdf_path).relative_to(sources.ROOT)),
+    )
+
+
+def cmd_template(only: str | None, jobs: int | None = None) -> int:
     """Run the data -> template -> HTML/PDF path for each selected document.
 
     This exercises the template-maker API end to end: the document's data is
@@ -105,27 +132,91 @@ def cmd_template(only: str | None) -> int:
     report type, and the resulting HTML is written to ``output/template_html/``
     and printed to a PDF in ``output/template_pdf/``. Unlike ``convert``, which
     redraws a specific PDF, this path rebuilds the report *from data alone*.
+
+    Documents are independent, and printing one is dominated by the PDF engine —
+    roughly 84% of the work — so they are rendered in parallel across processes.
+    The result is byte-for-byte what a sequential run produces; only the wall
+    clock changes. ``jobs=1`` forces the sequential path.
     """
     OUT_TEMPLATE_HTML.mkdir(parents=True, exist_ok=True)
     OUT_TEMPLATE_PDF.mkdir(parents=True, exist_ok=True)
-    for pair in sources.select(only):
-        doc = extract_document(pair.pdf, pair.html)
-        report = extract_report(doc, pair.name)
-        report_type = getattr(report.meta, "report_type", "generic")
+    names = [pair.name for pair in sources.select(only)]
+    if not names:
+        return 0
 
-        html_text = template_maker.render_html(report_type, report)
-        html_path = OUT_TEMPLATE_HTML / f"{pair.name}.html"
-        html_path.write_text(html_text, encoding="utf-8")
+    workers = _worker_count(jobs, len(names))
 
-        pdf_path = template_maker.render_pdf(
-            report_type, report, OUT_TEMPLATE_PDF / f"{pair.name}.pdf"
+    def report(result: tuple[str, str, str, str]) -> None:
+        name, report_type, html_path, pdf_path = result
+        print(f"template {name}\n         {report_type:22s} -> {html_path} + {pdf_path}")
+
+    if workers == 1:
+        for name in names:
+            report(_template_one(name))
+        return 0
+
+    import concurrent.futures as futures
+
+    # The longest documents first, so the slowest one is never the last thing
+    # left running while the other workers sit idle.
+    ordered = sorted(names, key=lambda n: -_source_size(n))
+    with futures.ProcessPoolExecutor(max_workers=workers) as pool:
+        pending = {pool.submit(_template_one, name): name for name in ordered}
+        failures = 0
+        for future in futures.as_completed(pending):
+            name = pending[future]
+            try:
+                report(future.result())
+            except Exception as error:  # noqa: BLE001 - report and keep going
+                failures += 1
+                print(f"template {name}\n         FAILED: {error!r}", file=sys.stderr)
+    return 1 if failures else 0
+
+
+def cmd_fonts(force: bool = False) -> int:
+    """Register the bundled reference faces, and report what is resolvable.
+
+    Rendering does this automatically; this exposes it so a fresh install can be
+    checked, and so a failure is a clear message rather than a report that came
+    out in the wrong typeface.
+    """
+    from . import fontsetup
+
+    installed = fontsetup.install(force=force)
+    print(f"fonts    {installed} face(s) installed -> {fontsetup.INSTALL_DIR}")
+    absent = fontsetup.missing()
+    if absent:
+        print(
+            f"         {len(absent)} family(ies) still NOT resolvable by the renderer:\n"
+            + "\n".join(f"           - {name}" for name in absent[:10]),
+            file=sys.stderr,
         )
         print(
-            f"template {pair.name}\n"
-            f"         {report_type:22s} -> {html_path.relative_to(sources.ROOT)}"
-            f" + {Path(pdf_path).relative_to(sources.ROOT)}"
+            "         A report would be drawn in a substitute face and would NOT "
+            "match the original.\n         This project uses no fallback font.",
+            file=sys.stderr,
         )
+        return 1
+    print(f"         all {len(fontsetup.bundled())} reference face(s) resolvable")
     return 0
+
+
+def _worker_count(jobs: int | None, tasks: int) -> int:
+    import os
+
+    if jobs is not None and jobs > 0:
+        return min(jobs, tasks)
+    available = os.process_cpu_count() if hasattr(os, "process_cpu_count") else os.cpu_count()
+    return max(1, min(available or 1, tasks))
+
+
+def _source_size(name: str) -> int:
+    """A cheap proxy for how long a document takes: how big its source PDF is."""
+    pair = next((p for p in sources.discover() if p.name == name), None)
+    try:
+        return pair.pdf.stat().st_size if pair else 0
+    except OSError:
+        return 0
 
 
 def main(argv: list[str] | None = None) -> int:
@@ -135,12 +226,24 @@ def main(argv: list[str] | None = None) -> int:
     )
     parser.add_argument(
         "command",
-        choices=["unpack", "convert", "render", "verify", "all", "list", "data", "template"],
+        choices=[
+            "unpack", "convert", "render", "verify", "all", "list", "data", "template",
+            "fonts",
+        ],
         help="action",
     )
     parser.add_argument("--only", help="substring of a document name")
     parser.add_argument("--force", action="store_true", help="re-extract even if data/sars exists")
+    parser.add_argument(
+        "--jobs",
+        type=int,
+        default=None,
+        help="parallel worker processes for `template` (default: one per CPU; 1 = sequential)",
+    )
     args = parser.parse_args(argv)
+
+    if args.command == "fonts":
+        return cmd_fonts(force=args.force)
 
     if args.command == "unpack":
         print(f"unpack   -> {unpack(force=args.force)}")
@@ -162,7 +265,7 @@ def main(argv: list[str] | None = None) -> int:
     if args.command == "data":
         return cmd_data(args.only)
     if args.command == "template":
-        return cmd_template(args.only)
+        return cmd_template(args.only, jobs=args.jobs)
     rc = cmd_convert(args.only)
     rc = cmd_render(args.only) or rc
     return cmd_verify(args.only) or rc

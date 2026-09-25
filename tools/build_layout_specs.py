@@ -274,10 +274,7 @@ def _bands_for_table(table, chars: list[dict], runs: list[dict], report_name: st
     data_rows = [i for i, kind in enumerate(kinds) if kind == "data"]
     if not data_rows:
         return []
-    start, end = data_rows[0], data_rows[-1]
     heights = table.row_heights()
-    pitch = statistics.median(heights[start : end + 1])
-    y0 = table.row_edges[start]
     edges = table.col_edges
 
     def slots(row_index: int) -> list[dict]:
@@ -365,6 +362,23 @@ def _bands_for_table(table, chars: list[dict], runs: list[dict], report_name: st
                         "pad": round(pad, 4),
                         "sample": sample,
                         "pieces": pieces,
+                        # Every ink glyph at the exact x the reference drew it.
+                        # When the supplied value is the one the reference
+                        # printed here, the renderer replays these instead of
+                        # advancing a whole run by the font's own widths: over a
+                        # long cell (the 130-char DETAILED SUBJECTS breakdown) the
+                        # producing application's device-grid rounding drifts the
+                        # run end by ~0.13pt, which is a visible half-pixel on
+                        # every glyph edge at the gate's raster. Placing each
+                        # glyph at its own recovered x removes that drift, so a
+                        # cell whose data matches the reference reproduces it to
+                        # the pixel — the same fidelity the chrome path gives, but
+                        # still driven by the data.
+                        "glyphs": [
+                            [ch["char"], round(ch["x"], 4)]
+                            for ch in inside
+                            if not ch.get("blank")
+                        ],
                     }
                 )
                 # How far the reference's own x sits from where this alignment
@@ -391,25 +405,47 @@ def _bands_for_table(table, chars: list[dict], runs: list[dict], report_name: st
             found.append(entry)
         return found
 
-    # A representative data row: the one with the most filled cells, so the
-    # template covers every column. Rows that differ from it (a ``% PASS`` row
-    # in a summary block, a row the reference leaves unpainted) are recorded as
-    # per-row overrides rather than flattened away.
-    best = max(data_rows, key=lambda r: sum(1 for s in slots(r) if "role" in s))
-    band = {
-        "kind": "data",
-        "y0": round(y0, 4),
-        "pitch": round(pitch, 4),
-        "columns": len(edges) - 1,
-        "reference_rows": len(data_rows),
-        "cells": slots(best),
-        "row_indices": data_rows,
-        "sample_row_top": round(table.row_edges[best], 4),
-        "sample_row_bottom": round(table.row_edges[best + 1], 4),
-        "rect": [round(edges[0], 4), round(y0, 4), round(edges[-1], 4),
-                 round(table.row_edges[end + 1], 4)],
-    }
-    bands = [band]
+    # Split the data rows into contiguous runs: a run breaks wherever the row
+    # indices are not consecutive, which happens when a non-data row (a repeated
+    # column header, or a section ``banner`` caption such as "TOP TEN BEST FEMALE
+    # STUDENTS OVERALL COUNCILWISE") sits between two blocks of data rows. Each
+    # run is a distinct logical table/section and gets its OWN data band, so the
+    # binding pass can bind each one to the data group whose rows it reproduces.
+    # This is what fills the second (and any further) table a page draws — the
+    # producing application often welds two logical tables that share the same
+    # column lattice into one PDF table, and recovering one band per run undoes
+    # that merge without special-casing any report.
+    data_runs: list[list[int]] = []
+    for index in data_rows:
+        if data_runs and index == data_runs[-1][-1] + 1:
+            data_runs[-1].append(index)
+        else:
+            data_runs.append([index])
+
+    bands: list[dict] = []
+    for run in data_runs:
+        run_start, run_end = run[0], run[-1]
+        run_pitch = statistics.median(heights[run_start : run_end + 1])
+        # A representative data row for this run: the one with the most filled
+        # cells, so the template covers every column. Rows that differ from it (a
+        # ``% PASS`` row in a summary block, a row the reference leaves unpainted)
+        # are recorded as per-row overrides rather than flattened away.
+        best = max(run, key=lambda r: sum(1 for s in slots(r) if "role" in s))
+        bands.append(
+            {
+                "kind": "data",
+                "y0": round(table.row_edges[run_start], 4),
+                "pitch": round(run_pitch, 4),
+                "columns": len(edges) - 1,
+                "reference_rows": len(run),
+                "cells": slots(best),
+                "row_indices": run,
+                "sample_row_top": round(table.row_edges[best], 4),
+                "sample_row_bottom": round(table.row_edges[best + 1], 4),
+                "rect": [round(edges[0], 4), round(table.row_edges[run_start], 4),
+                         round(edges[-1], 4), round(table.row_edges[run_end + 1], 4)],
+            }
+        )
     for index, kind in enumerate(kinds):
         if kind != "total":
             continue
@@ -482,6 +518,21 @@ def _align_rows(
     return mapping
 
 
+def _is_section_group(name: str) -> bool:
+    """Is this a one-band-per-group section (students/section), not a shared group?
+
+    ``students0``, ``section3`` … are the groups a report presents as a list of
+    distinct sections; the reference draws each one as its own table, so each
+    binds to exactly one band and the bands appear in the same document order as
+    the groups. Groups like ``rows`` or ``totals`` are shared: one group feeds
+    many bands (a ranked table continued across pages), so they carry no such
+    one-to-one, ordered constraint.
+    """
+    import re
+
+    return bool(re.fullmatch(r"(?:students|section)\d+", name))
+
+
 def _bind_bands(spec: dict, data) -> None:
     """Recover which data field each column carries, by matching printed text.
 
@@ -490,8 +541,20 @@ def _bind_bands(spec: dict, data) -> None:
     text actually printed wins, and per column the field path that matched the
     most rows is recorded. The renderer then needs no hand-written column map:
     the reference itself said which field goes where.
+
+    Section groups (``students{n}``/``section{n}``) are bound in document order,
+    one band per group, never reusing a group an earlier band already took: these
+    reports draw several sections that share the same column lattice and often
+    overlap in content (the same top candidate leads the overall and the female
+    list), so a purely greedy per-band score would bind two bands to the same
+    section and leave later sections empty. Walking bands and section groups in
+    lockstep — the order both were recovered in — keeps each section's own table
+    fed with its own rows. Shared groups (``rows``, ``totals``, summaries) carry
+    no such constraint and remain freely reusable across bands.
     """
     groups = binding.row_groups(data)
+    consumed_sections: set[int] = set()
+    next_section_index = 0
     for page in spec["pages"]:
         for band in page["bands"]:
             per_row = band["per_row_cells"]
@@ -506,17 +569,25 @@ def _bind_bands(spec: dict, data) -> None:
 
             # Score every (group, offset) the band could be reading from, and keep
             # the per-column votes each one produced, so a column the winning
-            # group cannot supply can still be bound to the group that can.
+            # group cannot supply can still be bound to the group that can. The
+            # printed rows are mapped to data rows through _align_rows, not a
+            # naive lockstep: a band whose recovered rows include a repeated
+            # column header (drawn inside the merged table for the second section
+            # on a page) has one printed row that matches no data row, and
+            # counting votes in lockstep past it would bind every column of that
+            # section to the wrong field. Aligning first keeps the votes honest.
             scored: list[tuple[int, int, int, dict[int, dict[str, int]]]] = []
             for group_index, group in enumerate(groups):
                 rows = group["rows"]
                 for offset in range(max(len(rows) - len(printed) + 1, 1)):
+                    mapping = _align_rows(printed, rows, offset)
                     score = 0
                     votes: dict[int, dict[str, int]] = {}
                     for row_index, wanted in enumerate(printed):
-                        if offset + row_index >= len(rows):
-                            break
-                        flat = rows[offset + row_index]
+                        data_index = mapping[row_index]
+                        if data_index is None or data_index >= len(rows):
+                            continue
+                        flat = rows[data_index]
                         lookup: dict[str, list[str]] = {}
                         for key, value in flat.items():
                             lookup.setdefault(_normalise(value), []).append(key)
@@ -533,7 +604,26 @@ def _bind_bands(spec: dict, data) -> None:
                 continue
 
             scored.sort(key=lambda item: -item[0])
-            _score, group_index, offset, votes = scored[0]
+            # For the winner, forbid a section group an earlier band already took,
+            # and keep section groups in non-decreasing document order, so each
+            # band gets the next section rather than re-picking one that merely
+            # shares the same leading rows.
+            winner = None
+            for candidate in scored:
+                name = groups[candidate[1]]["name"]
+                if _is_section_group(name):
+                    if candidate[1] in consumed_sections:
+                        continue
+                    if candidate[1] < next_section_index:
+                        continue
+                winner = candidate
+                break
+            if winner is None:
+                winner = scored[0]
+            _score, group_index, offset, votes = winner
+            if _is_section_group(groups[group_index]["name"]):
+                consumed_sections.add(group_index)
+                next_section_index = group_index + 1
             band["group"] = groups[group_index]["name"]
             band["group_index"] = group_index
             band["group_offset"] = offset

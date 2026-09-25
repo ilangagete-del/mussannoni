@@ -1,0 +1,7 @@
+{
+  "task_id": "task-generalize-templates-and-package",
+  "task_description": "Fix the empty-second-table defect in MWANZA CC 10 BEST STUDENTS and generalise the data model + row-looping so the templated path works for arbitrary students/schools/councils data (more or less than the 19 examples), documented so anyone can supply their own data. Prove flexibility across extremes (longest name/council/detailed-results, more/less/empty data). Decide Jinja2 vs the project's own layout mechanism purely on measured fidelity evidence, and make the templated path fast. Then organise modules to separate secondary from future primary schools, and deliver a PyPI packaging plan + a public install-and-call API (data + report type -> HTML/PDF) that bundles all needed fonts (including legally-awkward ones for now, no fallback fonts) under 100MB. The one overriding guardrail: the per-page visible-pixel comparison percentage measured by tools/fidelity_gate.py must never drop for any report versus the captured baseline (output/fidelity/baseline-verify.json; git tag pre-generalize-templates-baseline as the revert point). Aim to push reports toward >=98% while never regressing. Each report type stays a self-contained HTML+CSS artefact; only the DATA model and looping are generalised.",
+  "status": "in_progress",
+  "feature_order": ["FEAT-001", "FEAT-002", "FEAT-003", "FEAT-004", "FEAT-005"],
+  "blocked_reason": null
+}
