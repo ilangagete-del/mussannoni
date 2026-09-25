@@ -192,8 +192,39 @@ def baseline_offset(css_family: str, size_pt: float, engine: str = "weasyprint")
     offset = cache.get(key)
     if offset is None:
         offset = _measure_baseline(css_family, size_pt, engine)
-        cache[key] = offset
-        CALIBRATION_PATH.parent.mkdir(parents=True, exist_ok=True)
-        CALIBRATION_PATH.write_text(json.dumps(cache, indent=1, sort_keys=True), encoding="utf-8")
-        _calibration.cache_clear()
+        _store_calibration(key, offset)
     return offset
+
+
+def _store_calibration(key: str, offset: float) -> None:
+    """Add one measurement to the cache, safely for concurrent renderers.
+
+    Reports are rendered in parallel, so several processes can measure different
+    (family, size) pairs at once. Two things make that safe: the file is re-read
+    immediately before writing, so a sibling's entries are not thrown away, and it
+    is replaced atomically, so a reader never sees a half-written file. A key lost
+    to a race is merely measured again next time; a truncated file would break
+    every renderer.
+    """
+    import os
+    import tempfile
+
+    CALIBRATION_PATH.parent.mkdir(parents=True, exist_ok=True)
+    merged: dict[str, float] = {}
+    if CALIBRATION_PATH.exists():
+        try:
+            merged = json.loads(CALIBRATION_PATH.read_text(encoding="utf-8"))
+        except (OSError, json.JSONDecodeError):
+            merged = {}
+    merged[key] = offset
+    handle, temporary = tempfile.mkstemp(
+        dir=str(CALIBRATION_PATH.parent), prefix=".calibration-", suffix=".json"
+    )
+    try:
+        with os.fdopen(handle, "w", encoding="utf-8") as stream:
+            json.dump(merged, stream, indent=1, sort_keys=True)
+        os.replace(temporary, CALIBRATION_PATH)
+    except BaseException:
+        os.unlink(temporary)
+        raise
+    _calibration.cache_clear()

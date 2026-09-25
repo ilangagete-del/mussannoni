@@ -17,7 +17,15 @@ dependencies = [
 ]
 
 [project.optional-dependencies]
-dev = ["pytest>=8", "ruff>=0.6", "black>=24"]
+dev = [
+    "pytest>=8",
+    "ruff>=0.6",
+    "black>=24",
+    # Dev-only: tools/templating_bakeoff.py measures a Jinja2 port of the row
+    # loop against the built-in mechanism. It is deliberately NOT a runtime
+    # dependency - see docs/DECISIONS.md for the measured reason.
+    "jinja2>=3.1",
+]
 
 [project.scripts]
 sars = "sars.cli:main"
